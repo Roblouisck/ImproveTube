@@ -2,10 +2,12 @@
 @import url('https://fonts.googleapis.com/css?family=Sarabun&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+
 // Colors
 $page-background-grey: #F1F1F1
 $component-background-white: #FFFFFF
 $component-border-grey: #DEDEDE
+$component-border-dark-grey: #CCCCCC
 $header-black: #5E5E5E
 $header-faded-black: rgba(94,94,94,0.5)
 $divider-line-grey: #D9D9D9
@@ -19,6 +21,7 @@ $button-background-red: #CC0000
 $button-foreground-yellow: #FEFFB9
 $button-foreground-white: #FFFFFF
 
+
 h1 
   color: $header-faded-black
   font-family: 'Roboto', sans-serif;
@@ -30,3 +33,79 @@ p
 
 body 
   background: white
+
+
+//HEADER 
+p 
+  color: $header-black
+  font-size: 1.6rem
+  font-family: 'Sarabun', sans-serif
+
+body 
+  background-color: $page-background-grey
+  overflow: scroll
+
+.magnifyBackground
+  background-color: #F8F8F8
+  width: 6.4rem
+  height: 3.2rem
+  border-top: 1px solid $component-border-dark-grey
+  border-bottom: 1px solid $component-border-dark-grey
+  border-right: 1px solid $component-border-dark-grey
+  cursor: pointer
+
+.searchBox
+  height: 3.2rem
+  width: 57.5rem
+  font-family: Roboto
+  border: 1px solid $component-border-dark-grey
+
+.searchBox::placeholder
+  padding-left: 1.2rem
+
+.searchBar
+  display: flex
+
+.magnifyIcon
+  fill: #979797
+  position: relative
+  left: 2rem
+  top: .6rem
+
+.hamburgerMenu
+  margin-top: .6rem
+  cursor: pointer
+
+.hamburgerLine
+  width: 2rem
+  height: .2rem
+  background-color: black
+  margin: .4rem
+
+.signInBackground
+  background-color: purple
+  width: 3rem
+  height: 3rem
+
+.header 
+  padding: 2.1rem 2.1rem 0 2.1rem 
+  height: 7.8rem
+  display: flex
+  justify-content: space-between
+  background-color: $component-background-white
+
+.signInBackground
+  width: 3rem
+  height: 3rem
+  border-radius: 99rem
+  cursor: pointer
+
+
+// ACTIVITY FEED
+.activityFeedContainer
+  position: absolute
+  background-color: $component-background-white
+  width: 631px
+  height: 1301px
+  left: 32.95px
+  top: 114.16px
