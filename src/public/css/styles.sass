@@ -22,29 +22,12 @@ $button-foreground-yellow: #FEFFB9
 $button-foreground-white: #FFFFFF
 
 
-h1 
-  color: $header-faded-black
-  font-family: 'Roboto', sans-serif;
-
-p 
-  color: $header-black
-  font-size: 1.6rem
-  font-family: 'Sarabun', sans-serif;
-
-body 
-  background: white
-
-
-//HEADER 
-p 
-  color: $header-black
-  font-size: 1.6rem
-  font-family: 'Sarabun', sans-serif
-
 body 
   background-color: $page-background-grey
-  overflow: scroll
+  font-family: Roboto
 
+
+// HEADER
 .magnifyBackground
   background-color: #F8F8F8
   width: 6.4rem
@@ -82,10 +65,22 @@ body
   background-color: black
   margin: .4rem
 
-.signInBackground
+.avatarPlaceholder
   background-color: purple
   width: 3rem
   height: 3rem
+  border-radius: 99rem
+  cursor: pointer
+
+  &--comments
+    background-color: #a2a7dc
+    width: 3.5rem
+    height: 3.5rem
+    border-radius: 99rem
+    cursor: pointer
+    position: relative
+    left: 2.3rem
+    top: 6.6rem
 
 .header 
   padding: 2.1rem 2.1rem 0 2.1rem 
@@ -94,18 +89,81 @@ body
   justify-content: space-between
   background-color: $component-background-white
 
-.signInBackground
-  width: 3rem
-  height: 3rem
-  border-radius: 99rem
-  cursor: pointer
+
+// HOMEPAGE GRID
+.gridHomepageContainer
+  background-color: $component-background-white
+  position: absolute
+  width: 1202.91px
+  height: 1599.47px
+  left: 674.95px
+  top: 112.47px
 
 
 // ACTIVITY FEED
 .activityFeedContainer
-  position: absolute
   background-color: $component-background-white
-  width: 631px
-  height: 1301px
-  left: 32.95px
-  top: 114.16px
+  position: absolute
+  width: 626.07px
+  height: 1268.35px
+  left: 17.08px
+  top: 112.47px
+
+.commentSection--activityfeed
+  font-family: Roboto
+  color: $header-black
+
+.activityFeedTitle
+  display: flex
+  justify-content: center
+  margin: 3rem 0 3rem 0
+  color: $header-black
+  font-style: normal
+  font-weight: bold
+  font-size: 24px
+  line-height: 28px
+  letter-spacing: .02rem
+
+
+.commentContainer
+  margin: 3rem 6rem 0rem 8rem
+  
+  &:first-child
+    margin-top: 6rem
+
+.commentorName
+  font-weight: 600
+  display: inline-block
+
+.dateOfComment
+  display: inline-block
+  margin: 0 0 .5rem 1.2rem
+  font-size: 1.3rem
+
+.comment
+  margin: 0.3rem 0rem 1rem 0rem
+
+.viewComment
+  font-size: 1.4rem
+
+hr
+  width: 85%
+  background-color: $divider-line-grey 
+  height: .1rem
+  border: 0
+
+.viewComment
+  cursor: pointer
+
+.thumbsDownIcon
+  margin-left: 1.5rem
+
+.thumbs, .replyText
+  display: inline-block
+
+.replyText
+  color: $header-black
+  font-size: 1.2rem
+  font-weight: 600
+  margin-left: 1rem
+

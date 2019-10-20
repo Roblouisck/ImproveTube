@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import ActivityFeed from './ActivityFeed'
+import Grid_Homepage from './Grid_Homepage'
 
 class App extends React.Component {
   render() {
@@ -8,6 +9,7 @@ class App extends React.Component {
       <div>
         <Header />
         <ActivityFeed />
+        <Grid_Homepage />
       </div>
     )
   }

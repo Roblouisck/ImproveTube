@@ -4,13 +4,13 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div className="header">
+      <header className="header">
       
-        <div className="hamburgerMenu">
+        <nav className="hamburgerMenu">
           <div className="hamburgerLine"></div>
           <div className="hamburgerLine"></div>
           <div className="hamburgerLine"></div>
-        </div>
+        </nav>
 
         <div className="searchBar">
 
@@ -27,9 +27,9 @@ class Header extends React.Component {
             </div>
           </div>
         </div>
-        <div className="signInBackground">
+        <div className="avatarPlaceholder">
         </div>
-      </div>
+      </header>
     )
   }
 }
