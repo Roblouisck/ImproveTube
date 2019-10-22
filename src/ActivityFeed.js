@@ -6,7 +6,7 @@ class ActivityFeed extends React.Component {
     return (
       <aside className="activityFeedContainer">
         <h1 className="activityFeedTitle">Activity Feed</h1>
-        <hr />
+        <hr className="home--activityfeed-hr" />
         <div className="commentSection--activityfeed">
 
           <div className="avatarPlaceholder--comments"></div>

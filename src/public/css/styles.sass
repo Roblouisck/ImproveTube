@@ -26,7 +26,6 @@ body
   background-color: $page-background-grey
   font-family: Roboto
 
-
 // HEADER
 .magnifyBackground
   background-color: #F8F8F8
@@ -90,18 +89,6 @@ body
   background-color: #FFFFFF
 
 
-// HOMEPAGE GRID
-.gridHomepageContainer
-  background-color: $component-background-white
-  border: 1px solid $component-border-grey
-  position: absolute
-  width: 1202.91px
-  height: 1599.47px
-  left: 674.95px
-  top: 112.47px
-
-
-
 // ACTIVITY FEED
 .activityFeedContainer
   background-color: $component-background-white
@@ -120,7 +107,7 @@ body
 .activityFeedTitle
   display: flex
   justify-content: center
-  margin: 2.5rem 0 2.7rem 0
+  margin: 2.9rem 0 2.7rem 0
   color: $header-black
   font-style: normal
   font-weight: 600
@@ -153,9 +140,14 @@ body
 hr
   width: 85%
   background-color: $divider-line-grey 
-  height: .1rem
   border: 0
+  height: 0.1rem
 
+.home--activityfeed-hr
+  position: relative
+  bottom: 0.4rem
+  margin-left: 4rem
+  
 a 
   color: $comment-reply-blue
 
@@ -194,3 +186,95 @@ a
   left: -0.8rem
   top: 0.4rem
   fill: $comment-reply-blue
+
+
+// HOMEPAGE GRID
+.home--grid
+  &-background
+    background-color: $component-background-white
+    border: 1px solid $component-border-grey
+    position: absolute
+    width: 1202.91px
+    height: 1599.47px
+    left: 674.95px
+    top: 112.47px
+
+
+  &-nav
+    display: flex
+    margin: 3.3rem 0rem 0rem 5.1rem
+
+    &-following,
+    &-recommended,
+    &-subscriptions
+      font-family: Sarabun
+      font-size: 1.8rem
+      color: $header-faded-black
+      font-weight: bold
+      margin-right: 5rem
+      cursor: pointer
+
+    &-following
+      color: $header-black
+
+  &-hr-nav-grey
+    margin: 2.6rem 0 1.9rem 3.8rem
+    width: 93.5%
+    background-color: $divider-line-grey
+
+  &-hr-nav-black
+    position: relative
+    right: -4rem
+    bottom: 2rem
+    background-color: $pure-black
+    width: 12.8rem
+
+.home--grid  
+  display: grid 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+  grid-template-rows: 1fr 1fr 1fr
+  grid-gap: 6.2rem 0.6rem
+  margin: 0.7rem 5rem 0 5rem
+
+  &-content-wrapper
+    margin-left: auto
+    margin-right: auto
+
+  &-video
+    width: 21.2rem
+    height: 11.9rem
+    background-color: black
+
+  &-title
+  &-author
+  &-views
+  &-date
+
+.home--grid
+  &-date-hr-container
+    margin: 7.1rem 0 5.18rem 0
+    width: 100%
+
+  &-date-hr-grey-right
+    position: relative
+    left: 72rem
+    width: 33%
+    background-color: $divider-line-grey
+
+  &-date-hr-grey-left
+    position: relative
+    background-color: $divider-line-grey
+    width: 33%
+    left: 6rem
+
+  &-divider-date-text
+    display: inline-block
+    color: black
+    position: relative
+    bottom: 6.8rem
+    left: 52rem
+    font-weight: bold
+    font-size: 22px
+
+
+
