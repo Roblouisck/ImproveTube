@@ -1,11 +1,11 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Sarabun&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sarabun&display=swap')
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap')
 
 
 // Colors
 $page-background-grey: #F1F1F1
-$component-background-white: #FFFFFF
+$component-background-white: #F8F8F8
 $component-border-grey: #DEDEDE
 $component-border-dark-grey: #CCCCCC
 $header-black: #5E5E5E
@@ -13,7 +13,7 @@ $header-faded-black: rgba(94,94,94,0.5)
 $divider-line-grey: #D9D9D9
 $pure-black: #000000
 
-$comment-black: #121212
+$comment-black: #474747
 $comment-title-black: #0d0d0d
 $comment-reply-blue: #065fd4
 
@@ -74,25 +74,26 @@ body
 
   &--comments
     background-color: #a2a7dc
-    width: 3.5rem
-    height: 3.5rem
+    width: 7.3rem
+    height: 7.3rem
     border-radius: 99rem
     cursor: pointer
     position: relative
-    left: 2.3rem
-    top: 6.6rem
+    left: 3.8rem
+    top: 4.6rem
 
 .header 
   padding: 2.1rem 2.1rem 0 2.1rem 
   height: 7.8rem
   display: flex
   justify-content: space-between
-  background-color: $component-background-white
+  background-color: #FFFFFF
 
 
 // HOMEPAGE GRID
 .gridHomepageContainer
   background-color: $component-background-white
+  border: 1px solid $component-border-grey
   position: absolute
   width: 1202.91px
   height: 1599.47px
@@ -100,9 +101,11 @@ body
   top: 112.47px
 
 
+
 // ACTIVITY FEED
 .activityFeedContainer
   background-color: $component-background-white
+  border: 1px solid $component-border-grey
   position: absolute
   width: 626.07px
   height: 1268.35px
@@ -110,41 +113,42 @@ body
   top: 112.47px
 
 .commentSection--activityfeed
+  margin-top: -1.1rem
   font-family: Roboto
   color: $header-black
 
 .activityFeedTitle
   display: flex
   justify-content: center
-  margin: 3rem 0 3rem 0
+  margin: 2.5rem 0 2.7rem 0
   color: $header-black
   font-style: normal
-  font-weight: bold
+  font-weight: 600
   font-size: 24px
   line-height: 28px
   letter-spacing: .02rem
 
 
 .commentContainer
-  margin: 3rem 6rem 0rem 8rem
+  margin: -3rem 6rem 1.2rem 13.4rem
   
-  &:first-child
-    margin-top: 6rem
-
 .commentorName
   font-weight: 600
   display: inline-block
+  color: $comment-black
+  font-size: 1.4rem
+  letter-spacing: 0.04rem
 
 .dateOfComment
   display: inline-block
-  margin: 0 0 .5rem 1.2rem
+  margin: 0 0rem 0.5rem 0.6rem
   font-size: 1.3rem
+  color: #6b6b6bf7
+  letter-spacing: -0.04rem
 
 .comment
-  margin: 0.3rem 0rem 1rem 0rem
-
-.viewComment
-  font-size: 1.4rem
+  margin: 0.3rem 0rem 0.9rem 0rem
+  color: $comment-black
 
 hr
   width: 85%
@@ -152,18 +156,41 @@ hr
   height: .1rem
   border: 0
 
+a 
+  color: $comment-reply-blue
+
 .viewComment
+  font-size: 1.4rem
   cursor: pointer
+  font-weight: bold
+  line-height: 1.6rem
+  color: $comment-reply-blue
+  margin: 0rem 0rem 0 0.7rem
+
+.thumbs
+  margin-left: .1rem
 
 .thumbsDownIcon
   margin-left: 1.5rem
 
+.thumbsUpIcon
+  position: relative
+  top: -0.1rem
+
 .thumbs, .replyText
   display: inline-block
+  fill: #848484
 
 .replyText
-  color: $header-black
-  font-size: 1.2rem
+  position: relative
+  top: -0.4rem
+  color: #727272
+  font-size: 1.3rem
   font-weight: 600
-  margin-left: 1rem
+  margin-left: 1.6rem
 
+.arrowDrop
+  position: relative
+  left: -0.8rem
+  top: 0.4rem
+  fill: $comment-reply-blue
