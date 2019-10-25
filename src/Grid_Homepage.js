@@ -15,7 +15,8 @@ class Grid_Homepage extends React.Component {
         <div className="home--grid">
           <div className="home--grid-content-wrapper">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -24,7 +25,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -33,7 +35,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -42,7 +45,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -51,7 +55,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -60,7 +65,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -69,7 +75,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -78,7 +85,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -87,7 +95,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -96,7 +105,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -105,7 +115,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -114,7 +125,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -123,7 +135,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -132,7 +145,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -141,7 +155,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -157,7 +172,8 @@ class Grid_Homepage extends React.Component {
         <div className="home--grid">
           <div className="home--grid-content-wrapper">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -166,7 +182,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -175,7 +192,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -184,7 +202,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -193,7 +212,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -202,7 +222,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -211,7 +232,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -220,7 +242,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -229,7 +252,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -238,7 +262,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -247,7 +272,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -256,7 +282,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -265,7 +292,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -274,7 +302,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
@@ -283,7 +312,8 @@ class Grid_Homepage extends React.Component {
 
           <div className="home--grid-contentBox">
             <div className="home--grid-video"></div>
-            <div className="home--grid-title">Video Title</div>
+            <div className="home--grid-avatar-placeholder"></div>
+            <div className="home--grid-title">Video Title That's A Little Longer</div>
             <div className="home--grid-author">Author</div>
             <div className="home--grid-views">612K 
               <span className="home--grid-date"> • 6 days ago</span>
