@@ -13,7 +13,7 @@ class RenderChannel extends React.Component {
           titleOne={'VIDEOS'} 
           titleTwo={'PLAYLISTS'} 
           titleThree={'SUBSCRIPTIONS'} 
-          titleFour={'FOLLOW'}
+          buttonTextFollow={'FOLLOW'}
           page={'channel'} />
       </div>
     )
