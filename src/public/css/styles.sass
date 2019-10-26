@@ -27,6 +27,10 @@ body
   background-color: $page-background-grey
   font-family: Roboto
 
+.flex-wrapper 
+  display: flex
+  justify-content: space-around
+
 // HEADER
 .magnifyBackground
   background-color: #F8F8F8
@@ -94,7 +98,6 @@ body
 .activityFeedContainer
   background-color: $component-background-white
   border: 1px solid $component-border-grey
-  position: absolute
   width: 62.6rem
   height: 1675px
   left: 17.08px
@@ -189,12 +192,11 @@ a
   fill: $comment-reply-blue
 
 
-// HOMEPAGE GRID
+// GRID (base styles)
 .home--grid, .channel--grid
   &-background
     background-color: $component-background-white
     border: 1px solid $component-border-grey
-    position: absolute
     width: 120.3rem
     height: 1675px
     left: 674.95px
@@ -301,11 +303,11 @@ a
     font-size: 22px
 
 
-// CHANNEL GRID
+// GRID (Channel Styles)
 .channel--grid
   grid-template-columns: 1fr 1fr 1fr 1fr
   grid-template-rows: 1fr 1fr 1fr
-  grid-gap: 3.4rem 1.4rem
+  grid-gap: 3.4rem 1rem
   margin: 0.7rem 5rem 0 5rem
 
   &-hr-nav-black
@@ -318,4 +320,54 @@ a
     background-color: #CC0000
     color: white
     padding: 0.9rem 3.1rem
+
+  &-video
+    width: 26.6rem
+    height: 15rem
+
+  &-author, &-views
+    padding-left: 0
+
+  &-avatar-placeholder,
+  &-date-hr-container,
+  &-divider-date-text,
+  &-content-wrapper:nth-last-child(-n+3) 
+    display: none
+
+// Channel Page Above the Fold
+.channel--aboveFold
+  &-wrapper 
+    display: flex
+    justify-content: space-between
+    margin: 5rem 5rem
+
+  &-avatar
+    width: 291.65px
+    height: 291.65px
+    background-color: black
+
+  &-description-box
+    background-color: white
+    padding: 3rem 3rem 3rem 3rem
+    width: 81rem
+    margin-top: 2rem
+    outline: 1px solid #ccc
+
+    & h2
+      font-size: 2rem
+      margin-bottom: .5rem
+
+  &-subscribers-box
+    display: grid
+    grid-template-columns: repeat(13, 1fr)
+    grid-template-rows: repeat(7, 1fr)
+    outline: 1px solid black
+    width: 50rem
+
+  &-subscriber-avatar
+    outline: 1px solid black
+    height: 3.7rem
+    width: 3.8rem
+
+
 
