@@ -4,7 +4,7 @@ import ActivityFeed from '../ActivityFeed'
 import AboveFold from './AboveFold'
 import VideoGrid from '../VideoGrid'
 
-class RenderChannel extends React.Component {
+class RenderChannelPage extends React.Component {
   render() {
     return (
       <div>
@@ -24,4 +24,4 @@ class RenderChannel extends React.Component {
   }
 }
 
-export default RenderChannel
+export default RenderChannelPage
