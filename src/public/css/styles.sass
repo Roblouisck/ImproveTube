@@ -308,22 +308,22 @@ a
   grid-template-columns: 1fr 1fr 1fr 1fr
   grid-template-rows: 1fr 1fr 1fr
   grid-gap: 3.4rem 1rem
-  margin: 0.7rem 5rem 0 5rem
+  margin: 0rem 1.5rem 0 2rem
+
 
   &-hr-nav-black
     width: 9rem
 
   &-nav-follow
-    position: absolute
-    left: 101.8rem
-    bottom: 161.1rem
     background-color: #CC0000
     color: white
     padding: 0.9rem 3.1rem
+    right: 6rem
+    top: 59.8rem
 
   &-video
-    width: 26.6rem
-    height: 15rem
+    width: 28.4rem
+    height: 16.7rem
 
   &-author, &-views
     padding-left: 0
@@ -336,22 +336,42 @@ a
 
 // Channel Page Above the Fold
 .channel--aboveFold
+  &-avatar-text-wrapper
+    margin-bottom: 1.5rem
+
+  &-name-text
+    display: block
+    font-weight: bold
+    font-size: 24px
+    line-height: 28px
+    margin-bottom: .4rem
+
+  &-follower-text
+    display: block
+    font-weight: bold
+    font-size: 14px
+    line-height: 16px
+    color: #979191
+
   &-wrapper 
     display: flex
     justify-content: space-between
-    margin: 5rem 5rem
+    margin: 5rem 5rem 7rem 5rem
 
   &-avatar
     width: 291.65px
     height: 291.65px
-    background-color: black
+    background-color: #a2a7dc
+    margin-left: 2rem
 
   &-description-box
     background-color: white
-    padding: 3rem 3rem 3rem 3rem
-    width: 81rem
-    margin-top: 2rem
+    padding: 2.5rem 3rem 3rem 3rem
+    width: 80.1rem
+    height: 31.1rem
+    margin-top: 4.3rem
     outline: 1px solid #ccc
+    margin-right: 3.5rem
 
     & h2
       font-size: 2rem
@@ -361,13 +381,37 @@ a
     display: grid
     grid-template-columns: repeat(13, 1fr)
     grid-template-rows: repeat(7, 1fr)
-    outline: 1px solid black
-    width: 50rem
+    height: 31.5rem
+    width: 54rem
+    margin: 1rem 0 0 0
+    grid-gap: 1rem
+    padding: 1rem
+    background-color: white
+
+    &-wrapper
+      margin-right: 2rem
+
+    &-title
+      font-family: Sarabun
+      font-weight: bold
+      font-size: 24px
+      line-height: 31px
+      color: black
+      margin-bottom: 1rem
+
+    &-bottom-text
+      font-weight: bold
+      font-size: 16px
+      line-height: 19px
+      color: #847D7D
+      display: flex
+      justify-content: flex-end
+      margin-top: .5rem
 
   &-subscriber-avatar
-    outline: 1px solid black
-    height: 3.7rem
-    width: 3.8rem
+    margin: 0 0 0 0
+    background-color: #a2a7dc
+
 
 
 
