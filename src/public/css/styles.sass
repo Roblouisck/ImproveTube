@@ -1,6 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Sarabun&display=swap')
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap')
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
 
 
 // Colors
@@ -26,6 +26,9 @@ $button-foreground-white: #FFFFFF
 body 
   background-color: $page-background-white
   font-family: Roboto
+
+.flex
+  display: flex
 
 .flex-wrapper 
   display: flex
@@ -417,26 +420,155 @@ a
 
 // VIDEO PAGE
 .videoPage
+  &-body
+    background-color: $component-background-white
+    
   &-page-wrapper
+    display: flex
+    flex-direction: row-reverse
+    justify-content: flex-end
+    margin: 5rem 8.6rem 0 8.6rem
+
   &-sidebar
+    &-text-top
+      display: flex
+      justify-content: space-between
     &-text-upnext
     &-text-autoplay
     &-grid-wrapper
-    &-grid-item
+      margin: 1.5rem 0 0 0
+      display: grid
+      grid-gap: 1rem
 
-  &-video-wrapper
+    &-grid-video
+      width: 202.33px
+      height: 109.04px
+      background: purple
+      float: left
+      margin-right: 1rem
+    &-grid-video-wrapper
+    &-grid-video-title
+      font-weight: 500
+      font-size: 1.4rem
+      color: $comment-black
+      margin: 0 0 .4rem 21.2rem
+    &-grid-video-author
+      color: $text-grey
+      margin: 0 0 0 21.2rem
+      font-size: 1.3rem
+      letter-spacing: 0.02rem
+    &-grid-video-recommended-text
+      color: $text-grey
+      margin: 0 0 0 21.2rem
+      font-size: 1.3rem
+      letter-spacing: 0.02rem
+
   &-video
+    width: 1205.75px
+    height: 674.78px
+    background: red
+
+    &-wrapper
+      margin-right: 5rem
+
     &-info-wrapper
+      display: flex
+      justify-content: space-between
+      margin-top: 1.5rem
+
     &-title-box
-    &-text-views
-    &-text-date
-    &-options
+      margin-left: 1.3rem
+
+    &-title
+      margin-bottom: 0.4rem
+      font-weight: 500
+      font-size: 1.8rem
+      line-height: 28px
+      color: #1E1E1E
+
+    &-views
+      font-size: 1.4rem
+      margin-right: 1rem
+      letter-spacing: .02rem
+
+    &-date
+      font-size: 1.4rem
+      letter-spacing: .02rem
+
+    &-options-thumbs
+      margin-right: 5rem
+      position: relative
+      right: 1rem
+    &-options-share
+      margin-right: 3rem
+      font-size: 1.4rem
+    &-options-save
+      margin-right: 3rem
+      font-size: 1.4rem
+    &-options-ellipses
+      margin-right: 1rem
 
   &-description-box
-  &-new-subscribers
-    &-grid
-    &-subscriber-avatar
+    margin-top: 3.7rem
+    outline: 1px solid grey 
+    height: 48rem
+    width: 122.4rem
 
-  &-video-comments
+  &-new-subscribers
+    &-text
+      margin: 3.3rem 0rem 0.6rem 0rem
+      font-size: 18px
+      font-weight: normal
+      line-height: 23px
+      color: #474747
     &-wrapper
-    &-add-new-comment
+      width: 97.4%
+    &-grid
+      display: flex
+      justify-content: space-between
+      margin-bottom: 7rem
+    &-subscriber-avatar
+      width: 5rem
+      height: 5rem
+      background-color: blue
+
+  &-number-of-comments
+    margin: 0 3rem 0rem 4rem
+
+
+  &-add-comment-avatar
+    background-color: #a2a7dc
+    width: 7.3rem
+    height: 7.3rem
+    border-radius: 99rem
+    cursor: pointer
+    margin: 4rem 0rem 0rem 3.7rem
+
+  &-add-comment
+    margin-top: 6.5rem
+    margin-left: 2rem
+    color: #b0b0b0
+
+  &-add-comment-hr
+    width: 84%
+    position: relative
+    left: 13rem
+    bottom: 2rem
+
+  &-comment-section
+    margin-left: 7rem
+    width: 118rem
+  &-comment-avatar
+    background-color: #a2a7dc
+    width: 7.3rem
+    height: 7.3rem
+    border-radius: 99rem
+    cursor: pointer
+    position: relative
+    left: 3.8rem
+    top: 4.6rem
+  &-comment-container
+    margin: -3rem 6rem -0.8rem 13.4rem
+
+
+

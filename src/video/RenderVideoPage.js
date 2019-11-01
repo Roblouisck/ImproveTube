@@ -5,7 +5,7 @@ import VideoPage from './VideoPage'
 class RenderVideoPage extends React.Component {
   render() {
     return (
-      <div>
+      <div className="videoPage-body">
         <Header />
         <VideoPage />
       </div>
