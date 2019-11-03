@@ -124,6 +124,63 @@ class VideoPage extends React.Component {
               <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
             </div>
 
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+
           </div>
         </aside>
 
@@ -139,14 +196,75 @@ class VideoPage extends React.Component {
                 <span className={`${p}-video-date`}>Oct 6, 2019</span>
               </div>
               <div className={`${p}-video-options`}>
-                <span className={`${p}-video-options-thumbs`}>ThumbsPlaceholder</span>
+                <div className={`${p}-video-options-thumbsUp`}>{thumbsUp(20)} &nbsp; 
+                  <span className={`${p}-video-options-thumbsUp-text`}>12k</span>
+                </div>
+                <div className={`${p}-video-options-thumbsDown`}>{thumbsDown(20)} &nbsp; 
+                  <span className={`${p}-video-options-thumbsDown-text`}>71</span>
+                </div>
                 <span className={`${p}-video-options-share`}>Share</span>
                 <span className={`${p}-video-options-save`}>Save</span>
+                <div className={`${p}-video-options-likebar`}></div>
                 <span className={`${p}-video-options-ellipses`}>...</span>
               </div>
             </div>
           </div>
-          <div className={`${p}-description-box`}></div>
+          <div className={`${p}-description-box`}>  
+            <div className={`${p}-description-column-1`}>
+              <div className={`${p}-description-column-1-avatar-wrapper`}>
+                <div className="flex">
+                  <div className={`${p}-description-column-1-avatar`}></div>
+                  <div>
+                    <div className={`${p}-description-column-1-author`}>DevPlaceholder</div>
+                    <div className={`${p}-description-column-1-followers`}>356k Followers</div>
+                  </div>
+                </div>
+                <div className={`${p}-description-buttons-wrapper flex`}>
+                  <button className={`${p}-description-subscribe-button`}>SUBSCRIBE</button>
+                  <button className={`${p}-description-follow-button`}>FOLLOW</button>
+                </div>
+              </div>
+              <div className={`${p}-description-column-1-text`}>
+                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eligendi architecto nesciunt velit sequi placeat voluptatibus,
+                <br/>
+                <br/>
+                a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
+                <br/>
+                <br/>
+                a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
+                </span>
+              </div>
+            </div>
+            <div className={`${p}-description-column-2`}>
+              <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eligendi architecto nesciunt velit sequi placeat voluptatibus,
+                <br/>
+                <br/>
+                a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
+                <br/>
+                <br/>
+                a laboriosam, et vitae aliquid provident eum totam.
+                <br/>
+                <br/>
+                Quos eligendi architecto nesciunt velit sequi placeat voluptatibus,
+                <br/>
+                <br/>
+                a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
+                <br/>
+                <br/>
+                et vitae aliquid beatae quae mollitia 
+              </span>
+            </div>
+            <div className={`${p}-description-column-3`}>
+              <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eligendi architecto nesciunt velit sequi placeat voluptatibus,
+                <br/>
+                <br/>
+                a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
+                <br/>
+                <br/>
+                a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
+              </span>
+            </div>
+          </div>
           <div className={`${p}-new-subscribers-wrapper`}>
             <h2 className={`${p}-new-subscribers-text`}>New Subscribers to DevPlaceholder</h2>
             <div className={`${p}-new-subscribers-grid`}>
@@ -177,26 +295,26 @@ class VideoPage extends React.Component {
             </div>
 
 
-          <div className="videoPage-comment-section">
-          <span className="videoPage-number-of-comments">1,392 comments</span>
-          <span className="videoPage-sort-comments">Sort by</span>
+          <div className={`${p}-comment-section`}>
+          <span className={`${p}-number-of-comments`}>1,392 comments</span>
+          <span className={`${p}-sort-comments`}>Sort by</span>
 
           <div className="flex">
-            <div className="videoPage-add-comment-avatar"></div>
-            <div className="videoPage-add-comment">Add a public comment</div>
+            <div className={`${p}-add-comment-avatar`}></div>
+            <div className={`${p}-add-comment`}>Add a public comment</div>
           </div>
           <hr className={`${p}-add-comment-hr`}/>
-            <div className="videoPage-comment-avatar"></div>
-            <div className="videoPage-comment-container">
+            <div className={`${p}-comment-avatar`}></div>
+            <div className={`${p}-comment-container`}>
               <h5 className="commentorName">LoveLyzKelly</h5>
               <div className="dateOfComment">6 months ago</div>
               <p className="comment">There may possible be a video tomorrow Sunday Japan time</p>
               <div className="thumbs">
                 <span className="thumbsUpIcon">
-                  {thumbsUp()}
+                  {thumbsUp(16)}
                 </span>
                 <span className="thumbsDownIcon">
-                  {thumbsDown()}
+                  {thumbsDown(16)}
                 </span>
               </div>
               <p className="replyText">REPLY</p>
@@ -208,17 +326,17 @@ class VideoPage extends React.Component {
               </div>
             </div>
 
-            <div className="avatarPlaceholder--comments"></div>
-            <div className="videoPage-comment-container">
+            <div className={`${p}-comment-avatar`}></div>
+            <div className={`${p}-comment-container`}>
               <h5 className="commentorName">MartynTheGreat</h5>
               <div className="dateOfComment">6h ago</div>
               <p className="comment">playing fortnite with ninja lol</p>
               <div className="thumbs">
                 <span className="thumbsUpIcon">
-                  {thumbsUp()}
+                  {thumbsUp(16)}
                 </span>
                 <span className="thumbsDownIcon">
-                  {thumbsDown()}
+                  {thumbsDown(16)}
                 </span>
               </div>
               <p className="replyText">REPLY</p>
@@ -230,17 +348,17 @@ class VideoPage extends React.Component {
               </div>
             </div>
 
-            <div className="avatarPlaceholder--comments"></div>
-            <div className="videoPage-comment-container">
+            <div className={`${p}-comment-avatar`}></div>
+            <div className={`${p}-comment-container`}>
               <h5 className="commentorName">Spammerdood</h5>
               <div className="dateOfComment">14h ago</div>
               <p className="comment">Hello my loves! I am extremely jet lagged this week and traveling to Osaka for a couple days! There will be no videos so please wait until next week!</p>
               <div className="thumbs">
                 <span className="thumbsUpIcon">
-                  {thumbsUp()}
+                  {thumbsUp(16)}
                 </span>
                 <span className="thumbsDownIcon">
-                  {thumbsDown()}
+                  {thumbsDown(16)}
                 </span>
               </div>
               <p className="replyText">REPLY</p>
@@ -252,18 +370,18 @@ class VideoPage extends React.Component {
               </div>
             </div>
 
-            <div className="avatarPlaceholder--comments"></div>
-            <div className="videoPage-comment-container">
+            <div className={`${p}-comment-avatar`}></div>
+            <div className={`${p}-comment-container`}>
               <h5 className="commentorName">PewdiePie</h5>
               <div className="dateOfComment">1 days ago</div>
               <p className="comment">I'll be live streaming exclusively on <a href="">@OfficialDLive</a> starting April 14th! In my first stream I'll <a href="">#supportcreators</a> by donating up to $50,000 to up to 100 streamers. Follow me on DLive to increase the total donation amount!  
                 <a href=""> https://dlive.tv/pewdiepie﻿</a></p>
               <div className="thumbs">
                 <span className="thumbsUpIcon">
-                  {thumbsUp()}
+                  {thumbsUp(16)}
                 </span>
                 <span className="thumbsDownIcon">
-                  {thumbsDown()}
+                  {thumbsDown(16)}
                 </span>
               </div>
               <p className="replyText">REPLY</p>
@@ -275,17 +393,17 @@ class VideoPage extends React.Component {
               </div>
             </div>
 
-            <div className="avatarPlaceholder--comments"></div>
-            <div className="videoPage-comment-container">
+            <div className={`${p}-comment-avatar`}></div>
+            <div className={`${p}-comment-container`}>
               <h5 className="commentorName">CaseyNeistat</h5>
               <div className="dateOfComment">3 days ago</div>
               <p className="comment">I'm not sure what was more fun, flying in the new first class suite on my way to Dubai or flying home with Triple H sitting behind me﻿</p>
               <div className="thumbs">
                 <span className="thumbsUpIcon">
-                  {thumbsUp()}
+                  {thumbsUp(16)}
                 </span>
                 <span className="thumbsDownIcon">
-                  {thumbsDown()}
+                  {thumbsDown(16)}
                 </span>
               </div>
               <p className="replyText">REPLY</p>
@@ -297,17 +415,17 @@ class VideoPage extends React.Component {
               </div>
             </div>
 
-          <div className="avatarPlaceholder--comments"></div>
-          <div className="videoPage-comment-container">
+          <div className={`${p}-comment-avatar`}></div>
+          <div className={`${p}-comment-container`}>
             <h5 className="commentorName">LoveLyzKelly</h5>
             <div className="dateOfComment">6 months ago</div>
             <p className="comment">There may possible be a video tomorrow Sunday Japan time</p>
             <div className="thumbs">
               <span className="thumbsUpIcon">
-                {thumbsUp()}
+                {thumbsUp(16)}
               </span>
               <span className="thumbsDownIcon">
-                {thumbsDown()}
+                {thumbsDown(16)}
               </span>
             </div>
             <p className="replyText">REPLY</p>
@@ -319,17 +437,17 @@ class VideoPage extends React.Component {
             </div>
           </div>
 
-            <div className="avatarPlaceholder--comments"></div>
-            <div className="videoPage-comment-container">
+            <div className={`${p}-comment-avatar`}></div>
+            <div className={`${p}-comment-container`}>
               <h5 className="commentorName">MartynTheGreat</h5>
               <div className="dateOfComment">6h ago</div>
               <p className="comment">playing fortnite with ninja lol</p>
               <div className="thumbs">
                 <span className="thumbsUpIcon">
-                  {thumbsUp()}
+                  {thumbsUp(16)}
                 </span>
                 <span className="thumbsDownIcon">
-                  {thumbsDown()}
+                  {thumbsDown(16)}
                 </span>
               </div>
               <p className="replyText">REPLY</p>
@@ -341,17 +459,17 @@ class VideoPage extends React.Component {
               </div>
             </div>
 
-            <div className="avatarPlaceholder--comments"></div>
-            <div className="videoPage-comment-container">
+            <div className={`${p}-comment-avatar`}></div>
+            <div className={`${p}-comment-container`}>
               <h5 className="commentorName">Spammerdood</h5>
               <div className="dateOfComment">14h ago</div>
               <p className="comment">Hello my loves! I am extremely jet lagged this week and traveling to Osaka for a couple days! There will be no videos so please wait until next week!</p>
               <div className="thumbs">
                 <span className="thumbsUpIcon">
-                  {thumbsUp()}
+                  {thumbsUp(16)}
                 </span>
                 <span className="thumbsDownIcon">
-                  {thumbsDown()}
+                  {thumbsDown(16)}
                 </span>
               </div>
               <p className="replyText">REPLY</p>
@@ -363,18 +481,18 @@ class VideoPage extends React.Component {
               </div>
             </div>
 
-            <div className="avatarPlaceholder--comments"></div>
-            <div className="videoPage-comment-container">
+            <div className={`${p}-comment-avatar`}></div>
+            <div className={`${p}-comment-container`}>
               <h5 className="commentorName">PewdiePie</h5>
               <div className="dateOfComment">1 days ago</div>
               <p className="comment">I'll be live streaming exclusively on <a href="">@OfficialDLive</a> starting April 14th! In my first stream I'll <a href="">#supportcreators</a> by donating up to $50,000 to up to 100 streamers. Follow me on DLive to increase the total donation amount!  
                 <a href=""> https://dlive.tv/pewdiepie﻿</a></p>
               <div className="thumbs">
                 <span className="thumbsUpIcon">
-                  {thumbsUp()}
+                  {thumbsUp(16)}
                 </span>
                 <span className="thumbsDownIcon">
-                  {thumbsDown()}
+                  {thumbsDown(16)}
                 </span>
               </div>
               <p className="replyText">REPLY</p>

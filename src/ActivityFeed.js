@@ -16,10 +16,10 @@ class ActivityFeed extends React.Component {
             <p className="comment">There may possible be a video tomorrow Sunday Japan time</p>
             <div className="thumbs">
               <span className="thumbsUpIcon">
-                {thumbsUp()}
+                {thumbsUp(16)}
               </span>
               <span className="thumbsDownIcon">
-                {thumbsDown()}
+                {thumbsDown(16)}
               </span>
             </div>
             <p className="replyText">REPLY</p>
@@ -38,10 +38,10 @@ class ActivityFeed extends React.Component {
             <p className="comment">playing fortnite with ninja lol</p>
             <div className="thumbs">
               <span className="thumbsUpIcon">
-                {thumbsUp()}
+                {thumbsUp(16)}
               </span>
               <span className="thumbsDownIcon">
-                {thumbsDown()}
+                {thumbsDown(16)}
               </span>
             </div>
             <p className="replyText">REPLY</p>
@@ -60,10 +60,10 @@ class ActivityFeed extends React.Component {
             <p className="comment">Hello my loves! I am extremely jet lagged this week and traveling to Osaka for a couple days! There will be no videos so please wait until next week!</p>
             <div className="thumbs">
               <span className="thumbsUpIcon">
-                {thumbsUp()}
+                {thumbsUp(16)}
               </span>
               <span className="thumbsDownIcon">
-                {thumbsDown()}
+                {thumbsDown(16)}
               </span>
             </div>
             <p className="replyText">REPLY</p>
@@ -83,10 +83,10 @@ class ActivityFeed extends React.Component {
               <a href=""> https://dlive.tv/pewdiepie﻿</a></p>
             <div className="thumbs">
               <span className="thumbsUpIcon">
-                {thumbsUp()}
+                {thumbsUp(16)}
               </span>
               <span className="thumbsDownIcon">
-                {thumbsDown()}
+                {thumbsDown(16)}
               </span>
             </div>
             <p className="replyText">REPLY</p>
@@ -105,10 +105,10 @@ class ActivityFeed extends React.Component {
             <p className="comment">I'm not sure what was more fun, flying in the new first class suite on my way to Dubai or flying home with Triple H sitting behind me﻿</p>
             <div className="thumbs">
               <span className="thumbsUpIcon">
-                {thumbsUp()}
+                {thumbsUp(16)}
               </span>
               <span className="thumbsDownIcon">
-                {thumbsDown()}
+                {thumbsDown(16)}
               </span>
             </div>
             <p className="replyText">REPLY</p>
@@ -127,10 +127,10 @@ class ActivityFeed extends React.Component {
             <p className="comment">There may possible be a video tomorrow Sunday Japan time</p>
             <div className="thumbs">
               <span className="thumbsUpIcon">
-                {thumbsUp()}
+                {thumbsUp(16)}
               </span>
               <span className="thumbsDownIcon">
-                {thumbsDown()}
+                {thumbsDown(16)}
               </span>
             </div>
             <p className="replyText">REPLY</p>
@@ -149,10 +149,10 @@ class ActivityFeed extends React.Component {
             <p className="comment">playing fortnite with ninja lol</p>
             <div className="thumbs">
               <span className="thumbsUpIcon">
-                {thumbsUp()}
+                {thumbsUp(16)}
               </span>
               <span className="thumbsDownIcon">
-                {thumbsDown()}
+                {thumbsDown(16)}
               </span>
             </div>
             <p className="replyText">REPLY</p>
@@ -171,10 +171,10 @@ class ActivityFeed extends React.Component {
             <p className="comment">Hello my loves! I am extremely jet lagged this week and traveling to Osaka for a couple days! There will be no videos so please wait until next week!</p>
             <div className="thumbs">
               <span className="thumbsUpIcon">
-                {thumbsUp()}
+                {thumbsUp(16)}
               </span>
               <span className="thumbsDownIcon">
-                {thumbsDown()}
+                {thumbsDown(16)}
               </span>
             </div>
             <p className="replyText">REPLY</p>
@@ -194,10 +194,10 @@ class ActivityFeed extends React.Component {
               <a href=""> https://dlive.tv/pewdiepie﻿</a></p>
             <div className="thumbs">
               <span className="thumbsUpIcon">
-                {thumbsUp()}
+                {thumbsUp(16)}
               </span>
               <span className="thumbsDownIcon">
-                {thumbsDown()}
+                {thumbsDown(16)}
               </span>
             </div>
             <p className="replyText">REPLY</p>
