@@ -370,6 +370,7 @@ a
     margin-left: 2rem
 
   &-description-box
+    position: relative
     background-color: white
     padding: 2.5rem 3rem 3rem 3rem
     width: 80.1rem
@@ -418,21 +419,24 @@ a
     background-color: #a2a7dc
 
 
-
-
 // VIDEO PAGE
 .videoPage
+  &-main 
+    width: 80%
+    margin-right: 5rem
+
   &-body
     background-color: $component-background-white
     
   &-page-wrapper
-    background-color: $component-background-white
+    background-color: #F8F8F8
+    width: 90%
     display: flex
-    flex-direction: row-reverse
-    justify-content: flex-end
-    margin: 5rem 8.6rem 0 8.6rem
+    margin: 5rem auto 0 auto
 
   &-sidebar
+    margin-right: 3rem
+  
     &-text-top
       display: flex
       justify-content: space-between
@@ -444,17 +448,19 @@ a
       grid-gap: 1rem
 
     &-grid-video
-      width: 202.33px
-      height: 109.04px
+      width: 20rem
+      height: 10.9rem
       background: $video-black
       float: left
       margin-right: 1rem
     &-grid-video-wrapper
+      max-width: 43rem
     &-grid-video-title
       font-weight: 500
       font-size: 1.4rem
-      color: $comment-black
+      color: #474747
       margin: 0 0 .4rem 21.2rem
+      width: 16.9rem
     &-grid-video-author
       color: $text-grey
       margin: 0 0 0 21.2rem
@@ -467,12 +473,11 @@ a
       letter-spacing: 0.02rem
 
   &-video
-    width: 1205.75px
+    width: 100%
     height: 674.78px
     background: $video-black
 
     &-wrapper
-      margin-right: 5rem
 
     &-info-wrapper
       display: flex
@@ -484,6 +489,7 @@ a
 
     &-title
       margin-bottom: 0.4rem
+      padding-right: 5rem
       font-weight: 500
       font-size: 1.8rem
       line-height: 28px
@@ -500,6 +506,8 @@ a
 
     &-options
       position: relative
+      white-space: nowrap
+
     &-options-thumbsUp
       display: inline-block
       fill: #848484
@@ -529,8 +537,8 @@ a
       background-color: #5E5E5E
       height: 2px
       width: 140px
-      right: 20.4rem
-      bottom: 1.1rem
+      left: -1rem
+      top: 4rem
 
 
     &-options-share
@@ -544,12 +552,12 @@ a
 
   &-description-box
     display: flex
+    position: relative
     justify-content: space-between
     margin-top: 3.7rem
     padding: 3rem
-    outline: 1px solid #D9D9D9 
-    height: 48rem
-    width: 120rem
+    outline: 1px solid #D9D9D9
+    height: auto
 
   &-description-column-1-avatar
     background-color: #a2a7dc
@@ -564,7 +572,10 @@ a
   &-description-column-1-author
     margin-top: 1rem
   &-description-column-1
-    width: 30%
+    position: absolute
+    width: 28%
+    left: 4rem
+    top: 12rem
   &-description-column-2
     width: 30% 
   &-description-column-3
@@ -583,12 +594,6 @@ a
     padding: 0.9rem 3.1rem
     margin-right: 1rem
 
-  
-
-
-
-
-
   &-new-subscribers
     &-text
       margin: 3.3rem 0rem 0.6rem 0rem
@@ -597,13 +602,12 @@ a
       line-height: 23px
       color: #474747
     &-wrapper
-      width: 97.4%
     &-grid
       display: flex
       justify-content: space-between
       margin-bottom: 7rem
     &-subscriber-avatar
-      width: 5rem
+      width: 4%
       height: 5rem
       background-color: blue
 
@@ -625,14 +629,14 @@ a
     color: #b0b0b0
 
   &-add-comment-hr
-    width: 84%
+    width: 90%
     position: relative
     left: 12.6rem
     bottom: 1.7rem
 
   &-comment-section
     margin-left: -2rem
-    width: 118rem
+    width: 100%
   &-comment-avatar
     background-color: #a2a7dc
     width: 7.3rem
@@ -655,4 +659,37 @@ a
     position: relative
     left: 5.2rem
     top: 3rem
+
+@media screen and (max-width: 1400px)
+  .videoPage-page-wrapper
+    width: 100%
+    margin: 5rem 1rem
+
+@media screen and (max-width: 1250px)
+  .videoPage
+    &-page-wrapper
+      margin: 0 0 0 0
+    &-sidebar
+      // display: none
+    &-main
+      width: 100%
+      margin: 0 1rem 0 1rem
+
+    &-video-options-thumbsDown
+      margin-right: 2rem
+
+@media screen and (max-width: 900px)
+  .videoPage
+    &-video-options-likebar
+
+    &-video-options-share
+      margin-right: 1.5rem
+
+    &-video-options-save
+      margin-right: 1.5rem
+
+@media screen and (max-width: 600px)
+  html
+    font-size: 55%
+
 

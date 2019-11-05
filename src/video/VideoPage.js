@@ -1,190 +1,38 @@
 import React from 'react'
 import { thumbsUp, thumbsDown, arrowDrop } from '../public/svgs'
 
+
 class VideoPage extends React.Component {
   state = {
     // p is short for prefix
     p: "videoPage" 
   }
 
+  componentDidMount = () => {
+    function myFunction(mediaQuery) {
+      const referenceNode = document.querySelector('.videoPage-description-box')
+      const newNode = document.querySelector('.videoPage-sidebar')
+      const main = document.querySelector('.videoPage-main')
+      
+
+
+      if (mediaQuery.matches) { // If media query matches
+        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
+      } else {
+        main.parentNode.insertBefore(newNode, main.nextSibling)
+      }
+    }
+
+    const mediaQuery = window.matchMedia("(max-width: 1000px)")
+    myFunction(mediaQuery)
+    mediaQuery.addListener(myFunction) // Attach listener function on state changes
+  }
+
 
   render({ p } = this.state) {
     return (
       <div className={`${p}-page-wrapper`}>
-        <aside className={`${p}-sidebar`}>
-          <div className={`${p}-sidebar-text-top`}>
-            <span className={`${p}-sidebar-text-upnext`}>Up next</span>
-            <span className={`${p}-sidebar-text-autoplay`}>Autplay</span>
-          </div>
-
-          <div className={`${p}-sidebar-grid-wrapper`}>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-            
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-            <div className={`${p}-sidebar-grid-video-wrapper`}>
-              <div className={`${p}-sidebar-grid-video`}></div>
-              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-            </div>
-
-
-          </div>
-        </aside>
-
-        <main>
+        <main className={`${p}-main`}>
           <div className={`${p}-video-wrapper`}>
             <div className={`${p}-video`}>
             </div>
@@ -196,34 +44,36 @@ class VideoPage extends React.Component {
                 <span className={`${p}-video-date`}>Oct 6, 2019</span>
               </div>
               <div className={`${p}-video-options`}>
-                <div className={`${p}-video-options-thumbsUp`}>{thumbsUp(20)} &nbsp; 
-                  <span className={`${p}-video-options-thumbsUp-text`}>12k</span>
-                </div>
-                <div className={`${p}-video-options-thumbsDown`}>{thumbsDown(20)} &nbsp; 
-                  <span className={`${p}-video-options-thumbsDown-text`}>71</span>
+                <div className="thumbs">
+                  <div className={`${p}-video-options-thumbsUp`}>{thumbsUp(20)} &nbsp; 
+                    <span className={`${p}-video-options-thumbsUp-text`}>12k</span>
+                  </div>
+                  <div className={`${p}-video-options-thumbsDown`}>{thumbsDown(20)} &nbsp; 
+                    <span className={`${p}-video-options-thumbsDown-text`}>71</span>
+                  </div>
+                  <div className={`${p}-video-options-likebar`}></div>
                 </div>
                 <span className={`${p}-video-options-share`}>Share</span>
                 <span className={`${p}-video-options-save`}>Save</span>
-                <div className={`${p}-video-options-likebar`}></div>
                 <span className={`${p}-video-options-ellipses`}>...</span>
               </div>
             </div>
           </div>
           <div className={`${p}-description-box`}>  
-            <div className={`${p}-description-column-1`}>
-              <div className={`${p}-description-column-1-avatar-wrapper`}>
-                <div className="flex">
-                  <div className={`${p}-description-column-1-avatar`}></div>
-                  <div>
-                    <div className={`${p}-description-column-1-author`}>DevPlaceholder</div>
-                    <div className={`${p}-description-column-1-followers`}>356k Followers</div>
-                  </div>
-                </div>
-                <div className={`${p}-description-buttons-wrapper flex`}>
-                  <button className={`${p}-description-subscribe-button`}>SUBSCRIBE</button>
-                  <button className={`${p}-description-follow-button`}>FOLLOW</button>
+            <div className={`${p}-description-column-1-avatar-wrapper`}>
+              <div className="flex">
+                <div className={`${p}-description-column-1-avatar`}></div>
+                <div>
+                  <div className={`${p}-description-column-1-author`}>DevPlaceholder</div>
+                  <div className={`${p}-description-column-1-followers`}>356k Followers</div>
                 </div>
               </div>
+              <div className={`${p}-description-buttons-wrapper flex`}>
+                <button className={`${p}-description-subscribe-button`}>SUBSCRIBE</button>
+                <button className={`${p}-description-follow-button`}>FOLLOW</button>
+              </div>
+            </div>
+            <div className={`${p}-description-column-1`}>
               <div className={`${p}-description-column-1-text`}>
                 <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eligendi architecto nesciunt velit sequi placeat voluptatibus,
                 <br/>
@@ -265,6 +115,9 @@ class VideoPage extends React.Component {
               </span>
             </div>
           </div>
+            
+          <div className={`${p}-suggested-videos-mobile`}>
+          </div>
           <div className={`${p}-new-subscribers-wrapper`}>
             <h2 className={`${p}-new-subscribers-text`}>New Subscribers to DevPlaceholder</h2>
             <div className={`${p}-new-subscribers-grid`}>
@@ -287,14 +140,8 @@ class VideoPage extends React.Component {
               <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
               <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
               <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-              <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-              <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-              <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-              <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-              <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
             </div>
-
-
+          </div>
           <div className={`${p}-comment-section`}>
           <span className={`${p}-number-of-comments`}>1,392 comments</span>
           <span className={`${p}-sort-comments`}>Sort by</span>
@@ -503,9 +350,178 @@ class VideoPage extends React.Component {
                 View 104 Replies
               </div>
             </div>
+          </div></main>
+        <aside className={`${p}-sidebar`}>
+          <div className={`${p}-sidebar-text-top`}>
+            <span className={`${p}-sidebar-text-upnext`}>Up next</span>
+            <span className={`${p}-sidebar-text-autoplay`}>Autplay</span>
           </div>
-        </div>
-        </main>
+
+          <div className={`${p}-sidebar-grid-wrapper`}>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+            
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+            <div className={`${p}-sidebar-grid-video-wrapper`}>
+              <div className={`${p}-sidebar-grid-video`}></div>
+              <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
+              <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
+              <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+            </div>
+
+          </div> 
+        </aside>
       </div>
     )
   }
