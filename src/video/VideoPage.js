@@ -10,27 +10,26 @@ class VideoPage extends React.Component {
 
   componentDidMount = () => {
     function windowSize1000(mediaQuery1000) {
-      const referenceNode = document.querySelector('.videoPage-comment-section')
-      const newNode = document.querySelector('.videoPage-sidebar')
+      const commentSection = document.querySelector('.videoPage-comment-section')
+      const sidebar = document.querySelector('.videoPage-sidebar')
       const main = document.querySelector('.videoPage-main')
     
       if (mediaQuery1000.matches) { 
-        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
+        commentSection.parentNode.insertBefore(sidebar, commentSection.nextSibling)
       } else {
-        main.parentNode.insertBefore(newNode, main.nextSibling)
+        main.parentNode.insertBefore(sidebar, main.nextSibling)
       }
     }
 
     function windowSize600(mediaQuery600) {
-      const referenceNode = document.querySelector('.videoPage-description-column-1-avatar-wrapper')
-      const newNode = document.querySelector('.videoPage-new-subscribers-wrapper')
+      const descriptionBoxAuthor = document.querySelector('.videoPage-description-column-1-avatar-wrapper')
+      const newSubscribers = document.querySelector('.videoPage-new-subscribers-wrapper')
       const descriptionBox = document.querySelector('.videoPage-description-box')
     
       if (mediaQuery600.matches) { 
-        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
-        // document.querySelector(".videoPage-video-options-thumbsUp").innerHTML = `${thumbsUp(60)}`
+        descriptionBoxAuthor.parentNode.insertBefore(newSubscribers, descriptionBoxAuthor.nextSibling)
       } else {
-        descriptionBox.parentNode.insertBefore(newNode, descriptionBox.nextSibling)
+        descriptionBox.parentNode.insertBefore(newSubscribers, descriptionBox.nextSibling)
       }
     }
 
