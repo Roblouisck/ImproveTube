@@ -551,14 +551,15 @@ a
       margin-right: 1rem
 
   &-description-box
-    display: flex
-    position: relative
-    justify-content: space-between
     margin-top: 3.7rem
     padding: 3rem
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-template-rows: 14rem 1fr 
+    grid-gap: 0 2rem
     outline: 1px solid #D9D9D9
     height: auto
-
+  
   &-description-column-1-avatar
     background-color: #a2a7dc
     width: 5.3rem
@@ -568,19 +569,15 @@ a
     margin: 0 2rem 2rem 2rem
 
   &-description-column-1-text
-    margin-top: 6rem
   &-description-column-1-author
     margin-top: 1rem
-  &-description-column-1
-    position: absolute
-    width: 28%
-    left: 4rem
-    top: 12rem
-  &-description-column-2
-    width: 30% 
-  &-description-column-3
-    width: 30%
 
+  &-description-column-1
+    grid-row: 2 / span 2
+  &-description-column-2
+    grid-row: 1 / span 2
+  &-description-column-3
+    grid-row: 1 / span 2
 
   &-description-follow-button
     background-color: #CC0000
@@ -593,6 +590,7 @@ a
     color: white
     padding: 0.9rem 3.1rem
     margin-right: 1rem
+
 
   &-new-subscribers
     &-text
@@ -649,7 +647,6 @@ a
   &-comment-container
     margin: -3rem 6rem 0.9rem 13.4rem
 
-
   &-comment-avatar
     background-color: #a2a7dc
     width: 5.3rem
@@ -664,32 +661,135 @@ a
   .videoPage-page-wrapper
     width: 100%
     margin: 5rem 1rem
-
-@media screen and (max-width: 1250px)
   .videoPage
     &-page-wrapper
       margin: 0 0 0 0
-    &-sidebar
-      // display: none
     &-main
       width: 100%
       margin: 0 1rem 0 1rem
-
     &-video-options-thumbsDown
       margin-right: 2rem
+    &-description-column-1
+      grid-row: 2 / span 2
+    &-description-column-2
+      grid-row: 2 / span 2
+    &-description-column-3
+      grid-row: 2 / span 2
+    &-description-column-1-avatar-wrapper
+      grid-column: 1 / span 3
+    &-add-comment-hr 
+      width: 60%
 
-@media screen and (max-width: 900px)
+@media screen and (max-width: 1000px)
   .videoPage
-    &-video-options-likebar
-
     &-video-options-share
       margin-right: 1.5rem
-
     &-video-options-save
       margin-right: 1.5rem
+    &-description-column-1-avatar-wrapper
+      grid-column: 1 
+    &-description-column-1
+      grid-row: 2 / span 2
+    &-description-column-2
+      grid-row: 1 / span 2
+    &-description-column-3
+      grid-row: 1 / span 2
+    &-sidebar-grid-video-title
+      width: auto
+    &-sidebar-grid-video-wrapper
+      max-width: unset
+    &-sidebar
+      margin: 7rem 0 0 4rem
+    &-sidebar-text-autoplay
+      margin-right: 4rem
+
+@media screen and (max-width: 850px)
+  .videoPage
+    &-description-column-1-avatar-wrapper
+      grid-column: 1 / span 3
+    &-description-column-2
+      grid-row: 2 / span 2
+    &-description-column-3
+      grid-row: 2 / span 2
 
 @media screen and (max-width: 600px)
-  html
-    font-size: 55%
+  .searchBar
+    width: 80%
+    margin: 0 1rem
+
+  .videoPage
+    &-page-wrapper
+      width: 98%
+      margin: 0 0 0 0.5rem
+    &-main
+      margin-right: 0rem
+      margin: 0 0 0 0
+    &-video
+      height: 37.4rem
+    &-description-box
+      grid-template-columns: 1fr
+      grid-template-rows: 14rem auto auto auto
+      grid-gap: 1rem 0
+      height: auto
+      margin-bottom: 2.7rem 0 7rem 0
+      padding: 3rem 0
+    &-description-column-1-avatar-wrapper
+      margin: 0 auto
+      grid-column: unset
+    &-description-column-1,
+    &-description-column-2,
+    &-description-column-3
+      grid-row: unset
+      width: 90%
+      margin: 0 auto
+    &-new-subscribers-wrapper
+      margin: 0 auto
+      width: 45rem
+      text-align: center
+    &-new-subscribers-grid 
+      display: grid
+      grid-template-columns: repeat(7, 6rem)
+      grid-template-rows: repeat(4, 1fr)
+      grid-gap: 0.5rem
+      justify-content: unset
+      margin-bottom: unset
+    &-new-subscribers-subscriber-avatar
+      height: 6rem
+      width: 6rem
+    &-new-subscribers-text 
+      margin: 1rem 0rem 1rem 0rem
+    &-video-info-wrapper
+      display: unset
+    &-video-title-box
+      margin-top: 1rem
+    &-video-title
+      padding-right: unset
+    &-video-options
+      margin: 5rem 0 0 0
+      display: flex
+      justify-content: space-around
+    &-video-options-thumbsUp
+      margin-right: 3rem
+    &-video-options-thumbsUp svg,
+    &-video-options-thumbsDown svg
+      width: 3rem
+    &-video-options-thumbsUp-text
+      font-size: 2rem
+      color: #3b3b3b
+    &-video-options-thumbsDown-text
+      font-size: 2rem
+      color: #3b3b3b
+    &-video-options-share,
+    &-video-options-save,
+    &-video-options-ellipses,
+      font-size: 2rem
+      color: #3b3b3b
+      margin-top: 1rem
+    &-video-options-likebar
+      visibility: hidden
+    &-comment-section
+      margin: 7rem 0 0 -2rem
+    &-sidebar
+      margin: 7rem 0 0 .5rem
 
 

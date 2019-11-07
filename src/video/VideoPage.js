@@ -9,25 +9,38 @@ class VideoPage extends React.Component {
   }
 
   componentDidMount = () => {
-    function myFunction(mediaQuery) {
-      const referenceNode = document.querySelector('.videoPage-description-box')
+    function windowSize1000(mediaQuery1000) {
+      const referenceNode = document.querySelector('.videoPage-comment-section')
       const newNode = document.querySelector('.videoPage-sidebar')
       const main = document.querySelector('.videoPage-main')
-      
-
-
-      if (mediaQuery.matches) { // If media query matches
+    
+      if (mediaQuery1000.matches) { 
         referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
       } else {
         main.parentNode.insertBefore(newNode, main.nextSibling)
       }
     }
 
-    const mediaQuery = window.matchMedia("(max-width: 1000px)")
-    myFunction(mediaQuery)
-    mediaQuery.addListener(myFunction) // Attach listener function on state changes
-  }
+    function windowSize600(mediaQuery600) {
+      const referenceNode = document.querySelector('.videoPage-description-column-1-avatar-wrapper')
+      const newNode = document.querySelector('.videoPage-new-subscribers-wrapper')
+      const descriptionBox = document.querySelector('.videoPage-description-box')
+    
+      if (mediaQuery600.matches) { 
+        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
+        // document.querySelector(".videoPage-video-options-thumbsUp").innerHTML = `${thumbsUp(60)}`
+      } else {
+        descriptionBox.parentNode.insertBefore(newNode, descriptionBox.nextSibling)
+      }
+    }
 
+    const mediaQuery1000 = window.matchMedia("(max-width: 1000px)")
+    const mediaQuery600 = window.matchMedia("(max-width: 600px)")
+    mediaQuery1000.addListener(windowSize1000)
+    mediaQuery600.addListener(windowSize600) 
+    windowSize1000(mediaQuery1000)
+    windowSize600(mediaQuery600)
+  }
 
   render({ p } = this.state) {
     return (
