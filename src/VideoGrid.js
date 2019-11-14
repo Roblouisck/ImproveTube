@@ -15,7 +15,7 @@ const VideoGrid = (props) => {
         <hr className={`${props.page}--grid-hr-nav-grey`} />
         <hr className={`${props.page}--grid-hr-nav-black`} />
 
-        <div className={`${props.page}--grid`}>
+        <div className={`${props.page}--grid`} style={{marginTop: 'unset'}}>
           <div className={`${props.page}--grid-content-wrapper`}>
             <div className={`${props.page}--grid-video`}></div>
             <div className={`${props.page}--grid-avatar-placeholder`}></div>

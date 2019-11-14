@@ -10,7 +10,7 @@ class RenderChannelPage extends React.Component {
       <div>
         <Header />
         <AboveFold />
-          <div className="flex-wrapper">
+          <div className="channel--wrapper">
             <ActivityFeed />
             <VideoGrid 
               titleOne={'VIDEOS'} 
