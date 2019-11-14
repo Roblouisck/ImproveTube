@@ -1,5 +1,5 @@
 import React from 'react'
-import { thumbsUp, thumbsDown, arrowDrop } from './public/svgs'
+import { thumbsUp, thumbsDown, arrowDrop } from './svgs'
 
 class ActivityFeed extends React.Component {
   render() {

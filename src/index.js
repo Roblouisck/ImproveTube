@@ -1,6 +1,6 @@
-import './public/css/normalize.css'
-import './public/css/reset.css'
-import './public/css/styles.sass'
+import './public/styles/normalize.css'
+import './public/styles/reset.css'
+import './public/styles/main.sass'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
