@@ -1,0 +1,24 @@
+import React from 'react'
+
+class HeaderMobile extends React.Component {
+  state = {
+    p: "channel--mobile"
+  }
+
+  render({ p } = this.state) {
+    return (
+      <div className={`${p}-header`}>
+        <div className={`${p}-header-logo`}>logo</div>
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16 16c0 1.104-.896 2-2 2h-12c-1.104 0-2-.896-2-2v-8c0-1.104.896-2 2-2h12c1.104 0 2 .896 2 2v8zm8-10l-6 4.223v3.554l6 4.223v-12z"/>
+        </svg>
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z"/>
+        </svg>
+        <div className={`${p}-header-avatar`}></div>
+      </div>
+    )
+  }
+}
+
+export default HeaderMobile
