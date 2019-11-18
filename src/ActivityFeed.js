@@ -2,10 +2,10 @@ import React from 'react'
 import { thumbsUp, thumbsDown, arrowDrop } from './svgs'
 
 class ActivityFeed extends React.Component {
-  render() {
+  render({ page } = this.props) {
     return (
       <aside className="activityFeedContainer">
-        <h1 className="activityFeedTitle">Activity Feed</h1>
+        <h1 className={`${page}--activity-feed-title`}>Activity Feed</h1>
         <hr className="home--activityfeed-hr" />
         <div className="commentSection--activityfeed">
 

@@ -2,19 +2,24 @@ import React from 'react'
 import Header from '../Header'
 import ActivityFeed from '../ActivityFeed'
 import VideoGrid from '../VideoGrid'
+import HeaderMobile from '../HeaderMobile'
+import FooterMobile from '../FooterMobile'
 
 class RenderHomepage extends React.Component {
   render() {
     return (
-      <div>
+      <div className="homepage-background">
         <Header />
-        <div className="flex-wrapper">
-          <ActivityFeed />
-          <VideoGrid
-            titleOne={'FOLLOWING'} 
-            titleTwo={'RECOMMENDED'} 
-            titleThree={'SUBSCRIPTIONS'} 
+        <HeaderMobile />
+        <div className="homepage-wrapper">
+          <ActivityFeed 
             page={'home'} />
+          <VideoGrid
+            titleOne={'following'} 
+            titleTwo={'recommended'} 
+            titleThree={'subscriptions'} 
+            page={'home'} />
+          <FooterMobile />
         </div>
 
       </div>

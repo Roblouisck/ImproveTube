@@ -10,8 +10,7 @@ const VideoGrid = (props) => {
           <button className={`${props.page}--grid-nav-${props.titleFour}`}>{props.titleFour}</button>
           <button className={`${props.page}--grid-nav-${props.titleFive}`}>{props.titleFive}</button>
           <button 
-            // style={{ position: 'absolute' }} 
-            className={`${props.page}--grid-nav-follow`}>{props.buttonTextFollow}
+            className={`${props.page}--grid-nav-follow`}>FOLLOW
           </button>
         </nav>
         <hr className={`${props.page}--grid-hr-nav-grey`} />

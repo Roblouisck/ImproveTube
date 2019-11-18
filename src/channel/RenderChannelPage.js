@@ -14,14 +14,14 @@ class RenderChannelPage extends React.Component {
         <HeaderMobile />
         <AboveFold />
           <div className="channel--wrapper">
-            <ActivityFeed />
+            <ActivityFeed 
+              page={'channel'} />
             <VideoGrid 
               titleOne={'videos'} 
               titleTwo={'feed'} 
               titleThree={'playlists'} 
               titleFour={'about'} 
               titleFive={'subscriptions'} 
-              buttonTextFollow={'follow'}
               page={'channel'} />
             <FooterMobile />
           </div>
