@@ -1,0 +1,702 @@
+.channel-body {
+  background-color: $page-background-white;
+}
+
+.channel--wrapper {
+  display: flex;
+  justify-content: center;
+  max-width: 192rem;
+  margin: 0 auto;
+  width: 97%;
+}
+
+.homepage-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 97%;
+  max-width: 192rem;
+  margin: 5rem auto 0rem auto;
+}
+
+.homepage-background {
+  background: linear-gradient(#F1F1F1, #F8F8F8);
+}
+
+.channel--grid {
+  &-background {
+    background-color: $component-background-white;
+    border: 1px solid $component-border-grey;
+    width: 120.3rem;
+    height: 100%;
+    left: 67.5rem;
+    top: 11.25rem;
+  }
+
+  &-nav {
+    display: flex;
+    position: relative;
+    margin: 3.3rem 0rem 0rem 5.1rem;
+
+    &-following,
+    &-recommended,
+    &-subscriptions {
+      font-family: Roboto;
+      font-size: 1.8rem;
+      color: $header-faded-black;
+      font-weight: bold;
+      margin-right: 5rem;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    &-following {
+      color: $header-black;
+    }
+  }
+
+  &-hr-nav-grey {
+    margin: 2.6rem 0 1.9rem 3.8rem;
+    width: 93.5%;
+    background-color: $divider-line-grey;
+  }
+
+  &-hr-nav-black {
+    visibility: hidden;
+    position: relative;
+    right: -4rem;
+    bottom: 2rem;
+    background-color: $pure-black;
+    width: 12.8rem;
+  }
+}
+
+.channel--grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 3.4rem 1.4rem;
+  margin: 0.7rem 5rem 0 5rem;
+
+  &-content-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &-video {
+    width: 21.2rem;
+    height: 11.9rem;
+    background-color: $video-black;
+  }
+
+  &-avatar-placeholder {
+    background-color: #a2a7dc;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 99rem;
+    cursor: pointer;
+    float: left;
+    margin-top: 1.3rem;
+    margin-right: 1.1rem;
+  }
+
+  &-title {
+    margin-top: 1.4rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #474747;
+  }
+
+  &-author {
+    color: #606060;
+    margin: 0.7rem 0rem 0.2rem 0;
+    font-size: 1.3rem;
+    letter-spacing: 0.02rem;
+    padding-left: 4rem;
+  }
+
+  &-views {
+    color: #606060;
+    font-size: 1.2rem;
+    letter-spacing: 0.02rem;
+    padding-left: 4rem;
+  }
+
+  &-date {}
+}
+
+.channel--grid {
+  &-date-hr-container {
+    margin: 7.1rem 0 5.18rem 0;
+    width: 100%;
+  }
+
+  &-date-hr-grey-right {
+    position: relative;
+    left: 72rem;
+    width: 33%;
+    background-color: $divider-line-grey;
+  }
+
+  &-date-hr-grey-left {
+    position: relative;
+    background-color: $divider-line-grey;
+    width: 33%;
+    left: 6rem;
+  }
+
+  &-divider-date-text {
+    display: inline-block;
+    color: black;
+    position: relative;
+    bottom: 6.8rem;
+    left: 52rem;
+    font-weight: bold;
+    font-size: 22px;
+  }
+}
+
+.channel--activity-feed-title {
+  display: flex;
+  justify-content: center;
+  margin: 2.9rem 0 2.7rem 0;
+  color: $header-black;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.02rem;
+}
+
+.channel--grid-nav {
+  &-videos,
+  &-playlists,
+  &-subscriptions,
+  &-feed,
+  &-about {
+    font-family: Roboto;
+    font-size: 1.8rem;
+    color: $header-faded-black;
+    font-weight: bold;
+    margin-right: 5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  &-videos {
+    color: #5E5E5E;
+  }
+
+  &-feed,
+  &-about {
+    display: none;
+  }
+}
+
+.channel--grid {
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 3.4rem 1rem;
+  margin: 4rem 1.5rem 0 2rem;
+
+  &-background {
+    margin-left: 2.7%;
+    width: 116.3rem;
+  }
+
+  &-hr-nav-black {
+    width: 9rem;
+  }
+
+  &-nav-follow {
+    position: absolute;
+    right: 4rem;
+    bottom: -0.7rem;
+    background-color: #CC0000;
+    color: white;
+    padding: 0.9rem 3.1rem;
+    text-transform: uppercase;
+  }
+
+  &-video {
+    height: 16.7rem;
+    width: unset;
+    min-width: 18rem;
+    max-width: 27rem;
+  }
+
+  &-author, &-views {
+    padding-left: 0;
+  }
+
+  &-avatar-placeholder,
+  &-date-hr-container,
+  &-divider-date-text,
+  &-content-wrapper:nth-last-child(-n+3) {
+    display: none;
+  }
+
+  &-content-wrapper {
+    margin: unset;
+  }
+}
+
+.channel--aboveFold {
+  &-avatar-text-wrapper {
+    margin-bottom: 1.5rem;
+  }
+
+  &-name-text {
+    color: #5b5b5b;
+    display: block;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 0.4rem;
+  }
+
+  &-follower-text {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #979191;
+  }
+
+  &-wrapper {
+    display: flex;
+    margin: 5rem 0 7rem 0;
+    justify-content: space-around;
+    max-width: 192rem;
+    margin: 5rem auto 7rem auto;
+  }
+
+  &-avatar {
+    width: 15.5vw;
+    height: 15.5vw;
+    width: 15.5vw;
+    min-width: 20rem;
+    min-height: 20rem;
+    max-width: 30rem;
+    max-height: 30rem;
+    background-color: #a2a7dc;
+    margin-left: 2rem;
+
+    &-content-wrapper {
+      margin-left: 1rem;
+    }
+  }
+
+  &-description-box {
+    position: relative;
+    background-color: white;
+    padding: 2.5rem 3rem 3rem 3rem;
+    width: 80.1rem;
+    min-width: 40rem;
+    height: min-content;
+    margin-top: 4.3rem;
+    outline: 1px solid #ccc;
+    margin: 4.3rem 2rem;
+
+    & h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &-subscribers-box {
+    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(3rem, 3rem));
+    width: 27.7vw;
+    max-width: 56rem;
+    margin: 1rem 0 0 0;
+    grid-gap: 1rem;
+    padding: 1rem;
+    background-color: white;
+    height: 33rem;
+    overflow-y: hidden;
+
+    &-wrapper {
+      margin-right: 0.3rem;
+    }
+
+    &-title {
+      font-family: Sarabun;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 31px;
+      color: black;
+      margin-bottom: 1rem;
+    }
+
+    &-bottom-text {
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 19px;
+      color: #847D7D;
+      display: flex;
+      justify-content: flex-end;
+      margin: 0.5rem 1rem 0 0;
+    }
+  }
+
+  &-subscriber-avatar {
+    margin: 0 0 0 0;
+    background-color: #a2a7dc;
+    padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .avatarPlaceholder--comments {
+    display: none;
+  }
+
+  .channel--grid-nav {
+    &-follow {
+      padding: 0.9rem 2.6rem;
+      font-size: 1.2rem;
+    }
+
+    &-videos,
+    &-playlists,
+    &-subscriptions,
+    &-feed,
+    &-about {
+      font-size: 1.4rem;
+      margin-right: 3vw;
+    }
+  }
+
+  .channel--grid-hr-nav-grey {
+    width: 85%;
+  }
+
+  .channel--activity-feed-title {
+    font-size: 1.8rem;
+  }
+
+  .commentContainer {
+    margin: 3rem auto 0rem auto;
+    width: 23vw;
+  }
+
+  .commentSection--activityfeed {
+    margin-top: -1.1rem;
+    min-width: unset;
+  }
+
+  .home--activityfeed-hr {
+    margin-left: 8%;
+  }
+}
+
+@media screen and (max-width: 904px) {
+  .channel--aboveFold {
+    &-avatar {
+      margin-right: 2rem;
+      height: 30vw;
+      width: 30vw;
+      min-height: 10rem;
+      min-width: 10rem;
+    }
+
+    &-avatar-content-wrapper {
+      margin-left: 1rem;
+    }
+
+    &-description-box {
+      margin: unset;
+      margin-top: 7rem;
+      min-width: unset;
+      display: grid;
+      grid-column: 1 / 3;
+      width: auto;
+    }
+
+    &-wrapper {
+      position: relative;
+      display: grid;
+      margin: 5rem 0 7rem 0;
+      grid-template-columns: auto 1fr;
+    }
+
+    &-subscribers-box-wrapper {
+      grid-column: 2 / 3;
+      margin: 0 auto;
+    }
+
+    &-subscribers-box {
+      display: grid;
+      margin: unset;
+      height: 29rem;
+      overflow-y: hidden;
+      width: 60vw;
+      grid-template-columns: repeat(auto-fill, minmax(3rem, 3rem));
+      grid-gap: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .channel--grid {
+    grid-template-columns: unset;
+    grid-gap: 2.4rem 1rem;
+    margin: unset;
+    justify-content: unset;
+
+    &-content-wrapper {
+      width: 27rem;
+      margin: 0 auto;
+    }
+
+    &-nav {
+      position: unset;
+    }
+
+    &-nav-follow {
+      right: unset;
+      bottom: unset;
+      padding: 0.9rem 1.6rem;
+      left: 13rem;
+      top: 12.6rem;
+    }
+  }
+
+  .channel--aboveFold {
+    &-name-text,
+    &-subscribers-box-title {
+      font-size: 1.8rem;
+    }
+  }
+
+  .commentContainer {
+    width: 80%;
+  }
+
+  .activityFeedContainer {
+    min-width: 23rem;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .header {
+    display: none;
+  }
+
+  .channel-body {
+    background-color: #FFF;
+  }
+
+  .activityFeedContainer,
+  .channel--aboveFold-description-box,
+  .channel--aboveFold-subscribers-box-wrapper {
+    display: none;
+  }
+
+  .channel--wrapper {
+    width: 100%;
+  }
+
+  .channel--aboveFold {
+    &-name-text {
+      margin-bottom: unset;
+      font-size: 2.4rem;
+    }
+
+    &-wrapper {
+      margin: 2rem 0 8vw 0;
+      display: flex;
+    }
+
+    &-avatar-content-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-left: unset;
+    }
+
+    &-avatar-text-wrapper {
+      margin-bottom: unset;
+      order: 2;
+      margin-left: 9vw;
+      display: grid;
+      align-content: center;
+    }
+
+    &-avatar {
+      margin-right: unset;
+      margin-left: unset;
+      min-height: 12rem;
+      min-width: 12rem;
+      box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+    }
+
+    &-subscribers-box-title {
+      font-size: 2.4rem;
+    }
+  }
+
+  .channel--grid {
+    &-avatar-placeholder {
+      display: unset;
+      margin: 1.1rem 1.5rem 0rem 1.2rem;
+      width: 4rem;
+      height: 4rem;
+    }
+
+    &-title {
+      font-size: 1.6rem;
+      margin-left: 2rem;
+    }
+
+    &-views {
+      display: inline-block;
+    }
+
+    &-author {
+      display: inline-block;
+      margin-right: 0.5rem;
+      margin-left: 0.1rem;
+    }
+
+    &-video {
+      height: 60vw;
+      width: 100%;
+      max-width: unset;
+    }
+
+    &-hr-nav-grey {
+      margin: 2.6rem 0 0rem 0rem;
+      width: 100%;
+    }
+
+    &-background {
+      margin-left: unset;
+      border: unset;
+      outline: 1px solid #DEDEDE;
+      width: 100vw;
+    }
+
+    &-nav {
+      justify-content: space-around;
+      margin: 3.3rem 0rem 0rem 0rem;
+
+      &-videos {
+        margin-left: 1.5rem;
+      }
+
+      &-videos,
+      &-feed,
+      &-about,
+      &-subscriptions {
+        display: unset;
+      }
+
+      &-playlists {
+        display: none;
+      }
+    }
+
+    &-nav * {
+      margin-right: 4vw;
+    }
+
+    &-nav-follow {
+      margin-top: 1rem;
+      position: unset;
+      width: 12.8rem;
+      height: 3.8rem;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+      padding: 0.9rem 2.6rem;
+      font-size: 1.4rem;
+    }
+
+    &-hr-nav-black {
+      display: none;
+    }
+
+    &-content-wrapper {
+      width: 100%;
+    }
+  }
+
+  .channel--mobile {
+    &-header {
+      position: relative;
+      padding: 2.1rem 2.1rem 0 2.1rem;
+      height: 7.8rem;
+      display: flex;
+      background-color: #FFFFFF;
+      outline: 1px solid $divider-line-grey;
+      overflow: auto;
+    }
+
+    &-header * {
+      margin-right: 5vw;
+    }
+
+    &-header > svg:nth-child(3) {
+      position: absolute;
+      right: 7rem;
+      top: 2.6rem;
+      fill: #5b5b5b;
+    }
+
+    &-header > svg:nth-child(2) {
+      position: absolute;
+      right: 12rem;
+      top: 2.6rem;
+      fill: #5b5b5b;
+    }
+
+    &-header-logo {
+      text-transform: uppercase;
+      font-family: Roboto;
+      font-size: 2rem;
+      margin-top: 0.5rem;
+      margin-left: 2vw;
+    }
+
+    &-header-avatar {
+      position: absolute;
+      background-color: #a2a7dc;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 99rem;
+      cursor: pointer;
+    }
+
+    &-header-avatar {
+      right: 1rem;
+    }
+
+    &-footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 7.8rem;
+      background-color: #FFF;
+      color: black;
+      text-align: center;
+      outline: 1px solid #D9D9D9;
+      display: flex;
+      justify-content: space-around;
+      fill: #5b5b5b;
+      padding-top: 1.4rem;
+    }
+
+    &-footer-text {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media screen and (min-width: 581px) {
+  .channel--mobile {
+    &-header,
+    &-footer {
+      display: none;
+    }
+  }
+}
