@@ -1,3 +1,8 @@
+.activityFeedContainer {
+  width: 73rem;
+  margin-right: -0.4vw;;
+}
+
 .channel-body {
   background-color: $page-background-white;
 }
@@ -22,6 +27,12 @@
   background: linear-gradient(#F1F1F1, #F8F8F8);
 }
 
+
+.channel--aboveFold-avatar-content-wrapper {
+  margin-left: 2.4vw;
+  margin-top: 0.5rem;;
+}
+
 .channel--grid {
   &-background {
     background-color: $component-background-white;
@@ -35,7 +46,7 @@
   &-nav {
     display: flex;
     position: relative;
-    margin: 3.3rem 0rem 0rem 5.1rem;
+    margin: 3.3rem 0rem 0rem 7.1rem;
 
     &-following,
     &-recommended,
@@ -55,7 +66,7 @@
   }
 
   &-hr-nav-grey {
-    margin: 2.6rem 0 1.9rem 3.8rem;
+    margin: 3rem 0 1.9rem 3.8rem;
     width: 93.5%;
     background-color: $divider-line-grey;
   }
@@ -158,7 +169,7 @@
 .channel--activity-feed-title {
   display: flex;
   justify-content: center;
-  margin: 2.9rem 0 2.7rem 0;
+  margin: 2.9rem 0 3.2rem 0;
   color: $header-black;
   font-style: normal;
   font-weight: 600;
@@ -195,12 +206,13 @@
 .channel--grid {
   grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
   grid-template-rows: 1fr 1fr 1fr;
-  grid-gap: 3.4rem 1rem;
+  grid-gap: 3.4rem 0.5rem;
   margin: 4rem 1.5rem 0 2rem;
 
   &-background {
-    margin-left: 2.7%;
-    width: 116.3rem;
+    margin-left: 3.2%;
+    width: 109.099999999999994rem;
+    margin-right: 1.2vw;
   }
 
   &-hr-nav-black {
@@ -209,8 +221,8 @@
 
   &-nav-follow {
     position: absolute;
-    right: 4rem;
-    bottom: -0.7rem;
+    right: 4.1rem;
+    bottom: -0.6rem;
     background-color: #CC0000;
     color: white;
     padding: 0.9rem 3.1rem;
@@ -218,10 +230,10 @@
   }
 
   &-video {
-    height: 16.7rem;
+    height: 15rem;
     width: unset;
     min-width: 18rem;
-    max-width: 27rem;
+    max-width: 33rem;
   }
 
   &-author, &-views {
@@ -262,12 +274,10 @@
     color: #979191;
   }
 
-  &-wrapper {
+  &-wrapper {;
+    margin: 5rem auto 4rem auto;;
+    max-width: 192rem;;
     display: flex;
-    margin: 5rem 0 7rem 0;
-    justify-content: space-around;
-    max-width: 192rem;
-    margin: 5rem auto 7rem auto;
   }
 
   &-avatar {
@@ -276,29 +286,30 @@
     width: 15.5vw;
     min-width: 20rem;
     min-height: 20rem;
-    max-width: 30rem;
-    max-height: 30rem;
+    max-width: 29rem;
+    max-height: 29rem;
     background-color: #a2a7dc;
     margin-left: 2rem;
 
     &-content-wrapper {
-      margin-left: 1rem;
     }
   }
 
   &-description-box {
     position: relative;
     background-color: white;
-    padding: 2.5rem 3rem 3rem 3rem;
+    padding: 2.5rem 2rem 3rem 2.2rem;
     width: 80.1rem;
-    min-width: 40rem;
+    min-width: unset;
     height: min-content;
     margin-top: 4.3rem;
     outline: 1px solid #ccc;
-    margin: 4.3rem 2rem;
+    margin: 3rem 2.7vw 0rem 2.6vw;
+    max-width: 71rem;
+    font-size: 1.6rem;
 
     & h2 {
-      font-size: 2rem;
+      font-size: 1.6rem;
       margin-bottom: 0.5rem;
     }
   }
@@ -307,9 +318,9 @@
     justify-content: space-around;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(3rem, 3rem));
-    width: 27.7vw;
+    width: 29.699999999999999vw;
     max-width: 56rem;
-    margin: 1rem 0 0 0;
+    margin: 0.8rem 0 0 0;
     grid-gap: 1rem;
     padding: 1rem;
     background-color: white;
@@ -317,7 +328,8 @@
     overflow-y: hidden;
 
     &-wrapper {
-      margin-right: 0.3rem;
+      margin-right: 5vw;
+      margin-left: 2vw;
     }
 
     &-title {
@@ -327,6 +339,7 @@
       line-height: 31px;
       color: black;
       margin-bottom: 1rem;
+      margin-left: 1rem;
     }
 
     &-bottom-text {
@@ -336,18 +349,33 @@
       color: #847D7D;
       display: flex;
       justify-content: flex-end;
-      margin: 0.5rem 1rem 0 0;
+      margin: 0.3rem 0rem 0 0;
     }
   }
 
   &-subscriber-avatar {
     margin: 0 0 0 0;
     background-color: #a2a7dc;
-    padding: 1.5rem;
+    padding: 1.8rem;
   }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1671px) {
+  .channel--grid-video {
+    height: 11vw;
+  }
+}
+
+@media screen and (max-width: 1267px) {
+  .channel--grid-video {
+    height: 16vw;
+  }
+}
+
+@media screen and (max-width: 1157px) {
+  .channel--aboveFold-subscribers-box-wrapper {
+    display: none;
+  }
   .avatarPlaceholder--comments {
     display: none;
   }
@@ -391,83 +419,21 @@
   }
 }
 
-@media screen and (max-width: 904px) {
-  .channel--aboveFold {
-    &-avatar {
-      margin-right: 2rem;
-      height: 30vw;
-      width: 30vw;
-      min-height: 10rem;
-      min-width: 10rem;
-    }
-
-    &-avatar-content-wrapper {
-      margin-left: 1rem;
-    }
-
-    &-description-box {
-      margin: unset;
-      margin-top: 7rem;
-      min-width: unset;
-      display: grid;
-      grid-column: 1 / 3;
-      width: auto;
-    }
-
-    &-wrapper {
-      position: relative;
-      display: grid;
-      margin: 5rem 0 7rem 0;
-      grid-template-columns: auto 1fr;
-    }
-
-    &-subscribers-box-wrapper {
-      grid-column: 2 / 3;
-      margin: 0 auto;
-    }
-
-    &-subscribers-box {
-      display: grid;
-      margin: unset;
-      height: 29rem;
-      overflow-y: hidden;
-      width: 60vw;
-      grid-template-columns: repeat(auto-fill, minmax(3rem, 3rem));
-      grid-gap: 1rem;
+@media screen and (max-width: 940px) {
+  .channel--grid-nav {
+    &-follow {
+      font-size: 1.6rem;
+      margin: 1.5rem 0rem 0 2rem;
+      padding: 0.9rem 7rem;
+      position: unset;
     }
   }
 }
 
-@media screen and (max-width: 800px) {
-  .channel--grid {
-    grid-template-columns: unset;
-    grid-gap: 2.4rem 1rem;
-    margin: unset;
-    justify-content: unset;
-
-    &-content-wrapper {
-      width: 27rem;
-      margin: 0 auto;
-    }
-
-    &-nav {
-      position: unset;
-    }
-
-    &-nav-follow {
-      right: unset;
-      bottom: unset;
-      padding: 0.9rem 1.6rem;
-      left: 13rem;
-      top: 12.6rem;
-    }
-  }
-
-  .channel--aboveFold {
-    &-name-text,
-    &-subscribers-box-title {
-      font-size: 1.8rem;
-    }
+@media screen and (max-width: 865px) {
+  .channel--grid-video {
+    height: 30vw;
+    max-width: unset;
   }
 
   .commentContainer {
@@ -507,6 +473,7 @@
     &-wrapper {
       margin: 2rem 0 8vw 0;
       display: flex;
+      justify-content: center;
     }
 
     &-avatar-content-wrapper {
@@ -537,6 +504,9 @@
   }
 
   .channel--grid {
+    grid-template-columns: 1fr;
+    margin: unset;
+
     &-avatar-placeholder {
       display: unset;
       margin: 1.1rem 1.5rem 0rem 1.2rem;
@@ -571,7 +541,7 @@
     }
 
     &-background {
-      margin-left: unset;
+      margin: unset;
       border: unset;
       outline: 1px solid #DEDEDE;
       width: 100vw;
@@ -608,7 +578,7 @@
       height: 3.8rem;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
       padding: 0.9rem 2.6rem;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
 
     &-hr-nav-black {
