@@ -20,6 +20,14 @@
     top: 11.25rem;
   }
 
+  &-nav > button {
+    outline: none;
+    &:hover {
+      color: #5E5E5E;
+    }
+  }
+
+
   &-nav {
     display: flex;
     position: relative;
@@ -83,8 +91,7 @@
     border-radius: 99rem;
     cursor: pointer;
     float: left;
-    margin-top: 1.3rem;
-    margin-right: 1.1rem;
+    margin: 1.3rem 1.1rem 2rem 0;
   }
 
   &-title {
@@ -96,7 +103,7 @@
 
   &-author {
     color: #606060;
-    margin: 0.7rem 0rem 0.2rem 0;
+    margin: 0.7rem 0rem 0.5rem 0;
     font-size: 1.3rem;
     letter-spacing: 0.02rem;
     padding-left: 4rem;
@@ -114,32 +121,29 @@
 
 .home--grid {
   &-date-hr-container {
-    margin: 7.1rem 0 5.18rem 0;
-    width: 100%;
+    display: flex;
+    margin: 7rem 0 4.5rem 0;
+    align-items: center;
+    justify-content: center;
   }
 
   &-date-hr-grey-right {
-    position: relative;
-    left: 72rem;
-    width: 33%;
     background-color: $divider-line-grey;
+    width: 50%;
+    margin-right: 5rem;
   }
 
   &-date-hr-grey-left {
-    position: relative;
     background-color: $divider-line-grey;
-    width: 33%;
-    left: 6rem;
+    width: 50%;
+    margin-left: 5rem;
   }
 
   &-divider-date-text {
-    display: inline-block;
-    color: black;
-    position: relative;
-    bottom: 6.8rem;
-    left: 52rem;
     font-weight: bold;
     font-size: 22px;
+    color: black;
+    margin: 0 5rem;
   }
 }
 
@@ -209,10 +213,6 @@ hr {
   margin-left: 4rem;
 }
 
-a {
-  color: $comment-reply-blue;
-}
-
 .viewComment {
   font-size: 1.4rem;
   cursor: pointer;
@@ -224,6 +224,10 @@ a {
 
 .thumbs {
   margin-left: 0.1rem;
+  & > span > svg:hover {
+    fill: #5E5E5E;
+    cursor: pointer;
+  }
 }
 
 .thumbsDownIcon {
@@ -238,6 +242,10 @@ a {
 .thumbs, .replyText {
   display: inline-block;
   fill: #848484;
+  &:hover {
+    cursor: pointer;
+    color: #5E5E5E;
+  }
 }
 
 .replyText {
@@ -297,7 +305,8 @@ a {
   grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 3.4rem 1rem;
-  margin: 4rem 1.5rem 0 2rem;
+  margin: 0 1.5rem 0rem 2rem;
+  padding-bottom: 1rem;
 
   &-background {
     margin-left: 2.7%;
@@ -333,7 +342,6 @@ a {
   &-date-hr-container,
   &-divider-date-text,
   &-content-wrapper:nth-last-child(-n+3) {
-    display: none;
   }
 
   &-content-wrapper {

@@ -170,9 +170,9 @@ const VideoGrid = (props) => {
 
         <div className={`${props.page}--grid-date-hr-container`}>
           <hr className={`${props.page}--grid-date-hr-grey-left`} /> 
+          <h2 className={`${props.page}--grid-divider-date-text`}>YESTERDAY</h2>
           <hr className={`${props.page}--grid-date-hr-grey-right`} />
         </div>
-        <h2 className={`${props.page}--grid-divider-date-text`}>YESTERDAY</h2>
 
         <div className={`${props.page}--grid`}>
           <div className={`${props.page}--grid-content-wrapper`}>

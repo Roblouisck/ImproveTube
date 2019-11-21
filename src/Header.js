@@ -2,14 +2,52 @@ import React from 'react'
 
 class Header extends React.Component {
 
+  componentDidMount() {
+    const burger = document.querySelector('.hamburgerIcon')
+    const nav = document.querySelector('.hamburgerNav')
+    const navLinks = document.querySelector('.hamburgerNav > ul > li')
+    const burgerFadedBackground = document.querySelector('.fadeBackground')
+
+    const headerAvatar = document.querySelector('.header > .avatarPlaceholder')
+    const userMenu = document.querySelector('.userMenu')
+
+    this.toggleDisplay(burger, nav, burgerFadedBackground)
+    this.toggleDisplay(burgerFadedBackground, nav, burgerFadedBackground)
+    this.toggleDisplay(headerAvatar, userMenu, null)
+
+  }
+
+  toggleDisplay = (class1, class2, class3) => {
+    class1.addEventListener('click', () => {
+      class2.classList.toggle('displayToggle')
+      if (class3) {
+        class3.classList.toggle('displayToggle')
+      }
+    })
+  }
+
   render() {
     return (
       <header className="header">
-      
-        <nav className="hamburgerMenu">
-          <div className="hamburgerLine"></div>
-          <div className="hamburgerLine"></div>
-          <div className="hamburgerLine"></div>
+        <div className="hamburgerIcon">
+          <div className="hamburgerLine1"></div>
+          <div className="hamburgerLine2"></div>
+          <div className="hamburgerLine3"></div>
+        </div>
+        <div className="headerSiteLogo">LOGO</div>
+        <div className="fadeBackground"></div>
+        <nav className="hamburgerNav">
+          <ul>
+            <hr/>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Subscriptions</a></li>
+            <li><a href="#">History</a></li>
+            <li><a href="#">Liked videos</a></li>
+            <li><a href="#">Favorites</a></li>
+            <hr/>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">About Author</a></li>
+          </ul>
         </nav>
 
         <div className="searchBar">
@@ -29,6 +67,12 @@ class Header extends React.Component {
         </div>
         <div className="avatarPlaceholder">
         </div>
+        <menu className="userMenu">
+          <ul>
+            <li><a href="#">Your channel</a></li>
+            <li><a href="#">Sign in</a></li>
+          </ul>
+        </menu>
       </header>
     )
   }
