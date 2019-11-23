@@ -3,26 +3,43 @@ import React from 'react'
 class Header extends React.Component {
 
   componentDidMount() {
-    const burger = document.querySelector('.hamburgerIcon')
-    const nav = document.querySelector('.hamburgerNav')
-    const navLinks = document.querySelector('.hamburgerNav > ul > li')
+    const burgerIcon = document.querySelector('.hamburgerIcon')
+    const burgerMenu = document.querySelector('.hamburgerNav')
     const burgerFadedBackground = document.querySelector('.fadeBackground')
-
-    const headerAvatar = document.querySelector('.header > .avatarPlaceholder')
+    const signInAvatar = document.querySelector('.header > .avatarPlaceholder')
     const userMenu = document.querySelector('.userMenu')
 
-    this.toggleDisplay(burger, nav, burgerFadedBackground)
-    this.toggleDisplay(burgerFadedBackground, nav, burgerFadedBackground)
-    this.toggleDisplay(headerAvatar, userMenu, null)
-
+    this.toggleClass('showHide', burgerIcon, burgerMenu, burgerFadedBackground)
+    this.toggleClass('showHide', burgerFadedBackground, burgerMenu, burgerFadedBackground)
+    this.toggleClass('showHide', signInAvatar, userMenu)
+    this.toggleClass('slideIn', burgerIcon, burgerMenu)
+    this.burgerReverse(burgerIcon, burgerMenu)
+    this.noAnimationDuringWindowResize(burgerMenu)
   }
 
-  toggleDisplay = (class1, class2, class3) => {
-    class1.addEventListener('click', () => {
-      class2.classList.toggle('displayToggle')
-      if (class3) {
-        class3.classList.toggle('displayToggle')
+  toggleClass = (class1, class2, class3, class4) => {
+    class2.addEventListener('click', () => {
+      class3.classList.toggle(class1)
+      if (class4) {
+        class4.classList.toggle(class1)
       }
+    })
+  }
+
+  burgerReverse = (class1, class2) => {
+    class1.addEventListener('click', () => {
+      if (class2.classList.contains('slideIn')) {
+        class2.classList.remove('slideOut')
+      } else {
+        class2.classList.add('slideOut')
+      }
+    })
+  }
+
+
+  noAnimationDuringWindowResize = (burgerMenu) => {
+    window.addEventListener("resize", () => {
+      burgerMenu.classList.remove('slideOut')
     })
   }
 

@@ -34,8 +34,8 @@
   letter-spacing: 0.02rem;
   font-weight: 400;
   font-size: 1.8rem;
-  display: none;
-  user-select: none
+  user-select: none;
+  transform: translateX(-27rem);
 }
 
 .fadeBackground {
@@ -44,7 +44,6 @@
   left: 0;
   bottom: 0;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.4);
   z-index: 1;
   display: none;
 }
@@ -154,8 +153,8 @@ li:hover {
   font-weight: 400;
   font-size: 1.8rem;
   outline: 1px solid $divider-line-grey;
-  display: none;
   user-select: none;
+  display: none;
 }
 
 .userMenu > ul {
@@ -186,7 +185,7 @@ li:hover {
   background-color: #FFFFFF;
 }
 
-.displayToggle {
+.showHide {
   display: unset;
 }
 
@@ -194,4 +193,63 @@ li:hover {
   .searchBar {
     margin-left: 9rem;
   }
+}
+
+// ANIMATIONS
+.slideIn {
+  animation: slide-in 492.32ms ease; 
+  animation-fill-mode: forwards;
+}
+
+.slideIn > ul > li:nth-of-type(1) {
+  animation: slide-in 978ms ease;
+}
+
+.slideIn > ul > li:nth-of-type(2) {
+  animation: slide-in 1002.62ms ease;
+}
+
+.slideIn > ul > li:nth-of-type(3) {
+  animation: slide-in 1036.2ms ease;
+}
+
+.slideIn > ul > li:nth-of-type(4) {
+  animation: slide-in 1084.82ms ease;
+}
+
+.slideIn > ul > li:nth-of-type(5) {
+  animation: slide-in 1189.92ms ease;
+}
+
+.slideIn > ul > li:nth-of-type(6) {
+  animation: slide-in 1255.02ms ease;
+}
+
+.slideIn > ul > li:nth-of-type(7) {
+  animation: slide-in 1397.89ms ease;
+}
+
+.slideOut {
+  animation: slide-out .4s ease;
+  animation-fill-mode: both;
+}
+
+.fadeBackground {
+  animation: .9s linear fade-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-in {
+  0% { transform: translateX(-27rem);}
+  100% { transform: translateX(0rem);}
+}
+
+@keyframes slide-out {
+  100% { transform: translateX(-27rem);}
+  0% { transform: translateX(0);}
+}
+
+@keyframes fade-in {
+  0% { background-color: rgba(0, 0, 0, 0);}
+  100% { background-color: rgba(0, 0, 0, 0.4);}
 }
