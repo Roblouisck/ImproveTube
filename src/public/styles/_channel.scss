@@ -1,6 +1,7 @@
 .activityFeedContainer {
   width: 73rem;
-  margin-right: -0.4vw;;
+  margin-right: -0.4vw;
+  padding-bottom: 3rem
 }
 
 .channel-body {
@@ -38,9 +39,9 @@
     background-color: $component-background-white;
     border: 1px solid $component-border-grey;
     width: 120.3rem;
-    height: 100%;
     left: 67.5rem;
     top: 11.25rem;
+    padding-bottom: 2rem
   }
 
   &-nav > button:not(:last-child) {
@@ -122,6 +123,9 @@
     font-size: 1.4rem;
     font-weight: bold;
     color: #474747;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &-author {
@@ -130,6 +134,10 @@
     font-size: 1.3rem;
     letter-spacing: 0.02rem;
     padding-left: 4rem;
+    &:hover {
+      cursor: pointer;
+      color: black;
+    }
   }
 
   &-views {
@@ -432,6 +440,9 @@
 
 @media screen and (max-width: 940px) {
   .channel--grid-nav {
+    &-subscriptions:hover {
+      color: #5E5E5E;
+    }
     &-follow {
       font-size: 1.6rem;
       margin: 1.5rem 0rem 0 2rem;
@@ -590,6 +601,7 @@
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
       padding: 0.9rem 2.6rem;
       font-size: 1.2rem;
+      margin-left: 0
     }
 
     &-hr-nav-black {

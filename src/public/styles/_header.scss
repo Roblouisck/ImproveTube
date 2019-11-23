@@ -85,7 +85,10 @@ li:hover {
   border-top: 1px solid $component-border-dark-grey;
   border-bottom: 1px solid $component-border-dark-grey;
   border-right: 1px solid $component-border-dark-grey;
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+    background-color: #f0f0f0
+  }
 }
 
 .searchBox {

@@ -117,6 +117,10 @@
       cursor: pointer;
       position: relative;
       top: 0.3rem;
+      &:hover {
+        cursor: pointer;
+        fill: #5E5E5E;
+      }
 
       &-text {
         font-size: 1.4rem;
@@ -132,6 +136,10 @@
       margin-right: 7rem;
       cursor: pointer;
       top: 0.6rem;
+      &:hover {
+      cursor: pointer;
+      fill: #5E5E5E;
+      }
 
       &-text {
         font-size: 1.4rem;
