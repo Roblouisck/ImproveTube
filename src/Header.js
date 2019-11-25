@@ -1,4 +1,5 @@
 import React from 'react'
+import toggleClass from './containers/toggleClass'
 
 class Header extends React.Component {
 
@@ -9,21 +10,12 @@ class Header extends React.Component {
     const signInAvatar = document.querySelector('.header > .avatarPlaceholder')
     const userMenu = document.querySelector('.userMenu')
 
-    this.toggleClass('showHide', burgerIcon, burgerMenu, burgerFadedBackground)
-    this.toggleClass('showHide', burgerFadedBackground, burgerMenu, burgerFadedBackground)
-    this.toggleClass('showHide', signInAvatar, userMenu)
-    this.toggleClass('slideIn', burgerIcon, burgerMenu)
+    toggleClass('showHide', burgerIcon, burgerMenu, burgerFadedBackground)
+    toggleClass('showHide', burgerFadedBackground, burgerMenu, burgerFadedBackground)
+    toggleClass('showHide', signInAvatar, userMenu)
+    toggleClass('slideIn', burgerIcon, burgerMenu)
     this.burgerReverse(burgerIcon, burgerMenu)
     this.noAnimationDuringWindowResize(burgerMenu)
-  }
-
-  toggleClass = (class1, class2, class3, class4) => {
-    class2.addEventListener('click', () => {
-      class3.classList.toggle(class1)
-      if (class4) {
-        class4.classList.toggle(class1)
-      }
-    })
   }
 
   burgerReverse = (class1, class2) => {

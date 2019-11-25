@@ -1,0 +1,130 @@
+.header--mobile {
+  position: relative;
+  padding: 2.1rem 2.1rem 0 2.1rem;
+  height: 7.8rem;
+  display: flex;
+  background-color: #FFFFFF;
+  outline: 1px solid $divider-line-grey;
+  overflow: auto;
+
+  &-searchbar {
+    display: none;
+    height: 3.2rem;
+    font-family: Roboto;
+    border: 1px solid $component-border-dark-grey;
+    width: 85%;
+
+    &[placeholder="Search"] {
+      padding-left: 1.2rem;
+    }
+  }
+
+  & > div {
+    margin-right: 5vw;
+  }
+
+  &-arrow-left-icon {
+    width: 14vw;
+    margin-top: 0.41rem;
+    fill: #5E5E5E;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-magnifying-glass-icon {
+    fill: #5b5b5b;
+    &:hover {
+      cursor: pointer;
+    }
+    &-background {
+      position: absolute;
+      right: 7rem;
+      top: 2.6rem;
+    }
+  }
+
+  &-magnifyBackground {
+    background-color: #F8F8F8;
+    height: 3.4rem;
+    border-top: 1px solid $component-border-dark-grey;
+    border-bottom: 1px solid $component-border-dark-grey;
+    border-right: 1px solid $component-border-dark-grey;
+    width: 6.4rem;
+    right: -6.4rem;
+    top: 0rem;
+    &:hover {
+      cursor: pointer;
+      background-color: #f0f0f0
+    }
+  }
+
+  &-searchContainer {
+    display: flex;
+  }
+
+  &-search-icon-clicked {
+    display: flex;
+  }
+
+  &-searchBox {
+    height: 3.4rem;
+    width: 55vw;
+    max-width: 57rem;
+    font-family: Roboto;
+    border: 1px solid $component-border-dark-grey;
+
+    &[type="search"] {
+      padding-left: 1.2rem;
+    }
+  }
+
+  &-searchBar {
+    display: flex;
+  }
+
+  &-magnifyIcon {
+    fill: #979797;
+    position: relative;
+    left: 2rem;
+    top: 0.8rem;
+    transform: scale(1.1);
+  }
+
+  &-video-camera-icon {
+    position: absolute;
+    right: 12rem;
+    top: 2.6rem;
+    fill: #5b5b5b;
+  }
+
+  &-logo {
+    text-transform: uppercase;
+    font-family: Roboto;
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    margin-left: 2vw;
+  }
+
+  &-avatar {
+    position: absolute;
+    background-color: #a2a7dc;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 99rem;
+    cursor: pointer;
+  }
+
+  &-avatar {
+    right: 1rem;
+  }
+}
+
+@media screen and (min-width: 581px) {
+  .header--mobile {
+    &,
+    &-footer {
+      display: none;
+    }
+  }
+}
