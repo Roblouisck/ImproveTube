@@ -73,8 +73,6 @@
     height: 674.78px;
     background: $video-black;
 
-    &-wrapper {}
-
     &-info-wrapper {
       display: flex;
       justify-content: space-between;
@@ -233,8 +231,6 @@
       color: #474747;
     }
 
-    &-wrapper {}
-
     &-grid {
       display: flex;
       justify-content: space-between;
@@ -253,6 +249,7 @@
   }
 
   &-add-comment-avatar {
+    position: absolute;
     background-color: #a2a7dc;
     width: 5.3rem;
     height: 5.3rem;
@@ -262,21 +259,33 @@
   }
 
   &-add-comment {
-    margin-top: 5.5rem;
-    margin-left: 2.4rem;
-    color: #b0b0b0;
-  }
-
-  &-add-comment-hr {
+    border: none;
+    outline: none;
+    height: 5rem;
+    margin-top: 4.2rem;
+    margin-left: 12.199999999999999rem;
     width: 90%;
-    position: relative;
-    left: 12.6rem;
-    bottom: 1.7rem;
+    background: none;
+    &-underline, &-underline-animated {
+      position: absolute;
+      top: 10rem;
+      left: 12rem;
+      width: 80%;
+    }
+    &-underline-animated {
+      display: none;
+      background-color: #8b8b8b;
+      z-index: 2;
+      height: 0.18rem;
+      animation: 250ms ease-in-out 0ms 1 normal none running scaleToOne;
+      animation-fill-mode: forwards;
+    }
   }
 
   &-comment-section {
     margin-left: -2rem;
     width: 100%;
+    position: relative;
   }
 
   &-comment-avatar {
@@ -291,7 +300,7 @@
   }
 
   &-comment-container {
-    margin: (-3rem) 6rem 0.9rem 13.4rem;
+    margin: -3rem 6rem 0.9rem 13.4rem;
   }
 
   &-comment-avatar {
@@ -405,7 +414,12 @@
     &-description-column-3 {
       grid-row: (2 / span) 2;
     }
+    &-add-comment-underline,
+    &-add-comment-underline-animated {
+      width: 65%;
+    }
   }
+
 
   // .searchBar {
   //   width: 80%;
@@ -532,4 +546,10 @@
       margin: 7rem 0 0 0.5rem;
     }
   }
+}
+
+//Animations
+@keyframes scaleToOne {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
 }

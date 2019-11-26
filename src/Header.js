@@ -10,9 +10,9 @@ class Header extends React.Component {
     const signInAvatar = document.querySelector('.header > .avatarPlaceholder')
     const userMenu = document.querySelector('.userMenu')
 
-    toggleClass('showHide', burgerIcon, burgerMenu, burgerFadedBackground)
-    toggleClass('showHide', burgerFadedBackground, burgerMenu, burgerFadedBackground)
-    toggleClass('showHide', signInAvatar, userMenu)
+    toggleClass('show', burgerIcon, burgerMenu, burgerFadedBackground)
+    toggleClass('show', burgerFadedBackground, burgerMenu, burgerFadedBackground)
+    toggleClass('show', signInAvatar, userMenu)
     toggleClass('slideIn', burgerIcon, burgerMenu)
     this.burgerReverse(burgerIcon, burgerMenu)
     this.noAnimationDuringWindowResize(burgerMenu)

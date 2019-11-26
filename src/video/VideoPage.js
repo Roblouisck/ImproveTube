@@ -1,4 +1,5 @@
 import React from 'react'
+import toggleClass from '../containers/toggleClass'
 import { thumbsUp, thumbsDown, arrowDrop } from '../svgs'
 
 
@@ -9,6 +10,8 @@ class VideoPage extends React.Component {
   }
 
   componentDidMount = () => {
+    this.inputFocus()
+
     function windowSize1000(mediaQuery1000) {
       const commentSection = document.querySelector('.videoPage-comment-section')
       const sidebar = document.querySelector('.videoPage-sidebar')
@@ -39,6 +42,19 @@ class VideoPage extends React.Component {
     mediaQuery600.addListener(windowSize600) 
     windowSize1000(mediaQuery1000)
     windowSize600(mediaQuery600)
+  }
+
+  inputFocus = () => {
+    console.log('inputFocus ra')
+    const addUserComment = document.querySelector('.videoPage-add-comment')
+    const underlineAnimated = document.querySelector('.videoPage-add-comment-underline-animated')
+
+    addUserComment.addEventListener('focus', () => {
+      underlineAnimated.classList.add('show')
+    })
+    addUserComment.addEventListener('blur', () => {
+      underlineAnimated.classList.remove('show')
+    })
   }
 
   render({ p } = this.state) {
@@ -158,11 +174,12 @@ class VideoPage extends React.Component {
           <span className={`${p}-number-of-comments`}>1,392 comments</span>
           <span className={`${p}-sort-comments`}>Sort by</span>
 
-          <div className="flex">
+          <div className={`${p}-add-comment-wrapper flex`}>
             <div className={`${p}-add-comment-avatar`}></div>
-            <div className={`${p}-add-comment`}>Add a public comment</div>
+            <input className={`${p}-add-comment`} placeholder="Add a public comment" />
+            <hr className={`${p}-add-comment-underline`}/>
+            <hr className={`${p}-add-comment-underline-animated`}/>
           </div>
-          <hr className={`${p}-add-comment-hr`}/>
             <div className={`${p}-comment-avatar`}></div>
             <div className={`${p}-comment-container`}>
               <h5 className="commentorName">LoveLyzKelly</h5>
