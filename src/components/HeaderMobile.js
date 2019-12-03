@@ -1,5 +1,5 @@
 import React from 'react'
-import toggleClass from './containers/toggleClass'
+import toggleClass from '../containers/toggleClass'
 import { arrowLeftSVG, videoCameraSVG, magnifyingGlassSVG} from './svgs'
 
 class HeaderMobile extends React.Component {
