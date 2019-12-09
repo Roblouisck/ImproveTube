@@ -1,11 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-class FooterMobile extends React.Component {
-  state = {
-    p: "channel--mobile"
-  }
+const FooterMobile = () => {
+  const [p, setResource] = useState('channel--mobile')
 
-  render({ p } = this.state) {
     return (
       <footer className={`${p}-footer`}>
         <div>
@@ -33,6 +30,5 @@ class FooterMobile extends React.Component {
       </footer>
     )
   }
-}
 
 export default FooterMobile

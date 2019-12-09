@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, BrowserRouter } from 'react-router-dom'
-import RenderHomepage from './home/RenderHomepage'
-import RenderChannelPage from './channel/RenderChannelPage'
-import RenderVideoPage from './video/RenderVideoPage'
+import RenderHomepage from '../components/home/RenderHomepage'
+import RenderChannelPage from '../components/channel/RenderChannelPage'
+import RenderVideoPage from '../components/video/RenderVideoPage'
 
 const App = () => {
   return ( 
