@@ -13,58 +13,69 @@ const VideoGrid = (props) => {
       return num
   }
 
-  const fetchAvatars = async (amount, category) => {
-    console.log(process.env.PEXELS_API)
-    const response = await axios.get('https://api.pexels.com/v1/search?', {
-      headers: { Authorization: process.env.PEXELS_API },
-      params: {
-        query: 'face',
-        per_page: 80
+  const fetchData = async (amount, category) => {
+    const [picsResponse, vidsResponse] = await Promise.all([
+      axios.get('https://api.pexels.com/v1/search?', {
+        headers: { Authorization: process.env.PEXELS_API },
+        params: {
+          query: 'face',
+          per_page: 80
+        }
+      }),
+      axios.get('https://api.pexels.com/videos/search?', {
+        headers: { Authorization: process.env.PEXELS_API },
+        params: {
+          query: 'smiling',
+          per_page: 80,
+          max_width: "1920"
+        }
+      })
+    ]) 
+    console.log(picsResponse)
+    console.log(vidsResponse.data.videos)
+    const data = vidsResponse.data.videos
+    // const picturesAndVideos = [...picsResponse.data.photos, ...vidsResponse.data.videos]
+    const filtered = data.filter(vid => {
+      if (vid.width === 1920) {
+        return vid
       }
-    })
-    console.log(response.data.photos)
-  }
-
-  const fetchVideos = async (amount, category) => {
-    console.log(process.env.PIXABAY_API)
-    const response = await axios.get('https://pixabay.com/api/videos/', {
-      params: {
-        key: process.env.PIXABAY_API,
-        per_page: amount,
-        category: category
+      if (vid.width === 1280) {
+        return vid
       }
+      return null
     })
+    console.log(filtered)
 
-    // console.log(response)
-    const vidsAsHtml = response.data.hits.map(vid => {
+    const dataAsHtml = filtered.map(object => {
       return (
-        <div className={`${props.page}--grid-content-wrapper`} key={vid.picture_id}>
+        <div className={`${props.page}--grid-content-wrapper`} key={object.id}>
           <div className={`${props.page}--grid-video`}>
             <video
               ref={vidRef}
               poster="https://i.imgur.com/Us5ckqm.jpg"
               onMouseOver={event => event.target.play()}
               onMouseOut={event => event.target.pause()}
-              src={`${vid.videos.tiny.url}#t=1`} >
+              src={`${object.video_files[0].link}#t=1`} >
             </video>
           </div>
           <div className={`${props.page}--grid-avatar-wrapper`}>
             <img className={`${props.page}--grid-avatar`} src="https://i.imgur.com/W40CB6e.jpg"/>
           </div>
-          <div className={`${props.page}--grid-title`}>{vid.tags}</div>
-          <div className={`${props.page}--grid-author`}>{vid.user}</div>
-          <div className={`${props.page}--grid-views`}>{abbreviateNumbersOver999(vid.views)} 
+          <div className={`${props.page}--grid-title`}>Placeholder</div>
+          <div className={`${props.page}--grid-author`}>{object.user.name}</div>
+          <div className={`${props.page}--grid-views`}>60k 
             <span className={`${props.page}--grid-date`}> • 6 days ago</span>
           </div>
         </div>
       )
-  })
-  setResource(vidsAsHtml)
+    })
+  setResource(dataAsHtml)
 }
 
   useEffect(() => {
-    fetchAvatars()
-    fetchVideos(50, 'food')
+    fetchData()
+    // fetchAvatars()
+    // fetchVideos(50, 'food')
     const unhighlightedText = document.querySelector('.unhighlitedText')
     const recommendedButton = document.querySelector('.home--grid-nav-recommended')
     toggleClass('highlightedText', recommendedButton, recommendedButton)
@@ -93,18 +104,18 @@ const VideoGrid = (props) => {
     switch (buttonID) {
       case 'followButton':
         highlighted(yes, no, no)
-        fetchVideos(50, 'food')
+        // fetchVideos(50, 'food')
       break
 
       case 'recommendedButton':
         console.log('b')
         highlighted(no, yes, no)
-        fetchVideos(50, 'people')
+        // fetchVideos(50, 'people')
       break
 
       case 'subscriptionsButton':
         highlighted(no, no, yes)
-        fetchVideos(50, 'animals')
+        // fetchVideos(50, 'animals')
       break
 
       default:

@@ -90,8 +90,10 @@
   &-avatar {
   width: auto;
   height: 5rem;
-  -webkit-clip-path: circle(40% at 50% 50%);
-  -clip-path: circle(40% at 50% 50%);
+  clip-path: circle(41.10% at center center)
+  // -webkit-clip-path: circle(40% at 50% 50%);
+  // -moz-clip-path: circle(40% at 50% 50%);
+  // -clip-path: circle(40% at 50% 50%);
   }
 
   &-title {
