@@ -1,0 +1,26 @@
+.errorVid {
+  width: auto;
+  margin-left: 5vw;
+  margin-top: 3rem;
+  width: 67.5%;
+  min-width: 32rem;
+  user-drag: none; 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .errorVidWrapper {
+    display: flex;
+    justify-content: center
+  }
+  .errorVid { 
+    margin-top: 3rem;
+    min-width: 100%; 
+    width: 80%;
+    margin-left: 0
+  }
+}

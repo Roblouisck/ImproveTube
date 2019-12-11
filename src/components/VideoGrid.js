@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import toggleClass from '../containers/toggleClass'
+import history from '../history'
 
 const VideoGrid = (props) => {
-  const vidRef = React.createRef()
   const [videos, setResource] = useState([])
 
   const abbreviateNumbersOver999 = (num) => {
@@ -12,40 +12,35 @@ const VideoGrid = (props) => {
     } 
       return num
   }
-
-  const fetchAvatars = async (amount, category) => {
-    console.log(process.env.PEXELS_API)
-    const response = await axios.get('https://api.pexels.com/v1/search?', {
-      headers: { Authorization: process.env.PEXELS_API },
-      params: {
-        query: 'face',
-        per_page: 80
-      }
-    })
-    console.log(response.data.photos)
+  
+  const sendUserToVideoPage = (id) => {
+    window.open(`/video/id=#${id}`, '_blank')
   }
-
-  const fetchVideos = async (amount, category) => {
-    console.log(process.env.PIXABAY_API)
+  const fetchVideos = async (amount, category, order) => {
     const response = await axios.get('https://pixabay.com/api/videos/', {
       params: {
         key: process.env.PIXABAY_API,
         per_page: amount,
-        category: category
+        category: category,
+        editors_choice: true,
+        order: order
       }
     })
-
-    // console.log(response)
-    const vidsAsHtml = response.data.hits.map(vid => {
+    // map the response to html
+    const videoData = response.data.hits
+    console.log(videoData)
+    
+    const vidsAsHtml = videoData.map(vid => {
       return (
         <div className={`${props.page}--grid-content-wrapper`} key={vid.picture_id}>
-          <div className={`${props.page}--grid-video`}>
+          <div className={`${props.page}--grid-video clickable`}>
             <video
-              ref={vidRef}
               poster="https://i.imgur.com/Us5ckqm.jpg"
               onMouseOver={event => event.target.play()}
               onMouseOut={event => event.target.pause()}
-              src={`${vid.videos.tiny.url}#t=1`} >
+              src={`${vid.videos.tiny.url}#t=1`} 
+              onClick={() => sendUserToVideoPage(vid.id)}
+              >
             </video>
           </div>
           <div className={`${props.page}--grid-avatar-wrapper`}>
@@ -63,8 +58,7 @@ const VideoGrid = (props) => {
 }
 
   useEffect(() => {
-    fetchAvatars()
-    fetchVideos(50, 'food')
+    fetchVideos(50, 'buildings')
     const unhighlightedText = document.querySelector('.unhighlitedText')
     const recommendedButton = document.querySelector('.home--grid-nav-recommended')
     toggleClass('highlightedText', recommendedButton, recommendedButton)
@@ -93,18 +87,17 @@ const VideoGrid = (props) => {
     switch (buttonID) {
       case 'followButton':
         highlighted(yes, no, no)
-        fetchVideos(50, 'food')
+        fetchVideos(50, 'buildings')
       break
 
       case 'recommendedButton':
-        console.log('b')
         highlighted(no, yes, no)
-        fetchVideos(50, 'people')
+        fetchVideos(50, 'nature')
       break
 
       case 'subscriptionsButton':
         highlighted(no, no, yes)
-        fetchVideos(50, 'animals')
+        fetchVideos(50, 'people')
       break
 
       default:
