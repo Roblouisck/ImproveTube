@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import toggleClass from '../../containers/toggleClass'
+import { toggleClass } from '../../containers/helperFunctions'
 import Header from '../Header'
 import HeaderMobile from '../HeaderMobile'
 import FooterMobile from '../FooterMobile'

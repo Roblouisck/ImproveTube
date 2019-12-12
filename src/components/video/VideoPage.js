@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import toggleClass from '../../containers/toggleClass'
-import abbreviateNumber from '../../containers/abbreviateNumber.js'
-import capitalizeFirstLetter from '../../containers/capitalizeFirstLetter'
-import randomDate from '../../containers/randomDate'
-import { thumbsUp, thumbsDown, arrowDrop } from '../svgs'
 import axios from 'axios'
 import history from '../../history'
 
+import { 
+  toggleClass, 
+  abbreviateNumber, 
+  capitalizeFirstLetter, 
+  randomDate } from '../../containers/helperFunctions'
+  
+import { 
+  thumbsUp, 
+  thumbsDown, 
+  arrowDrop } from '../svgs'
 
 const VideoPage = () => {
   const [p, setPrefix] = useState("videoPage")

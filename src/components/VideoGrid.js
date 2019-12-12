@@ -1,15 +1,26 @@
+/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import toggleClass from '../containers/toggleClass'
-import abbreviateNumber from '../containers/abbreviateNumber'
-import capitalizeFirstLetter from '../containers/capitalizeFirstLetter'
 import history from '../history'
+
+import { 
+  toggleClass, 
+  abbreviateNumber, 
+  capitalizeFirstLetter 
+} from '../containers/helperFunctions'
 
 const VideoGrid = (props) => {
   const [videos, setResource] = useState([])
   
-  const sendUserToVideoPage = (id) => {
-    window.open(`/video/id=#${id}`, '_blank')
+  const sendUserToVideoPage = (id, event) => {
+    event.ctrlKey 
+      ? window.open(`/video/id=#${id}`) 
+      : window.location.href = `/video/id=#${id}`
+  //  if (event.ctrlKey) {
+  //     window.open(`/video/id=#${id}`)
+  //  } else {
+  //  window.location.href = `/video/id=#${id}`
+  //   }
   }
   const fetchVideos = async (amount, category, order) => {
     const response = await axios.get('https://pixabay.com/api/videos/', {
@@ -34,7 +45,7 @@ const VideoGrid = (props) => {
               onMouseOver={event => event.target.play()}
               onMouseOut={event => event.target.pause()}
               src={`${vid.videos.tiny.url}#t=1`} 
-              onClick={() => sendUserToVideoPage(vid.id)}
+              onClick={(event) => sendUserToVideoPage(vid.id, event)}
               >
             </video>
           </div>

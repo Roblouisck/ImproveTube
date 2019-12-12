@@ -1,5 +1,8 @@
 import React from 'react'
-import { thumbsUp, thumbsDown, arrowDrop } from './svgs'
+import { 
+  thumbsUp, 
+  thumbsDown, 
+  arrowDrop } from './svgs'
 
 const ActivityFeed = ({ page } = this.props) => {
   return (

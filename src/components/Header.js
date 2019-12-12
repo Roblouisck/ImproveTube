@@ -1,5 +1,5 @@
 import React from 'react'
-import toggleClass from '../containers/toggleClass'
+import { toggleClass } from '../containers/helperFunctions'
 
 class Header extends React.Component {
 
