@@ -90,13 +90,12 @@
   &-avatar {
   width: auto;
   height: 5rem;
-  -webkit-clip-path: circle(40% at 50% 50%);
-  -clip-path: circle(40% at 50% 50%);
+  clip-path: circle();
   }
 
   &-title {
     margin-top: 1.4rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: bold;
     color: #474747;
   }
@@ -104,19 +103,17 @@
   &-author {
     color: #606060;
     margin: 0.7rem 0rem 0.5rem 0;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     letter-spacing: 0.02rem;
     padding-left: 4rem;
   }
 
   &-views {
     color: #606060;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     letter-spacing: 0.02rem;
     padding-left: 4rem;
   }
-
-  &-date {}
 }
 
 .home--grid {

@@ -1,13 +1,47 @@
 import React, { useEffect, useState } from 'react'
 import toggleClass from '../../containers/toggleClass'
+import abbreviateNumber from '../../containers/abbreviateNumber.js'
+import capitalizeFirstLetter from '../../containers/capitalizeFirstLetter'
+import randomDate from '../../containers/randomDate'
 import { thumbsUp, thumbsDown, arrowDrop } from '../svgs'
 import axios from 'axios'
 import history from '../../history'
 
 
 const VideoPage = () => {
-  const [p, setResource] = useState("videoPage")
-  const [video, setVideo] = useState([])
+  const [p, setPrefix] = useState("videoPage")
+  const [video, setResource] = useState(
+
+  // Data to act as a placeholder until video loads
+  {
+    video: 
+        <div className={`${p}-video-wrapper`}>
+          <video poster="https://i.imgur.com/Us5ckqm.jpg" className={`${p}-video clickable`} controls autoPlay></video>
+          <div className={`${p}-video-info-wrapper`}>  
+            <div className={`${p}-video-title-box`}>
+              <h1 className={`${p}-video-title`}>Loading</h1>
+              <span className={`${p}-video-views`}>0k views</span>
+              <span className={`${p}-video-date`}>{randomDate()}</span>
+            </div>
+            <div className={`${p}-video-options`}>
+              <div className="thumbs">
+                <div className={`${p}-video-options-thumbsUp`}>{thumbsUp(20)} &nbsp; 
+                  <span className={`${p}-video-options-thumbsUp-text`}>20k</span>
+                </div>
+                <div className={`${p}-video-options-thumbsDown`}>{thumbsDown(20)} &nbsp; 
+                  <span className={`${p}-video-options-thumbsDown-text`}>20k</span>
+                </div>
+                <div className={`${p}-video-options-likebar`}></div>
+              </div>
+              <span className={`${p}-video-options-share`}>Share</span>
+              <span className={`${p}-video-options-save`}>Save</span>
+              <span className={`${p}-video-options-ellipses`}>...</span>
+            </div>
+          </div>
+        </div>,
+    loading: "yes"
+  }
+)
 
   const inputFocus = () => {
     const addUserComment = document.querySelector('.videoPage-add-comment')
@@ -21,15 +55,58 @@ const VideoPage = () => {
     })
   }
 
+  // Pixabay API data didn't come with dislikes, so this function sets dislikes at 1% 
+  // of likes, with a chance of setting dislikes to 0 if video has less than 500 likes.
+  const setDislikes = (likes) => {
+    const randomlyZeroOrOne = Math.floor(Math.random() * 2) + 0
+    const dislikes = Math.ceil(likes*.01)
+      if (likes < 500) {
+        return dislikes*randomlyZeroOrOne
+      }
+    return likes
+  }
+
   const fetchVideo = async (id) => {
     try {
-      const response = await axios.get('https://pixabay.com/api/videos/', {
+      let response = await axios.get('https://pixabay.com/api/videos/', {
         params: {
           key: process.env.PIXABAY_API,
           id: id
         }
       })
-    setVideo(response.data.hits[0].videos.large)
+    response = response.data.hits
+    const responseAsHtml = response.map(vid => {
+      return {
+        video: 
+        <div className={`${p}-video-wrapper`} key={vid.id}>
+          <video poster="https://i.imgur.com/Us5ckqm.jpg" className={`${p}-video clickable`} src={vid.videos.large.url} controls autoPlay></video>
+          <div className={`${p}-video-info-wrapper`}>  
+            <div className={`${p}-video-title-box`}>
+              <h1 className={`${p}-video-title`}>{capitalizeFirstLetter(vid.tags)}</h1>
+              <span className={`${p}-video-views`}>{abbreviateNumber(vid.views)} views</span>
+              <span className={`${p}-video-date`}>{randomDate()}</span>
+            </div>
+            <div className={`${p}-video-options`}>
+              <div className="thumbs">
+                <div className={`${p}-video-options-thumbsUp`}>{thumbsUp(20)} &nbsp; 
+                  <span className={`${p}-video-options-thumbsUp-text`}>{abbreviateNumber(vid.likes)}</span>
+                </div>
+                <div className={`${p}-video-options-thumbsDown`}>{thumbsDown(20)} &nbsp; 
+                  <span className={`${p}-video-options-thumbsDown-text`}>{setDislikes(vid.likes)}</span>
+                </div>
+                <div className={`${p}-video-options-likebar`}></div>
+              </div>
+              <span className={`${p}-video-options-share`}>Share</span>
+              <span className={`${p}-video-options-save`}>Save</span>
+              <span className={`${p}-video-options-ellipses`}>...</span>
+            </div>
+          </div>
+        </div>,
+        author: vid.user,
+        authorFollowers: vid.id
+      }
+    })
+    setResource(responseAsHtml)
     } catch (err) {
       history.push('404')
     }
@@ -72,40 +149,22 @@ const VideoPage = () => {
     windowSize600(mediaQuery600)
   }, [])
 
+
   return (
     <div className={`${p}-page-wrapper`}>
       <main className={`${p}-main`}>
-        <div className={`${p}-video-wrapper`}>
-          <video poster="https://i.imgur.com/Us5ckqm.jpg" className={`${p}-video clickable`} src={video.url} controls autoPlay></video>
-          <div className={`${p}-video-info-wrapper`}>  
-            <div className={`${p}-video-title-box`}>
-              <h1 className={`${p}-video-title`}>Bill Gates remembers his early programming career</h1>
-              <span className={`${p}-video-views`}>162,000 views</span>
-              <span className={`${p}-video-date`}>Oct 6, 2019</span>
-            </div>
-            <div className={`${p}-video-options`}>
-              <div className="thumbs">
-                <div className={`${p}-video-options-thumbsUp`}>{thumbsUp(20)} &nbsp; 
-                  <span className={`${p}-video-options-thumbsUp-text`}>12k</span>
-                </div>
-                <div className={`${p}-video-options-thumbsDown`}>{thumbsDown(20)} &nbsp; 
-                  <span className={`${p}-video-options-thumbsDown-text`}>71</span>
-                </div>
-                <div className={`${p}-video-options-likebar`}></div>
-              </div>
-              <span className={`${p}-video-options-share`}>Share</span>
-              <span className={`${p}-video-options-save`}>Save</span>
-              <span className={`${p}-video-options-ellipses`}>...</span>
-            </div>
-          </div>
-        </div>
+        { video.loading === "yes" ? video.video : video[0].video }
         <div className={`${p}-description-box`}>  
           <div className={`${p}-description-column-1-avatar-wrapper`}>
             <div className="flex">
               <div className={`${p}-description-column-1-avatar`}></div>
               <div>
-                <div className={`${p}-description-column-1-author`}>DevPlaceholder</div>
-                <div className={`${p}-description-column-1-followers`}>356k Followers</div>
+                <div className={`${p}-description-column-1-author`}>
+                  { video.loading === "yes" ? "Placeholder" : video[0].author }
+                </div>
+                <div className={`${p}-description-column-1-followers`}>
+                { video.loading === "yes" ? "Loading" : `${abbreviateNumber(video[0].authorFollowers)} Followers` }
+                </div>
               </div>
             </div>
             <div className={`${p}-description-buttons-wrapper flex`}>
@@ -391,7 +450,8 @@ const VideoPage = () => {
               View 104 Replies
             </div>
           </div>
-        </div></main>
+        </div>
+      </main>
       <aside className={`${p}-sidebar`}>
         <div className={`${p}-sidebar-text-top`}>
           <span className={`${p}-sidebar-text-upnext`}>Up next</span>

@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import toggleClass from '../containers/toggleClass'
+import abbreviateNumber from '../containers/abbreviateNumber'
+import capitalizeFirstLetter from '../containers/capitalizeFirstLetter'
 import history from '../history'
 
 const VideoGrid = (props) => {
   const [videos, setResource] = useState([])
-
-  const abbreviateNumbersOver999 = (num) => {
-    if (num > 999) {
-      return Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k'
-    } 
-      return num
-  }
   
   const sendUserToVideoPage = (id) => {
     window.open(`/video/id=#${id}`, '_blank')
@@ -46,9 +41,9 @@ const VideoGrid = (props) => {
           <div className={`${props.page}--grid-avatar-wrapper`}>
             <img className={`${props.page}--grid-avatar`} src="https://i.imgur.com/W40CB6e.jpg"/>
           </div>
-          <div className={`${props.page}--grid-title`}>{vid.tags}</div>
+          <div className={`${props.page}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
           <div className={`${props.page}--grid-author`}>{vid.user}</div>
-          <div className={`${props.page}--grid-views`}>{abbreviateNumbersOver999(vid.views)} 
+          <div className={`${props.page}--grid-views`}>{abbreviateNumber(vid.views)} views 
             <span className={`${props.page}--grid-date`}> • 6 days ago</span>
           </div>
         </div>
