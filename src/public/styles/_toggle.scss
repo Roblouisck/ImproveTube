@@ -17,3 +17,20 @@
 .unhighlightedText {
   color: rgba(94, 94, 94, 0.5);
 }
+
+.backgroundBlue {
+  background-color: blue;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.clickable {
+  cursor: pointer;
+}

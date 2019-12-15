@@ -44,58 +44,96 @@ const VideoPage = () => {
             </div>
           </div>
         </div>,
-    loading: "yes",
-    comment: "placeholder"
+    loading: "yes"
   }
 )
 
-  const inputFocus = () => {
-    const addUserComment = document.querySelector('.videoPage-add-comment')
+  const userClicksAddCommentField = () => {
+    const addCommentField = document.querySelector('.videoPage-add-comment')
     const underlineAnimated = document.querySelector('.videoPage-add-comment-underline-animated')
     const commentButton = document.querySelector('.videoPage-comment-button')
     const cancelButton = document.querySelector('.videoPage-cancel-button')
     const buttonSpace = document.querySelector('.videoPage-button-space')
 
-    addUserComment.addEventListener('focus', () => {
+    addCommentField.addEventListener('focus', () => {
       underlineAnimated.classList.add('show')
       commentButton.classList.add('show')
       cancelButton.classList.add('show')
       buttonSpace.classList.remove('hide')
     })
-    addUserComment.addEventListener('blur', () => {
+    addCommentField.addEventListener('blur', () => {
       underlineAnimated.classList.remove('show')
     })
   }
 
-  const postComment = (inputValue) => {
-    const mostRecentComment = document.getElementById('mostRecentComment')
-    mostRecentComment.insertAdjacentHTML('beforebegin', 
-    ` 
-      <div>
-        <div id="mostRecentComment" class=${p}-comment-avatar></div>
-          <div class=${p}-comment-container>
-            <h5 class="commentorName">Guest</h5>
-            <div class="dateOfComment">Just Now</div>
-            <p class="comment">${inputValue}</p>
-            <div class="thumbs">
-              <span class="thumbsUpIcon">
-                ${thumbsUp(16, "insideJSX")}
-              </span>
-              <span class="thumbsDownIcon">
-                ${thumbsDown(16, "insideJSX")}
-              </span>
-            </div>
-            <p class="replyText">REPLY</p>
-          </div>
-      </div>
-    `
-  )
-}
+  const showCommentButtons = () => {
+    const buttonSpace = document.querySelector('.videoPage-button-space')
+    const commentButton = document.querySelector('.videoPage-comment-button')
+    const cancelButton = document.querySelector('.videoPage-cancel-button')
+    
+    commentButton.classList.add('show')
+    cancelButton.classList.add('show')
+    buttonSpace.classList.remove('hide')
+  }
 
-  const removeCommentButtons = () => {
+  const resetAddComment = () => {
+    document.getElementById('addComment').value = ''
     document.querySelector('.videoPage-comment-button').classList.remove('show')
     document.querySelector('.videoPage-cancel-button').classList.remove('show')
     document.querySelector('.videoPage-button-space').classList.add('hide')
+    document.querySelector('.videoPage-comment-button').classList.remove('backgroundBlue')
+    document.querySelector('.videoPage-comment-button').classList.remove('clickable')
+    document.getElementById('addComment').blur()
+  }
+
+  const postComment = (userComment) => {
+    const mostRecentComment = document.getElementById('mostRecentComment')
+    const commentButton = document.querySelector('.videoPage-comment-button')
+    const userCommentNotBlank = !userComment.trim().length < 1
+
+    if (userCommentNotBlank) {
+      mostRecentComment.insertAdjacentHTML('beforebegin', 
+      ` 
+        <div>
+          <div id="mostRecentComment" class=${p}-comment-avatar></div>
+            <div class=${p}-comment-container>
+              <h5 class="commentorName">Guest</h5>
+              <div class="dateOfComment">Just Now</div>
+              <p class="comment">${userComment}</p>
+              <div class="thumbs">
+                <span class="thumbsUpIcon">
+                  ${thumbsUp(16, "insideJSX")}
+                </span>
+                <span class="thumbsDownIcon">
+                  ${thumbsDown(16, "insideJSX")}
+                </span>
+              </div>
+              <p class="replyText">REPLY</p>
+            </div>
+        </div>
+      `
+    )
+  resetAddComment()
+  }
+}
+
+  const commentFieldHasText = (event, userComment) => {
+    const userCommentBlank = userComment.trim().length < 1
+    const userCommentNotBlank = !userCommentBlank
+    const commentButton = document.querySelector('.videoPage-comment-button')
+
+    if (userCommentNotBlank) {
+      commentButton.classList.add('clickable')
+      commentButton.classList.add('backgroundBlue')
+    } 
+    if (userCommentBlank) {
+      commentButton.classList.remove('clickable')
+      commentButton.classList.remove('backgroundBlue')
+    }
+    // User presses enter button
+    if ((event.key === 'Enter') && userCommentNotBlank) {
+      postComment(userComment)
+    }
   }
 
   // Pixabay API data didn't come with dislikes, so this function sets dislikes at 1% 
@@ -159,7 +197,7 @@ const VideoPage = () => {
     console.log(state)
     const token = location.hash
     fetchVideo(token.replace('#', ''))
-    inputFocus()
+    userClicksAddCommentField()
 
     function windowSize1000(mediaQuery1000) {
       const commentSection = document.querySelector('.videoPage-comment-section')
@@ -295,10 +333,11 @@ const VideoPage = () => {
             id="addComment"
             className={`${p}-add-comment`} 
             placeholder="Add a public comment" 
+            onKeyUp={event => commentFieldHasText(event, event.currentTarget.value)}
+            onClick={event => showCommentButtons()}
             />
           <hr className={`${p}-add-comment-underline`}/>
           <hr className={`${p}-add-comment-underline-animated`}/>
-
           <button 
             className={`${p}-comment-button hide`}
             onClick={() => postComment(document.getElementById('addComment').value)}>
@@ -307,7 +346,7 @@ const VideoPage = () => {
 
           <button 
             className={`${p}-cancel-button hide`}
-            onClick={() => removeCommentButtons()}>
+            onClick={() => resetAddComment()}>
             Cancel
           </button>
          </div>

@@ -292,7 +292,7 @@
   }
 
   &-comment-button {
-    background-color: blue;
+    background-color: grey;
     color: white;
     padding: 1rem 2.3rem;
     font-size: 1.6rem;
@@ -300,6 +300,7 @@
     position: absolute;
     top: 12rem;
     right: 0rem;
+    cursor: default;
   }
 
   &-cancel-button {
