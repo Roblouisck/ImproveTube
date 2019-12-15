@@ -25,7 +25,7 @@ const ActivityFeed = ({ page } = this.props) => {
             </span>
           </div>
           <p className="replyText">REPLY</p>
-          <div className="viewComment">
+          <div className="viewReplies">
             <span className="arrowDrop">
               {arrowDrop()}
             </span>
@@ -47,7 +47,7 @@ const ActivityFeed = ({ page } = this.props) => {
             </span>
           </div>
           <p className="replyText">REPLY</p>
-          <div className="viewComment">
+          <div className="viewReplies">
             <span className="arrowDrop">
               {arrowDrop()}
             </span>
@@ -69,7 +69,7 @@ const ActivityFeed = ({ page } = this.props) => {
             </span>
           </div>
           <p className="replyText">REPLY</p>
-          <div className="viewComment">
+          <div className="viewReplies">
             <span className="arrowDrop">
               {arrowDrop()}
             </span>
@@ -92,7 +92,7 @@ const ActivityFeed = ({ page } = this.props) => {
             </span>
           </div>
           <p className="replyText">REPLY</p>
-          <div className="viewComment">
+          <div className="viewReplies">
             <span className="arrowDrop">
               {arrowDrop()}
             </span>
@@ -114,7 +114,7 @@ const ActivityFeed = ({ page } = this.props) => {
             </span>
           </div>
           <p className="replyText">REPLY</p>
-          <div className="viewComment">
+          <div className="viewReplies">
             <span className="arrowDrop">
               {arrowDrop()}
             </span>
@@ -135,7 +135,7 @@ const ActivityFeed = ({ page } = this.props) => {
             </span>
           </div>
           <p className="replyText">REPLY</p>
-          <div className="viewComment">
+          <div className="viewReplies">
             <span className="arrowDrop">
               {arrowDrop()}
             </span>
@@ -156,7 +156,7 @@ const ActivityFeed = ({ page } = this.props) => {
             </span>
           </div>
           <p className="replyText">REPLY</p>
-          <div className="viewComment">
+          <div className="viewReplies">
             <span className="arrowDrop">
               {arrowDrop()}
             </span>
@@ -177,7 +177,7 @@ const ActivityFeed = ({ page } = this.props) => {
             </span>
           </div>
           <p className="replyText">REPLY</p>
-          <div className="viewComment">
+          <div className="viewReplies">
             <span className="arrowDrop">
               {arrowDrop()}
             </span>
@@ -199,7 +199,7 @@ const ActivityFeed = ({ page } = this.props) => {
             </span>
           </div>
           <p className="replyText">REPLY</p>
-          <div className="viewComment">
+          <div className="viewReplies">
             <span className="arrowDrop">
               {arrowDrop()}
             </span>

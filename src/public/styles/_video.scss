@@ -254,6 +254,7 @@
     border-radius: 99rem;
     cursor: pointer;
     margin: 4rem 0rem 0.4rem 5.2rem;
+    z-index: 4;;
   }
 
   &-add-comment {
@@ -261,15 +262,25 @@
     outline: none;
     height: 5rem;
     margin-top: 4.2rem;
-    margin-left: 12.199999999999999rem;
+    margin-left: 13.2rem;
     width: 90%;
     background: none;
     &-underline, &-underline-animated {
       position: absolute;
       top: 10rem;
-      left: 12rem;
-      width: 80%;
+      width: 100%;
     }
+    
+    &-underline::before {
+      content: '';
+      position: absolute;
+      height: 1rem;
+      width: 13rem;
+      background-color: #F8F8F8;
+      top: -0.5rem;
+      z-index: 3;
+    }
+
     &-underline-animated {
       display: none;
       background-color: #8b8b8b;
@@ -278,6 +289,31 @@
       animation: 250ms ease-in-out 0ms 1 normal none running scaleToOne;
       animation-fill-mode: forwards;
     }
+  }
+
+  &-comment-button {
+    background-color: blue;
+    color: white;
+    padding: 1rem 2.3rem;
+    font-size: 1.6rem;
+    border-radius: 0.3rem;
+    position: absolute;
+    top: 12rem;
+    right: 0rem;
+  }
+
+  &-cancel-button {
+    color: grey;
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-family: Roboto;
+    position: absolute;
+    right: 15.5rem;
+    top: 13rem;
+  }
+  
+  &-button-space {
+    height: 5rem;
   }
 
   &-comment-section {
@@ -411,10 +447,6 @@
 
     &-description-column-3 {
       grid-row: (2 / span) 2;
-    }
-    &-add-comment-underline,
-    &-add-comment-underline-animated {
-      width: 65%;
     }
   }
 

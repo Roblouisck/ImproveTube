@@ -16,12 +16,8 @@ const VideoGrid = (props) => {
     event.ctrlKey 
       ? window.open(`/video/id=#${id}`) 
       : window.location.href = `/video/id=#${id}`
-  //  if (event.ctrlKey) {
-  //     window.open(`/video/id=#${id}`)
-  //  } else {
-  //  window.location.href = `/video/id=#${id}`
-  //   }
   }
+  
   const fetchVideos = async (amount, category, order) => {
     const response = await axios.get('https://pixabay.com/api/videos/', {
       params: {

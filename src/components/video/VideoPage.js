@@ -15,7 +15,7 @@ import {
 
 const VideoPage = () => {
   const [p, setPrefix] = useState("videoPage")
-  const [video, setResource] = useState(
+  const [state, setState] = useState(
 
   // Data to act as a placeholder until video loads
   {
@@ -44,20 +44,58 @@ const VideoPage = () => {
             </div>
           </div>
         </div>,
-    loading: "yes"
+    loading: "yes",
+    comment: "placeholder"
   }
 )
 
   const inputFocus = () => {
     const addUserComment = document.querySelector('.videoPage-add-comment')
     const underlineAnimated = document.querySelector('.videoPage-add-comment-underline-animated')
+    const commentButton = document.querySelector('.videoPage-comment-button')
+    const cancelButton = document.querySelector('.videoPage-cancel-button')
+    const buttonSpace = document.querySelector('.videoPage-button-space')
 
     addUserComment.addEventListener('focus', () => {
       underlineAnimated.classList.add('show')
+      commentButton.classList.add('show')
+      cancelButton.classList.add('show')
+      buttonSpace.classList.remove('hide')
     })
     addUserComment.addEventListener('blur', () => {
       underlineAnimated.classList.remove('show')
     })
+  }
+
+  const postComment = (inputValue) => {
+    const mostRecentComment = document.getElementById('mostRecentComment')
+    mostRecentComment.insertAdjacentHTML('beforebegin', 
+    ` 
+      <div>
+        <div id="mostRecentComment" class=${p}-comment-avatar></div>
+          <div class=${p}-comment-container>
+            <h5 class="commentorName">Guest</h5>
+            <div class="dateOfComment">Just Now</div>
+            <p class="comment">${inputValue}</p>
+            <div class="thumbs">
+              <span class="thumbsUpIcon">
+                ${thumbsUp(16, "insideJSX")}
+              </span>
+              <span class="thumbsDownIcon">
+                ${thumbsDown(16, "insideJSX")}
+              </span>
+            </div>
+            <p class="replyText">REPLY</p>
+          </div>
+      </div>
+    `
+  )
+}
+
+  const removeCommentButtons = () => {
+    document.querySelector('.videoPage-comment-button').classList.remove('show')
+    document.querySelector('.videoPage-cancel-button').classList.remove('show')
+    document.querySelector('.videoPage-button-space').classList.add('hide')
   }
 
   // Pixabay API data didn't come with dislikes, so this function sets dislikes at 1% 
@@ -111,13 +149,14 @@ const VideoPage = () => {
         authorFollowers: vid.id
       }
     })
-    setResource(responseAsHtml)
+    setState(...responseAsHtml)
     } catch (err) {
       history.push('404')
     }
   }
 
   useEffect(() => {
+    console.log(state)
     const token = location.hash
     fetchVideo(token.replace('#', ''))
     inputFocus()
@@ -158,17 +197,17 @@ const VideoPage = () => {
   return (
     <div className={`${p}-page-wrapper`}>
       <main className={`${p}-main`}>
-        { video.loading === "yes" ? video.video : video[0].video }
+        { state.loading === "yes" ? state.video : state.video }
         <div className={`${p}-description-box`}>  
           <div className={`${p}-description-column-1-avatar-wrapper`}>
             <div className="flex">
               <div className={`${p}-description-column-1-avatar`}></div>
               <div>
                 <div className={`${p}-description-column-1-author`}>
-                  { video.loading === "yes" ? "Placeholder" : video[0].author }
+                  { state.loading === "yes" ? "Placeholder" : state.author }
                 </div>
                 <div className={`${p}-description-column-1-followers`}>
-                { video.loading === "yes" ? "Loading" : `${abbreviateNumber(video[0].authorFollowers)} Followers` }
+                { state.loading === "yes" ? "Loading" : `${abbreviateNumber(state.authorFollowers)} Followers` }
                 </div>
               </div>
             </div>
@@ -252,11 +291,29 @@ const VideoPage = () => {
 
         <div className={`${p}-add-comment-wrapper flex`}>
           <div className={`${p}-add-comment-avatar`}></div>
-          <input className={`${p}-add-comment`} placeholder="Add a public comment" />
+          <input 
+            id="addComment"
+            className={`${p}-add-comment`} 
+            placeholder="Add a public comment" 
+            />
           <hr className={`${p}-add-comment-underline`}/>
           <hr className={`${p}-add-comment-underline-animated`}/>
-        </div>
-          <div className={`${p}-comment-avatar`}></div>
+
+          <button 
+            className={`${p}-comment-button hide`}
+            onClick={() => postComment(document.getElementById('addComment').value)}>
+            Comment
+          </button>
+
+          <button 
+            className={`${p}-cancel-button hide`}
+            onClick={() => removeCommentButtons()}>
+            Cancel
+          </button>
+         </div>
+          <div className={`${p}-button-space hide`}></div>
+          {state.comment}
+          <div id='mostRecentComment' className={`${p}-comment-avatar`}></div>
           <div className={`${p}-comment-container`}>
             <h5 className="commentorName">LoveLyzKelly</h5>
             <div className="dateOfComment">6 months ago</div>
@@ -270,7 +327,7 @@ const VideoPage = () => {
               </span>
             </div>
             <p className="replyText">REPLY</p>
-            <div className="viewComment">
+            <div className="viewReplies">
               <span className="arrowDrop">
                 {arrowDrop()}
               </span>
@@ -292,7 +349,7 @@ const VideoPage = () => {
               </span>
             </div>
             <p className="replyText">REPLY</p>
-            <div className="viewComment">
+            <div className="viewReplies">
               <span className="arrowDrop">
                 {arrowDrop()}
               </span>
@@ -314,7 +371,7 @@ const VideoPage = () => {
               </span>
             </div>
             <p className="replyText">REPLY</p>
-            <div className="viewComment">
+            <div className="viewReplies">
               <span className="arrowDrop">
                 {arrowDrop()}
               </span>
@@ -337,7 +394,7 @@ const VideoPage = () => {
               </span>
             </div>
             <p className="replyText">REPLY</p>
-            <div className="viewComment">
+            <div className="viewReplies">
               <span className="arrowDrop">
                 {arrowDrop()}
               </span>
@@ -359,7 +416,7 @@ const VideoPage = () => {
               </span>
             </div>
             <p className="replyText">REPLY</p>
-            <div className="viewComment">
+            <div className="viewReplies">
               <span className="arrowDrop">
                 {arrowDrop()}
               </span>
@@ -381,7 +438,7 @@ const VideoPage = () => {
             </span>
           </div>
           <p className="replyText">REPLY</p>
-          <div className="viewComment">
+          <div className="viewReplies">
             <span className="arrowDrop">
               {arrowDrop()}
             </span>
@@ -403,7 +460,7 @@ const VideoPage = () => {
               </span>
             </div>
             <p className="replyText">REPLY</p>
-            <div className="viewComment">
+            <div className="viewReplies">
               <span className="arrowDrop">
                 {arrowDrop()}
               </span>
@@ -425,7 +482,7 @@ const VideoPage = () => {
               </span>
             </div>
             <p className="replyText">REPLY</p>
-            <div className="viewComment">
+            <div className="viewReplies">
               <span className="arrowDrop">
                 {arrowDrop()}
               </span>
@@ -448,7 +505,7 @@ const VideoPage = () => {
               </span>
             </div>
             <p className="replyText">REPLY</p>
-            <div className="viewComment">
+            <div className="viewReplies">
               <span className="arrowDrop">
                 {arrowDrop()}
               </span>
