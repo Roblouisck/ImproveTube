@@ -10,6 +10,7 @@ import {
 
 const VideoGrid = (props) => {
   const [videos, setResource] = useState([])
+  const [p, setPrefix] = useState(props.page)
   
   const sendUserToVideoPage = (id, event) => {
     event.ctrlKey 
@@ -33,8 +34,8 @@ const VideoGrid = (props) => {
     
     const vidsAsHtml = videoData.map(vid => {
       return (
-        <div className={`${props.page}--grid-content-wrapper`} key={vid.picture_id}>
-          <div className={`${props.page}--grid-video clickable`}>
+        <div className={`${p}--grid-content-wrapper`} key={vid.picture_id}>
+          <div className={`${p}--grid-video clickable`}>
             <video
               poster="https://i.imgur.com/Us5ckqm.jpg"
               onMouseOver={event => event.target.play()}
@@ -44,13 +45,13 @@ const VideoGrid = (props) => {
               >
             </video>
           </div>
-          <div className={`${props.page}--grid-avatar-wrapper`}>
-            <img className={`${props.page}--grid-avatar`} src="https://i.imgur.com/W40CB6e.jpg"/>
+          <div className={`${p}--grid-avatar-wrapper`}>
+            <img className={`${p}--grid-avatar`} src="https://i.imgur.com/W40CB6e.jpg"/>
           </div>
-          <div className={`${props.page}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
-          <div className={`${props.page}--grid-author`}>{vid.user}</div>
-          <div className={`${props.page}--grid-views`}>{abbreviateNumber(vid.views)} views 
-            <span className={`${props.page}--grid-date`}> • 6 days ago</span>
+          <div className={`${p}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
+          <div className={`${p}--grid-author`}>{vid.user}</div>
+          <div className={`${p}--grid-views`}>{abbreviateNumber(vid.views)} views 
+            <span className={`${p}--grid-date`}> • 6 days ago</span>
           </div>
         </div>
       )
@@ -107,34 +108,34 @@ const VideoGrid = (props) => {
   }
 
     return (
-      <main className={`${props.page}--grid-background`}>
-        <nav className={`${props.page}--grid-nav`}>
+      <main className={`${p}--grid-background`}>
+        <nav className={`${p}--grid-nav`}>
           <button 
             id='followButton' 
-            className={`${props.page}--grid-nav-${props.titleOne}`} 
+            className={`${p}--grid-nav-${props.titleOne}`} 
             onClick={handleButtons}>{props.titleOne}
           </button>
 
           <button 
             id='recommendedButton' 
-            className={`${props.page}--grid-nav-${props.titleTwo}`} 
+            className={`${p}--grid-nav-${props.titleTwo}`} 
             onClick={handleButtons}>{props.titleTwo}
           </button>
 
           <button 
             id='subscriptionsButton' 
-            className={`${props.page}--grid-nav-${props.titleThree}`} 
+            className={`${p}--grid-nav-${props.titleThree}`} 
             onClick={handleButtons}>{props.titleThree}
           </button>
 
-          <button className={`${props.page}--grid-nav-${props.titleFour}`}>{props.titleFour}</button>
-          <button className={`${props.page}--grid-nav-${props.titleFive}`}>{props.titleFive}</button>
-          <button className={`${props.page}--grid-nav-follow`}>FOLLOW</button>
+          <button className={`${p}--grid-nav-${props.titleFour}`}>{props.titleFour}</button>
+          <button className={`${p}--grid-nav-${props.titleFive}`}>{props.titleFive}</button>
+          <button className={`${p}--grid-nav-follow`}>FOLLOW</button>
         </nav>
-        <hr className={`${props.page}--grid-hr-nav-grey`} />
-        <hr className={`${props.page}--grid-hr-nav-black`} />        
+        <hr className={`${p}--grid-hr-nav-grey`} />
+        <hr className={`${p}--grid-hr-nav-black`} />        
 
-        <div className={`${props.page}--grid`} style={{marginTop: 'unset'}}>
+        <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
           {videos}
         </div>
       </main>

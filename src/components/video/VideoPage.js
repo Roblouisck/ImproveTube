@@ -20,34 +20,37 @@ const VideoPage = () => {
   // Data to act as a placeholder until video loads
   {
     video: 
-        <div className={`${p}-video-wrapper`}>
-          <video poster="https://i.imgur.com/Us5ckqm.jpg" className={`${p}-video clickable`} controls autoPlay></video>
-          <div className={`${p}-video-info-wrapper`}>  
-            <div className={`${p}-video-title-box`}>
-              <h1 className={`${p}-video-title`}>Loading</h1>
-              <span className={`${p}-video-views`}>0k views</span>
-              <span className={`${p}-video-date`}>{randomDate()}</span>
-            </div>
-            <div className={`${p}-video-options`}>
-              <div className="thumbs">
-                <div className={`${p}-video-options-thumbsUp`}>{thumbsUp(20)} &nbsp; 
-                  <span className={`${p}-video-options-thumbsUp-text`}>20k</span>
-                </div>
-                <div className={`${p}-video-options-thumbsDown`}>{thumbsDown(20)} &nbsp; 
-                  <span className={`${p}-video-options-thumbsDown-text`}>20k</span>
-                </div>
-                <div className={`${p}-video-options-likebar`}></div>
-              </div>
-              <span className={`${p}-video-options-share`}>Share</span>
-              <span className={`${p}-video-options-save`}>Save</span>
-              <span className={`${p}-video-options-ellipses`}>...</span>
-            </div>
+      <div className={`${p}-video-wrapper`}>
+        <video poster="https://i.imgur.com/Us5ckqm.jpg" className={`${p}-video clickable`} controls autoPlay></video>
+        <div className={`${p}-video-info-wrapper`}>  
+          <div className={`${p}-video-title-box`}>
+            <h1 className={`${p}-video-title`}>Loading</h1>
+            <span className={`${p}-video-views`}>0k views</span>
+            <span className={`${p}-video-date`}>Loading Date</span>
           </div>
-        </div>,
-    loading: "yes"
+          <div className={`${p}-video-options`}>
+            <div className="thumbs">
+              <div className={`${p}-video-options-thumbsUp`}>{thumbsUp(20)} &nbsp; 
+                <span className={`${p}-video-options-thumbsUp-text`}>20k</span>
+              </div>
+              <div className={`${p}-video-options-thumbsDown`}>{thumbsDown(20)} &nbsp; 
+                <span className={`${p}-video-options-thumbsDown-text`}>20k</span>
+              </div>
+              <div className={`${p}-video-options-likebar`}></div>
+            </div>
+            <span className={`${p}-video-options-share`}>Share</span>
+            <span className={`${p}-video-options-save`}>Save</span>
+            <span className={`${p}-video-options-ellipses`}>...</span>
+          </div>
+        </div>
+      </div>,
+
+    upNextVideos: '',
+    loading: "yes",
   }
 )
 
+  // COMMENTS
   const userClicksAddCommentField = () => {
     const addCommentField = document.querySelector('.videoPage-add-comment')
     const underlineAnimated = document.querySelector('.videoPage-add-comment-underline-animated')
@@ -147,20 +150,27 @@ const VideoPage = () => {
     return likes
   }
 
-  const fetchVideo = async (id) => {
-    try {
-      let response = await axios.get('https://pixabay.com/api/videos/', {
-        params: {
-          key: process.env.PIXABAY_API,
-          id: id
-        }
-      })
-    response = response.data.hits
+  const sendUserToVideoPage = (id, event) => {
+    event.ctrlKey 
+      ? window.open(`/video/id=#${id}`) 
+      : window.location.href = `/video/id=#${id}`
+  }
+
+
+
+  const mapToHtml = (response) => {
+    // console.log(state)
+    // const oldState = {...state}
+    // console.log(oldState)
     const responseAsHtml = response.map(vid => {
       return {
         video: 
         <div className={`${p}-video-wrapper`} key={vid.id}>
-          <video poster="https://i.imgur.com/Us5ckqm.jpg" className={`${p}-video clickable`} src={vid.videos.large.url} controls autoPlay></video>
+          <video 
+            poster="https://i.imgur.com/Us5ckqm.jpg" 
+            className={`${p}-video clickable`} 
+            src={vid.videos.large.url} 
+            controls autoPlay></video>
           <div className={`${p}-video-info-wrapper`}>  
             <div className={`${p}-video-title-box`}>
               <h1 className={`${p}-video-title`}>{capitalizeFirstLetter(vid.tags)}</h1>
@@ -184,19 +194,68 @@ const VideoPage = () => {
           </div>
         </div>,
         author: vid.user,
-        authorFollowers: vid.id
+        authorFollowers: vid.id      
       }
     })
-    setState(...responseAsHtml)
-    } catch (err) {
-      history.push('404')
-    }
-  }
 
+    const newState = Object.assign(state, ...responseAsHtml)
+    setState(newState)
+    setState(({...state, loading: "false"}))
+  } 
+
+  // FETCHING DATA
+  const fetchVideo = async (id) => {
+    try {
+      let response = await axios.get('https://pixabay.com/api/videos/', {
+        params: {
+          key: process.env.PIXABAY_API,
+          id: id
+        }
+      })
+    mapToHtml(response.data.hits)
+  } catch (err) {
+    history.push('404')
+  }
+}
+
+  const fetchUpNextVideos = async (amount, category, order) => {
+    let response = await axios.get('https://pixabay.com/api/videos/', {
+      params: {
+        key: process.env.PIXABAY_API,
+        per_page: amount,
+        category: category,
+        editors_choice: true,
+        order: order
+      }
+    })
+    // map the response to html
+    response = response.data.hits
+    const responseAsHtml = response.map(vid => {
+      return (
+        <div className={`${p}-sidebar-grid-video-wrapper`} key={vid.id}>
+          <div className={`${p}-sidebar-grid-video`}>
+            <video 
+            className={`${p}-video clickable`} 
+            src={vid.videos.tiny.url} 
+            onClick={(event) => sendUserToVideoPage(vid.id, event)} 
+            >
+            </video>
+          </div>
+          <h3 className={`${p}-sidebar-grid-video-title`}>{vid.tags}</h3>
+          <p className={`${p}-sidebar-grid-video-author`}>{vid.user}</p>
+          <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+        </div>
+      )
+    })
+    setState(({...state, upNextVideos: responseAsHtml}))
+}
+
+  // COMPONENT MOUNTS
   useEffect(() => {
     console.log(state)
     const token = location.hash
     fetchVideo(token.replace('#', ''))
+    fetchUpNextVideos(50, 'buildings')
     userClicksAddCommentField()
 
     function windowSize1000(mediaQuery1000) {
@@ -235,7 +294,7 @@ const VideoPage = () => {
   return (
     <div className={`${p}-page-wrapper`}>
       <main className={`${p}-main`}>
-        { state.loading === "yes" ? state.video : state.video }
+        {state.video}
         <div className={`${p}-description-box`}>  
           <div className={`${p}-description-column-1-avatar-wrapper`}>
             <div className="flex">
@@ -297,8 +356,7 @@ const VideoPage = () => {
           </div>
         </div>
           
-        <div className={`${p}-suggested-videos-mobile`}>
-        </div>
+        <div className={`${p}-suggested-videos-mobile`}></div>
         <div className={`${p}-new-subscribers-wrapper`}>
           <h2 className={`${p}-new-subscribers-text`}>New Subscribers to DevPlaceholder</h2>
           <div className={`${p}-new-subscribers-grid`}>
@@ -560,168 +618,7 @@ const VideoPage = () => {
         </div>
 
         <div className={`${p}-sidebar-grid-wrapper`}>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-          
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
-          <div className={`${p}-sidebar-grid-video-wrapper`}>
-            <div className={`${p}-sidebar-grid-video`}></div>
-            <h3 className={`${p}-sidebar-grid-video-title`}>Noel Gallagher Looks Back in Anger at Spicy Wings</h3>
-            <p className={`${p}-sidebar-grid-video-author`}>First We Feast</p>
-            <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
-          </div>
-
+        {state.upNextVideos}
         </div> 
       </aside>
     </div>
