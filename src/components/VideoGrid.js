@@ -12,12 +12,6 @@ const VideoGrid = (props) => {
   const [videos, setResource] = useState([])
   const [p, setPrefix] = useState(props.page)
   
-  const sendUserToVideoPage = (id, event) => {
-    event.ctrlKey 
-      ? window.open(`/video/id=#${id}`) 
-      : window.location.href = `/video/id=#${id}`
-  }
-  
   const fetchVideos = async (amount, category, order) => {
     const response = await axios.get('https://pixabay.com/api/videos/', {
       params: {
@@ -36,14 +30,15 @@ const VideoGrid = (props) => {
       return (
         <div className={`${p}--grid-content-wrapper`} key={vid.picture_id}>
           <div className={`${p}--grid-video clickable`}>
-            <video
-              poster="https://i.imgur.com/Us5ckqm.jpg"
-              onMouseOver={event => event.target.play()}
-              onMouseOut={event => event.target.pause()}
-              src={`${vid.videos.tiny.url}#t=1`} 
-              onClick={(event) => sendUserToVideoPage(vid.id, event)}
-              >
-            </video>
+            <a href={`/video/id=#${vid.id}`}>
+              <video
+                poster="https://i.imgur.com/Us5ckqm.jpg"
+                onMouseOver={event => event.target.play()}
+                onMouseOut={event => event.target.pause()}
+                src={`${vid.videos.tiny.url}#t=1`} 
+                >
+              </video>
+            </a>
           </div>
           <div className={`${p}--grid-avatar-wrapper`}>
             <img className={`${p}--grid-avatar`} src="https://i.imgur.com/W40CB6e.jpg"/>

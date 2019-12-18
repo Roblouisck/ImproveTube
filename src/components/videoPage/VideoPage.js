@@ -69,11 +69,12 @@ const VideoPage = () => {
       }
     return likes
   }
-
-  const sendUserToVideoPage = (id, event) => {
-    event.ctrlKey 
-      ? window.open(`/video/id=#${id}`) 
-      : window.location.href = `/video/id=#${id}`
+  
+  const makeLeftClickRedirect = (id, event) => {
+    if (!event.ctrlKey) {
+      window.location.href = `/video/id=#${id}`
+      window.location.reload()
+    }
   }
 
   const fetchUpNextVideos = async (amount, category, order) => {
@@ -91,12 +92,12 @@ const VideoPage = () => {
       return (
         <div className={`${p}-sidebar-grid-video-wrapper`} key={vid.id}>
           <div className={`${p}-sidebar-grid-video`}>
-            <video 
-            className={`${p}-video clickable`} 
-            src={vid.videos.tiny.url} 
-            onClick={(event) => sendUserToVideoPage(vid.id, event)} 
-            >
-            </video>
+            <a href={`/video/id=#${vid.id}`} onClick={event => makeLeftClickRedirect(vid.id, event)}>
+              <video 
+                className={`${p}-video clickable`} 
+                src={vid.videos.tiny.url}>
+              </video>
+            </a>
           </div>
           <h3 className={`${p}-sidebar-grid-video-title`}>{vid.tags}</h3>
           <p className={`${p}-sidebar-grid-video-author`}>{vid.user}</p>
@@ -116,7 +117,8 @@ const VideoPage = () => {
             poster="https://i.imgur.com/Us5ckqm.jpg" 
             className={`${p}-video clickable`} 
             src={vid.videos.large.url} 
-            controls autoPlay></video>
+            controls autoPlay>
+          </video>
           <div className={`${p}-video-info-wrapper`}>  
             <div className={`${p}-video-title-box`}>
               <h1 className={`${p}-video-title`}>{capitalizeFirstLetter(vid.tags)}</h1>
@@ -145,10 +147,10 @@ const VideoPage = () => {
       }
     })
 
-    const newState = Object.assign(state, ...responseAsHtml)
-    setState(newState)
-    setState(({...state, loading: "false"}))
-    fetchUpNextVideos(50, 'buildings')
+  const newState = Object.assign(state, ...responseAsHtml)
+  setState(newState)
+  setState(({...state, loading: "false"}))
+  fetchUpNextVideos(50, 'buildings')
   } 
 
   const fetchVideo = async (id) => {
