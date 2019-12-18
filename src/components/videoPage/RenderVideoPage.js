@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-import Header from '../Header'
 import VideoPage from './VideoPage'
+import axios from 'axios'
+
+import Header from '../Header'
 import HeaderMobile from '../HeaderMobile'
 import FooterMobile from '../FooterMobile'
-import axios from 'axios'
 
 const RenderVideoPage = () => {
   return (

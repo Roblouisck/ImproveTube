@@ -2,8 +2,8 @@ import React from 'react'
 import { Router, Route } from 'react-router-dom'
 import RenderHomepage from '../components/home/RenderHomepage'
 import RenderChannelPage from '../components/channel/RenderChannelPage'
-import RenderVideoPage from '../components/video/RenderVideoPage'
-import ErrorPage from '../components/video/ErrorPage'
+import RenderVideoPage from '../components/videoPage/RenderVideoPage'
+import ErrorPage from '../components/videoPage/ErrorPage'
 import history from '../history'
 
 const App = () => {
