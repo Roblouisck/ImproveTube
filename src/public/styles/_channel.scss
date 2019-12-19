@@ -35,6 +35,12 @@
 }
 
 .channel--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 3.4rem 0.5rem;
+  margin: 4rem 1.5rem 0 2rem;
+
   &-background {
     background-color: $component-background-white;
     border: 1px solid $component-border-grey;
@@ -87,40 +93,30 @@
     background-color: $pure-black;
     width: 12.8rem;
   }
-}
-
-.channel--grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-gap: 3.4rem 1.4rem;
-  margin: 0.7rem 5rem 0 5rem;
 
   &-content-wrapper {
     margin-left: auto;
     margin-right: auto;
   }
 
-  &-video {
-    width: 21.2rem;
-    height: 11.9rem;
-    background-color: $video-black;
+  &-avatar {
+    width: auto;
+    height: 5rem;
+    clip-path: circle();
   }
-
-  &-avatar-placeholder {
-    background-color: #a2a7dc;
-    width: 3rem;
+  
+  &-avatar-wrapper {
+    width: 7rem;
     height: 3rem;
     border-radius: 99rem;
     cursor: pointer;
     float: left;
-    margin-top: 1.3rem;
-    margin-right: 1.1rem;
+    margin: 1.3rem 1.1rem 4rem 0;
   }
 
   &-title {
     margin-top: 1.4rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: bold;
     color: #474747;
     &:hover {
@@ -131,7 +127,7 @@
   &-author {
     color: #606060;
     margin: 0.7rem 0rem 0.2rem 0;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     letter-spacing: 0.02rem;
     padding-left: 4rem;
     &:hover {
@@ -142,15 +138,11 @@
 
   &-views {
     color: #606060;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     letter-spacing: 0.02rem;
     padding-left: 4rem;
   }
 
-  &-date {}
-}
-
-.channel--grid {
   &-date-hr-container {
     margin: 7.1rem 0 5.18rem 0;
     width: 100%;
@@ -178,6 +170,41 @@
     left: 52rem;
     font-weight: bold;
     font-size: 22px;
+  }
+
+  &-background {
+    margin-left: 3.2%;
+    width: 109.099999999999994rem;
+    margin-right: 1.2vw;
+  }
+
+  &-hr-nav-black {
+    width: 9rem;
+  }
+
+  &-nav-follow {
+    position: absolute;
+    right: 4.1rem;
+    bottom: -0.6rem;
+    background-color: #CC0000;
+    color: white;
+    padding: 0.9rem 3.1rem;
+    text-transform: uppercase;
+  }
+
+  &-author, &-views {
+    padding-left: 0;
+  }
+
+  &-avatar-placeholder,
+  &-date-hr-container,
+  &-divider-date-text,
+  &-content-wrapper:nth-last-child(-n+3) {
+    display: none;
+  }
+
+  &-content-wrapper {
+    margin: unset;
   }
 }
 
@@ -215,55 +242,6 @@
   &-feed,
   &-about {
     display: none;
-  }
-}
-
-.channel--grid {
-  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-gap: 3.4rem 0.5rem;
-  margin: 4rem 1.5rem 0 2rem;
-
-  &-background {
-    margin-left: 3.2%;
-    width: 109.099999999999994rem;
-    margin-right: 1.2vw;
-  }
-
-  &-hr-nav-black {
-    width: 9rem;
-  }
-
-  &-nav-follow {
-    position: absolute;
-    right: 4.1rem;
-    bottom: -0.6rem;
-    background-color: #CC0000;
-    color: white;
-    padding: 0.9rem 3.1rem;
-    text-transform: uppercase;
-  }
-
-  &-video {
-    height: 15rem;
-    width: unset;
-    min-width: 18rem;
-    max-width: 33rem;
-  }
-
-  &-author, &-views {
-    padding-left: 0;
-  }
-
-  &-avatar-placeholder,
-  &-date-hr-container,
-  &-divider-date-text,
-  &-content-wrapper:nth-last-child(-n+3) {
-    display: none;
-  }
-
-  &-content-wrapper {
-    margin: unset;
   }
 }
 
@@ -529,13 +507,6 @@
     grid-template-columns: 1fr;
     margin: unset;
 
-    &-avatar-placeholder {
-      display: unset;
-      margin: 1.1rem 1.5rem 0rem 1.2rem;
-      width: 4rem;
-      height: 4rem;
-    }
-
     &-title {
       font-size: 1.6rem;
       margin-left: 2rem;
@@ -662,26 +633,6 @@
     &-header-avatar {
       right: 1rem;
     }
-
-    // &-footer {
-    //   position: fixed;
-    //   left: 0;
-    //   bottom: 0;
-    //   width: 100%;
-    //   height: 7.8rem;
-    //   background-color: #FFF;
-    //   color: black;
-    //   text-align: center;
-    //   outline: 1px solid #D9D9D9;
-    //   display: flex;
-    //   justify-content: space-around;
-    //   fill: #5b5b5b;
-    //   padding-top: 1.4rem;
-    // }
-
-    // &-footer-text {
-    //   font-size: 1rem;
-    // }
   }
 }
 

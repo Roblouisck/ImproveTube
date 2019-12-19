@@ -54,11 +54,21 @@ const VideoGrid = (props) => {
   setResource(vidsAsHtml)
 }
 
+  const toggles = () => {
+    const recommendedButton = document.querySelector('.home--grid-nav-recommended')
+    const page = p
+    
+    if (page === 'home') {
+      toggleClass('highlightedText', recommendedButton, recommendedButton)
+    }
+    if (page === 'channel') {
+      console.log('channel')
+    }
+  }
+
   useEffect(() => {
     fetchVideos(50, 'buildings')
-    const unhighlightedText = document.querySelector('.unhighlitedText')
-    const recommendedButton = document.querySelector('.home--grid-nav-recommended')
-    toggleClass('highlightedText', recommendedButton, recommendedButton)
+    toggles()
   }, []) 
   
 

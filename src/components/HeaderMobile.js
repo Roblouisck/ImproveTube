@@ -19,10 +19,10 @@ class HeaderMobile extends React.Component {
     const backArrow = document.querySelector('.header--mobile-arrow-left-icon')
     const headerMobile = document.querySelector('.header--mobile')
 
-    toggleClass('hide', magnifyingGlass, logo, videoCamera, avatar, magnifyingGlass, backArrow, searchbar)
-    toggleClass('hide', backArrow, logo, videoCamera, avatar, backArrow, searchbar, magnifyingGlass)
-    toggleClass('flex-center', magnifyingGlass, headerMobile)
-    toggleClass('flex-center', backArrow, headerMobile)
+    // toggleClass('hide', magnifyingGlass, logo, videoCamera, avatar, magnifyingGlass, backArrow, searchbar)
+    // toggleClass('hide', backArrow, logo, videoCamera, avatar, backArrow, searchbar, magnifyingGlass)
+    // toggleClass('flex-center', magnifyingGlass, headerMobile)
+    // toggleClass('flex-center', backArrow, headerMobile)
   }
 
   render({ p } = this.state) {
