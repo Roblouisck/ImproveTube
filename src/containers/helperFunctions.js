@@ -16,9 +16,9 @@ export const randomDate = () => {
   return formattedWithComma
 }
 
-export const toggleClass = (toggledClass, clickedClass, ...additionalClassesForToggling) => {
-    clickedClass.addEventListener('click', () => {
-      additionalClassesForToggling.forEach(additionalClass => {
+export const toggleClass = (toggledClass, clickedElement, ...additionalElementsForToggling) => {
+    clickedElement.addEventListener('click', () => {
+      additionalElementsForToggling.forEach(additionalClass => {
         additionalClass.classList.toggle(toggledClass)
       })
     })

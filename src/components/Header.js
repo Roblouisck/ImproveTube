@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { toggleClass } from '../containers/helperFunctions'
 
 const Header = () => {
+
   const burgerReverse = (class1, class2) => {
     class1.addEventListener('click', () => {
       if (class2.classList.contains('slideIn')) {
@@ -11,7 +12,6 @@ const Header = () => {
       }
     })
   }
-
 
   const noAnimationDuringWindowResize = (burgerMenu) => {
     window.addEventListener("resize", () => {
@@ -26,10 +26,13 @@ const Header = () => {
     const signInAvatar = document.querySelector('.header > .avatarPlaceholder')
     const userMenu = document.querySelector('.userMenu')
 
+    // An eventlistener gets set in toggleClass when component mounts
     toggleClass('show', burgerIcon, burgerMenu, burgerFadedBackground)
-    toggleClass('show', burgerFadedBackground, burgerMenu, burgerFadedBackground)
+    toggleClass('show', burgerFadedBackground, burgerFadedBackground)
     toggleClass('show', signInAvatar, userMenu)
     toggleClass('slideIn', burgerIcon, burgerMenu)
+    toggleClass('slideOut', burgerFadedBackground, burgerMenu)
+    toggleClass('slideIn', burgerFadedBackground, burgerMenu)
     burgerReverse(burgerIcon, burgerMenu)
     noAnimationDuringWindowResize(burgerMenu)
   }, [])
