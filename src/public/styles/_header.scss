@@ -201,40 +201,40 @@ li:hover {
 
 // ANIMATIONS
 .slideIn {
-  animation: slide-in 810ms ease; 
+  animation: slide-in 277ms ease; 
   animation-fill-mode: forwards;
 }
 
 .slideIn > ul > li:nth-of-type(1) {
-  animation: slide-in 850ms ease;
+  animation: slide-in 396ms ease;
 }
 
 .slideIn > ul > li:nth-of-type(2) {
-  animation: slide-in 884ms ease;
+  animation: slide-in 425ms ease;
 }
 
 .slideIn > ul > li:nth-of-type(3) {
-  animation: slide-in 909ms ease;
+  animation: slide-in 464ms ease;
 }
 
 .slideIn > ul > li:nth-of-type(4) {
-  animation: slide-in 943ms ease;
+  animation: slide-in 478ms ease;
 }
 
 .slideIn > ul > li:nth-of-type(5) {
-  animation: slide-in 1033ms ease;
+  animation: slide-in 519ms ease;
 }
 
 .slideIn > ul > li:nth-of-type(6) {
-  animation: slide-in 1089ms ease;
+  animation: slide-in 556ms ease;
 }
 
 .slideIn > ul > li:nth-of-type(7) {
-  animation: slide-in 1153ms ease;
+  animation: slide-in 601ms ease;
 }
 
 .slideOut {
-  animation: slide-out .4s ease;
+  animation: slide-out .2s ease;
   animation-fill-mode: both;
 }
 

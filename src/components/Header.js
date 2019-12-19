@@ -31,6 +31,9 @@ const Header = () => {
     toggleClass('show', burgerFadedBackground, burgerFadedBackground)
     toggleClass('show', signInAvatar, userMenu)
     toggleClass('slideIn', burgerIcon, burgerMenu)
+
+    // slideIn is already set when faded background is visible to user
+    // therefore we need to toggle both classes, to remove slideIn and set slideOut
     toggleClass('slideOut', burgerFadedBackground, burgerMenu)
     toggleClass('slideIn', burgerFadedBackground, burgerMenu)
     burgerReverse(burgerIcon, burgerMenu)
@@ -49,8 +52,8 @@ const Header = () => {
       <nav className="hamburgerNav">
         <ul>
           <hr/>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Subscriptions</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/channel">Channel</a></li>
           <li><a href="#">History</a></li>
           <li><a href="#">Liked videos</a></li>
           <li><a href="#">Favorites</a></li>
