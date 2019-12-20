@@ -44,7 +44,7 @@ const ActivityFeed = ({ page } = this.props) => {
               <span className="arrowDrop">
                 {arrowDrop()}
               </span>
-              View 10 Replies
+              View {Math.floor(Math.random() * 100)} Replies
             </div>
           </div>
         </div>
