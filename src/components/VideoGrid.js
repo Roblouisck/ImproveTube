@@ -19,7 +19,7 @@ const VideoGrid = (props) => {
     let response = await callVideosAPI(amount, category, order)
     response = response.data.hits    
 
-    let res = await callAvatarsAPI()
+    let res = await callAvatarsAPI('man')
     res = res.data.hits
 
     mapDataToHtml(response, res)

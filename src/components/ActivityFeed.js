@@ -1,18 +1,72 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
   thumbsUp, 
   thumbsDown, 
   arrowDrop } from './svgs'
 
+import { 
+  fetchAvatars as callAvatarsAPI, 
+  fetchVideos as callVideosAPI } from '../containers/api'
+
 const ActivityFeed = ({ page } = this.props) => {
+  const [pics, setPics] = useState([])
+
+  const fetchAvatars = async () => {
+    let response = await callAvatarsAPI('person')
+    response = response.data.hits
+    console.log(response)
+    mapPicsToHTML(response)
+  }
+
+  const mapPicsToHTML = (response) => {
+    const picsMappedToHTML = response.map(pic => {
+      return (
+        <div className="commentContainer" key={pic.id}>
+          <div className="avatarPlaceholder--comments">
+            <img className="avatarPlaceholder--img" src={pic.webformatURL}/>
+          </div>
+          <h5 className="commentorName">LoveLyzKelly</h5>
+          <div className="dateOfComment">6 months ago</div>
+          <p className="comment">There may possible be a video tomorrow Sunday Japan time</p>
+          <div className="thumbs">
+            <span className="thumbsUpIcon">
+              {thumbsUp(16)}
+            </span>
+            <span className="thumbsDownIcon">
+              {thumbsDown(16)}
+            </span>
+          </div>
+          <p className="replyText">REPLY</p>
+          <div className="viewReplies">
+            <span className="arrowDrop">
+              {arrowDrop()}
+            </span>
+            View 10 Replies
+          </div>
+        </div>
+      )
+    })
+    console.log(picsMappedToHTML)
+    setPics(picsMappedToHTML)
+  }
+
+
+  useEffect(() => {
+    fetchAvatars()
+  }, [])
+
   return (
     <aside className="activityFeedContainer">
       <h1 className={`${page}--activity-feed-title`}>Activity Feed</h1>
       <hr className="home--activityfeed-hr" />
       <div className="commentSection--activityfeed">
+        
+        {pics}
 
-        <div className="avatarPlaceholder--comments"></div>
         <div className="commentContainer">
+          <div className="avatarPlaceholder--comments">
+            <img className="avatarPlaceholder--img" src={pics}/>
+          </div>
           <h5 className="commentorName">LoveLyzKelly</h5>
           <div className="dateOfComment">6 months ago</div>
           <p className="comment">There may possible be a video tomorrow Sunday Japan time</p>
@@ -33,8 +87,11 @@ const ActivityFeed = ({ page } = this.props) => {
           </div>
         </div>
 
-        <div className="avatarPlaceholder--comments"></div>
         <div className="commentContainer">
+          <div className="avatarPlaceholder--comments">
+            <img className="avatarPlaceholder--img" src="https://i.imgur.com/W40CB6e.jpg"/>
+          </div>
+
           <h5 className="commentorName">MartynTheGreat</h5>
           <div className="dateOfComment">6h ago</div>
           <p className="comment">playing fortnite with ninja lol</p>

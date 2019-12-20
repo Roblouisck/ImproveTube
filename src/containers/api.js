@@ -1,11 +1,11 @@
 import React from 'react'
 import axios from 'axios'
 
-export const fetchAvatars = async () => {
+export const fetchAvatars = async (query) => {
   return axios.get('https://pixabay.com/api/', {
     params: {
       key: process.env.PIXABAY_API,
-      q: 'person',
+      q: query,
       per_page: 50
     }
   })
