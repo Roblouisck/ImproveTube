@@ -84,12 +84,13 @@
     border-radius: 99rem;
     cursor: pointer;
     float: left;
-    margin: 1.3rem 1.1rem 4rem 0;
+    margin: 0.6rem -1.5rem 4rem 0;
   }
 
   &-avatar {
   width: auto;
-  height: 5rem;
+  height: 6rem;
+  max-width: 4rem;
   clip-path: circle();
   }
 
@@ -152,18 +153,24 @@
   left: 17.08px;
   top: 112.47px;
 }
+.commentWrapper {
+  position: relative;
+}
 .avatarPlaceholder--comments {
   cursor: pointer;
-  margin: 0rem 1.1rem 4rem 0;
-  left: 1rem;
-  float: left;
+  display: inline;
+  margin: 0px 3rem 0 4rem;
 }
 
 .avatarPlaceholder--img {
-  width: 6vw;
-  height: 4vw;
   clip-path: circle();
-  top: 1rem;
+  width: 4vw;
+  height: 6vw;
+  margin-bottom: 1.4rem;
+  display: inline-block;
+  min-width: 4rem;
+  position: absolute;
+  top: 2.3rem;
 }
 
 .commentSection--activityfeed {
@@ -176,7 +183,10 @@
 
 
 .commentContainer {
-  margin: 3.5rem 0rem 1.2rem 3rem;
+  display: inline-block;
+  margin-top: 4rem;
+  width: 23vw;
+  margin-left: 4vw;
 }
 
 .home--activity-feed-title {
@@ -189,9 +199,6 @@
   font-size: 24px;
   line-height: 28px;
   letter-spacing: 0.02rem;
-}
-
-.commentContainer {
 }
 
 .commentorName {
@@ -211,8 +218,8 @@
 }
 
 .comment {
-  margin: 0.3rem 0rem 0.9rem 0rem;
   color: $comment-black;
+  margin: 0.3rem 3vw 0.9rem 0rem;
 }
 
 hr {
@@ -323,7 +330,7 @@ video {
 .home--grid {
   grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
   grid-template-rows: 1fr 1fr 1fr;
-  grid-gap: 3.4rem 1rem;
+  grid-gap: 4rem 1rem;
   margin: 0 1.5rem 0rem 2rem;
   padding-bottom: 1rem;
 
@@ -478,6 +485,12 @@ video {
   }
 }
 
+@media screen and (max-width: 1500px) {
+  .avatarPlaceholder--img {
+    top: 3rem;
+  }
+}
+
 @media screen and (max-width: 1100px) {
   .avatarPlaceholder--comments {
     display: none;
@@ -509,7 +522,6 @@ video {
   }
 
   .commentContainer {
-    margin: 3rem auto 0rem auto;
     width: 23vw;
   }
 
@@ -736,6 +748,15 @@ video {
       width: 4rem;
       height: 4rem;
     }
+    
+    &-avatar-wrapper {
+      margin-right: 0
+    }
+
+    &-avatar {
+      margin-top: 0;
+      width: 5rem;
+    }
 
     &-title {
       font-size: 1.6rem;
@@ -753,7 +774,7 @@ video {
     }
 
     &-video {
-      height: 60vw;
+      height: 57vw;
       width: 100%;
       max-width: unset;
     }

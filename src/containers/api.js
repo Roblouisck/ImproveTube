@@ -6,6 +6,7 @@ export const fetchAvatars = async (query) => {
     params: {
       key: process.env.PIXABAY_API,
       q: query,
+      orientation: 'vertical',
       per_page: 50
     }
   })
