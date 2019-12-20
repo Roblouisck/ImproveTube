@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import quote from 'inspirational-quotes'
+
 import { 
   thumbsUp, 
   thumbsDown, 
@@ -25,9 +27,9 @@ const ActivityFeed = ({ page } = this.props) => {
           <div className="avatarPlaceholder--comments">
             <img className="avatarPlaceholder--img" src={pic.webformatURL}/>
           </div>
-          <h5 className="commentorName">LoveLyzKelly</h5>
+          <h5 className="commentorName">{pic.user}</h5>
           <div className="dateOfComment">6 months ago</div>
-          <p className="comment">There may possible be a video tomorrow Sunday Japan time</p>
+          <p className="comment">{quote.getQuote().text}</p>
           <div className="thumbs">
             <span className="thumbsUpIcon">
               {thumbsUp(16)}
@@ -53,6 +55,7 @@ const ActivityFeed = ({ page } = this.props) => {
 
   useEffect(() => {
     fetchAvatars()
+    console.log(quote.getQuote())
   }, [])
 
   return (
