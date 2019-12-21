@@ -38,8 +38,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
   grid-template-rows: 1fr 1fr 1fr;
-  grid-gap: 3.4rem 0.5rem;
-  margin: 4rem 1.5rem 0 2rem;
+  grid-gap: 2.5rem 1rem;
+  margin: 0 1.5rem 0 2rem;
 
   &-background {
     background-color: $component-background-white;
@@ -101,17 +101,18 @@
 
   &-avatar {
     width: auto;
-    height: 5rem;
+    height: 6rem;
+    max-width: 4rem;
     clip-path: circle();
   }
   
   &-avatar-wrapper {
     width: 7rem;
-    height: 3rem;
+    height: 5rem;
     border-radius: 99rem;
     cursor: pointer;
     float: left;
-    margin: 1.3rem 1.1rem 4rem 0;
+    margin: 0.6rem -1.5rem 4rem 0;
   }
 
   &-title {
@@ -506,6 +507,16 @@
     grid-template-columns: 1fr;
     margin: unset;
 
+    &-avatar-wrapper {
+      margin-right: 0;
+      height: 3rem;
+    }
+
+    &-avatar {
+      margin: -0.3rem 0 0rem 1.4rem;
+      width: 5rem;
+    }
+
     &-title {
       font-size: 1.6rem;
       margin-left: 2rem;
@@ -522,7 +533,7 @@
     }
 
     &-video {
-      height: 60vw;
+      height: 57vw;
       width: 100%;
       max-width: unset;
     }
