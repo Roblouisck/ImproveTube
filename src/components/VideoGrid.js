@@ -44,7 +44,9 @@ const VideoGrid = (props) => {
             <img className={`${p}--grid-avatar`} src={res[index].webformatURL}/>
           </div>
           <div className={`${p}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
-          <div className={`${p}--grid-author`}>{vid.user}</div>
+          <a href={`/channel/${vid.user}`}>
+            <div className={`${p}--grid-author`}>{vid.user}</div>
+          </a>
           <div className={`${p}--grid-views`}>{abbreviateNumber(vid.views)} views 
             <span className={`${p}--grid-date`}> • 6 days ago</span>
           </div>
