@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-export const fetchAvatars = async (query) => {
+export const fetchAvatars = (query) => {
   return axios.get('https://pixabay.com/api/', {
     params: {
       key: process.env.PIXABAY_API,
@@ -12,7 +12,7 @@ export const fetchAvatars = async (query) => {
   })
 }
 
-export const fetchVideos = async (amount, category, order) => {
+export const fetchVideos = (amount, category, order) => {
   return axios.get('https://pixabay.com/api/videos/', {
     params: {
       key: process.env.PIXABAY_API,
@@ -20,6 +20,15 @@ export const fetchVideos = async (amount, category, order) => {
       category: category,
       editors_choice: true,
       order: order
+    }
+  })
+}
+
+export const fetchChannelPicture = async (id) => {
+  return axios.get('https://pixabay.com/api/', {
+    params: {
+      key: process.env.PIXABAY_API,
+      id: id
     }
   })
 }

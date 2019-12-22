@@ -1,9 +1,29 @@
 import React, { useEffect, useState } from 'react'
+import { fetchChannelPicture } from '../../containers/api'
 
 const AboveFold = () => {
   const [p, setPrefix] = useState('channel--aboveFold')
+  const [channelName, setChannelName] = useState()
+  const [channelPicture, setChannelPicture] = useState()
 
-  useEffect(() => {
+  const extractDataFromUrl = () => {
+    const currentURL = window.location.href
+    const urlAsArray = currentURL.split('/')
+    const currentChannelName = urlAsArray[5]
+    const currentChannelPictureID = urlAsArray[4]
+    setChannelName(currentChannelName)
+    fetchChannelPic(currentChannelPictureID)
+  }
+
+  const fetchChannelPic = async (id) => {
+    let response = await fetchChannelPicture(id)
+    const currentChannelPicture = response.data.hits[0].webformatURL
+    setChannelPicture(currentChannelPicture)
+  }
+
+  useEffect(() => { 
+    extractDataFromUrl()
+
     const windowSize940 = (mediaQuery940) => {
       const followButton = document.querySelector('.channel--grid-nav-follow')
       const channelAvatar = document.querySelector('.channel--aboveFold-avatar')
@@ -44,10 +64,10 @@ const AboveFold = () => {
     <div className={`${p}-wrapper`}>
       <div className={`${p}-avatar-content-wrapper`}>
         <div className={`${p}-avatar-text-wrapper`}>
-          <span className={`${p}-name-text`}>LoveLyzKelly</span>
+          <span className={`${p}-name-text`}>{channelName}</span>
           <span className={`${p}-follower-text`}>149K Followers</span>
         </div>
-        <div className={`${p}-avatar`}></div>
+        <img className={`${p}-avatar`} src={channelPicture} />
       </div>
       <div className={`${p}-description-box`}>
         <h2>Description</h2>
@@ -55,7 +75,8 @@ const AboveFold = () => {
         <p>Dear friends,</p>
         <br/>
         <p>
-          My name is Lyz and I`m a mentor for others who have dreams to travel, live abroad, and gridNavSubscriptionTexttain a better lifestyle whilst living abroad. I have lived in Japan for a total of five years and learned quite a lot -not just about the country but myself as well. Not only do I want to inform others about life abroad but my gridNavSubscriptionText goal is to get you organized, stay mindful, and gridNavSubscriptionTexttain a healthy and exciting lifestyle whether you plan on living in another country or not. This site is not only for adventure lovers but for inspiration seekers. All of what I have gained and endured will allow me to mold you into an adventurer yourself!
+          My name is Lyz and I`m a mentor for others who have dreams to travel, live abroad, and maintain a better lifestyle whilst living abroad. I have lived in Japan for a total of five years and learned quite a lot -not just about the country but myself as well. Not only do I want to inform others about life abroad but my main goal is to get you organized, stay mindful, and maintain a healthy and exciting lifestyle whether you plan on living in another country or not. This site is not only for adventure lovers but for inspiration seekers. All of what I have gained and endured will allow me to mold you into an adventurer yourself!
+
         </p>
         <br/>
         <p>love,</p>

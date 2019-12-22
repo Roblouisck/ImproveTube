@@ -274,19 +274,25 @@
     display: flex;
   }
 
+  // &-avatar-wrapper {
+  //   width: 15.5vw;
+  //   height: 15.5vw;
+  //   min-width: 20rem;
+  //   min-height: 20rem;
+  //   max-width: 29rem;
+  //   max-height: 29rem;
+  //   margin-left: 2rem;
+  // }
+
   &-avatar {
     width: 15.5vw;
     height: 15.5vw;
-    width: 15.5vw;
+    object-fit: cover;
     min-width: 20rem;
     min-height: 20rem;
     max-width: 29rem;
     max-height: 29rem;
-    background-color: #a2a7dc;
     margin-left: 2rem;
-
-    &-content-wrapper {
-    }
   }
 
   &-description-box {

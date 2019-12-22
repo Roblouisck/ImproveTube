@@ -41,10 +41,12 @@ const VideoGrid = (props) => {
             </a>
           </div>
           <div className={`${p}--grid-avatar-wrapper`}>
-            <img className={`${p}--grid-avatar`} src={res[index].webformatURL}/>
+            <a href={`/channel/${res[index].id}/${vid.user}`}>
+              <img className={`${p}--grid-avatar`} src={res[index].webformatURL}/>
+            </a>
           </div>
           <div className={`${p}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
-          <a href={`/channel/${vid.user}`}>
+          <a href={`/channel/${res[index].id}/${vid.user}`}>
             <div className={`${p}--grid-author`}>{vid.user}</div>
           </a>
           <div className={`${p}--grid-views`}>{abbreviateNumber(vid.views)} views 
