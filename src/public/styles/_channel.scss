@@ -274,16 +274,6 @@
     display: flex;
   }
 
-  // &-avatar-wrapper {
-  //   width: 15.5vw;
-  //   height: 15.5vw;
-  //   min-width: 20rem;
-  //   min-height: 20rem;
-  //   max-width: 29rem;
-  //   max-height: 29rem;
-  //   margin-left: 2rem;
-  // }
-
   &-avatar {
     width: 15.5vw;
     height: 15.5vw;
@@ -317,15 +307,14 @@
   &-subscribers-box {
     justify-content: space-around;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(3rem, 3rem));
-    width: 29.699999999999999vw;
+    grid-template-columns: repeat(auto-fill, minmax(4rem, 3.8rem));
+    width: 29.7vw;
     max-width: 56rem;
     margin: 0.8rem 0 0 0;
-    grid-gap: 1rem;
+    grid-gap: 0.5rem;
     padding: 1rem;
     background-color: white;
-    height: 33rem;
-    overflow-y: hidden;
+    // overflow-y: hidden;
 
     &-wrapper {
       margin-right: 5vw;
@@ -358,11 +347,12 @@
   }
 
   &-subscriber-avatar {
-    margin: 0 0 0 0;
-    background-color: #a2a7dc;
-    padding: 1.8rem;
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
   }
 }
+
 
 @media screen and (max-width: 1671px) {
   .channel--grid-video {

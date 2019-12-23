@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { fetchChannelPicture } from '../../containers/api'
+import { fetchChannelPicture, fetchAvatars } from '../../containers/api'
 
 const AboveFold = () => {
   const [p, setPrefix] = useState('channel--aboveFold')
   const [channelName, setChannelName] = useState()
   const [channelPicture, setChannelPicture] = useState()
+  const [subcriberAvatars, setSubscriberAvatars] = useState([])
 
   const extractDataFromUrl = () => {
     const currentURL = window.location.href
@@ -25,8 +26,27 @@ const AboveFold = () => {
     setChannelName(channelUsername)
   }
 
+  const fetchSubscriberAvatars = async () => {
+    let subscriberAvatars = await fetchAvatars('woman', 84)
+    subscriberAvatars = subscriberAvatars.data.hits
+    mapSubscriberAvatarsToHtml(subscriberAvatars)
+  }
+
+  const mapSubscriberAvatarsToHtml = (subscriberAvatars) => {
+    const subAvatars = subscriberAvatars.map(avatar => {
+      return (
+        <a href={`/channel/${avatar.id}`}> 
+          <img className={`${p}-subscriber-avatar`} src={avatar.webformatURL} />
+        </a>
+      )
+    })
+    console.log(subAvatars)
+    setSubscriberAvatars(subAvatars)
+  }
+
   useEffect(() => { 
     extractDataFromUrl()
+    fetchSubscriberAvatars()
 
     const windowSize940 = (mediaQuery940) => {
       const followButton = document.querySelector('.channel--grid-nav-follow')
@@ -90,97 +110,8 @@ const AboveFold = () => {
       <div className={`${p}-subscribers-box-wrapper`}>
         <span className={`${p}-subscribers-box-title`}> Subscribers </span>
         <div className={`${p}-subscribers-box`}>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div>
-          <div className={`${p}-subscriber-avatar`}></div></div>
+          {subcriberAvatars}
+        </div>
         <span className={`${p}-subscribers-box-bottom-text`}>...and 8,912 more</span>
       </div>
     </div>
