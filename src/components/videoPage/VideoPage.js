@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import history from '../../history'
 import handleMediaQueries from './containers/mediaQueries'
+import { fetchVideoFromID, fetchVideos } from '../../containers/api'
+
+import setDislikes from './containers/setDislikes'
+import makeLeftClickRedirect from './containers/makeLeftClickRedirect'
 
 import { 
   toggleClass, 
@@ -53,48 +57,21 @@ const VideoPage = () => {
           </div>
         </div>
       </div>,
-
-    upNextVideos: 'no',
     loading: "yes"
   }
 )
 
-  // Pixabay API data didn't come with dislikes, so this function sets dislikes at 1% 
-  // of likes, with a chance of setting dislikes to 0 if video has less than 500 likes.
-  const setDislikes = (likes) => {
-    const randomlyZeroOrOne = Math.floor(Math.random() * 2) + 0
-    const dislikes = Math.ceil(likes*.01)
-      if (likes < 500) {
-        return dislikes*randomlyZeroOrOne
-      }
-    return likes
-  }
-  
-  const makeLeftClickRedirect = (id, event) => {
-    if (!event.ctrlKey) {
-      window.location.href = `/video/id=#${id}`
-      window.location.reload()
-    }
-  }
-
   const fetchUpNextVideos = async (amount, category, order) => {
-    let response = await axios.get('https://pixabay.com/api/videos/', {
-      params: {
-        key: process.env.PIXABAY_API,
-        per_page: amount,
-        category: category,
-        editors_choice: true,
-        order: order
-      }
-    })
+    let response = await fetchVideos(amount, category, order)
     response = response.data.hits
+
     const responseAsHtml = response.map(vid => {
       return (
         <div className={`${p}-sidebar-grid-video-wrapper`} key={vid.id}>
           <div className={`${p}-sidebar-grid-video`}>
             <a href={`/video/id=#${vid.id}`} onClick={event => makeLeftClickRedirect(vid.id, event)}>
               <video 
-                className={`${p}-video clickable`} 
+                className={`${p}-video`} 
                 src={vid.videos.tiny.url}>
               </video>
             </a>
@@ -154,20 +131,11 @@ const VideoPage = () => {
   } 
 
   const fetchVideo = async (id) => {
-    try {
-      let response = await axios.get('https://pixabay.com/api/videos/', {
-        params: {
-          key: process.env.PIXABAY_API,
-          id: id
-        }
-      })
-    mapVideoResponseToHTML(response.data.hits)
-  } catch (err) {
-    history.push('404')
+    let response = await fetchVideoFromID(id)
+    response = response.data.hits
+    mapVideoResponseToHTML(response)
   }
-}
 
-  // COMPONENT MOUNTS
   useEffect(() => {
     fetchVideo(location.hash.replace('#', ''))
     userClicksAddCommentField()
