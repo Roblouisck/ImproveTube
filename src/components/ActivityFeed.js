@@ -16,7 +16,6 @@ const ActivityFeed = ({ page } = this.props) => {
   const fetchAvatars = async () => {
     let response = await callAvatarsAPI('person')
     response = response.data.hits
-    console.log(response)
     mapPicsToHTML(response)
   }
 
@@ -50,14 +49,12 @@ const ActivityFeed = ({ page } = this.props) => {
         </div>
       )
     })
-    console.log(picsMappedToHTML)
     setPics(picsMappedToHTML)
   }
 
 
   useEffect(() => {
     fetchAvatars()
-    console.log(quote.getQuote())
   }, [])
 
   return (

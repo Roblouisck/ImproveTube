@@ -9,16 +9,20 @@ const AboveFold = () => {
   const extractDataFromUrl = () => {
     const currentURL = window.location.href
     const urlAsArray = currentURL.split('/')
-    const currentChannelName = urlAsArray[5]
-    const currentChannelPictureID = urlAsArray[4]
-    setChannelName(currentChannelName)
-    fetchChannelPic(currentChannelPictureID)
+    const channelPicID = urlAsArray[4]
+    getAvatarAndUsername(channelPicID)
   }
 
-  const fetchChannelPic = async (id) => {
+  const getAvatarAndUsername = async (id) => {
     let response = await fetchChannelPicture(id)
-    const currentChannelPicture = response.data.hits[0].webformatURL
-    setChannelPicture(currentChannelPicture)
+    const channelAvatar = response.data.hits[0].webformatURL
+    const channelUsername = response.data.hits[0].user
+    updateState(channelAvatar, channelUsername)
+  }
+
+  const updateState = (channelAvatar, channelUsername) => {
+    setChannelPicture(channelAvatar)
+    setChannelName(channelUsername)
   }
 
   useEffect(() => { 
