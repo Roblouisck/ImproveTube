@@ -11,22 +11,23 @@ import {
 import { fetchAvatars as callAvatarsAPI, fetchVideos as callVideosAPI } from '../containers/api'
 
 const VideoGrid = (props) => {
-  const [videos, setResource] = useState([])
+  const [videosAsHTML, updateVideosAsHTML] = useState([])
   const [p, setPrefix] = useState(props.page)
   
-
   const fetchData = async (amount, category, order) => {
-    let response = await callVideosAPI(amount, category, order)
-    response = response.data.hits    
+    let videos = await callVideosAPI(amount, category, order)
+    videos = videos.data.hits    
 
-    let res = await callAvatarsAPI('man')
-    res = res.data.hits
+    let pictures = await callAvatarsAPI('man')
+    pictures = pictures.data.hits
 
-    mapDataToHtml(response, res)
+    mapDataToHtml(videos, pictures)
   }
 
-  const mapDataToHtml = (response, res) => {
-    const vidsAsHtml = response.map((vid, index) => {
+  const mapDataToHtml = (videos, pictures) => {
+    const vidsAsHtml = videos.map((vid, index) => {
+      const currentPic = index
+
       return (
         <div className={`${p}--grid-content-wrapper`} key={vid.picture_id}>
           <div className={`${p}--grid-video clickable`}>
@@ -40,22 +41,39 @@ const VideoGrid = (props) => {
               </video>
             </a>
           </div>
-          <div className={`${p}--grid-avatar-wrapper`}>
-            <a href={`/channel/${res[index].id}`}>
-              <img className={`${p}--grid-avatar`} src={res[index].webformatURL}/>
-            </a>
-          </div>
-          <div className={`${p}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
-          <a href={`/channel/${res[index].id}`}>
-            <div className={`${p}--grid-author`}>{res[index].user}</div>
+            { /* if home page, send user to channel page when clicking user avatar */}
+            { /* else (channel page) don't render this element */}
+            {  
+              p === 'home' 
+                ? <div className={`${p}--grid-avatar-wrapper`}>
+                    <a href={`/channel/${pictures[currentPic].id}`}> 
+                      <img className={`${p}--grid-avatar`} src={pictures[currentPic].webformatURL}/> 
+                    </a> 
+                  </div>
+                : null
+            }
+
+          <a href={`/video/id=#${vid.id}`}>
+            <div className={`${p}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
           </a>
+
+          { /* if home page, send user to channel page when clicking user avatar */}
+          { /* else (channel page) don't render this element */}
+          {
+            p === 'home'
+            ? <a href={`/channel/${pictures[currentPic].id}`}>
+                <div className={`${p}--grid-author`}>{pictures[currentPic].user}</div>
+              </a>
+            : null
+          }
+
           <div className={`${p}--grid-views`}>{abbreviateNumber(vid.views)} views 
             <span className={`${p}--grid-date`}> • 6 days ago</span>
           </div>
         </div>
       )
   })
-  setResource(vidsAsHtml)
+  updateVideosAsHTML(vidsAsHtml)
 }
   
   useEffect(() => {
@@ -132,7 +150,7 @@ const VideoGrid = (props) => {
         <hr className={`${p}--grid-hr-nav-black`} />        
 
         <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
-          {videos}
+          {videosAsHTML}
         </div>
       </main>
     )
