@@ -257,6 +257,10 @@
     z-index: 4;;
   }
 
+  &-add-comment-wrapper {
+    margin-bottom: 1.5rem
+  }
+  
   &-add-comment {
     border: none;
     outline: none;
@@ -314,7 +318,7 @@
   }
   
   &-button-space {
-    height: 5rem;
+    height: 3.5rem;
   }
 
   &-comment-section {
@@ -325,28 +329,18 @@
 
   &-comment-avatar {
     background-color: #a2a7dc;
-    width: 7.3rem;
-    height: 7.3rem;
-    border-radius: 99rem;
-    cursor: pointer;
     position: relative;
-    left: 3.8rem;
-    top: 4.6rem;
+    width: 5rem;
+    height: 5rem;
+    left: 5.2rem;
+    object-fit: cover;
+    clip-path: circle();
+    min-width: 4rem;
+    top: 2.7rem;
   }
 
   &-comment-container {
     margin: -3rem 6rem 0.9rem 13.4rem;
-  }
-
-  &-comment-avatar {
-    background-color: #a2a7dc;
-    width: 5.3rem;
-    height: 5.3rem;
-    border-radius: 99rem;
-    cursor: pointer;
-    position: relative;
-    left: 5.2rem;
-    top: 3rem;
   }
 }
 
@@ -450,12 +444,6 @@
       grid-row: (2 / span) 2;
     }
   }
-
-
-  // .searchBar {
-  //   width: 80%;
-  //   margin: 0 1rem;
-  // }
 }
 
 @media screen and (max-width: 600px) {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import history from '../../history'
 import handleMediaQueries from './containers/mediaQueries'
+import quote from 'inspirational-quotes'
 
 import setDislikes from './containers/setDislikes'
 import makeLeftClickRedirect from './containers/makeLeftClickRedirect'
@@ -87,8 +88,13 @@ const VideoPage = () => {
     })
     setState(prevState => ({...prevState, upNextVideos: responseAsHtml}))
     fetchSubscriberAvatars()
-  }
+}
 
+  const fetchVideo = async (id) => {
+    let response = await fetchVideoFromID(id)
+    response = response.data.hits
+    mapVideoResponseToHTML(response)
+  }
   const mapVideoResponseToHTML = (response) => {
     const responseAsHtml = response.map(vid => {
       return {
@@ -127,18 +133,12 @@ const VideoPage = () => {
         videoLoaded: true     
       }
     })
-  const newState = Object.assign(state, ...responseAsHtml)
-  setState(newState)
-  setState(({...state, loading: "false"}))
-  fetchUpNextVideos(50, 'buildings')
-  } 
-
-  const fetchVideo = async (id) => {
-    let response = await fetchVideoFromID(id)
-    response = response.data.hits
-    mapVideoResponseToHTML(response)
+    const newState = Object.assign(state, ...responseAsHtml)
+    setState(newState)
+    setState(({...state, loading: "false"}))
+    fetchUpNextVideos(50, 'buildings')
   }
-  
+
   const fetchSubscriberAvatars = async () => {
     let subscriberAvatars = await fetchAvatars('woman', 21)
     subscriberAvatars = subscriberAvatars.data.hits
@@ -148,13 +148,54 @@ const VideoPage = () => {
   const mapSubscriberAvatarsToHtml = (subscriberAvatars) => {
     const newSubscribers = subscriberAvatars.map(avatar => {
       return (
-        <a className={`${p}-new-subscribers-subscriber-img-anchor`} href={`/channel/${avatar.id}`} key={avatar}> 
+        <a className={`${p}-new-subscribers-subscriber-img-anchor`} href={`/channel/${avatar.id}`} key={avatar.id}> 
           <img className={`${p}-new-subscribers-subscriber-img`} src={avatar.webformatURL} />
         </a>
       )
     })
-    console.log(newSubscribers)
     setState(prevState => ({...prevState, newSubscribers: newSubscribers}))
+    fetchComments()
+  }
+
+  const fetchComments = async () => {
+    let response = await fetchAvatars('person')
+    response = response.data.hits
+    mapCommentsToHTML(response)
+  }
+
+  const mapCommentsToHTML = (response) => {
+    const commentsAsHTML = response.map(comment => {
+      return (
+        <div key={comment.id}>
+          <a href={`/channel/${comment.id}`}>
+            <img className={`${p}-comment-avatar`} src={comment.webformatURL}/>
+          </a>
+          <div className={`${p}-comment-container`}>
+            <a href={`/channel/${comment.id}`}>
+              <h5 className="commentorName">{comment.user}</h5>
+            </a>
+            <div className="dateOfComment">6 months ago</div>
+            <p className="comment">{quote.getQuote().text}</p>
+            <div className="thumbs">
+              <span className="thumbsUpIcon">
+                {thumbsUp(16)}
+              </span>
+              <span className="thumbsDownIcon">
+                {thumbsDown(16)}
+              </span>
+            </div>
+            <p className="replyText">REPLY</p>
+            <div className="viewReplies">
+              <span className="arrowDrop">
+                {arrowDrop()}
+              </span>
+              View {Math.floor(Math.random() * 100)} Replies
+            </div>
+          </div>
+        </div>
+      )
+    })
+    setState(prevState => ({...prevState, comments: commentsAsHTML}))
   }
 
   useEffect(() => {
@@ -263,202 +304,8 @@ const VideoPage = () => {
           </button>
          </div>
           <div className={`${p}-button-space hide`}></div>
-          {state.comment}
-          <div id='mostRecentComment' className={`${p}-comment-avatar`}></div>
-          <div className={`${p}-comment-container`}>
-            <h5 className="commentorName">LoveLyzKelly</h5>
-            <div className="dateOfComment">6 months ago</div>
-            <p className="comment">There may possible be a video tomorrow Sunday Japan time</p>
-            <div className="thumbs">
-              <span className="thumbsUpIcon">
-                {thumbsUp(16)}
-              </span>
-              <span className="thumbsDownIcon">
-                {thumbsDown(16)}
-              </span>
-            </div>
-            <p className="replyText">REPLY</p>
-            <div className="viewReplies">
-              <span className="arrowDrop">
-                {arrowDrop()}
-              </span>
-              View 10 Replies
-            </div>
-          </div>
-
-          <div className={`${p}-comment-avatar`}></div>
-          <div className={`${p}-comment-container`}>
-            <h5 className="commentorName">MartynTheGreat</h5>
-            <div className="dateOfComment">6h ago</div>
-            <p className="comment">playing fortnite with ninja lol</p>
-            <div className="thumbs">
-              <span className="thumbsUpIcon">
-                {thumbsUp(16)}
-              </span>
-              <span className="thumbsDownIcon">
-                {thumbsDown(16)}
-              </span>
-            </div>
-            <p className="replyText">REPLY</p>
-            <div className="viewReplies">
-              <span className="arrowDrop">
-                {arrowDrop()}
-              </span>
-              View 28 Replies
-            </div>
-          </div>
-
-          <div className={`${p}-comment-avatar`}></div>
-          <div className={`${p}-comment-container`}>
-            <h5 className="commentorName">Spammerdood</h5>
-            <div className="dateOfComment">14h ago</div>
-            <p className="comment">Hello my loves! I am extremely jet lagged week and traveling to Osaka for a couple days! There will be no videos so please wait until next week!</p>
-            <div className="thumbs">
-              <span className="thumbsUpIcon">
-                {thumbsUp(16)}
-              </span>
-              <span className="thumbsDownIcon">
-                {thumbsDown(16)}
-              </span>
-            </div>
-            <p className="replyText">REPLY</p>
-            <div className="viewReplies">
-              <span className="arrowDrop">
-                {arrowDrop()}
-              </span>
-              View 64 Replies
-            </div>
-          </div>
-
-          <div className={`${p}-comment-avatar`}></div>
-          <div className={`${p}-comment-container`}>
-            <h5 className="commentorName">PewdiePie</h5>
-            <div className="dateOfComment">1 days ago</div>
-            <p className="comment">I'll be live streaming exclusively on <a href="">@OfficialDLive</a> starting April 14th! In my first stream I'll <a href="">#supportcreators</a> by donating up to $50,000 to up to 100 streamers. Follow me on DLive to increase the total donation amount!  
-              <a href=""> https://dlive.tv/pewdiepie﻿</a></p>
-            <div className="thumbs">
-              <span className="thumbsUpIcon">
-                {thumbsUp(16)}
-              </span>
-              <span className="thumbsDownIcon">
-                {thumbsDown(16)}
-              </span>
-            </div>
-            <p className="replyText">REPLY</p>
-            <div className="viewReplies">
-              <span className="arrowDrop">
-                {arrowDrop()}
-              </span>
-              View 104 Replies
-            </div>
-          </div>
-
-          <div className={`${p}-comment-avatar`}></div>
-          <div className={`${p}-comment-container`}>
-            <h5 className="commentorName">CaseyNeistat</h5>
-            <div className="dateOfComment">3 days ago</div>
-            <p className="comment">I'm not sure what was more fun, flying in the new first class suite on my way to Dubai or flying home with Triple H sitting behind me﻿</p>
-            <div className="thumbs">
-              <span className="thumbsUpIcon">
-                {thumbsUp(16)}
-              </span>
-              <span className="thumbsDownIcon">
-                {thumbsDown(16)}
-              </span>
-            </div>
-            <p className="replyText">REPLY</p>
-            <div className="viewReplies">
-              <span className="arrowDrop">
-                {arrowDrop()}
-              </span>
-              View 201 Replies
-            </div>
-          </div>
-        <div className={`${p}-comment-avatar`}></div>
-        <div className={`${p}-comment-container`}>
-          <h5 className="commentorName">LoveLyzKelly</h5>
-          <div className="dateOfComment">6 months ago</div>
-          <p className="comment">There may possible be a video tomorrow Sunday Japan time</p>
-          <div className="thumbs">
-            <span className="thumbsUpIcon">
-              {thumbsUp(16)}
-            </span>
-            <span className="thumbsDownIcon">
-              {thumbsDown(16)}
-            </span>
-          </div>
-          <p className="replyText">REPLY</p>
-          <div className="viewReplies">
-            <span className="arrowDrop">
-              {arrowDrop()}
-            </span>
-            View 10 Replies
-          </div>
-        </div>
-          <div className={`${p}-comment-avatar`}></div>
-          <div className={`${p}-comment-container`}>
-            <h5 className="commentorName">MartynTheGreat</h5>
-            <div className="dateOfComment">6h ago</div>
-            <p className="comment">playing fortnite with ninja lol</p>
-            <div className="thumbs">
-              <span className="thumbsUpIcon">
-                {thumbsUp(16)}
-              </span>
-              <span className="thumbsDownIcon">
-                {thumbsDown(16)}
-              </span>
-            </div>
-            <p className="replyText">REPLY</p>
-            <div className="viewReplies">
-              <span className="arrowDrop">
-                {arrowDrop()}
-              </span>
-              View 28 Replies
-            </div>
-          </div>
-          <div className={`${p}-comment-avatar`}></div>
-          <div className={`${p}-comment-container`}>
-            <h5 className="commentorName">Spammerdood</h5>
-            <div className="dateOfComment">14h ago</div>
-            <p className="comment">Hello my loves! I am extremely jet lagged week and traveling to Osaka for a couple days! There will be no videos so please wait until next week!</p>
-            <div className="thumbs">
-              <span className="thumbsUpIcon">
-                {thumbsUp(16)}
-              </span>
-              <span className="thumbsDownIcon">
-                {thumbsDown(16)}
-              </span>
-            </div>
-            <p className="replyText">REPLY</p>
-            <div className="viewReplies">
-              <span className="arrowDrop">
-                {arrowDrop()}
-              </span>
-              View 64 Replies
-            </div>
-          </div>
-          <div className={`${p}-comment-avatar`}></div>
-          <div className={`${p}-comment-container`}>
-            <h5 className="commentorName">PewdiePie</h5>
-            <div className="dateOfComment">1 days ago</div>
-            <p className="comment">I'll be live streaming exclusively on <a href="">@OfficialDLive</a> starting April 14th! In my first stream I'll <a href="">#supportcreators</a> by donating up to $50,000 to up to 100 streamers. Follow me on DLive to increase the total donation amount!  
-              <a href=""> https://dlive.tv/pewdiepie﻿</a></p>
-            <div className="thumbs">
-              <span className="thumbsUpIcon">
-                {thumbsUp(16)}
-              </span>
-              <span className="thumbsDownIcon">
-                {thumbsDown(16)}
-              </span>
-            </div>
-            <p className="replyText">REPLY</p>
-            <div className="viewReplies">
-              <span className="arrowDrop">
-                {arrowDrop()}
-              </span>
-              View 104 Replies
-            </div>
-          </div>
+          <div id='mostRecentComment'></div>
+          {state.comments}
         </div>
       </main>
       <aside className={`${p}-sidebar`}>
