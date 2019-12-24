@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import history from '../../history'
 import handleMediaQueries from './containers/mediaQueries'
-import { fetchVideoFromID, fetchVideos } from '../../containers/api'
 
 import setDislikes from './containers/setDislikes'
 import makeLeftClickRedirect from './containers/makeLeftClickRedirect'
+
+import { 
+  fetchVideoFromID, 
+  fetchVideos, 
+  fetchAvatars } from '../../containers/api'
 
 import { 
   toggleClass, 
@@ -58,8 +62,7 @@ const VideoPage = () => {
         </div>
       </div>,
     loading: "yes"
-  }
-)
+  })
 
   const fetchUpNextVideos = async (amount, category, order) => {
     let response = await fetchVideos(amount, category, order)
@@ -83,7 +86,8 @@ const VideoPage = () => {
       )
     })
     setState(prevState => ({...prevState, upNextVideos: responseAsHtml}))
-}
+    fetchSubscriberAvatars()
+  }
 
   const mapVideoResponseToHTML = (response) => {
     const responseAsHtml = response.map(vid => {
@@ -123,7 +127,6 @@ const VideoPage = () => {
         videoLoaded: true     
       }
     })
-
   const newState = Object.assign(state, ...responseAsHtml)
   setState(newState)
   setState(({...state, loading: "false"}))
@@ -134,6 +137,24 @@ const VideoPage = () => {
     let response = await fetchVideoFromID(id)
     response = response.data.hits
     mapVideoResponseToHTML(response)
+  }
+  
+  const fetchSubscriberAvatars = async () => {
+    let subscriberAvatars = await fetchAvatars('woman', 21)
+    subscriberAvatars = subscriberAvatars.data.hits
+    mapSubscriberAvatarsToHtml(subscriberAvatars)
+  }
+
+  const mapSubscriberAvatarsToHtml = (subscriberAvatars) => {
+    const newSubscribers = subscriberAvatars.map(avatar => {
+      return (
+        <a className={`${p}-new-subscribers-subscriber-img-anchor`} href={`/channel/${avatar.id}`} key={avatar}> 
+          <img className={`${p}-new-subscribers-subscriber-img`} src={avatar.webformatURL} />
+        </a>
+      )
+    })
+    console.log(newSubscribers)
+    setState(prevState => ({...prevState, newSubscribers: newSubscribers}))
   }
 
   useEffect(() => {
@@ -211,25 +232,7 @@ const VideoPage = () => {
         <div className={`${p}-new-subscribers-wrapper`}>
           <h2 className={`${p}-new-subscribers-text`}>New Subscribers to DevPlaceholder</h2>
           <div className={`${p}-new-subscribers-grid`}>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
-            <div className={`${p}-new-subscribers-subscriber-avatar`}></div>
+            {state.newSubscribers}
           </div>
         </div>
         <div className={`${p}-comment-section`}>

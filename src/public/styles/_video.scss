@@ -229,15 +229,16 @@
     }
 
     &-grid {
-      display: flex;
-      justify-content: space-between;
       margin-bottom: 7rem;
     }
 
-    &-subscriber-avatar {
-      width: 4%;
+    &-subscriber-img {
+      width: 5rem;
       height: 5rem;
-      background-color: blue;
+      object-fit: cover;
+      &-anchor:nth-child(-n+20) {
+        margin-right: 1rem;
+      }
     }
   }
 
