@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { fetchPictureFromID, fetchAvatars } from '../../containers/api'
+import { fetchPictureFromID, fetchAvatars, fetchVideoFromID } from '../../containers/api'
+import { capitalizeFirstLetter } from '../../containers/helperFunctions'
 
 const AboveFold = () => {
   const [p, setPrefix] = useState('channel--aboveFold')
@@ -7,23 +8,25 @@ const AboveFold = () => {
   const [channelPicture, setChannelPicture] = useState()
   const [subcriberAvatars, setSubscriberAvatars] = useState([])
 
-  const extractDataFromUrl = () => {
+  const extractDataFromUrl = async () => {
     const currentURL = window.location.href
     const urlAsArray = currentURL.split('/')
-    const channelPicID = urlAsArray[4]
-    getAvatarAndUsername(channelPicID)
+    const dataFromURL = urlAsArray[4]
+
+    if (dataFromURL.includes('000')) {
+      const response = await fetchVideoFromID(dataFromURL)
+      updateState(response, 'video')
+    } else {
+      const response = await fetchPictureFromID(dataFromURL)
+      updateState(response, 'picture')
+    }
   }
 
-  const getAvatarAndUsername = async (id) => {
-    let response = await fetchPictureFromID(id)
-    const channelAvatar = response.data.hits[0].webformatURL
-    const channelUsername = response.data.hits[0].user
-    updateState(channelAvatar, channelUsername)
-  }
-
-  const updateState = (channelAvatar, channelUsername) => {
-    setChannelPicture(channelAvatar)
-    setChannelName(channelUsername)
+  const updateState = async (response, type) => {
+    type === 'video' 
+      ? setChannelPicture(response.data.hits[0].userImageURL) 
+      : setChannelPicture(response.data.hits[0].webformatURL)
+    setChannelName(capitalizeFirstLetter(response.data.hits[0].user))
   }
 
   const fetchSubscriberAvatars = async () => {

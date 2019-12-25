@@ -70,20 +70,25 @@ const VideoPage = () => {
   const fetchUpNextVideos = async (amount, category, order) => {
     let response = await fetchVideos(amount, category, order)
     response = response.data.hits
+    console.log(response)
 
     const responseAsHtml = response.map(vid => {
       return (
         <div className={`${p}-sidebar-grid-video-wrapper`} key={vid.id}>
           <div className={`${p}-sidebar-grid-video`}>
-            <a href={`/video/id=#${vid.id}`} onClick={event => makeLeftClickRedirect(vid.id, event)}>
+            <a href={`/video/id/${vid.id}-${vid.id}`}>
               <video 
                 className={`${p}-video`} 
                 src={vid.videos.tiny.url}>
               </video>
             </a>
           </div>
-          <h3 className={`${p}-sidebar-grid-video-title`}>{vid.tags}</h3>
-          <p className={`${p}-sidebar-grid-video-author`}>{vid.user}</p>
+          <a href={`/video/id/${vid.id}`}>
+            <h3 className={`${p}-sidebar-grid-video-title`}>{vid.tags}</h3>
+          </a>
+          <a href={`/channel/000${vid.id}`}>
+            <p className={`${p}-sidebar-grid-video-author`}>{vid.user}</p>
+          </a>
           <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
         </div>
       )
