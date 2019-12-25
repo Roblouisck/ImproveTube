@@ -76,7 +76,7 @@ const VideoPage = () => {
       return (
         <div className={`${p}-sidebar-grid-video-wrapper`} key={vid.id}>
           <div className={`${p}-sidebar-grid-video`}>
-            <a href={`/video/id/${vid.id}-${vid.id}`}>
+            <a href={`/video/id/${vid.id}-000`}>
               <video 
                 className={`${p}-video`} 
                 src={vid.videos.tiny.url}>
@@ -97,13 +97,14 @@ const VideoPage = () => {
     fetchSubscriberAvatars()
 }
 
-  const fetchVideo = async (id) => {
+  const fetchVideo = async (id, authorAvatar) => {
     let response = await fetchVideoFromID(id)
     response = response.data.hits
-    mapVideoResponseToHTML(response)
+    console.log(response)
+    mapVideoResponseToHTML(response, authorAvatar)
   }
 
-  const mapVideoResponseToHTML = (response) => {
+  const mapVideoResponseToHTML = (response, authorAvatar) => {
     let responseAsHtml = response.map(vid => {
       return {
         video: 
@@ -137,12 +138,13 @@ const VideoPage = () => {
           </div>
         </div>,
         authorFollowers: vid.id,
-        loading: false
+        vidAuthorID: vid.id,
+        author: authorAvatar ? 'Loading' : vid.user,
+        authorAvatar: authorAvatar ? null : vid.userImageURL
       }
     })
     responseAsHtml = responseAsHtml[0]
-    setState(prevState => ({...prevState, ...responseAsHtml}))
-    // fetchAuthorAvatar()
+    setState(prevState => ({...prevState, ...responseAsHtml, loading: false}))
   }
 
   const fetchSubscriberAvatars = async () => {
@@ -209,9 +211,14 @@ const VideoPage = () => {
     const urlAsArray = currentURL.split('/')
     const urlID = urlAsArray[5].split('-')
     const videoID = urlID[0]
-    const authorID = urlID[1]
-    fetchVideo(videoID)
-    setState(prevState => ({...prevState, authorID: authorID}))
+    const picAuthorID = urlID[1]
+
+    if (urlID.includes('000')) {
+      fetchVideo(videoID)
+    } else {
+      setState(prevState => ({...prevState, picAuthorID: picAuthorID}))
+      fetchVideo(videoID, picAuthorID)
+    }
   }
 
   const fetchAuthorAvatar = async (id) => {
@@ -233,7 +240,11 @@ const VideoPage = () => {
   }, [])
 
   useEffect(() => {
-    fetchAuthorAvatar(state.authorID)
+    if (state.picAuthorID) {
+      fetchAuthorAvatar(state.picAuthorID)
+    } else {
+      fetchUpNextVideos(50, 'buildings')
+    }
 }, [state.loading])
 
   return (
@@ -243,13 +254,13 @@ const VideoPage = () => {
         <div className={`${p}-description-box`}>  
           <div className={`${p}-description-column-1-avatar-wrapper`}>
             <div className="flex">
-              <a href={`/channel/${state.authorID}`}>
+              <a href={`/channel/${state.d}`}>
                 <img className={`${p}-description-column-1-avatar`} src={state.authorAvatar} />
               </a>
               <div>
-                <a href={`/channel/${state.authorID}`}>
+                <a href={ state.picAuthorID ? `/channel/${state.picAuthorID}` : `/channel/000${state.vidAuthorID}`}>
                   <div className={`${p}-description-column-1-author`}>
-                    { state.loading === "yes" ? "Placeholder" : state.author }
+                    { state.loading === "yes" ? "Loading" : state.author }
                   </div>
                 </a>
                 <div className={`${p}-description-column-1-followers`}>
