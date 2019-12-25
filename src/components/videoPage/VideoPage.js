@@ -10,7 +10,8 @@ import makeLeftClickRedirect from './containers/makeLeftClickRedirect'
 import { 
   fetchVideoFromID, 
   fetchVideos, 
-  fetchAvatars } from '../../containers/api'
+  fetchAvatars,
+  fetchPictureFromID } from '../../containers/api'
 
 import { 
   toggleClass, 
@@ -30,6 +31,7 @@ import {
   thumbsUp, 
   thumbsDown, 
   arrowDrop } from '../svgs'
+
 
 const VideoPage = () => {
   const [p, setPrefix] = useState("videoPage")
@@ -95,8 +97,9 @@ const VideoPage = () => {
     response = response.data.hits
     mapVideoResponseToHTML(response)
   }
+
   const mapVideoResponseToHTML = (response) => {
-    const responseAsHtml = response.map(vid => {
+    let responseAsHtml = response.map(vid => {
       return {
         video: 
         <div className={`${p}-video-wrapper`} key={vid.id}>
@@ -128,15 +131,13 @@ const VideoPage = () => {
             </div>
           </div>
         </div>,
-        author: vid.user,
         authorFollowers: vid.id,
-        videoLoaded: true     
+        loading: false
       }
     })
-    const newState = Object.assign(state, ...responseAsHtml)
-    setState(newState)
-    setState(({...state, loading: "false"}))
-    fetchUpNextVideos(50, 'buildings')
+    responseAsHtml = responseAsHtml[0]
+    setState(prevState => ({...prevState, ...responseAsHtml}))
+    // fetchAuthorAvatar()
   }
 
   const fetchSubscriberAvatars = async () => {
@@ -198,11 +199,37 @@ const VideoPage = () => {
     setState(prevState => ({...prevState, comments: commentsAsHTML}))
   }
 
+  const extractDataFromUrl = () => {
+    const currentURL = window.location.href
+    const urlAsArray = currentURL.split('/')
+    const urlID = urlAsArray[5].split('-')
+    const videoID = urlID[0]
+    const authorID = urlID[1]
+    fetchVideo(videoID)
+    setState(prevState => ({...prevState, authorID: authorID}))
+  }
+
+  const fetchAuthorAvatar = async (id) => {
+    const response = await fetchPictureFromID(id)
+    const authorName = response.data.hits[0].user
+    const authorAvatar = response.data.hits[0].webformatURL
+    setState(prevState => ({
+      ...prevState, 
+      authorAvatar: authorAvatar, 
+      author: capitalizeFirstLetter(authorName)
+    }))
+    fetchUpNextVideos(50, 'buildings')
+  }
+
   useEffect(() => {
-    fetchVideo(location.hash.replace('#', ''))
+    extractDataFromUrl()
     userClicksAddCommentField()
     handleMediaQueries()
   }, [])
+
+  useEffect(() => {
+    fetchAuthorAvatar(state.authorID)
+}, [state.loading])
 
   return (
     <div className={`${p}-page-wrapper`}>
@@ -211,11 +238,15 @@ const VideoPage = () => {
         <div className={`${p}-description-box`}>  
           <div className={`${p}-description-column-1-avatar-wrapper`}>
             <div className="flex">
-              <div className={`${p}-description-column-1-avatar`}></div>
+              <a href={`/channel/${state.authorID}`}>
+                <img className={`${p}-description-column-1-avatar`} src={state.authorAvatar} />
+              </a>
               <div>
-                <div className={`${p}-description-column-1-author`}>
-                  { state.loading === "yes" ? "Placeholder" : state.author }
-                </div>
+                <a href={`/channel/${state.authorID}`}>
+                  <div className={`${p}-description-column-1-author`}>
+                    { state.loading === "yes" ? "Placeholder" : state.author }
+                  </div>
+                </a>
                 <div className={`${p}-description-column-1-followers`}>
                 { state.loading === "yes" ? "Loading" : `${abbreviateNumber(state.authorFollowers)} Followers` }
                 </div>
@@ -320,4 +351,5 @@ const VideoPage = () => {
     </div>
   )
 }
+
 export default VideoPage

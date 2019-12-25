@@ -20,7 +20,6 @@ const VideoGrid = (props) => {
 
     let pictures = await callAvatarsAPI('man', 50)
     pictures = pictures.data.hits
-
     mapDataToHtml(videos, pictures)
   }
 
@@ -31,7 +30,7 @@ const VideoGrid = (props) => {
       return (
         <div className={`${p}--grid-content-wrapper`} key={vid.picture_id}>
           <div className={`${p}--grid-video clickable`}>
-            <a href={`/video/id=#${vid.id}`}>
+            <a href={`/video/id/${vid.id}-${pictures[currentPic].id}`}>
               <video
                 poster="https://i.imgur.com/Us5ckqm.jpg"
                 onMouseOver={event => event.target.play()}
@@ -53,7 +52,7 @@ const VideoGrid = (props) => {
                 : null
             }
 
-          <a href={`/video/id=#${vid.id}`}>
+          <a href={`/video/id/${vid.id}-${pictures[currentPic].id}`}>
             <div className={`${p}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
           </a>
 

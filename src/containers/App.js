@@ -12,7 +12,7 @@ const App = () => {
       <Router history={history}>
         <Route path="/" exact component={RenderHomepage} /> 
         <Route path="/channel" component={RenderChannelPage} /> 
-        <Route path="/video/id=" component={RenderVideoPage} /> 
+        <Route path="/video/id" component={RenderVideoPage} /> 
         <Route path="/video/404" exact component={ErrorPage} />
       </Router>
     </div>

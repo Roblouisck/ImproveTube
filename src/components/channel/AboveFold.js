@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetchChannelPicture, fetchAvatars } from '../../containers/api'
+import { fetchPictureFromID, fetchAvatars } from '../../containers/api'
 
 const AboveFold = () => {
   const [p, setPrefix] = useState('channel--aboveFold')
@@ -15,7 +15,7 @@ const AboveFold = () => {
   }
 
   const getAvatarAndUsername = async (id) => {
-    let response = await fetchChannelPicture(id)
+    let response = await fetchPictureFromID(id)
     const channelAvatar = response.data.hits[0].webformatURL
     const channelUsername = response.data.hits[0].user
     updateState(channelAvatar, channelUsername)
@@ -40,7 +40,6 @@ const AboveFold = () => {
         </a>
       )
     })
-    console.log(subAvatars)
     setSubscriberAvatars(subAvatars)
   }
 

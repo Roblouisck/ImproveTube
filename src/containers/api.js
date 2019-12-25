@@ -34,7 +34,7 @@ export const fetchVideoFromID = (id) => {
   })
 }
 
-export const fetchChannelPicture = async (id) => {
+export const fetchPictureFromID = (id) => {
   return axios.get('https://pixabay.com/api/', {
     params: {
       key: process.env.PIXABAY_API,
