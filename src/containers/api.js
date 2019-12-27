@@ -42,3 +42,7 @@ export const fetchPictureFromID = (id) => {
     }
   })
 }
+
+export const getRandomName = () => {
+  return axios.get('https://randomuser.me/api/?nat=gb,au,ca')
+}

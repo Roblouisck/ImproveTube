@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { fetchAvatars } from '../../containers/api'
-import { capitalizeFirstLetter } from '../../containers/helperFunctions'
+import axios from 'axios'
+import { fetchAvatars, getRandomName } from '../../containers/api'
+import { capitalizeFirstLetter, getRandom } from '../../containers/helperFunctions'
+import { 
+  year,
+  greeting,
+  firstSentence,
+  secondSentence
+} from './bioTextSnippets.js'
 
 const AboveFold = ({ userName, userAvatar }) => {
   const [p, setPrefix] = useState('channel--aboveFold')
   const [subcriberAvatars, setSubscriberAvatars] = useState([])
+  const [bio, setBio] = useState([])
 
   const fetchSubscriberAvatars = async () => {
     let subscriberAvatars = await fetchAvatars('woman', 84)
@@ -23,7 +31,21 @@ const AboveFold = ({ userName, userAvatar }) => {
     setSubscriberAvatars(subAvatars)
   }
 
+  const handleBio = async () => {
+    let response = await getRandomName()
+    response = response.data.results[0]
+    const city = response.location.city
+    const country = response.location.country
+
+    setBio({
+      fullBio: 
+      `${getRandom(firstSentence)} ${getRandom(secondSentence)} I have lived in ${city}, ${country} for a total of ${getRandom(year)} years and learned quite a lot -not just about the country but myself as well. Not only do I want to inform others about life abroad but my main goal is to get you organized, stay mindful, and maintain a healthy and exciting lifestyle whether you plan on living in another country or not. This site is not only for adventure lovers but for inspiration seekers. All of what I have gained and endured will allow me to mold you into an adventurer yourself!`,
+      greeting: getRandom(greeting)
+    })
+  }
+
   useEffect(() => { 
+    handleBio()
     fetchSubscriberAvatars()
 
     const windowSize940 = (mediaQuery940) => {
@@ -72,18 +94,15 @@ const AboveFold = ({ userName, userAvatar }) => {
         <img className={`${p}-avatar`} src={userAvatar} />
       </div>
       <div className={`${p}-description-box`}>
-        <h2>Description</h2>
+        <h2>{bio.fullBio ? 'Description' : null}</h2>
         <br/>
-        <p>Dear friends,</p>
+        <p>{bio.fullBio ? bio.greeting : null}</p>
         <br/>
-        <p>
-          My name is Lyz and I`m a mentor for others who have dreams to travel, live abroad, and maintain a better lifestyle whilst living abroad. I have lived in Japan for a total of five years and learned quite a lot -not just about the country but myself as well. Not only do I want to inform others about life abroad but my main goal is to get you organized, stay mindful, and maintain a healthy and exciting lifestyle whether you plan on living in another country or not. This site is not only for adventure lovers but for inspiration seekers. All of what I have gained and endured will allow me to mold you into an adventurer yourself!
-
-        </p>
+        <p>{bio.fullBio}</p>
         <br/>
-        <p>love,</p>
+        <p>{bio.fullBio ? 'love,' : null}</p>
         <br/>
-        <p>Lyz Kelly</p>
+        <p>{bio.fullBio ? userName : null}</p>
       </div>
       <div className={`${p}-subscribers-box-wrapper`}>
         <span className={`${p}-subscribers-box-title`}> Subscribers </span>

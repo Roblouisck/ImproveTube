@@ -19,9 +19,6 @@ const ActivityFeed = (props) => {
     mapPicsToHTML(response)
   }
 
-useEffect(() => {
-  console.log(props.userAvatar)
-})
   const mapPicsToHTML = (response) => {
     const picsMappedToHTML = response.map(pic => {
       return (          

@@ -9,6 +9,10 @@ export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
+export const getRandom = (array) => {
+  return array[Math.floor(Math.random()*array.length)]
+}
+
 export const randomDate = () => {
   const date = String(new Date(+(new Date()) - Math.floor(Math.random()*10000000000)))
   const formatted = date.slice(4, 15)
@@ -17,9 +21,12 @@ export const randomDate = () => {
 }
 
 export const toggleClass = (toggledClass, clickedElement, ...additionalElementsForToggling) => {
-    clickedElement.addEventListener('click', () => {
-      additionalElementsForToggling.forEach(additionalClass => {
-        additionalClass.classList.toggle(toggledClass)
-      })
+  clickedElement.addEventListener('click', () => {
+    additionalElementsForToggling.forEach(additionalClass => {
+      additionalClass.classList.toggle(toggledClass)
     })
-  }
+  })
+}
+
+
+
