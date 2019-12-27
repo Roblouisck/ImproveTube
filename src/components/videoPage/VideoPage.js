@@ -268,11 +268,11 @@ const VideoPage = () => {
               <div>
                 <a href={ state.picAuthorID ? `/channel/${state.picAuthorID}` : `/channel/000${state.vidAuthorID}`}>
                   <div className={`${p}-description-column-1-author`}>
-                    { state.loading === "yes" ? "Loading" : state.author }
+                    { state.loading === "yes" ? "loading" : state.author }
                   </div>
                 </a>
                 <div className={`${p}-description-column-1-followers`}>
-                { state.loading === "yes" ? "Loading" : `${abbreviateNumber(state.authorFollowers)} Followers` }
+                { state.loading === "yes" ? "loading" : `${abbreviateNumber(state.authorFollowers)} Followers` }
                 </div>
               </div>
             </div>
