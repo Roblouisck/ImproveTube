@@ -12,6 +12,7 @@ import {
 
 const ActivityFeed = (props) => {
   const [comments, setPics] = useState([])
+  const [firstRenderDone, setFirstRenderDone] = useState()
 
   const fetchAvatars = async () => {
     let response = await callAvatarsAPI('person')
@@ -52,9 +53,11 @@ const ActivityFeed = (props) => {
     setPics(picsMappedToHTML)
   }
 
-
   useEffect(() => {
-    fetchAvatars()
+    setFirstRenderDone(true)
+    if (firstRenderDone) {
+      fetchAvatars()
+    }
   }, [props])
 
   return (
