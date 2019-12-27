@@ -262,7 +262,7 @@ const VideoPage = () => {
         <div className={`${p}-description-box`}>  
           <div className={`${p}-description-column-1-avatar-wrapper`}>
             <div className="flex">
-              <a href={`/channel/${state.d}`}>
+              <a href={ state.picAuthorID ? `/channel/${state.picAuthorID}` : `/channel/000${state.vidAuthorID}`}>
                 <img className={`${p}-description-column-1-avatar`} src={state.authorAvatar} />
               </a>
               <div>
