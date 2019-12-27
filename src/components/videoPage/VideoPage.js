@@ -70,7 +70,6 @@ const VideoPage = () => {
   const fetchUpNextVideos = async (amount, category, order) => {
     let response = await fetchVideos(amount, category, order)
     response = response.data.hits
-    console.log(response)
 
     const responseAsHtml = response.map(vid => {
       return (
@@ -95,12 +94,11 @@ const VideoPage = () => {
     })
     setState(prevState => ({...prevState, upNextVideos: responseAsHtml}))
     fetchSubscriberAvatars()
-}
+  }
 
   const fetchVideo = async (id, authorAvatar) => {
     let response = await fetchVideoFromID(id)
     response = response.data.hits
-    console.log(response)
     mapVideoResponseToHTML(response, authorAvatar)
   }
 
@@ -215,8 +213,10 @@ const VideoPage = () => {
 
     if (urlID.includes('000')) {
       fetchVideo(videoID)
+      setState(prevState => ({...prevState, afterInitRender: true}))
+
     } else {
-      setState(prevState => ({...prevState, picAuthorID: picAuthorID}))
+      setState(prevState => ({...prevState, afterInitRender: true, picAuthorID: picAuthorID}))
       fetchVideo(videoID, picAuthorID)
     }
   }
@@ -239,13 +239,21 @@ const VideoPage = () => {
     handleMediaQueries()
   }, [])
 
+  // Home page authors have an authorID since the images aren't in the same get request as the video
+  // So if home page author clicked get their avatar and use it as the videopage author avatar
   useEffect(() => {
-    if (state.picAuthorID) {
-      fetchAuthorAvatar(state.picAuthorID)
-    } else {
-      fetchUpNextVideos(50, 'buildings')
+    if (state.afterInitRender) {
+      if (state.picAuthorID) {
+        fetchAuthorAvatar(state.picAuthorID)
+      } else {
+        fetchUpNextVideos(50, 'buildings')
+      }
     }
 }, [state.loading])
+
+  useEffect(() => {
+    console.log(state)
+  })
 
   return (
     <div className={`${p}-page-wrapper`}>
