@@ -38,7 +38,7 @@ const AboveFold = () => {
   const mapSubscriberAvatarsToHtml = (subscriberAvatars) => {
     const subAvatars = subscriberAvatars.map(avatar => {
       return (
-        <a href={`/channel/${avatar.id}`}> 
+        <a href={`/channel/${avatar.id}`} key={avatar.id}> 
           <img className={`${p}-subscriber-avatar`} src={avatar.webformatURL} />
         </a>
       )
