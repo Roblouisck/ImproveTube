@@ -33,7 +33,6 @@ const VideoGrid = (props) => {
           <div className={`${p}--grid-video clickable`}>
             <a href={`/video/id/${vid.id}-${pictures[currentPic].id}`}>
               <video
-                poster="https://i.imgur.com/Us5ckqm.jpg"
                 onMouseOver={event => event.target.play()}
                 onMouseOut={event => event.target.pause()}
                 src={`${vid.videos.tiny.url}#t=1`} 

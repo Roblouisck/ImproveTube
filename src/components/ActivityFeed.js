@@ -10,7 +10,7 @@ import {
   fetchAvatars as callAvatarsAPI, 
   fetchVideos as callVideosAPI } from '../containers/api'
 
-const ActivityFeed = ({ page } = this.props) => {
+const ActivityFeed = (props) => {
   const [comments, setPics] = useState([])
 
   const fetchAvatars = async () => {
@@ -19,15 +19,18 @@ const ActivityFeed = ({ page } = this.props) => {
     mapPicsToHTML(response)
   }
 
+useEffect(() => {
+  console.log(props.userAvatar)
+})
   const mapPicsToHTML = (response) => {
     const picsMappedToHTML = response.map(pic => {
       return (          
         <div className="commentWrapper" key={pic.id}>
           <div className="avatarPlaceholder--comments">
-            <img className="avatarPlaceholder--img" src={pic.webformatURL}/>
+            <img className="avatarPlaceholder--img" src={props.page === 'channel' ? props.userAvatar : pic.webformatURL}/>
           </div>
           <div className="commentContainer" >
-            <h5 className="commentorName">{pic.user}</h5>
+            <h5 className="commentorName">{props.page === 'channel' ? props.userName : pic.user}</h5>
             <div className="dateOfComment">6 months ago</div>
             <p className="comment">{quote.getQuote().text}</p>
             <div className="thumbs">
@@ -55,11 +58,11 @@ const ActivityFeed = ({ page } = this.props) => {
 
   useEffect(() => {
     fetchAvatars()
-  }, [])
+  }, [props])
 
   return (
     <aside className="activityFeedContainer">
-      <h1 className={`${page}--activity-feed-title`}>Activity Feed</h1>
+      <h1 className={`${props.page}--activity-feed-title`}>Activity Feed</h1>
       <hr className="home--activityfeed-hr" />
       <div className="commentSection--activityfeed">
         {comments}

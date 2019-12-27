@@ -1,33 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { fetchPictureFromID, fetchAvatars, fetchVideoFromID } from '../../containers/api'
+import { fetchAvatars } from '../../containers/api'
 import { capitalizeFirstLetter } from '../../containers/helperFunctions'
 
-const AboveFold = () => {
+const AboveFold = ({ userName, userAvatar }) => {
   const [p, setPrefix] = useState('channel--aboveFold')
-  const [channelName, setChannelName] = useState()
-  const [channelPicture, setChannelPicture] = useState()
   const [subcriberAvatars, setSubscriberAvatars] = useState([])
-
-  const extractDataFromUrl = async () => {
-    const currentURL = window.location.href
-    const urlAsArray = currentURL.split('/')
-    const dataFromURL = urlAsArray[4]
-
-    if (dataFromURL.includes('000')) {
-      const response = await fetchVideoFromID(dataFromURL)
-      updateState(response, 'video')
-    } else {
-      const response = await fetchPictureFromID(dataFromURL)
-      updateState(response, 'picture')
-    }
-  }
-
-  const updateState = async (response, type) => {
-    type === 'video' 
-      ? setChannelPicture(response.data.hits[0].userImageURL) 
-      : setChannelPicture(response.data.hits[0].webformatURL)
-    setChannelName(capitalizeFirstLetter(response.data.hits[0].user))
-  }
 
   const fetchSubscriberAvatars = async () => {
     let subscriberAvatars = await fetchAvatars('woman', 84)
@@ -47,7 +24,6 @@ const AboveFold = () => {
   }
 
   useEffect(() => { 
-    extractDataFromUrl()
     fetchSubscriberAvatars()
 
     const windowSize940 = (mediaQuery940) => {
@@ -88,12 +64,12 @@ const AboveFold = () => {
 
   return (
     <div className={`${p}-wrapper`}>
-      <div className={`${p}-avatar-content-wrapper`}>
+      <div className={`${ p}-avatar-content-wrapper`}>
         <div className={`${p}-avatar-text-wrapper`}>
-          <span className={`${p}-name-text`}>{channelName}</span>
+          <span className={`${p}-name-text`}>{userName}</span>
           <span className={`${p}-follower-text`}>149K Followers</span>
         </div>
-        <img className={`${p}-avatar`} src={channelPicture} />
+        <img className={`${p}-avatar`} src={userAvatar} />
       </div>
       <div className={`${p}-description-box`}>
         <h2>Description</h2>
