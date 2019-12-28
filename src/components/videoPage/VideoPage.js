@@ -83,7 +83,7 @@ const VideoPage = () => {
             </a>
           </div>
           <a href={`/video/id/${vid.id}`}>
-            <h3 className={`${p}-sidebar-grid-video-title`}>{vid.tags}</h3>
+            <h3 className={`${p}-sidebar-grid-video-title`}>{capitalizeFirstLetter(vid.tags)}</h3>
           </a>
           <a href={`/channel/000${vid.id}`}>
             <p className={`${p}-sidebar-grid-video-author`}>{vid.user}</p>

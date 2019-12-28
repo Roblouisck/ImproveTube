@@ -58,7 +58,8 @@ const VideoGrid = (props) => {
               <video
                 onMouseOver={event => event.target.play()}
                 onMouseOut={event => event.target.pause()}
-                src={`${vid.videos.tiny.url}#t=1`} 
+                src={`${vid.videos.tiny.url}#t=1`}
+                muted
                 >
               </video>
             </a>
