@@ -55,7 +55,9 @@ const ActivityFeed = (props) => {
 
   useEffect(() => {
     setFirstRenderDone(true)
-    if (firstRenderDone) {
+    if ((firstRenderDone) && (props.page === 'channel')) {
+      fetchAvatars()
+    } else if (props.page === 'home') {
       fetchAvatars()
     }
   }, [props])
