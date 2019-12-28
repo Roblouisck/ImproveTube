@@ -19,7 +19,7 @@ export const fetchVideos = (amount, category, order) => {
       key: process.env.PIXABAY_API,
       per_page: amount,
       category: category,
-      editors_choice: true,
+      // editors_choice: true,
       order: order
     }
   })

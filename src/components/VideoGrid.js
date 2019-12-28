@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import axios from 'axios'
 import history from '../history'
 
@@ -13,14 +13,38 @@ import { fetchAvatars as callAvatarsAPI, fetchVideos as callVideosAPI } from '..
 const VideoGrid = (props) => {
   const [videosAsHTML, updateVideosAsHTML] = useState([])
   const [p, setPrefix] = useState(props.page)
+  const [hasMore, setHasMore] = useState()
+  const [loading, setLoading] = useState()
   
+  const observer = useRef()
+  const lastVideo = useCallback(node => {
+    if (loading) return
+    if (observer.current) observer.current.disconnect()      
+    observer.current = new IntersectionObserver(entries => {
+      console.log(entries)
+      if (entries[0].isIntersecting && hasMore) {
+        console.log('last video visible')
+        fetchData(50)
+      }
+    })
+    if (node) observer.current.observe(node)
+  }, [loading, hasMore])
+
+
   const fetchData = async (amount, category, order) => {
     let videos = await callVideosAPI(amount, category, order)
     videos = videos.data.hits    
 
     let pictures = await callAvatarsAPI('man', 50)
     pictures = pictures.data.hits
-    mapDataToHtml(videos, pictures)
+    if (videos.length > 0) {
+      setHasMore(prevState => (true))
+      setLoading(false)
+      mapDataToHtml(videos, pictures)
+    } else {
+      setHasMore(prevState => (false))
+      console.log('end')
+    }
   }
 
   const mapDataToHtml = (videos, pictures) => {
@@ -28,7 +52,7 @@ const VideoGrid = (props) => {
       const currentPic = index
 
       return (
-        <div className={`${p}--grid-content-wrapper`} key={vid.picture_id}>
+        <div>
           <div className={`${p}--grid-video clickable`}>
             <a href={`/video/id/${vid.id}-${pictures[currentPic].id}`}>
               <video
@@ -39,8 +63,8 @@ const VideoGrid = (props) => {
               </video>
             </a>
           </div>
-            { /* if home page, send user to channel page when clicking user avatar */}
-            { /* else (channel page) don't render this element */}
+            { /* if home page, send user to channel page when clicking author avatar */}
+            { /* else (channel page) don't render author avatar */}
             {  
               p === 'home' 
                 ? <div className={`${p}--grid-avatar-wrapper`}>
@@ -55,8 +79,8 @@ const VideoGrid = (props) => {
             <div className={`${p}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
           </a>
 
-          { /* if home page, send user to channel page when clicking user avatar */}
-          { /* else (channel page) don't render this element */}
+          { /* if home page, send user to channel page when clicking author avatar */}
+          { /* else (channel page) don't render author name */}
           {
             p === 'home'
             ? <a href={`/channel/${pictures[currentPic].id}`}>
@@ -71,14 +95,17 @@ const VideoGrid = (props) => {
         </div>
       )
   })
-  updateVideosAsHTML(vidsAsHtml)
-}
+  updateVideosAsHTML(prevState => ([...prevState, ...vidsAsHtml]))
+  }
   
   useEffect(() => {
     fetchData(50, 'buildings')
   }, []) 
-  
 
+  useEffect(() => {
+    console.log(videosAsHTML)
+  }) 
+  
   const handleButtons = event => {
     const buttonID = event.target.id
     const unhighlightedText = document.querySelector('.unhighlitedText')
@@ -118,7 +145,6 @@ const VideoGrid = (props) => {
         console.log('no cases')
     }
   }
-
     return (
       <main className={`${p}--grid-background`}>
         <nav className={`${p}--grid-nav`}>
@@ -148,7 +174,15 @@ const VideoGrid = (props) => {
         <hr className={`${p}--grid-hr-nav-black`} />        
 
         <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
-          {videosAsHTML}
+          {
+            videosAsHTML.map((video, index) => {
+              console.log(index+1)
+              if (videosAsHTML.length === index + 1) {
+                return <div className={`${p}--grid-content-wrapper`} ref={lastVideo}>{video}</div>
+              }
+              return <div key={index}>{video}</div>
+            })
+          }
         </div>
       </main>
     )
