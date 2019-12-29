@@ -22,7 +22,10 @@ const UpNextVideos = () => {
             <a href={`/video/id/${vid.id}-000`}>
               <video 
                 className={`${p}-video`} 
-                src={vid.videos.tiny.url}>
+                onMouseOver={event => event.target.play()}
+                onMouseOut={event => event.target.pause()}
+                src={`${vid.videos.tiny.url}#t=1`}
+                muted >
               </video>
             </a>
           </div>
