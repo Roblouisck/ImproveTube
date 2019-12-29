@@ -5,7 +5,11 @@ const windowSize1000 = (mediaQuery) => {
 
   if (mediaQuery.matches) { 
     commentSection.parentNode.insertBefore(sidebar, commentSection.nextSibling)
-  } else {
+  }
+   else {
+    console.log(main)
+    console.log(sidebar)
+    console.log(commentSection)
     main.parentNode.insertBefore(sidebar, main.nextSibling)
   }
 }

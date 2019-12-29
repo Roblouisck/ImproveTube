@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { 
-fetchVideoFromID, 
-fetchVideos, 
-fetchAvatars,
-fetchPictureFromID } from '../../containers/api'
+import {fetchAvatars } from '../../containers/api'
 import quote from 'inspirational-quotes'
-
 
 import { 
   thumbsUp, 
@@ -13,10 +8,14 @@ import {
   arrowDrop,
   ellipsesVertical } from '../svgs'
 
-
 const CommentSection = () => {
-const [p, setPrefix] = useState("videoPage")
+  const [p, setPrefix] = useState("videoPage")
   const [state, setState] = useState([])
+
+  useEffect(() => {
+    userClicksAddCommentField()
+    fetchComments()
+  }, [])
 
   const fetchComments = async () => {
     let response = await fetchAvatars('person')
@@ -158,11 +157,6 @@ const [p, setPrefix] = useState("videoPage")
       postComment(userComment)
     }
   }
-
-  useEffect(() => {
-    userClicksAddCommentField()
-    fetchComments()
-  }, [])
 
   return (
     <div className={`${p}-comment-section`}>
