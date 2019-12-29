@@ -11,6 +11,7 @@ import {
   fetchVideos as callVideosAPI } from '../containers/api'
 
 const ActivityFeed = (props) => {
+  console.log(props)
   const [comments, setPics] = useState([])
   const [firstRenderDone, setFirstRenderDone] = useState()
 
@@ -25,9 +26,12 @@ const ActivityFeed = (props) => {
       return (          
         <div className="commentWrapper" key={pic.id}>
           <div className="avatarPlaceholder--comments">
-            <a href={`/channel/${pic.id}`}> 
-              <img className="avatarPlaceholder--img" src={props.page === 'channel' ? props.userAvatar : pic.webformatURL}/>
-            </a>
+          {props.page === 'channel' 
+            ? <img className="avatarPlaceholder--img" src={props.userAvatar}/>
+            : <a href={ `/channel/${pic.id}`}> 
+                <img className="avatarPlaceholder--img" src={pic.webformatURL}/>
+              </a>
+          }
           </div>
           <div className="commentContainer" >
             <h5 className="commentorName">{props.page === 'channel' ? props.userName : pic.user}</h5>

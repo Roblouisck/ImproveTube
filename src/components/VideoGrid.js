@@ -21,9 +21,9 @@ const VideoGrid = (props) => {
     if (loading) return
     if (observer.current) observer.current.disconnect()      
     observer.current = new IntersectionObserver(entries => {
-      console.log(entries)
+      // console.log(entries)
       if (entries[0].isIntersecting && hasMore) {
-        console.log('last video visible')
+        // console.log('last video visible')
         fetchData(50)
       }
     })
@@ -103,9 +103,9 @@ const VideoGrid = (props) => {
     fetchData(50, 'buildings')
   }, []) 
 
-  useEffect(() => {
-    console.log(videosAsHTML)
-  }) 
+  // useEffect(() => {
+  //   // console.log(videosAsHTML)
+  // }) 
   
   const handleButtons = event => {
     const buttonID = event.target.id
@@ -177,7 +177,7 @@ const VideoGrid = (props) => {
         <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
           {
             videosAsHTML.map((video, index) => {
-              console.log(index+1)
+              // console.log(index+1)
               if (videosAsHTML.length === index + 1) {
                 return <div className={`${p}--grid-content-wrapper`} ref={lastVideo}>{video}</div>
               }
