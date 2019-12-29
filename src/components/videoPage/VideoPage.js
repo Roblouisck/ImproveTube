@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import history from '../../history'
-import handleMediaQueries from './containers/mediaQueries'
+import handleMediaQueries from './containers/handleMediaQueries'
 import setDislikes from './containers/setDislikes'
 
+import NewSubscribers from './NewSubscribers'
 import CommentSection from './CommentSection'
 import UpNextVideos from './UpNextVideos'
 
 import { 
   fetchVideoFromID, 
-  fetchAvatars,
   fetchPictureFromID } from '../../containers/api'
 
 import { 
@@ -55,16 +55,14 @@ const VideoPage = () => {
     loading: "yes"
   })
 
-
-
-  const fetchVideo = async (id, authorAvatar) => {
+  const fetchVideo = async (id, picAuthorID) => {
     let response = await fetchVideoFromID(id)
     console.log()
     response = response.data.hits
-    mapVideoResponseToHTML(response, authorAvatar)
+    mapVideoResponseToHTML(response, picAuthorID)
   }
 
-  const mapVideoResponseToHTML = (response, authorAvatar) => {
+  const mapVideoResponseToHTML = (response, picAuthorID) => {
     let responseAsHtml = response.map(vid => {
       return {
         video: 
@@ -99,29 +97,13 @@ const VideoPage = () => {
         </div>,
         authorFollowers: vid.id,
         vidAuthorID: vid.id,
-        author: authorAvatar ? 'Loading' : vid.user,
-        authorAvatar: authorAvatar ? null : vid.userImageURL
+        author: picAuthorID ? 'Loading' : vid.user,
+        authorAvatar: picAuthorID ? null : vid.userImageURL
       }
     })
     responseAsHtml = responseAsHtml[0]
     setState(prevState => ({...prevState, ...responseAsHtml, loading: false}))
-  }
-
-  const fetchSubscriberAvatars = async () => {
-    let subscriberAvatars = await fetchAvatars('woman', 21)
-    subscriberAvatars = subscriberAvatars.data.hits
-    mapSubscriberAvatarsToHtml(subscriberAvatars)
-  }
-
-  const mapSubscriberAvatarsToHtml = (subscriberAvatars) => {
-    const newSubscribers = subscriberAvatars.map(avatar => {
-      return (
-        <a className={`${p}-new-subscribers-subscriber-img-anchor`} href={`/channel/${avatar.id}`} key={avatar.id}> 
-          <img className={`${p}-new-subscribers-subscriber-img`} src={avatar.webformatURL} />
-        </a>
-      )
-    })
-    setState(prevState => ({...prevState, newSubscribers: newSubscribers}))
+    if (picAuthorID) fetchAuthorAvatar(picAuthorID)
   }
 
   const extractDataFromUrl = () => {
@@ -131,12 +113,13 @@ const VideoPage = () => {
     const videoID = urlID[0]
     const picAuthorID = urlID[1]
 
+    // Author avatars are random except on the home page. 
+    // if url isnt from homepage, then use videoID
+    // if url is from homepage, send that avatarID
     if (urlID.includes('000')) {
       fetchVideo(videoID)
-      setState(prevState => ({...prevState, afterInitRender: true}))
-
     } else {
-      setState(prevState => ({...prevState, afterInitRender: true, picAuthorID: picAuthorID}))
+      setState(prevState => ({...prevState, picAuthorID: picAuthorID}))
       fetchVideo(videoID, picAuthorID)
     }
   }
@@ -150,25 +133,12 @@ const VideoPage = () => {
       authorAvatar: authorAvatar, 
       author: capitalizeFirstLetter(authorName)
     }))
-    fetchSubscriberAvatars()
   }
 
   useEffect(() => {
     extractDataFromUrl()
     handleMediaQueries()
   }, [])
-
-  // Home page authors have an authorID since the images aren't in the same get request as the video
-  // So if home page author clicked get their avatar and use it as the videopage author avatar
-  useEffect(() => {
-    if (state.afterInitRender) {
-      if (state.picAuthorID) {
-        fetchAuthorAvatar(state.picAuthorID)
-      } else { 
-        fetchSubscriberAvatars()
-      }
-    }
-}, [state.loading])
 
   return (
     <div className={`${p}-page-wrapper`}>
@@ -238,12 +208,12 @@ const VideoPage = () => {
             </span>
           </div>
         </div>
-          
         <div className={`${p}-suggested-videos-mobile`}></div>
+
         <div className={`${p}-new-subscribers-wrapper`}>
           <h2 className={`${p}-new-subscribers-text`}>{`New Subscribers to ${state.author}`}</h2>
           <div className={`${p}-new-subscribers-grid`}>
-            {state.newSubscribers}
+          { state.loading === false ? <NewSubscribers /> : null}
           </div>
         </div>
         { state.loading === false ? <CommentSection /> : null}
