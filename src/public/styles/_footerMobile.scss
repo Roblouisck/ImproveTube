@@ -1,10 +1,15 @@
 @media screen and (max-width: 580px) {
   .channel--mobile, .home--mobile, .video--mobile  {
-    &-footer > div {
+    &-footer > div,
+    &-footer > div > a {
       cursor: pointer;
       &:hover {
         color: $button-background-red;
         fill: $button-background-red;
+      }
+      &:focus {     
+        color:yellow;    
+        fill:yellow;    
       }
     }
 

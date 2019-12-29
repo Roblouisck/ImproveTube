@@ -924,6 +924,43 @@ video {
     margin: 0 0 0 0;
     width: 100%;
   }
+
+  .avatarPlaceholder--comments {
+    display: unset;
+  }
+
+  .avatarPlaceholder--img {
+    clip-path: circle();
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1.4rem;
+    display: inline-block;
+    min-width: 4rem;
+    position: absolute;
+    top: 4rem;
+    left: 3.5rem;
+    object-fit: cover;
+  }
+  .commentWrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .home--grid-nav {
+    display: none;
+  }
+
+  .home--grid-hr-nav-grey {
+    display: none;
+  }
+
+  .home--grid-avatar-wrapper {
+    margin-top: 1.6rem;
+    margin-bottom: 5rem;
+  }
+  .home--grid-title {
+    margin-top: 2.5rem
+  }
 }
 
 @media screen and (min-width: 581px) {

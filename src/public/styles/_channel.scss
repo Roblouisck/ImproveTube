@@ -643,6 +643,22 @@
       right: 1rem;
     }
   }
+    .avatarPlaceholder--comments {
+    display: unset;
+  }
+
+  .homepage-wrapper {
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .commentContainer {
+    width: unset;
+    display: inline-block;
+    margin-top: 4rem;
+    width: 65vw;
+    margin-left: 2.5rem;
+  }
 }
 
 @media screen and (min-width: 581px) {
