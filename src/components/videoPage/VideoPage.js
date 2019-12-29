@@ -17,8 +17,6 @@ import {
   capitalizeFirstLetter, 
   randomDate } from '../../containers/helperFunctions'
 
-
-
 const VideoPage = () => {
   const [p, setPrefix] = useState("videoPage")
   const [state, setState] = useState(
