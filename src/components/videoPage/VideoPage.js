@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import history from '../../history'
 import handleMediaQueries from './containers/mediaQueries'
-import quote from 'inspirational-quotes'
+import CommentSection from './CommentSection'
 
 import setDislikes from './containers/setDislikes'
 import makeLeftClickRedirect from './containers/makeLeftClickRedirect'
@@ -19,19 +19,10 @@ import {
   capitalizeFirstLetter, 
   randomDate } from '../../containers/helperFunctions'
 
-import {
-  userClicksAddCommentField,
-  showCommentButtons,
-  resetAddComment,
-  postComment,
-  commentFieldHasText
-} from './containers/handleComments'
-
 import { 
   thumbsUp, 
   thumbsDown, 
   arrowDrop } from '../svgs'
-
 
 const VideoPage = () => {
   const [p, setPrefix] = useState("videoPage")
@@ -160,48 +151,7 @@ const VideoPage = () => {
       )
     })
     setState(prevState => ({...prevState, newSubscribers: newSubscribers}))
-    fetchComments()
-  }
-
-  const fetchComments = async () => {
-    let response = await fetchAvatars('person')
-    response = response.data.hits
-    mapCommentsToHTML(response)
-  }
-
-  const mapCommentsToHTML = (response) => {
-    const commentsAsHTML = response.map(comment => {
-      return (
-        <div key={comment.id}>
-          <a href={`/channel/${comment.id}`}>
-            <img className={`${p}-comment-avatar`} src={comment.webformatURL}/>
-          </a>
-          <div className={`${p}-comment-container`}>
-            <a href={`/channel/${comment.id}`}>
-              <h5 className="commentorName">{comment.user}</h5>
-            </a>
-            <div className="dateOfComment">6 months ago</div>
-            <p className="comment">{quote.getQuote().text}</p>
-            <div className="thumbs">
-              <span className="thumbsUpIcon">
-                {thumbsUp(16)}
-              </span>
-              <span className="thumbsDownIcon">
-                {thumbsDown(16)}
-              </span>
-            </div>
-            <p className="replyText">REPLY</p>
-            <div className="viewReplies">
-              <span className="arrowDrop">
-                {arrowDrop()}
-              </span>
-              View {Math.floor(Math.random() * 100)} Replies
-            </div>
-          </div>
-        </div>
-      )
-    })
-    setState(prevState => ({...prevState, comments: commentsAsHTML}))
+    // fetchComments()
   }
 
   const extractDataFromUrl = () => {
@@ -235,7 +185,6 @@ const VideoPage = () => {
 
   useEffect(() => {
     extractDataFromUrl()
-    userClicksAddCommentField()
     handleMediaQueries()
   }, [])
 
@@ -245,15 +194,11 @@ const VideoPage = () => {
     if (state.afterInitRender) {
       if (state.picAuthorID) {
         fetchAuthorAvatar(state.picAuthorID)
-      } else {
+      } else { 
         fetchUpNextVideos(50, 'buildings')
       }
     }
 }, [state.loading])
-
-  useEffect(() => {
-    console.log(state)
-  })
 
   return (
     <div className={`${p}-page-wrapper`}>
@@ -331,37 +276,7 @@ const VideoPage = () => {
             {state.newSubscribers}
           </div>
         </div>
-        <div className={`${p}-comment-section`}>
-        <span className={`${p}-number-of-comments`}>1,392 comments</span>
-        <span className={`${p}-sort-comments`}>Sort by</span>
-
-        <div className={`${p}-add-comment-wrapper flex`}>
-          <div className={`${p}-add-comment-avatar`}></div>
-          <input 
-            id="addComment"
-            className={`${p}-add-comment`} 
-            placeholder="Add a public comment" 
-            onKeyUp={event => commentFieldHasText(event, event.currentTarget.value)}
-            onClick={event => showCommentButtons()}
-            />
-          <hr className={`${p}-add-comment-underline`}/>
-          <hr className={`${p}-add-comment-underline-animated`}/>
-          <button 
-            className={`${p}-comment-button hide`}
-            onClick={() => postComment(document.getElementById('addComment').value)}>
-            Comment
-          </button>
-
-          <button 
-            className={`${p}-cancel-button hide`}
-            onClick={() => resetAddComment()}>
-            Cancel
-          </button>
-         </div>
-          <div className={`${p}-button-space hide`}></div>
-          <div id='mostRecentComment'></div>
-          {state.comments}
-        </div>
+        <CommentSection />
       </main>
       <aside className={`${p}-sidebar`}>
         <div className={`${p}-sidebar-text-top`}>
