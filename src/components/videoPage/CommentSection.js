@@ -159,7 +159,7 @@ const CommentSection = () => {
   }
 
   return (
-    <div className={`${p}-comment-section`}>
+    <div>
       <span className={`${p}-number-of-comments`}>1,392 comments</span>
       <span className={`${p}-sort-comments`}>Sort by</span>
 
@@ -189,7 +189,7 @@ const CommentSection = () => {
         <div className={`${p}-button-space hide`}></div>
         <div id='mostRecentComment'></div>
         {state.comments}
-      </div>
+    </div>
   )
 }
 

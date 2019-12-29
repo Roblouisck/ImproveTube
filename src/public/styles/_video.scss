@@ -522,15 +522,6 @@
       text-align: center;
     }
 
-    &-new-subscribers-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 6rem);
-      grid-template-rows: repeat(4, 1fr);
-      grid-gap: 0.5rem;
-      justify-content: unset;
-      margin-bottom: unset;
-    }
-
     &-new-subscribers-subscriber-avatar {
       height: 6rem;
       width: 6rem;

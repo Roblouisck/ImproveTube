@@ -150,7 +150,9 @@ const VideoPage = () => {
           { state.loading === false ? <NewSubscribers /> : null}
           </div>
         </div>
-        { state.loading === false ? <CommentSection /> : null}
+        <div className={`${p}-comment-section`}>
+          { state.loading === false ? <CommentSection /> : null}
+        </div>
       </main>
       <aside className={`${p}-sidebar`}>
        { state.loading === false ? <UpNextVideos /> : null}
