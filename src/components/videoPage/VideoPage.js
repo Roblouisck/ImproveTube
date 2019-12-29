@@ -7,19 +7,17 @@ import setDislikes from './containers/setDislikes'
 import NewSubscribers from './NewSubscribers'
 import CommentSection from './CommentSection'
 import UpNextVideos from './UpNextVideos'
+import DescriptionBox from './DescriptionBox'
 
-import { 
-  fetchVideoFromID, 
-  fetchPictureFromID } from '../../containers/api'
+import { fetchVideoFromID, fetchPictureFromID } from '../../containers/api'
+import { thumbsUp, thumbsDown } from '../svgs'
 
 import { 
   abbreviateNumber, 
   capitalizeFirstLetter, 
   randomDate } from '../../containers/helperFunctions'
 
-import { 
-  thumbsUp, 
-  thumbsDown } from '../svgs'
+
 
 const VideoPage = () => {
   const [p, setPrefix] = useState("videoPage")
@@ -144,70 +142,8 @@ const VideoPage = () => {
     <div className={`${p}-page-wrapper`}>
       <main className={`${p}-main`}>
         {state.video}
-        <div className={`${p}-description-box`}>  
-          <div className={`${p}-description-column-1-avatar-wrapper`}>
-            <div className="flex">
-              <a href={ state.picAuthorID ? `/channel/${state.picAuthorID}` : `/channel/000${state.vidAuthorID}`}>
-                <img className={`${p}-description-column-1-avatar`} src={state.authorAvatar} />
-              </a>
-              <div>
-                <a href={ state.picAuthorID ? `/channel/${state.picAuthorID}` : `/channel/000${state.vidAuthorID}`}>
-                  <div className={`${p}-description-column-1-author`}>
-                    { state.loading === "yes" ? "loading" : state.author }
-                  </div>
-                </a>
-                <div className={`${p}-description-column-1-followers`}>
-                { state.loading === "yes" ? "loading" : `${abbreviateNumber(state.authorFollowers)} Followers` }
-                </div>
-              </div>
-            </div>
-            <div className={`${p}-description-buttons-wrapper flex`}>
-              <button className={`${p}-description-subscribe-button`}>SUBSCRIBE</button>
-              <button className={`${p}-description-follow-button`}>FOLLOW</button>
-            </div>
-          </div>
-          <div className={`${p}-description-column-1`}>
-            <div className={`${p}-description-column-1-text`}>
-              <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eligendi architecto nesciunt velit sequi placeat voluptatibus,
-              <br/>
-              <br/>
-              a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
-              <br/>
-              <br/>
-              a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
-              </span>
-            </div>
-          </div>
-          <div className={`${p}-description-column-2`}>
-            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eligendi architecto nesciunt velit sequi placeat voluptatibus,
-              <br/>
-              <br/>
-              a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
-              <br/>
-              <br/>
-              a laboriosam, et vitae aliquid provident eum totam.
-              <br/>
-              <br/>
-              Quos eligendi architecto nesciunt velit sequi placeat voluptatibus,
-              <br/>
-              <br/>
-              a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
-              <br/>
-              <br/>
-              et vitae aliquid beatae quae mollitia 
-            </span>
-          </div>
-          <div className={`${p}-description-column-3`}>
-            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eligendi architecto nesciunt velit sequi placeat voluptatibus,
-              <br/>
-              <br/>
-              a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
-              <br/>
-              <br/>
-              a laboriosam, et vitae aliquid beatae quae mollitia fuga dolores distinctio provident eum totam.
-            </span>
-          </div>
-        </div>
+
+        <DescriptionBox props={state} />
         <div className={`${p}-suggested-videos-mobile`}></div>
 
         <div className={`${p}-new-subscribers-wrapper`}>
