@@ -11,6 +11,7 @@ import {
 const CommentSection = () => {
   const [p, setPrefix] = useState("videoPage")
   const [state, setState] = useState([])
+  const [userComments, setUserComments] = useState([])
 
   useEffect(() => {
     userClicksAddCommentField()
@@ -60,19 +61,15 @@ const CommentSection = () => {
 
   const userClicksAddCommentField = () => {
     const addCommentField = document.querySelector('.videoPage-add-comment')
-    const underlineAnimated = document.querySelector('.videoPage-add-comment-underline-animated')
-    const commentButton = document.querySelector('.videoPage-comment-button')
-    const cancelButton = document.querySelector('.videoPage-cancel-button')
-    const buttonSpace = document.querySelector('.videoPage-button-space')
 
     addCommentField.addEventListener('focus', () => {
-      underlineAnimated.classList.add('show')
-      commentButton.classList.add('show')
-      cancelButton.classList.add('show')
-      buttonSpace.classList.remove('hide')
+      document.querySelector('.videoPage-add-comment-underline-animated').classList.add('show')
+      document.querySelector('.videoPage-comment-button').classList.add('show')
+      document.querySelector('.videoPage-cancel-button').classList.add('show')
+      document.querySelector('.videoPage-button-space').classList.remove('hide')
     })
     addCommentField.addEventListener('blur', () => {
-      underlineAnimated.classList.remove('show')
+      document.querySelector('.videoPage-add-comment-underline-animated').classList.remove('show')
     })
   }
 
@@ -102,39 +99,37 @@ const CommentSection = () => {
   }
 
   const postComment = (userComment) => {
-    const mostRecentComment = document.getElementById('mostRecentComment')
-    const commentButton = document.querySelector('.videoPage-comment-button')
     const userCommentNotBlank = !userComment.trim().length < 1
 
     if (userCommentNotBlank) {
-      mostRecentComment.insertAdjacentHTML('beforebegin', 
-       
-`       <div class="videoPage-user-comment-box">
-          <div id="mostRecentComment" class="videoPage-comment-avatar"></div>
-          <div class="videoPage-edit-comment">
-            <span class="videoPage-edit-comment-ellipses" onClick="toggleEditComment()">
-              ${ellipsesVertical(14, "insideJSX")}
+       const newComment = [
+       <div className="videoPage-user-comment-box">
+          <div id="mostRecentComment" className="videoPage-comment-avatar"></div>
+          <div className="videoPage-edit-comment">
+            <span className="videoPage-edit-comment-ellipses" onClick={() => toggleEditComment()}>
+              {ellipsesVertical(14)}
             </span>
-            <div class="videoPage-edit-comment-menu">
-              <p class="videoPage-delete-comment-text">Delete</p>
+            <div className="videoPage-edit-comment-menu">
+              <p className="videoPage-delete-comment-text">Delete</p>
             </div>
           </div>
-            <div class="videoPage-comment-container">
-              <h5 class="commentorName">Guest</h5>
-              <div class="dateOfComment">Just Now</div>
-              <p class="comment">${userComment}</p>
-              <div class="thumbs">
-                <span class="thumbsUpIcon">
-                  ${thumbsUp(16, "insideJSX")}
+            <div className="videoPage-comment-container">
+              <h5 className="commentorName">Guest</h5>
+              <div className="dateOfComment">Just Now</div>
+              <p className="comment">{userComment}</p>
+              <div className="thumbs">
+                <span className="thumbsUpIcon">
+                  {thumbsUp(16)}
                 </span>
-                <span class="thumbsDownIcon">
-                  ${thumbsDown(16, "insideJSX")}
+                <span className="thumbsDownIcon">
+                  {thumbsDown(16)}
                 </span>
               </div>
-              <p class="replyText">REPLY</p>
+              <p className="replyText">REPLY</p>
             </div>
-          </div>`
-        )
+          </div>
+        ]
+      setUserComments(prevState => ([...prevState, {comment: newComment}]))
       resetAddComment()
     }
   }
@@ -187,7 +182,10 @@ const CommentSection = () => {
         </button>
        </div>
         <div className={`${p}-button-space hide`}></div>
-        <div id='mostRecentComment'></div>
+        { userComments 
+          ? userComments.reverse().map((item, i) => <div key={i} id='mostRecentComment'>{item.comment[0]}</div>) 
+          : null 
+        }
         {state.comments}
     </div>
   )
