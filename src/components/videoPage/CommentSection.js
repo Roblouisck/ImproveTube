@@ -10,7 +10,7 @@ import {
 
 const CommentSection = () => {
   const [p, setPrefix] = useState("videoPage")
-  const [state, setState] = useState([])
+  const [generatedComments, setGeneratedComments] = useState([])
   const [userComments, setUserComments] = useState([])
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const CommentSection = () => {
         </div>
       )
     })
-    setState(prevState => ({...prevState, comments: commentsAsHTML}))
+    setGeneratedComments(prevState => ({...prevState, comments: commentsAsHTML}))
   }
 
   const userClicksAddCommentField = () => {
@@ -186,7 +186,7 @@ const CommentSection = () => {
           ? userComments.reverse().map((item, i) => <div key={i} id='mostRecentComment'>{item.comment[0]}</div>) 
           : null 
         }
-        {state.comments}
+        {generatedComments.comments}
     </div>
   )
 }
