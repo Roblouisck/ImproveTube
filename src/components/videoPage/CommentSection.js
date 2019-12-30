@@ -93,43 +93,29 @@ const CommentSection = () => {
     document.getElementById('addComment').blur()
   }
 
-  const toggleEditComment = () => {
-    document.querySelector('.videoPage-edit-comment-menu').classList.toggle('hide')
-    console.log('ran')
+  const deleteComment = (event, i) => {
+    console.log('buttondown')
+    const userCommentsArray = [...userComments]
+    userCommentsArray.splice(i, 1)
+    setUserComments(prevState => ([...prevState], userCommentsArray))
+
+    const deleteButton = event.currentTarget.parentNode.querySelector('.videoPage-delete-comment-button')
+    deleteButton.classList.remove('show')
+  }
+
+  const toggleDeleteButton = (event) => {
+    const deleteButton = event.currentTarget.parentNode.querySelector('.videoPage-delete-comment-button')
+    deleteButton.classList.toggle('show')
   }
 
   const postComment = (userComment) => {
     const userCommentNotBlank = !userComment.trim().length < 1
-
     if (userCommentNotBlank) {
-       const newComment = [
-       <div className="videoPage-user-comment-box">
-          <div id="mostRecentComment" className="videoPage-comment-avatar"></div>
-          <div className="videoPage-edit-comment">
-            <span className="videoPage-edit-comment-ellipses" onClick={() => toggleEditComment()}>
-              {ellipsesVertical(14)}
-            </span>
-            <div className="videoPage-edit-comment-menu">
-              <p className="videoPage-delete-comment-text">Delete</p>
-            </div>
-          </div>
-            <div className="videoPage-comment-container">
-              <h5 className="commentorName">Guest</h5>
-              <div className="dateOfComment">Just Now</div>
-              <p className="comment">{userComment}</p>
-              <div className="thumbs">
-                <span className="thumbsUpIcon">
-                  {thumbsUp(16)}
-                </span>
-                <span className="thumbsDownIcon">
-                  {thumbsDown(16)}
-                </span>
-              </div>
-              <p className="replyText">REPLY</p>
-            </div>
-          </div>
-        ]
-      setUserComments(prevState => ([...prevState, {comment: newComment}]))
+
+      // Unshift inserts new comment to beginning of array
+      const newState = [...userComments]
+      newState.unshift(userComment)
+      setUserComments(prevState => ([...prevState], newState))
       resetAddComment()
     }
   }
@@ -183,9 +169,35 @@ const CommentSection = () => {
        </div>
         <div className={`${p}-button-space hide`}></div>
         { userComments 
-          ? userComments.reverse().map((item, i) => <div key={i} id='mostRecentComment'>{item.comment[0]}</div>) 
-          : null 
-        }
+          ? userComments.map((item, i) => (
+            <div className="videoPage-user-comment-box" key={i}>
+              <div id="mostRecentComment" className="videoPage-comment-avatar"></div>
+              <div className="videoPage-edit-comment">
+                <span className="videoPage-edit-comment-ellipses" onClick={event => toggleDeleteButton(event)}>
+                  {ellipsesVertical(14)}
+                </span>
+                <div className="videoPage-delete-comment-button" onMouseDown={event => deleteComment(event, i)}>
+                  <p>Delete</p>
+                </div>
+              </div>
+                <div className="videoPage-comment-container">
+                  <h5 className="commentorName">Guest</h5>
+                  <div className="dateOfComment">Just Now</div>
+                  <p className="comment">{item}</p>
+                  <div className="thumbs">
+                    <span className="thumbsUpIcon">
+                      {thumbsUp(16)}
+                    </span>
+                    <span className="thumbsDownIcon">
+                      {thumbsDown(16)}
+                    </span>
+                  </div>
+                  <p className="replyText">REPLY</p>
+                </div>
+              </div>
+            ))
+            : null
+          }
         {generatedComments.comments}
     </div>
   )
