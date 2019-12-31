@@ -30,5 +30,22 @@ export const toggleClass = (toggledClass, clickedElement, ...additionalElementsF
   })
 }
 
+export const fabricateTimeStamp = (index) => {
+  const random60 = Math.floor(Math.random() * 60)
+  const random2 = Math.floor(Math.random() * 2)
+
+  if (index < 20) {
+    if (index + random2 <= 1) { return random60 + ' ' + 'minutes ago' } 
+    return index + random2 + ' ' + 'hours ago'
+  }
+
+  else if (index >= 20) {
+    if (index + random2 - 20 <= 1) { return '1 day ago' } 
+    return index + random2 - 20 + ' ' + 'days ago'
+  }
+  
+  return null
+}
+
 
 
