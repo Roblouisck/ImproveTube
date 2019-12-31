@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
 import quote from 'inspirational-quotes'
+import { uuid } from '../containers/helperFunctions'
 
 import { 
   thumbsUp, 
@@ -37,7 +38,7 @@ const ActivityFeed = (props) => {
   const mapPicsToHTML = (response) => {
     const picsMappedToHTML = response.map((pic, index) => {
       return ( 
-        <div className="commentWrapper" key={pic.id} ref={response.length === index + 1 ? lastActivityPost : null}>
+        <div className="commentWrapper" key={uuid()} ref={response.length === index + 1 ? lastActivityPost : null}>
           <div className="avatarPlaceholder--comments">
           {props.page === 'channel' 
             ? <img className="avatarPlaceholder--img" src={props.userAvatar}/>
