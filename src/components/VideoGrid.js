@@ -5,31 +5,33 @@ import history from '../history'
 import { 
   toggleClass, 
   abbreviateNumber, 
-  capitalizeFirstLetter 
+  capitalizeFirstLetter,
+  uuid
 } from '../containers/helperFunctions'
 
 import { fetchAvatars as callAvatarsAPI, fetchVideos as callVideosAPI } from '../containers/api'
 
 const VideoGrid = (props) => {
-  const [videosAsHTML, updateVideosAsHTML] = useState([])
+  const [videosAsHTML, setVideosAsHTML] = useState([])
   const [p, setPrefix] = useState(props.page)
-  const [hasMore, setHasMore] = useState()
-  const [loading, setLoading] = useState()
   
-  const observer = useRef()
-  const lastVideo = useCallback(node => {
-    if (loading) return
-    if (observer.current) observer.current.disconnect()      
-    observer.current = new IntersectionObserver(entries => {
-      // console.log(entries)
-      if (entries[0].isIntersecting && hasMore) {
-        // console.log('last video visible')
-        fetchData(50)
-      }
-    })
-    if (node) observer.current.observe(node)
-  }, [loading, hasMore])
+  useEffect(() => {
+    fetchData(50, 'buildings')
+  }, [])
 
+  // INFINITE SCROLL
+  // Callback is triggered when ref is set in mapVideosToHTML
+  const observer = useRef()
+  const lastVideo = useCallback(lastVideoNode => {
+
+    // Re-hookup observer to last video, to include fetch data callback
+    if (observer.current) observer.current.disconnect()
+    observer.current = new IntersectionObserver(entries => {
+      const endVideo = entries[0]
+      if (endVideo.isIntersecting) fetchData(50)
+    })
+    if (lastVideoNode) observer.current.observe(lastVideoNode)
+  })
 
   const fetchData = async (amount, category, order) => {
     let videos = await callVideosAPI(amount, category, order)
@@ -37,22 +39,14 @@ const VideoGrid = (props) => {
 
     let pictures = await callAvatarsAPI('man', 50)
     pictures = pictures.data.hits
-    if (videos.length > 0) {
-      setHasMore(prevState => (true))
-      setLoading(false)
-      mapDataToHtml(videos, pictures)
-    } else {
-      setHasMore(prevState => (false))
-      console.log('end')
-    }
+    mapVideosToHTML(videos, pictures)
   }
 
-  const mapDataToHtml = (videos, pictures) => {
+  const mapVideosToHTML = (videos, pictures) => {
     const vidsAsHtml = videos.map((vid, index) => {
       const currentPic = index
-
       return (
-        <div>
+        <div className={`${p}--grid-content-wrapper`} key={uuid()} ref={videos.length === index + 1 ? lastVideo : null}>
           <div className={`${p}--grid-video clickable`}>
             <a href={`/video/id/${vid.id}-${pictures[currentPic].id}`}>
               <video
@@ -96,16 +90,8 @@ const VideoGrid = (props) => {
         </div>
       )
   })
-  updateVideosAsHTML(prevState => ([...prevState, ...vidsAsHtml]))
+  setVideosAsHTML(prevState => ([...prevState, ...vidsAsHtml]))
   }
-  
-  useEffect(() => {
-    fetchData(50, 'buildings')
-  }, []) 
-
-  // useEffect(() => {
-  //   // console.log(videosAsHTML)
-  // }) 
   
   const handleButtons = event => {
     const buttonID = event.target.id
@@ -175,15 +161,7 @@ const VideoGrid = (props) => {
         <hr className={`${p}--grid-hr-nav-black`} />        
 
         <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
-          {
-            videosAsHTML.map((video, index) => {
-              // console.log(index+1)
-              if (videosAsHTML.length === index + 1) {
-                return <div className={`${p}--grid-content-wrapper`} ref={lastVideo}>{video}</div>
-              }
-              return <div key={index}>{video}</div>
-            })
-          }
+          {videosAsHTML}
         </div>
       </main>
     )

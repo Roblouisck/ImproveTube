@@ -1,3 +1,5 @@
+export const uuid = (a) => {return a?(a^Math.random()*16>>a/4).toString(16):([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,uuid)}
+
 export const abbreviateNumber = (num) => {
   if (num > 999) {
     return Math.ceil(Math.sign(num)*((Math.abs(num)/1000).toFixed(1))) + 'k'

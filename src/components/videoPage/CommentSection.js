@@ -94,7 +94,6 @@ const CommentSection = () => {
   }
 
   const deleteComment = (event, i) => {
-    console.log('buttondown')
     const userCommentsArray = [...userComments]
     userCommentsArray.splice(i, 1)
     setUserComments(prevState => ([...prevState], userCommentsArray))
