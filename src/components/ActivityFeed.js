@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import quote from 'inspirational-quotes'
 
 import { 
@@ -11,9 +11,22 @@ import {
   fetchVideos as callVideosAPI } from '../containers/api'
 
 const ActivityFeed = (props) => {
-  console.log(props)
   const [comments, setPics] = useState([])
   const [firstRenderDone, setFirstRenderDone] = useState()
+
+  // INFINITE SCROLL
+  // Callback is triggered when ref is set in mapVideosToHTML
+  const observer = useRef()
+  const lastActivityPost = useCallback(lastPostNode => {
+
+    // Re-hookup observer to last post, to include fetch data callback
+    if (observer.current) observer.current.disconnect()
+    observer.current = new IntersectionObserver(entries => {
+      const lastPost = entries[0]
+      if (lastPost.isIntersecting) fetchAvatars()
+    })
+    if (lastPostNode) observer.current.observe(lastPostNode)
+  })
 
   const fetchAvatars = async () => {
     let response = await callAvatarsAPI('person')
@@ -22,9 +35,9 @@ const ActivityFeed = (props) => {
   }
 
   const mapPicsToHTML = (response) => {
-    const picsMappedToHTML = response.map(pic => {
-      return (          
-        <div className="commentWrapper" key={pic.id}>
+    const picsMappedToHTML = response.map((pic, index) => {
+      return ( 
+        <div className="commentWrapper" key={pic.id} ref={response.length === index + 1 ? lastActivityPost : null}>
           <div className="avatarPlaceholder--comments">
           {props.page === 'channel' 
             ? <img className="avatarPlaceholder--img" src={props.userAvatar}/>
@@ -56,7 +69,7 @@ const ActivityFeed = (props) => {
         </div>
       )
     })
-    setPics(picsMappedToHTML)
+    setPics(prevState => ([...prevState, ...picsMappedToHTML]))
   }
 
   useEffect(() => {
