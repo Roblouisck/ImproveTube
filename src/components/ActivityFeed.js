@@ -19,7 +19,7 @@ const ActivityFeed = (props) => {
   const observer = useRef()
   const lastActivityPost = useCallback(lastPostNode => {
 
-    // Re-hookup observer to last post, to include fetch data callback
+    // Re-hookup observer to last post, to include fetchAvatars callback
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const lastPost = entries[0]

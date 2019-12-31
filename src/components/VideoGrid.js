@@ -24,7 +24,7 @@ const VideoGrid = (props) => {
   const observer = useRef()
   const lastVideo = useCallback(lastVideoNode => {
 
-    // Re-hookup observer to last video, to include fetch data callback
+    // Re-hookup observer to last video, to include fetchData callback
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const endVideo = entries[0]
