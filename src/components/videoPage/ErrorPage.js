@@ -7,7 +7,7 @@ import FooterMobile from '../FooterMobile'
 const ErrorPage = () => {
   const [p, setResource] = useState("videoPage")
   return (
-    <div onConTextMenu="return false">
+    <div>
       <div className="errorVidWrapper">
         <img className="errorVid" src="https://i.imgur.com/3vmjcjO.png"/>
       </div>

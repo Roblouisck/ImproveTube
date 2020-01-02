@@ -7,9 +7,18 @@ import VideoGrid from '../VideoGrid'
 import FooterMobile from '../FooterMobile'
 import { fetchPictureFromID, fetchVideoFromID } from '../../containers/api'
 import { capitalizeFirstLetter } from '../../containers/helperFunctions'
+import ErrorPage from '../videoPage/ErrorPage'
 
 const RenderChannelPage = () => {
   const [state, setState] = useState({})
+
+  useEffect(() => {
+    extractDataFromUrl()
+  }, [])
+
+  useEffect(() => {
+    console.log(state)
+  })
 
   const extractDataFromUrl = async () => {
     const currentURL = window.location.href
@@ -18,41 +27,44 @@ const RenderChannelPage = () => {
 
     // 000 indicates user came from video page, so fetch their avatar from the video api. 
     if (dataFromURL.includes('000')) {
-      let response = await fetchVideoFromID(dataFromURL)
-      response = response.data.hits[0]
-      setState(prevState => ({userAvatar: response.userImageURL, userName: response.user }))
+      const response = await fetchVideoFromID(dataFromURL)
+      if (!response) setState({error: true})
+      else setState({userAvatar: response.data.hits[0].userImageURL, userName: response.data.hits[0].user, ready: true})
+
     } else {
-      let response = await fetchPictureFromID(dataFromURL)
-      response = response.data.hits[0]
-      setState(prevState => ({userAvatar: response.webformatURL, userName: capitalizeFirstLetter(response.user)}))
+      const response = await fetchPictureFromID(dataFromURL)
+      if (!response) setState({error: true})
+      else setState({userAvatar: response.data.hits[0].webformatURL, userName: capitalizeFirstLetter(response.data.hits[0].user), ready: true})
     }
   }
 
-  useEffect(() => {
-    extractDataFromUrl()
-  }, [])
-
   return (
-    <div className="channel-body">
-      <Header />
-      <HeaderMobile />
-      <AboveFold 
-        userAvatar={state.userAvatar}
-        userName={state.userName} />
-      <div className="channel--wrapper">
-        <ActivityFeed 
-          page={'channel'} 
+    <div>
+      {state.error ? <ErrorPage/> : null} 
+      {state.ready ? 
+        <div className="channel-body">
+          <Header />
+          <HeaderMobile />
+          <AboveFold 
           userAvatar={state.userAvatar}
           userName={state.userName} />
-        <VideoGrid 
-          titleOne={'videos'} 
-          titleTwo={'feed'} 
-          titleThree={'playlists'} 
-          titleFour={'about'} 
-          titleFive={'subscriptions'} 
-          page={'channel'} />
-        <FooterMobile />
-      </div>
+          <div className="channel--wrapper">
+            <ActivityFeed 
+              page={'channel'} 
+              userAvatar={state.userAvatar}
+              userName={state.userName} />
+            <VideoGrid 
+              titleOne={'videos'} 
+              titleTwo={'feed'} 
+              titleThree={'playlists'} 
+              titleFour={'about'} 
+              titleFive={'subscriptions'} 
+              page={'channel'} />
+            <FooterMobile />
+          </div>
+        </div>
+      : null
+      }
     </div>
   )
 }

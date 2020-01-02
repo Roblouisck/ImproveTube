@@ -34,7 +34,6 @@ export const fetchVideoFromID = (id) => {
   }).catch(err => {
     if (!err.response) {
       console.log('network error, probably bad id')
-      // history.push('/video/404')
     }
     else console.log(err)
   })
@@ -46,6 +45,8 @@ export const fetchPictureFromID = (id) => {
       key: process.env.PIXABAY_API,
       id: id
     }
+  }).catch(err => {
+    console.log(err)
   })
 }
 
