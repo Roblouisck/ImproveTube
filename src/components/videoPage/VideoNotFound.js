@@ -4,7 +4,7 @@ import Header from '../Header'
 import HeaderMobile from '../HeaderMobile'
 import FooterMobile from '../FooterMobile'
 
-const ErrorPage = () => {
+const VideoNotFound = () => {
   const [p, setResource] = useState("videoPage")
   return (
     <div>
@@ -15,4 +15,4 @@ const ErrorPage = () => {
   )
 }
 
-export default ErrorPage
+export default VideoNotFound

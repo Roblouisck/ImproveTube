@@ -7,7 +7,7 @@ import VideoGrid from '../VideoGrid'
 import FooterMobile from '../FooterMobile'
 import { fetchPictureFromID, fetchVideoFromID } from '../../containers/api'
 import { capitalizeFirstLetter } from '../../containers/helperFunctions'
-import ErrorPage from '../videoPage/ErrorPage'
+import PageNotFound from '../PageNotFound'
 
 const RenderChannelPage = () => {
   const [state, setState] = useState({})
@@ -15,10 +15,6 @@ const RenderChannelPage = () => {
   useEffect(() => {
     extractDataFromUrl()
   }, [])
-
-  useEffect(() => {
-    console.log(state)
-  })
 
   const extractDataFromUrl = async () => {
     const currentURL = window.location.href
@@ -40,7 +36,7 @@ const RenderChannelPage = () => {
 
   return (
     <div>
-      {state.error ? <ErrorPage/> : null} 
+      {state.error ? <PageNotFound /> : null} 
       {state.ready ? 
         <div className="channel-body">
           <Header />

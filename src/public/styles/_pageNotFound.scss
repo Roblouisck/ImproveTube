@@ -1,0 +1,23 @@
+.pageNotFound {
+  &-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F1F1F1;
+    height: calc(100vh - 7.8rem)
+  }
+
+  &-text {
+    position: absolute;
+    top: calc(43rem + 7vw);
+    color: #a29cff;
+    -webkit-text-stroke: .3rem #5f58d0;
+    font-size: calc(2.6rem + 4vw);
+  } 
+
+  &-svg {
+    max-width: 52rem;
+    width: 37vw;
+    min-width: 30rem;
+  }
+}

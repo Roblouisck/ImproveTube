@@ -8,7 +8,7 @@ import NewSubscribers from './NewSubscribers'
 import CommentSection from './CommentSection'
 import UpNextVideos from './UpNextVideos'
 import DescriptionBox from './DescriptionBox'
-import ErrorPage from './ErrorPage'
+import VideoNotFound from './VideoNotFound'
 
 import { fetchVideoFromID, fetchPictureFromID } from '../../containers/api'
 import { thumbsUp, thumbsDown } from '../svgs'
@@ -111,7 +111,7 @@ const VideoPage = () => {
 
   return (
     <div>
-      { state.error ? <ErrorPage /> : null}
+      { state.error ? <VideoNotFound /> : null}
       { state.loading === true ? null
         : 
         <div className={`${p}-page-wrapper`}>
