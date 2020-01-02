@@ -8,6 +8,7 @@ import NewSubscribers from './NewSubscribers'
 import CommentSection from './CommentSection'
 import UpNextVideos from './UpNextVideos'
 import DescriptionBox from './DescriptionBox'
+import ErrorPage from './ErrorPage'
 
 import { fetchVideoFromID, fetchPictureFromID } from '../../containers/api'
 import { thumbsUp, thumbsDown } from '../svgs'
@@ -19,43 +20,20 @@ import {
 
 const VideoPage = () => {
   const [p, setPrefix] = useState("videoPage")
-  const [state, setState] = useState(
-
-  // Data to act as a placeholder until video loads
-  {
-    video: 
-      <div className={`${p}-video-wrapper`}>
-        <video poster="https://i.imgur.com/Us5ckqm.jpg" className={`${p}-video clickable`} controls autoPlay></video>
-        <div className={`${p}-video-info-wrapper`}>  
-          <div className={`${p}-video-title-box`}>
-            <h1 className={`${p}-video-title`}>Loading</h1>
-            <span className={`${p}-video-views`}>0k views</span>
-            <span className={`${p}-video-date`}>Loading Date</span>
-          </div>
-          <div className={`${p}-video-options`}>
-            <div className="thumbs">
-              <div className={`${p}-video-options-thumbsUp`}>{thumbsUp(20)} &nbsp; 
-                <span className={`${p}-video-options-thumbsUp-text`}>20k</span>
-              </div>
-              <div className={`${p}-video-options-thumbsDown`}>{thumbsDown(20)} &nbsp; 
-                <span className={`${p}-video-options-thumbsDown-text`}>20k</span>
-              </div>
-              <div className={`${p}-video-options-likebar`}></div>
-            </div>
-            <span className={`${p}-video-options-share`}>Share</span>
-            <span className={`${p}-video-options-save`}>Save</span>
-            <span className={`${p}-video-options-ellipses`}>...</span>
-          </div>
-        </div>
-      </div>,
-    loading: "yes"
+  const [state, setState] = useState({
+    loading: true,
+    error: false
   })
+
+  useEffect(() => {
+    if (state.loading) extractDataFromUrl()
+    else handleMediaQueries()
+  }, [state.loading])
 
   const fetchVideo = async (id, picAuthorID) => {
     let response = await fetchVideoFromID(id)
-    console.log()
-    response = response.data.hits
-    mapVideoResponseToHTML(response, picAuthorID)
+    if (!response) setState(prevState => ({...prevState, error: true}))
+    else mapVideoResponseToHTML(response.data.hits, picAuthorID)
   }
 
   const mapVideoResponseToHTML = (response, picAuthorID) => {
@@ -131,32 +109,32 @@ const VideoPage = () => {
     }))
   }
 
-  useEffect(() => {
-    extractDataFromUrl()
-    handleMediaQueries()
-  }, [])
-
   return (
-    <div className={`${p}-page-wrapper`}>
-      <main className={`${p}-main`}>
-        {state.video}
+    <div>
+      { state.error ? <ErrorPage /> : null}
+      { state.loading === true ? null
+        : 
+        <div className={`${p}-page-wrapper`}>
+          <main className={`${p}-main`}>
+            {state.video}
+            <DescriptionBox props={state} />
+            <div className={`${p}-suggested-videos-mobile`}></div>
 
-        <DescriptionBox props={state} />
-        <div className={`${p}-suggested-videos-mobile`}></div>
-
-        <div className={`${p}-new-subscribers-wrapper`}>
-          <h2 className={`${p}-new-subscribers-text`}>{`New Subscribers to ${state.author}`}</h2>
-          <div className={`${p}-new-subscribers-grid`}>
-          { state.loading === false ? <NewSubscribers /> : null}
-          </div>
+            <div className={`${p}-new-subscribers-wrapper`}>
+              <h2 className={`${p}-new-subscribers-text`}>{`New Subscribers to ${state.author}`}</h2>
+              <div className={`${p}-new-subscribers-grid`}>
+                <NewSubscribers />
+              </div>
+            </div>
+            <div className={`${p}-comment-section`}>
+              <CommentSection />
+            </div>
+          </main>
+          <aside className={`${p}-sidebar`}>
+           <UpNextVideos />
+          </aside>
         </div>
-        <div className={`${p}-comment-section`}>
-          { state.loading === false ? <CommentSection /> : null}
-        </div>
-      </main>
-      <aside className={`${p}-sidebar`}>
-       { state.loading === false ? <UpNextVideos /> : null}
-      </aside>
+      }
     </div>
   )
 }

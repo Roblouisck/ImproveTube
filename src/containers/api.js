@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import history from '../history'
+// import history from '../history'
 
 export const fetchAvatars = (query, amount) => {
   return axios.get('https://pixabay.com/api/', {
@@ -31,6 +31,12 @@ export const fetchVideoFromID = (id) => {
       key: process.env.PIXABAY_API,
       id: id
     }
+  }).catch(err => {
+    if (!err.response) {
+      console.log('network error, probably bad id')
+      // history.push('/video/404')
+    }
+    else console.log(err)
   })
 }
 
