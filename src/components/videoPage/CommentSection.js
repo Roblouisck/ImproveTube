@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import {fetchAvatars } from '../../containers/api'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { fetchAvatars } from '../../containers/api'
+import { uuid } from '../../containers/helperFunctions'
 import quote from 'inspirational-quotes'
 
 import { 
@@ -18,6 +19,20 @@ const CommentSection = () => {
     fetchComments()
   }, [])
 
+  // INFINITE SCROLL
+  // Callback is triggered when ref is set in mapCommentsToHTML
+  const observer = useRef()
+  const lastUserComment = useCallback(lastCommentNode => {
+
+    // Re-hookup observer to last post, to include fetch data callback
+    if (observer.current) observer.current.disconnect()
+    observer.current = new IntersectionObserver(entries => {
+      const lastComment = entries[0]
+      if (lastComment.isIntersecting) fetchComments(20)
+    })
+    if (lastCommentNode) observer.current.observe(lastCommentNode)
+  })
+
   const fetchComments = async () => {
     let response = await fetchAvatars('person')
     response = response.data.hits
@@ -25,9 +40,9 @@ const CommentSection = () => {
   }
 
   const mapCommentsToHTML = (response) => {
-    const commentsAsHTML = response.map(comment => {
+    const commentsAsHTML = response.map((comment, index) => {
       return (
-        <div key={comment.id}>
+        <div key={uuid()} ref={response.length === index + 1 ? lastUserComment : null}>
           <a href={`/channel/${comment.id}`}>
             <img className={`${p}-comment-avatar`} src={comment.webformatURL}/>
           </a>
@@ -56,7 +71,7 @@ const CommentSection = () => {
         </div>
       )
     })
-    setGeneratedComments(prevState => ({...prevState, comments: commentsAsHTML}))
+    setGeneratedComments(prevState => ([...prevState, commentsAsHTML]))
   }
 
   const userClicksAddCommentField = () => {
@@ -197,7 +212,7 @@ const CommentSection = () => {
             ))
             : null
           }
-        {generatedComments.comments}
+        {generatedComments}
     </div>
   )
 }
