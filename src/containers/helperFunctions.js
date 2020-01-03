@@ -47,5 +47,9 @@ export const fabricateTimeStamp = (index) => {
   return null
 }
 
+export const randomNumber = (num) => {
+  return Math.floor(Math.random() * num + 1)
+}
+
 
 

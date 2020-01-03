@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { fetchAvatars } from '../../containers/api'
-import { uuid } from '../../containers/helperFunctions'
+import { uuid, randomNumber } from '../../containers/helperFunctions'
 import quote from 'inspirational-quotes'
 
 import { 
@@ -61,12 +61,12 @@ const CommentSection = () => {
               </span>
             </div>
             <p className="replyText">REPLY</p>
-            <div className="viewReplies">
-              <span className="arrowDrop">
-                {arrowDrop()}
-              </span>
-              View {Math.floor(Math.random() * 100)} Replies
-            </div>
+            {randomNumber(8) === 8 ? 
+                <div className="viewReplies"> 
+                  <span className="arrowDrop"> {arrowDrop()} </span>
+                  {'View ' + (Math.floor(Math.random() * 10) + 2) + ' Replies' }
+                </div>
+              : null}
           </div>
         </div>
       )
