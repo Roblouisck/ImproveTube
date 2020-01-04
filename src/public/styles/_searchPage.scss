@@ -34,7 +34,15 @@
     margin-bottom: 2rem;
   }
   &-under-video-content {
-    margin-left: 1rem
+    margin-left: 1rem;
+    position: relative;
+  }
+  &-pixabay-src {
+    position: absolute;
+    right: 0.5rem;
+    top: -34.7rem;
+    font-size: 1.2rem;
+    color: #a2a7dc;
   }
   &-avatar-wrapper {
     width: 7rem;

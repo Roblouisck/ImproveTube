@@ -30,7 +30,7 @@ const RenderChannelPage = () => {
     } else {
       const response = await fetchPictureFromID(dataFromURL)
       if (!response) setState({error: true})
-      else setState({userAvatar: response.data.hits[0].webformatURL, userName: capitalizeFirstLetter(response.data.hits[0].user), ready: true})
+      else setState({userAvatar: response.data.hits[0], userName: capitalizeFirstLetter(response.data.hits[0].user), ready: true})
     }
   }
 
@@ -47,7 +47,7 @@ const RenderChannelPage = () => {
           <div className="channel--wrapper">
             <ActivityFeed 
               page={'channel'} 
-              userAvatar={state.userAvatar}
+              userAvatar={state.userAvatar.webformatURL}
               userName={state.userName} />
             <VideoGrid 
               titleOne={'videos'} 

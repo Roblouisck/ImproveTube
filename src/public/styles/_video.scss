@@ -67,6 +67,15 @@
     }
   }
 
+  &-pixabay-src {
+    color: #a2a7dc;
+    font-size: 1.6rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 2;
+  }
+
   &-video {
     width: 100%;
 

@@ -50,7 +50,7 @@ const AboveFold = ({ userName, userAvatar }) => {
 
     const windowSize940 = (mediaQuery940) => {
       const followButton = document.querySelector('.channel--grid-nav-follow')
-      const channelAvatar = document.querySelector('.channel--aboveFold-avatar')
+      const channelAvatar = document.querySelector('.channel--aboveFold-user-avatar-wrapper')
       const gridNavSubscriptionText = document.querySelector('.channel--grid-nav-subscriptions')
     
       if (mediaQuery940.matches) { 
@@ -63,7 +63,7 @@ const AboveFold = ({ userName, userAvatar }) => {
     const windowSize580 = (mediaQuery580, mediaQueryBetween) => {
       const followButton = document.querySelector('.channel--grid-nav-follow')
       const avatarFollowerText = document.querySelector('.channel--aboveFold-follower-text')
-      const channelAvatar = document.querySelector('.channel--aboveFold-avatar')
+      const channelAvatar = document.querySelector('.channel--aboveFold-user-avatar-wrapper')
       const gridNavSubscriptionText = document.querySelector('.channel--grid-nav-subscriptions')
     
       if (mediaQuery580.matches) { 
@@ -91,7 +91,10 @@ const AboveFold = ({ userName, userAvatar }) => {
           <span className={`${p}-name-text`}>{userName}</span>
           <span className={`${p}-follower-text`}>149K Followers</span>
         </div>
-        <img className={`${p}-avatar`} src={userAvatar} />
+        <div className={`${p}-user-avatar-wrapper posRelative`}>
+          <a className={`${p}-pixabay-src`} href={userAvatar.pageURL}>?</a>
+          <img className={`${p}-avatar`} src={userAvatar.webformatURL} />
+        </div>
       </div>
       <div className={`${p}-description-box`}>
         <h2>{bio.fullBio ? 'Description' : null}</h2>

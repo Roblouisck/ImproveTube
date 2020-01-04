@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { fetchAvatars, fetchVideos } from '../../containers/api'
+import { pixabayLogo } from '../svgs'
 import { 
   abbreviateNumber, 
   capitalizeFirstLetter,
@@ -28,8 +29,8 @@ const SearchPage = () => {
   const getVideos = async (query) => {
     let response = await fetchVideos(...Array(3), query)
     response = response.data.hits
+    console.log(response)
     setVideos(response)
-    // getAvatars()
   }
 
   const getAvatars = async (query) => {
@@ -61,6 +62,7 @@ const SearchPage = () => {
                   </a>
                 </div>
                 <div className={`${p}-under-video-content`}>
+                <a className={`${p}-pixabay-src`} href={vid.pageURL}>?</a>
                   <div className={`${p}-avatar-wrapper`}>
                     <a href={`/channel/${avatars[index].id}`}> 
                       <img className={`${p}-grid-avatar`} src={avatars[index].webformatURL}/> 

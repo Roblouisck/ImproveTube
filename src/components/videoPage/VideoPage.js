@@ -40,7 +40,8 @@ const VideoPage = () => {
     let responseAsHtml = response.map(vid => {
       return {
         video: 
-        <div className={`${p}-video-wrapper`} key={vid.id}>
+        <div className={`${p}-video-wrapper posRelative`} key={vid.id}>
+          <a className={`${p}-pixabay-src`} href={vid.pageURL}>?</a>
           <video 
             poster="https://i.imgur.com/Us5ckqm.jpg" 
             className={`${p}-video clickable`} 
