@@ -48,7 +48,10 @@ const Header = () => {
     const userInputIsBlank = userQuery.trim().length < 1
 
     if (userInputIsBlank) return null
-    else history.push(`/search/${userQuery}`)
+    else { 
+      history.push(`/search/${userQuery}`)
+      location.reload()
+    }
   }
 
   return (

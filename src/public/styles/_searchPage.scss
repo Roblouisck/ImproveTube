@@ -1,0 +1,53 @@
+.searchPage {
+  &-body {
+    background-color: $page-background-grey;
+    padding-top: 5rem
+  }
+
+  &-activity-feed-container {
+    width: 96vw;
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 0 2rem 3rem 2rem;
+    background-color: #F8F8F8;
+    border: 1px solid #DEDEDE;
+  }
+  &-activity-feed-title {
+    display: flex;
+    justify-content: center;
+    margin: 2.9rem 0 2.7rem 0;
+    color: #5E5E5E;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.02rem;
+  }
+  &-activity-feed-hr {
+    position: relative;
+    bottom: 0.4rem;
+    width: 90%;
+    background-color: #D9D9D9;
+    border: 0;
+    height: 0.1rem;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+  }
+  &-under-video-content {
+    margin-left: 1rem
+  }
+  &-avatar-wrapper {
+    width: 7rem;
+    height: 5rem;
+    border-radius: 99rem;
+    cursor: pointer;
+    float: left;
+    margin: -1rem -1.5rem 6rem 0;
+  }
+  &-grid-avatar {
+    width: auto;
+    height: 6rem;
+    max-width: 4rem;
+    clip-path: circle();
+  }
+}
