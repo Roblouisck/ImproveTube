@@ -117,13 +117,13 @@ li:hover {
 }
 
 .searchBar {
-  display: flex;
+  margin-right: 6rem
 }
 
 .magnifyIcon {
   fill: #979797;
   position: relative;
-  top: 0.6rem;
+  top: 0.4rem;
 }
 
 .avatarPlaceholder {
@@ -198,6 +198,7 @@ li:hover {
 @media screen and (max-width: 850px) {
   .searchBar {
     margin-left: 1rem;
+    margin-right: unset;
   }
 }
 
