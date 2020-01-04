@@ -78,7 +78,7 @@ const Header = () => {
       </nav>
 
       <div className="searchBar">
-        <form onSubmit={(event) => onFormSubmit(event)}>
+        <form className="searchForm" onSubmit={(event) => onFormSubmit(event)}>
           <input 
             className="searchBox"
             name="input"
