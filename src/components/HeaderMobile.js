@@ -11,7 +11,7 @@ class HeaderMobile extends React.Component {
   }
 
   componentDidMount() {
-    const magnifyingGlass = document.querySelector('.header--mobile-magnifying-glass-icon-background')
+    const searchButton = document.querySelector('.header--mobile-magnifying-glass-icon-background')
     const logo = document.querySelector('.header--mobile-logo')
     const videoCamera = document.querySelector('.header--mobile-video-camera-icon')
     const avatar = document.querySelector('.header--mobile-avatar')
@@ -19,9 +19,9 @@ class HeaderMobile extends React.Component {
     const backArrow = document.querySelector('.header--mobile-arrow-left-icon')
     const headerMobile = document.querySelector('.header--mobile')
 
-    toggleClass('hide', magnifyingGlass, logo, videoCamera, avatar, magnifyingGlass, backArrow, searchbar)
-    toggleClass('hide', backArrow, logo, videoCamera, avatar, backArrow, searchbar, magnifyingGlass)
-    toggleClass('flex-center', magnifyingGlass, headerMobile)
+    toggleClass('hide', searchButton, logo, videoCamera, avatar, searchButton, backArrow, searchbar)
+    toggleClass('hide', backArrow, logo, videoCamera, avatar, backArrow, searchbar, searchButton)
+    toggleClass('flex-center', searchButton, headerMobile)
     toggleClass('flex-center', backArrow, headerMobile)
   }
 
@@ -39,7 +39,7 @@ class HeaderMobile extends React.Component {
                 type="search"
                 placeholder="Search" />
             </div>
-            <div className={`${p}-magnifyingGlass`}>
+            <div className={`${p}-searchButton`}>
               <div className={`${p}-magnifyBackground`}>
                 <svg className={`${p}-magnifyIcon`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z"/></svg>
               </div>

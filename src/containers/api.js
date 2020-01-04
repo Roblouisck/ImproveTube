@@ -13,11 +13,12 @@ export const fetchAvatars = (query, amount) => {
   })
 }
 
-export const fetchVideos = (amount, category, order) => {
+export const fetchVideos = (amount, category, order, query) => {
   console.log('ran')
   return axios.get('https://pixabay.com/api/videos/', {
     params: {
       key: process.env.PIXABAY_API,
+      q: query,
       per_page: amount,
       category: category,
       // editors_choice: true,
