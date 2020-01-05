@@ -115,7 +115,6 @@ const AboveFold = ({ userName, userAvatar }) => {
         <span className={`${p}-subscribers-box-bottom-text`}>...and 8,912 more</span>
       </div>
     </div>
-
   )
 }
 

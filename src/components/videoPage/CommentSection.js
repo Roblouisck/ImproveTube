@@ -196,7 +196,7 @@ const CommentSection = () => {
                 </div>
               </div>
                 <div className="videoPage-comment-container">
-                  <h5 className="commentorName">Guest</h5>
+                  <h5 className="commentorName">Robert Louis</h5>
                   <div className="dateOfComment">Just Now</div>
                   <p className="comment">{item}</p>
                   <div className="thumbs">
