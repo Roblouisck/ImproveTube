@@ -13,6 +13,7 @@ const FooterMobile = () => {
       document.querySelector('.activityFeedContainer').classList.toggle('show')
       document.querySelector('.channel--mobile-footer-button-activityFeed').classList.toggle('button-background-red')
     }
+
     if (history.location.pathname.includes('/channel/')) {
       document.querySelector('.channel--grid-background').classList.toggle('hide')
       document.querySelector('.activityFeedContainer').classList.toggle('show')
@@ -26,23 +27,23 @@ const FooterMobile = () => {
       <footer className={`${p}-footer`}>
         <div className={`${p}-footer-button-home`}>
           <a href="/">{home()}
-            <p className={`${p}-footer-text`}>Home</p>
+            <p className={`${p}-footer-text no-select`}>Home</p>
           </a>
         </div>
 
         <div className={`${p}-footer-button-activityFeed`} onClick={() => handleActivityFeedButton()}>
           {activityFeed()}
-          <p className={`${p}-footer-text`}>Activity Feed</p>
+          <p className={`${p}-footer-text no-select`}>Activity Feed</p>
         </div>
 
         <div className={`${p}-footer-button-following`}>
           {following()}
-          <p className={`${p}-footer-text`}>Following</p>
+          <p className={`${p}-footer-text no-select`}>Following</p>
         </div>
 
         <div className={`${p}-footer-button-subscriptions`}>
           {subscriptions()}
-          <p className={`${p}-footer-text`}>Subscriptions</p>
+          <p className={`${p}-footer-text no-select`}>Subscriptions</p>
         </div>
 
       </footer>
