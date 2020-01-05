@@ -696,6 +696,11 @@ video {
     width: 100%;
   }
 
+  .home--activity-feed-title {
+    font-size: 2.4rem;
+    margin: 3.1rem 0 2.9rem 0;
+  }
+
   .home--aboveFold {
     &-name-text {
       margin-bottom: unset;
@@ -957,11 +962,11 @@ video {
   }
 
   .home--grid-avatar-wrapper {
-    margin-top: 1.6rem;
-    margin-bottom: 5rem;
+    margin-top: 0.2rem;
+    margin-bottom: 4rem;
   }
   .home--grid-title {
-    margin-top: 2.5rem
+    margin-top: 1.2rem
   }
 }
 
