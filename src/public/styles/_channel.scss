@@ -116,7 +116,7 @@
   }
 
   &-title {
-    margin-top: 1.4rem;
+    margin: .5rem 0 .3rem 0;
     font-size: 1.6rem;
     font-weight: bold;
     color: #474747;
@@ -365,15 +365,9 @@
   }
 }
 
-@media screen and (max-width: 1671px) {
-  .channel--grid-video {
-    height: 11vw;
-  }
-}
-
-@media screen and (max-width: 1267px) {
-  .channel--grid-video {
-    height: 16vw;
+@media screen and (max-width: 1699px) {
+  .channel--grid-title {
+    margin-top: .5rem;
   }
 }
 
@@ -531,6 +525,7 @@
 
     &-views {
       display: inline-block;
+      margin-left: 2rem;
     }
 
     &-author {
