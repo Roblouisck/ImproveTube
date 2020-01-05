@@ -82,7 +82,7 @@
     &-info-wrapper {
       display: flex;
       justify-content: space-between;
-      margin-top: 1.5rem;
+      margin-top: 1.2rem;
     }
 
     &-title-box {
@@ -177,7 +177,7 @@
   }
 
   &-description-box {
-    margin-top: 3.7rem;
+    margin-top: 4.5rem;
     padding: 3rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -185,6 +185,10 @@
     grid-gap: 0 2rem;
     outline: 1px solid #D9D9D9;
     height: min-content;
+  }
+
+  &-avatar-title-followers-wrapper {
+    display: flex;
   }
 
   &-description-column-1-avatar {
@@ -231,7 +235,7 @@
 
   &-new-subscribers {
     &-text {
-      margin: 3.3rem 0rem 0.6rem 0rem;
+      margin: 4.5rem 0rem 0.6rem 0rem;
       font-size: 18px;
       font-weight: normal;
       line-height: 23px;
@@ -239,7 +243,7 @@
     }
 
     &-grid {
-      margin-bottom: 7rem;
+      margin-bottom: 5rem;
     }
 
     &-subscriber-img {
@@ -530,7 +534,6 @@
 
     &-new-subscribers-wrapper {
       margin: 0 auto;
-      width: 45rem;
       text-align: center;
     }
 
@@ -556,7 +559,7 @@
     }
 
     &-video-options {
-      margin: 5rem 0 0 0;
+      margin: 4.5rem 0 0 0;
       display: flex;
       justify-content: space-around;
     }
@@ -567,23 +570,23 @@
 
     &-video-options-thumbsUp svg,
     &-video-options-thumbsDown svg {
-      width: 3rem;
+      width: 2.7rem;
     }
 
     &-video-options-thumbsUp-text {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #3b3b3b;
     }
 
     &-video-options-thumbsDown-text {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #3b3b3b;
     }
 
     &-video-options-share,
     &-video-options-save,
     &-video-options-ellipses {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #3b3b3b;
       margin-top: 1rem;
     }
@@ -601,6 +604,42 @@
     }
   }
 }
+
+@media screen and (max-width: 580px) {
+  .videoPage { 
+    &-avatar-and-buttons-container,
+    &-description-buttons-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+    &-new-subscribers-text {
+      margin: 3.5rem 0 1.5rem 0;
+      display: inline-block;
+      max-width: 29rem;
+    }
+    &-add-comment-avatar {
+      position: unset;
+    }
+    &-add-comment {
+      margin-left: 3rem;
+    }
+    &-description-box {
+      display: inline-block;
+      margin-top: 3rem;
+    }
+    &-avatar-title-followers-wrapper,
+    &-description-buttons-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+    &-description-avatar-text-wrapper {
+      margin-right: 4rem;
+    }
+  }
+}
+
+
+
 
 //Animations
 @keyframes scaleToOne {

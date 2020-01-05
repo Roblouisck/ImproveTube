@@ -7,11 +7,11 @@ const DescriptionBox = ({ props }) => {
   return (
     <div className={`${p}-description-box`}>  
       <div className={`${p}-description-column-1-avatar-wrapper`}>
-        <div className="flex">
+        <div className={`${p}-avatar-title-followers-wrapper`}>
           <a href={ props.picAuthorID ? `/channel/${props.picAuthorID}` : `/channel/000${props.vidAuthorID}`}>
             <img className={`${p}-description-column-1-avatar`} src={props.authorAvatar} />
           </a>
-          <div>
+          <div className={`${p}-description-avatar-text-wrapper`}>
             <a href={ props.picAuthorID ? `/channel/${props.picAuthorID}` : `/channel/000${props.vidAuthorID}`}>
               <div className={`${p}-description-column-1-author`}>
                 { props.loading === "yes" ? "loading" : props.author }
