@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
-import quote from 'inspirational-quotes'
 import { uuid, fabricateTimeStamp } from '../containers/helperFunctions'
+import quote from 'inspirational-quotes'
+import history from '../history'
 
 import { 
   thumbsUp, 
@@ -14,6 +15,13 @@ import {
 const ActivityFeed = (props) => {
   const [firstRenderDone, setFirstRenderDone] = useState()
   const [apiData, storeApiData] = useState([])
+
+  useEffect(() => {
+    fetchAvatars()
+    if (history.location.pathname.includes('/video/')) {
+      document.querySelector('.activityFeedContainer').classList.toggle('hide')
+    }
+  }, [props])
 
   // INFINITE SCROLL
   // Callback is triggered when ref is set in mapVideosToHTML
@@ -34,10 +42,6 @@ const ActivityFeed = (props) => {
     response = response.data.hits
     storeApiData(prevState => ([...prevState, ...response]))
   }
-
-  useEffect(() => {
-    fetchAvatars()
-  }, [props])
 
   return (
     <aside className="activityFeedContainer">

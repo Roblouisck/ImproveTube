@@ -19,6 +19,14 @@ const FooterMobile = () => {
       document.querySelector('.activityFeedContainer').classList.toggle('show')
       document.querySelector('.channel--mobile-footer-button-activityFeed').classList.toggle('button-background-red')
     }
+
+    if (history.location.pathname.includes('/video/')) {
+      document.querySelector('aside').classList.toggle('hide')
+      document.querySelector('main').classList.toggle('hide')
+      document.querySelector('.activityFeedContainer').classList.toggle('show')
+      document.querySelector('.home--activity-feed-title').classList.toggle('margin-top')
+      document.querySelector('.channel--mobile-footer-button-activityFeed').classList.toggle('button-background-red')
+    }
   }
 
   const [p, setResource] = useState('channel--mobile')

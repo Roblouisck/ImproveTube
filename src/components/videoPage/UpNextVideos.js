@@ -15,12 +15,10 @@ const UpNextVideos = () => {
   // Callback is triggered when ref is set in fetchUpNextVideos
   const observer = useRef()
   const lastUpNextVideo = useCallback(lastVideoNode => {
-      console.log('1')
 
     // Re-hookup observer to last post, to include fetch data callback
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
-      console.log('2')
       const lastVideo = entries[0]
       if (lastVideo.isIntersecting) fetchUpNextVideos(20)
     })
