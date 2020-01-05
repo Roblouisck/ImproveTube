@@ -32,7 +32,6 @@ const ActivityFeed = (props) => {
   const fetchAvatars = async () => {
     let response = await callAvatarsAPI('person')
     response = response.data.hits
-    console.log(response)
     storeApiData(prevState => ([...prevState, ...response]))
   }
 

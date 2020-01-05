@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import history from '../history'
 import { 
   home, 
   activityFeed, 
@@ -7,9 +8,16 @@ import {
 
 const FooterMobile = () => {
   const handleActivityFeedButton = () => {
-    document.querySelector('.home--grid-background').classList.toggle('hide')
-    document.querySelector('.activityFeedContainer').classList.toggle('show')
-    document.querySelector('.channel--mobile-footer-button-activityFeed').classList.toggle('button-background-red')
+    if (history.location.pathname === '/') {
+      document.querySelector('.home--grid-background').classList.toggle('hide')
+      document.querySelector('.activityFeedContainer').classList.toggle('show')
+      document.querySelector('.channel--mobile-footer-button-activityFeed').classList.toggle('button-background-red')
+    }
+    if (history.location.pathname.includes('/channel/')) {
+      document.querySelector('.channel--grid-background').classList.toggle('hide')
+      document.querySelector('.activityFeedContainer').classList.toggle('show')
+      document.querySelector('.channel--mobile-footer-button-activityFeed').classList.toggle('button-background-red')
+    }
   }
 
   const [p, setResource] = useState('channel--mobile')

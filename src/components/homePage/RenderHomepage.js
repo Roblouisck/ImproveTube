@@ -21,7 +21,6 @@ class RenderHomepage extends React.Component {
             page={'home'} />
           <FooterMobile />
         </div>
-
       </div>
     )
   }

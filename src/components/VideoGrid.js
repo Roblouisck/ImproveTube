@@ -99,8 +99,6 @@ const VideoGrid = (props) => {
     const followingButton = document.querySelector('.home--grid-nav-following')
     const recommendedButton = document.querySelector('.home--grid-nav-recommended')
     const subscriptionsButton = document.querySelector('.home--grid-nav-subscriptions')
-    const yes = 'highlightedText'
-    const no = 'unhighlightedText'
 
     const highlighted = (booleanOne, booleanTwo, booleanThree) => {
       followingButton.classList.remove('unhighlightedText')
@@ -111,6 +109,8 @@ const VideoGrid = (props) => {
       recommendedButton.classList.add(booleanTwo)
       subscriptionsButton.classList.add(booleanThree)
     }
+    const yes = 'highlightedText'
+    const no = 'unhighlightedText'
 
     switch (buttonID) {
       case 'followButton':
