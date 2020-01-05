@@ -207,6 +207,7 @@
   margin-bottom: 1.4rem;
   display: inline-block;
   min-width: 4rem;
+  max-width: 7.6rem;
   position: absolute;
   top: 2.3rem;
   object-fit: cover;
@@ -259,6 +260,7 @@
 .comment {
   color: $comment-black;
   margin: 0.3rem 3vw 0.9rem 0rem;
+  max-width: 55rem;
 }
 
 hr {
@@ -969,5 +971,18 @@ video {
     &-footer {
       display: none;
     }
+  }
+}
+
+@media screen and (min-width: 2300px) {
+  .avatarPlaceholder--img {
+    width: 4vw;
+    height: 3vw;
+    min-width: 4rem;
+    max-width: 6rem;
+    top: 5.3rem;
+  }
+  .commentContainer {
+    margin-left: 13rem
   }
 }
