@@ -22,12 +22,18 @@ const RenderChannelPage = () => {
     const dataFromURL = urlAsArray[4]
 
     // 000 indicates user came from video page, so fetch their avatar from the video api. 
+    if (dataFromURL.includes('robertlouis')) {
+      setState({userAvatar: {webformatURL: 'https://i.imgur.com/PAkBGtO.jpg'}, userName: 'Robert Louis', ready: true})
+      return null
+    }
+
     if (dataFromURL.includes('000')) {
       const response = await fetchVideoFromID(dataFromURL)
       if (!response) setState({error: true})
       else setState({userAvatar: response.data.hits[0].userImageURL, userName: response.data.hits[0].user, ready: true})
+    } 
 
-    } else {
+    else {
       const response = await fetchPictureFromID(dataFromURL)
       if (!response) setState({error: true})
       else setState({userAvatar: response.data.hits[0], userName: capitalizeFirstLetter(response.data.hits[0].user), ready: true})

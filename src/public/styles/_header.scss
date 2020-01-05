@@ -126,18 +126,21 @@ li:hover {
   top: 0.4rem;
 }
 
-.avatarPlaceholder {
+.headerAvatar {
+  clip-path: circle();
+  width: 4rem;
+  height: 4rem;
+  min-width: 4rem;
+  position: absolute;
   background-color: purple;
-  width: 3rem;
-  min-width: 3rem;
-  height: 3rem;
-  border-radius: 99rem;
   cursor: pointer;
+  right: 2rem;
+  top: 1.8rem;
 }
 
 // USER MENU
 .header > .avatarPlaceholder {
-  z-index: 4
+  z-index: 0
 }
 .userMenu {
   margin-top: 0;

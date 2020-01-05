@@ -159,7 +159,7 @@ const CommentSection = () => {
       <span className={`${p}-sort-comments`}>Sort by</span>
 
       <div className={`${p}-add-comment-wrapper flex`}>
-        <div className={`${p}-add-comment-avatar`}></div>
+          <img className={`${p}-add-comment-avatar`} src="https://i.imgur.com/F4odDIJ.jpg"/>
         <input 
           id="addComment"
           className={`${p}-add-comment`} 
@@ -185,7 +185,8 @@ const CommentSection = () => {
         { userComments 
           ? userComments.map((item, i) => (
             <div className="videoPage-user-comment-box" key={i}>
-              <div id="mostRecentComment" className="videoPage-comment-avatar"></div>
+              <div id="mostRecentComment"></div>
+                <img className="videoPage-comment-avatar" src="https://i.imgur.com/F4odDIJ.jpg"/>
               <div className="videoPage-edit-comment">
                 <span className="videoPage-edit-comment-ellipses" onClick={event => toggleDeleteButton(event)}>
                   {ellipsesVertical(14)}

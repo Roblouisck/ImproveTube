@@ -68,13 +68,13 @@ const Header = () => {
         <ul>
           <hr/>
           <li><a href="/">Home</a></li>
-          <li><a href="/channel">Channel</a></li>
+          <li><a href="/channel/robertlouis">Channel</a></li>
           <li><a href="#">History</a></li>
           <li><a href="#">Liked videos</a></li>
           <li><a href="#">Favorites</a></li>
           <hr/>
           <li><a href="#">Settings</a></li>
-          <li><a href="#">About Author</a></li>
+          <li><a href="/channel/robertlouis">About Author</a></li>
         </ul>
       </nav>
 
@@ -97,11 +97,12 @@ const Header = () => {
       </div>
 
       <div className="avatarPlaceholder">
+        <img className="headerAvatar" src="https://i.imgur.com/F4odDIJ.jpg"/>
       </div>
       <menu className="userMenu">
         <ul>
-          <li><a href="#">Your channel</a></li>
-          <li><a href="#">Sign in</a></li>
+          <li><a href="/channel/robertlouis">Your Channel</a></li>
+          <li><a href="#">Sign Out</a></li>
         </ul>
       </menu>
     </header>
