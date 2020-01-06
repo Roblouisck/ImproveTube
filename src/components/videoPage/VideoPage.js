@@ -123,9 +123,7 @@ const VideoPage = () => {
 
             <div className={`${p}-new-subscribers-wrapper`}>
               <h2 className={`${p}-new-subscribers-text`}>{`New Subscribers to ${state.author}`}</h2>
-              <div className={`${p}-new-subscribers-grid`}>
-                <NewSubscribers />
-              </div>
+              <NewSubscribers />
             </div>
             <div className={`${p}-comment-section`}>
               <CommentSection />

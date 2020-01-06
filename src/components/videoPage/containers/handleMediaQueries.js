@@ -4,7 +4,7 @@ const windowSize1000 = (mediaQuery) => {
   const main = document.querySelector('.videoPage-main')
 
   if (mediaQuery.matches) { 
-    commentSection.parentNode.insertBefore(sidebar, commentSection.nextSibling)
+    commentSection.parentNode.insertBefore(sidebar, commentSection)
   } else {
     main.parentNode.insertBefore(sidebar, main.nextSibling)
   }

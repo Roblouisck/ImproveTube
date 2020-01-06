@@ -20,7 +20,13 @@ const UpNextVideos = () => {
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const lastVideo = entries[0]
-      if (lastVideo.isIntersecting) fetchUpNextVideos(20)
+        if (lastVideo.isIntersecting && window.innerWidth <= 1000) {
+          document.querySelector('.videoPage-show-more-button').classList.add('show')
+        }
+        else if (lastVideo.isIntersecting && window.innerWidth > 1000) {
+          document.querySelector('.videoPage-show-more-button').classList.remove('show')
+          fetchUpNextVideos(20)
+      }
     })
     if (lastVideoNode) observer.current.observe(lastVideoNode)
   })
@@ -65,6 +71,11 @@ const UpNextVideos = () => {
       <div className={`${p}-sidebar-grid-wrapper`}>
         {nextVideos}
       </div> 
+      <button 
+        className={`${p}-show-more-button`} 
+        onMouseDown={() => fetchUpNextVideos(20)}>
+        Show More
+      </button>
     </div>
   )
 }

@@ -27,7 +27,7 @@ import { fetchAvatars } from '../../containers/api'
     }
 
   return (
-    <div>
+    <div className={`${p}-new-subscribers-grid`}>
       {state.newSubscribers}
     </div>
   )

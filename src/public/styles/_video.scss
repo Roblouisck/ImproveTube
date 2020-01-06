@@ -23,10 +23,6 @@
       justify-content: space-between;
     }
 
-    &-text-upnext {}
-
-    &-text-autoplay {}
-
     &-grid-wrapper {
       margin: 1.5rem 0 0 0;
       display: grid;
@@ -65,6 +61,16 @@
       font-size: 1.3rem;
       letter-spacing: 0.02rem;
     }
+  }
+
+  &-show-more-button {
+    outline: 1px solid $comment-reply-blue;
+    width: 100%;
+    height: 3.5rem;
+    margin-top: 2rem;
+    color: $comment-reply-blue;
+    background: $page-background-white;
+    display: none;
   }
 
   &-pixabay-src {
@@ -469,11 +475,14 @@
     }
 
     &-sidebar {
-      margin: 7rem 0 0 4rem;
+      margin: 4.5rem 0 0 .5rem;
     }
 
     &-sidebar-text-autoplay {
       margin-right: 4rem;
+    }
+    &-comment-section {
+      margin-top: 5rem;
     }
   }
 }
@@ -602,6 +611,35 @@
     &-sidebar {
       margin: 7rem 0 0 0.5rem;
     }
+    &-new-subscribers-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &-description-avatar-text-wrapper {
+      margin-right: 4rem;
+    }
+    &-new-subscribers-text {
+      margin: 1.6rem 0 1.5rem 0;
+      display: inline-block;
+      max-width: 29rem;
+    }
+    &-new-subscribers-subscriber-img-anchor:nth-child(-n+21) {
+      margin: unset;
+      margin-top: -.4rem;
+    }
+    &-new-subscribers-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-gap: 1.3vw;
+    }
+    &-new-subscribers-subscriber-img {
+      width: 11vw;
+      height: 11vw;
+    }
+    &-description-column-1-avatar {
+      margin: 0 2rem 2rem 4.5rem
+    }
   }
 }
 
@@ -612,11 +650,11 @@
       display: flex;
       justify-content: center;
     }
+
     &-new-subscribers-text {
-      margin: 3.5rem 0 1.5rem 0;
-      display: inline-block;
-      max-width: 29rem;
+      margin-top: 3.5rem
     }
+
     &-add-comment-avatar {
       position: unset;
     }
@@ -632,14 +670,11 @@
       display: flex;
       justify-content: center;
     }
-    &-description-avatar-text-wrapper {
-      margin-right: 4rem;
+    &-description-column-1-avatar {
+      margin: 0 2rem 2rem 2rem
     }
   }
 }
-
-
-
 
 //Animations
 @keyframes scaleToOne {
