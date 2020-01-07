@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-// import history from '../history'
 
 export const fetchAvatars = (query, amount) => {
   return axios.get('https://pixabay.com/api/', {
@@ -13,15 +12,14 @@ export const fetchAvatars = (query, amount) => {
   })
 }
 
-export const fetchVideos = (amount, category, order, query) => {
+export const fetchVideos = (amount, category, editorsChoice, query) => {
   return axios.get('https://pixabay.com/api/videos/', {
     params: {
       key: process.env.PIXABAY_API,
       q: query,
       per_page: amount,
       category: category,
-      // editors_choice: true,
-      order: order,
+      editors_choice: editorsChoice,
       min_height: 1080,
       orientation: 'horizontal'
     }

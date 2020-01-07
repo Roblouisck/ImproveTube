@@ -11,16 +11,12 @@ class RenderHomepage extends React.Component {
       <div className="homepage-background">
         <Header />
         <HeaderMobile />
-        <div className="homepage-wrapper">
-          <ActivityFeed 
-            page={'home'} />
-          <VideoGrid
-            titleOne={'following'} 
-            titleTwo={'recommended'} 
-            titleThree={'subscriptions'} 
-            page={'home'} />
-          <FooterMobile />
-        </div>
+        <VideoGrid
+          titleOne={'following'} 
+          titleTwo={'recommended'} 
+          titleThree={'subscriptions'} 
+          page={'home'} />
+        <FooterMobile />
       </div>
     )
   }

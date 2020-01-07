@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import axios from 'axios'
 import history from '../history'
-import { nouns as noun } from '../nouns'
+import { nouns as noun } from '../words'
+import ActivityFeed from './ActivityFeed'
 
 import { 
   toggleClass, 
@@ -16,9 +17,12 @@ import { fetchAvatars as callAvatarsAPI, fetchVideos as callVideosAPI } from '..
 const VideoGrid = (props) => {
   const [videosAsHTML, setVideosAsHTML] = useState([])
   const [p, setPrefix] = useState(props.page)
+  const [button, setButton] = useState()
   
   useEffect(() => {
-    fetchVideos(50, ...Array(2), 'time')
+    p === 'home' 
+      ? fetchVideos(16, ...Array(2), 'buildings') 
+      : fetchVideos(16, ...Array(2), getRandom(noun))
   }, [])
 
   // INFINITE SCROLL
@@ -30,22 +34,21 @@ const VideoGrid = (props) => {
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const endVideo = entries[0]
-      if (endVideo.isIntersecting) fetchVideos(50, ...Array(2), getRandom(noun))
+      if (endVideo.isIntersecting) fetchVideos(16, ...Array(2), getRandom(noun))
     })
     if (lastVideoNode) observer.current.observe(lastVideoNode)
   })
 
-  const fetchVideos = async (amount, category, order, query) => {
-    let videos = await callVideosAPI(amount, category, order, query)
+  const fetchVideos = async (amount, category, editorsChoice, query, pressedNavButton) => {
+    let videos = await callVideosAPI(amount, category, editorsChoice, query)
     videos = videos.data.hits
-    console.log(videos)
 
-    let pictures = await callAvatarsAPI('man', 50)
+    let pictures = await callAvatarsAPI('man', 16)
     pictures = pictures.data.hits
-    mapVideosToHTML(videos, pictures)
+    mapVideosToHTML(videos, pictures, pressedNavButton)
   }
 
-  const mapVideosToHTML = (videos, pictures) => {
+  const mapVideosToHTML = (videos, pictures, pressedNavButton) => {
     const vidsAsHtml = videos.map((vid, index) => {
       const currentPic = index
       return (
@@ -94,7 +97,8 @@ const VideoGrid = (props) => {
         </div>
       )
   })
-  setVideosAsHTML(prevState => ([...prevState, ...vidsAsHtml]))
+  if (pressedNavButton) setVideosAsHTML(vidsAsHtml)
+  else setVideosAsHTML(prevState => ([...prevState, ...vidsAsHtml]))
   }
   
   const handleButtons = event => {
@@ -119,17 +123,20 @@ const VideoGrid = (props) => {
     switch (buttonID) {
       case 'followButton':
         highlighted(yes, no, no)
-        fetchVideos(50, 'buildings')
+        fetchVideos(16, 'buildings', true, undefined, true)
+        setButton('follow')
       break
 
       case 'recommendedButton':
         highlighted(no, yes, no)
-        fetchVideos(50, 'nature')
+        fetchVideos(16, 'nature', true, undefined, true)
+        setButton('recommended')
       break
 
       case 'subscriptionsButton':
         highlighted(no, no, yes)
-        fetchVideos(50, 'people')
+        fetchVideos(16, 'people', true, undefined, true)
+        setButton('subscriptions')
       break
 
       default:
@@ -137,37 +144,40 @@ const VideoGrid = (props) => {
     }
   }
     return (
-      <main className={`${p}--grid-background`}>
-        <nav className={`${p}--grid-nav`}>
-          <button 
-            id='followButton' 
-            className={`${p}--grid-nav-${props.titleOne}`} 
-            onClick={handleButtons}>{props.titleOne}
-          </button>
+      <div className={props.page === 'home' ? "homepage-wrapper" : null}>
+        { props.page==='home' ? <ActivityFeed page={'home'} button={button} /> : null}
+        <main className={`${p}--grid-background`}>
+          <nav className={`${p}--grid-nav`}>
+            <button 
+              id='followButton' 
+              className={`${p}--grid-nav-${props.titleOne}`} 
+              onClick={handleButtons}>{props.titleOne}
+            </button>
 
-          <button 
-            id='recommendedButton' 
-            className={`${p}--grid-nav-${props.titleTwo}`} 
-            onClick={handleButtons}>{props.titleTwo}
-          </button>
+            <button 
+              id='recommendedButton' 
+              className={`${p}--grid-nav-${props.titleTwo}`} 
+              onClick={handleButtons}>{props.titleTwo}
+            </button>
 
-          <button 
-            id='subscriptionsButton' 
-            className={`${p}--grid-nav-${props.titleThree}`} 
-            onClick={handleButtons}>{props.titleThree}
-          </button>
+            <button 
+              id='subscriptionsButton' 
+              className={`${p}--grid-nav-${props.titleThree}`} 
+              onClick={handleButtons}>{props.titleThree}
+            </button>
 
-          <button className={`${p}--grid-nav-${props.titleFour}`}>{props.titleFour}</button>
-          <button className={`${p}--grid-nav-${props.titleFive}`}>{props.titleFive}</button>
-          <button className={`${p}--grid-nav-follow`}>FOLLOW</button>
-        </nav>
-        <hr className={`${p}--grid-hr-nav-grey`} />
-        <hr className={`${p}--grid-hr-nav-black`} />        
+            <button className={`${p}--grid-nav-${props.titleFour}`}>{props.titleFour}</button>
+            <button className={`${p}--grid-nav-${props.titleFive}`}>{props.titleFive}</button>
+            <button className={`${p}--grid-nav-follow`}>FOLLOW</button>
+          </nav>
+          <hr className={`${p}--grid-hr-nav-grey`} />
+          <hr className={`${p}--grid-hr-nav-black`} />        
 
-        <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
-          {videosAsHTML}
-        </div>
-      </main>
+          <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
+            {videosAsHTML}
+          </div>
+        </main>
+      </div>
     )
   }
 
