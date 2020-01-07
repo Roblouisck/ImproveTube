@@ -71,7 +71,7 @@ const VideoGrid = (props) => {
               p === 'home' 
                 ? <div className={`${p}--grid-avatar-wrapper`}>
                     <a href={`/channel/${pictures[currentPic].id}`}> 
-                      <img className={`${p}--grid-avatar`} src={pictures[currentPic].webformatURL}/> 
+                      <img className={`${p}--grid-avatar`} src={pictures[currentPic].previewURL}/> 
                     </a> 
                   </div>
                 : null

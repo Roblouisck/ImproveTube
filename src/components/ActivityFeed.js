@@ -15,6 +15,10 @@ const ActivityFeed = (props) => {
   const [comments, setComments] = useState([])
 
   useEffect(() => {
+    console.log(props)
+  })
+
+  useEffect(() => {
     fetchAvatars('woman')
     if (history.location.pathname.includes('/video/')) {
       document.querySelector('.activityFeedContainer').classList.toggle('hide')
@@ -52,9 +56,9 @@ const ActivityFeed = (props) => {
         <div className="commentWrapper" key={uuid()} ref={response.length === index + 1 ? lastActivityPost : null}>
           <div className="avatarPlaceholder--comments">
           {props.page === 'channel' 
-            ? <img className="avatarPlaceholder--img" src={props.userAvatar}/>
+            ? <img className="avatarPlaceholder--img" src={props.userAvatar.previewURL ? props.userAvatar.previewURL : props.userAvatar}/>
             : <a href={ `/channel/${pic.id}`}> 
-                <img className="avatarPlaceholder--img" src={pic.webformatURL}/>
+                <img className="avatarPlaceholder--img" src={pic.previewURL}/>
               </a>
           }
           </div>

@@ -19,7 +19,7 @@ import { fetchAvatars } from '../../containers/api'
       const newSubscribers = subscriberAvatars.map(avatar => {
         return (
           <a className={`${p}-new-subscribers-subscriber-img-anchor`} href={`/channel/${avatar.id}`} key={avatar.id}> 
-            <img className={`${p}-new-subscribers-subscriber-img`} src={avatar.webformatURL} />
+            <img className={`${p}-new-subscribers-subscriber-img`} src={avatar.previewURL} />
           </a>
         )
       })

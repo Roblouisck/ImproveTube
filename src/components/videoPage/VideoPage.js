@@ -102,7 +102,7 @@ const VideoPage = () => {
   const fetchAuthorAvatar = async (id) => {
     const response = await fetchPictureFromID(id)
     const authorName = response.data.hits[0].user
-    const authorAvatar = response.data.hits[0].webformatURL
+    const authorAvatar = response.data.hits[0].previewURL
     setState(prevState => ({
       ...prevState, 
       authorAvatar: authorAvatar, 

@@ -13,36 +13,10 @@ const AboveFold = ({ userName, userAvatar }) => {
   const [p, setPrefix] = useState('channel--aboveFold')
   const [subcriberAvatars, setSubscriberAvatars] = useState([])
   const [bio, setBio] = useState([])
-
-  const fetchSubscriberAvatars = async () => {
-    let subscriberAvatars = await fetchAvatars('woman', 84)
-    subscriberAvatars = subscriberAvatars.data.hits
-    mapSubscriberAvatarsToHtml(subscriberAvatars)
-  }
-
-  const mapSubscriberAvatarsToHtml = (subscriberAvatars) => {
-    const subAvatars = subscriberAvatars.map(avatar => {
-      return (
-        <a href={`/channel/${avatar.id}`} key={avatar.id}> 
-          <img className={`${p}-subscriber-avatar`} src={avatar.webformatURL} />
-        </a>
-      )
-    })
-    setSubscriberAvatars(subAvatars)
-  }
-
-  const handleBio = async () => {
-    let response = await getRandomName()
-    response = response.data.results[0]
-    const city = response.location.city
-    const country = response.location.country
-
-    setBio({
-      fullBio: 
-      `${getRandom(firstSentence)} ${getRandom(secondSentence)} I have lived in ${city}, ${country} for a total of ${getRandom(year)} years and learned quite a lot -not just about the country but myself as well. Not only do I want to inform others about life abroad but my main goal is to get you organized, stay mindful, and maintain a healthy and exciting lifestyle whether you plan on living in another country or not. This site is not only for adventure lovers but for inspiration seekers. All of what I have gained and endured will allow me to mold you into an adventurer yourself!`,
-      greeting: getRandom(greeting)
-    })
-  }
+  
+  useEffect(() => {
+    console.log(userAvatar)
+  })
 
   useEffect(() => { 
     handleBio()
@@ -84,6 +58,36 @@ const AboveFold = ({ userName, userAvatar }) => {
     windowSize580(mediaQuery580)
   }, [])
 
+  const fetchSubscriberAvatars = async () => {
+    let subscriberAvatars = await fetchAvatars('woman', 84)
+    subscriberAvatars = subscriberAvatars.data.hits
+    mapSubscriberAvatarsToHtml(subscriberAvatars)
+  }
+
+  const mapSubscriberAvatarsToHtml = (subscriberAvatars) => {
+    const subAvatars = subscriberAvatars.map(avatar => {
+      return (
+        <a href={`/channel/${avatar.id}`} key={avatar.id}> 
+          <img className={`${p}-subscriber-avatar`} src={avatar.webformatURL} />
+        </a>
+      )
+    })
+    setSubscriberAvatars(subAvatars)
+  }
+
+  const handleBio = async () => {
+    let response = await getRandomName()
+    response = response.data.results[0]
+    const city = response.location.city
+    const country = response.location.country
+
+    setBio({
+      fullBio: 
+      `${getRandom(firstSentence)} ${getRandom(secondSentence)} I have lived in ${city}, ${country} for a total of ${getRandom(year)} years and learned quite a lot -not just about the country but myself as well. Not only do I want to inform others about life abroad but my main goal is to get you organized, stay mindful, and maintain a healthy and exciting lifestyle whether you plan on living in another country or not. This site is not only for adventure lovers but for inspiration seekers. All of what I have gained and endured will allow me to mold you into an adventurer yourself!`,
+      greeting: getRandom(greeting)
+    })
+  }
+
   return (
     <div className={`${p}-wrapper`}>
       <div className={`${ p}-avatar-content-wrapper`}>
@@ -93,7 +97,7 @@ const AboveFold = ({ userName, userAvatar }) => {
         </div>
         <div className={`${p}-user-avatar-wrapper posRelative`}>
           <a className={`${p}-pixabay-src`} href={userAvatar.pageURL}>?</a>
-          <img className={`${p}-avatar`} src={userAvatar.webformatURL} />
+          <img className={`${p}-avatar`} src={userAvatar.webformatURL ? userAvatar.webformatURL : userAvatar} />
         </div>
       </div>
       <div className={`${p}-description-box`}>

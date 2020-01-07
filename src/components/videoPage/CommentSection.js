@@ -44,7 +44,7 @@ const CommentSection = () => {
       return (
         <div key={uuid()} ref={response.length === index + 1 ? lastUserComment : null}>
           <a href={`/channel/${comment.id}`}>
-            <img className={`${p}-comment-avatar`} src={comment.webformatURL}/>
+            <img className={`${p}-comment-avatar`} src={comment.previewURL}/>
           </a>
           <div className={`${p}-comment-container`}>
             <a href={`/channel/${comment.id}`}>
