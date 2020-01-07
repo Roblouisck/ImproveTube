@@ -364,8 +364,10 @@ hr {
   }
 }
 
-video {
+.home--video {
   width: 100%;
+  height: 16rem;
+  object-fit: cover;
 }
 
 .home--aboveFold {
@@ -586,6 +588,11 @@ video {
     font-size: 1.8rem;
   }
 
+  .home--video {
+    width: 100%;
+    height: 32vw;
+  }
+
   .home--grid {
     grid-template-columns: unset;
     grid-gap: 2.4rem 1rem;
@@ -739,6 +746,10 @@ video {
     }
   }
 
+  .home--video {
+    height: 57vw;
+  }
+
   .home--grid {
     &-avatar-placeholder {
       display: unset;
@@ -753,7 +764,7 @@ video {
     }
 
     &-avatar {
-      margin: -0.3rem 0 0rem 1.4rem;
+      margin: .2rem 0 0rem 1.4rem;
       width: 5rem;
     }
 
@@ -966,7 +977,7 @@ video {
     margin-bottom: 4rem;
   }
   .home--grid-title {
-    margin-top: 1.2rem
+    margin-top: 1.7rem
   }
 }
 

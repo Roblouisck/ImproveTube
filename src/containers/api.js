@@ -21,7 +21,9 @@ export const fetchVideos = (amount, category, order, query) => {
       per_page: amount,
       category: category,
       // editors_choice: true,
-      order: order
+      order: order,
+      min_height: 1080,
+      orientation: 'horizontal'
     }
   })
 }

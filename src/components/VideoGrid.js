@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import axios from 'axios'
 import history from '../history'
+import { nouns as noun } from '../nouns'
 
 import { 
   toggleClass, 
   abbreviateNumber, 
   capitalizeFirstLetter,
-  uuid
+  uuid,
+  getRandom
 } from '../containers/helperFunctions'
 
 import { fetchAvatars as callAvatarsAPI, fetchVideos as callVideosAPI } from '../containers/api'
@@ -16,7 +18,7 @@ const VideoGrid = (props) => {
   const [p, setPrefix] = useState(props.page)
   
   useEffect(() => {
-    fetchData(50, 'buildings')
+    fetchVideos(50, ...Array(2), 'time')
   }, [])
 
   // INFINITE SCROLL
@@ -24,18 +26,19 @@ const VideoGrid = (props) => {
   const observer = useRef()
   const lastVideo = useCallback(lastVideoNode => {
 
-    // Re-hookup observer to last video, to include fetchData callback
+    // Re-hookup observer to last video, to include fetchVideos callback
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const endVideo = entries[0]
-      if (endVideo.isIntersecting) fetchData(50)
+      if (endVideo.isIntersecting) fetchVideos(50, ...Array(2), getRandom(noun))
     })
     if (lastVideoNode) observer.current.observe(lastVideoNode)
   })
 
-  const fetchData = async (amount, category, order) => {
-    let videos = await callVideosAPI(amount, category, order)
-    videos = videos.data.hits    
+  const fetchVideos = async (amount, category, order, query) => {
+    let videos = await callVideosAPI(amount, category, order, query)
+    videos = videos.data.hits
+    console.log(videos)
 
     let pictures = await callAvatarsAPI('man', 50)
     pictures = pictures.data.hits
@@ -50,6 +53,7 @@ const VideoGrid = (props) => {
           <div className={`${p}--grid-video clickable`}>
             <a href={`/video/id/${vid.id}-${pictures[currentPic].id}`}>
               <video
+                className={`${p}--video`}
                 onMouseOver={event => event.target.play()}
                 onMouseOut={event => event.target.pause()}
                 src={`${vid.videos.tiny.url}#t=1`}
@@ -115,17 +119,17 @@ const VideoGrid = (props) => {
     switch (buttonID) {
       case 'followButton':
         highlighted(yes, no, no)
-        fetchData(50, 'buildings')
+        fetchVideos(50, 'buildings')
       break
 
       case 'recommendedButton':
         highlighted(no, yes, no)
-        fetchData(50, 'nature')
+        fetchVideos(50, 'nature')
       break
 
       case 'subscriptionsButton':
         highlighted(no, no, yes)
-        fetchData(50, 'people')
+        fetchVideos(50, 'people')
       break
 
       default:

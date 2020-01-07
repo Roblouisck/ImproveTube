@@ -27,17 +27,22 @@
   background: linear-gradient(#F1F1F1, #F8F8F8);
 }
 
-
 .channel--aboveFold-avatar-content-wrapper {
   margin-left: 2.4vw;
-  margin-top: 0.5rem;;
+  margin-top: 0.5rem;
+}
+
+.channel--video {
+  width: 100%;
+  height: 14.5rem;
+  object-fit: cover;
 }
 
 .channel--grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
   grid-template-rows: 1fr 1fr 1fr;
-  grid-gap: 2.5rem 1rem;
+  grid-gap: 3rem 1rem;
   margin: 0 1.5rem 0 2rem;
 
   &-background {
@@ -430,6 +435,12 @@
   }
 }
 
+@media screen and (max-width: 900px) {
+  .channel--video {
+    height: 29vw;
+  }
+}
+
 @media screen and (max-width: 865px) {
   .channel--grid-video {
     height: 30vw;
@@ -509,6 +520,10 @@
     &-subscribers-box-title {
       font-size: 2.4rem;
     }
+  }
+
+  .channel--video {
+    height: 56vw;
   }
 
   .channel--grid {
