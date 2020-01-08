@@ -371,7 +371,7 @@
 
 @media screen and (max-width: 1699px) {
   .channel--grid-title {
-    margin-top: .5rem;
+    margin-top: 1.5rem;
   }
 }
 
@@ -529,6 +529,7 @@
   .channel--grid {
     grid-template-columns: 1fr;
     margin: unset;
+    grid-gap: 3.5rem;
 
     &-avatar-wrapper {
       margin-right: 0;
@@ -542,12 +543,12 @@
 
     &-title {
       font-size: 1.6rem;
-      margin-left: 2rem;
+      margin-left: 1.7rem;
     }
 
     &-views {
       display: inline-block;
-      margin-left: 2rem;
+      margin-left: 1.7rem;
     }
 
     &-author {
@@ -571,7 +572,8 @@
       margin: unset;
       border: unset;
       outline: 1px solid #DEDEDE;
-      width: 100vw;
+      width: 100%;
+      padding-top: .1rem;
     }
 
     &-nav {
