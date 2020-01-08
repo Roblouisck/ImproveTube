@@ -1,4 +1,5 @@
-export const nouns = [
+// Random words that will be fed to the Pixabay query param, to get random avatars & videos.
+export const videoQuery = [
   'book',
   'business',
   'child',
@@ -6,38 +7,39 @@ export const nouns = [
   'country',
   'eye',
   'family',
-  'government',
   'home',
   'job',
   'life',
   'man',
   'mother',
   'night',
-  'number',
-  'part',
   'people',
   'place',
   'point',
   'problem',
   'program',
-  'question',
   'room',
-  'school',
   'story',
   'student',
-  'study',
   'system',
-  'thing',
   'time',
   'water',
   'way',
   'woman',
   'word',
   'work',
-  'world'
+  'world',
+  'travel',
+  'weird',
+  'interesting',
+  'picture',
+  'place',
+  'walking',
+  'scenery',
+  'city'
 ]
 
-export const avatars = [
+export const avatarQuery = [
   'man',
   'woman',
   'portrait',

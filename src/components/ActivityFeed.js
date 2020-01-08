@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
 import { uuid, fabricateTimeStamp, getRandom } from '../containers/helperFunctions'
-import { avatars } from '../words'
+import { avatarQuery } from '../words'
 import quote from 'inspirational-quotes'
 import history from '../history'
 
@@ -32,7 +32,7 @@ const ActivityFeed = (props) => {
   const lastActivityPost = useCallback(lastPostNode => {
     observer.current = new IntersectionObserver(entries => {
       const lastPost = entries[0]
-      if (lastPost.isIntersecting) fetchAvatars(getRandom(avatars))
+      if (lastPost.isIntersecting) fetchAvatars(getRandom(avatarQuery))
     })
     if (lastPostNode) observer.current.observe(lastPostNode)
   })

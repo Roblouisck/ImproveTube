@@ -1,7 +1,12 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
 import axios from 'axios'
+import { videoQuery } from '../../words'
 import { fetchVideos } from '../../containers/api'
-import { capitalizeFirstLetter, uuid } from '../../containers/helperFunctions'
+import { 
+  capitalizeFirstLetter, 
+  uuid,
+  getRandom
+} from '../../containers/helperFunctions'
 
 const UpNextVideos = () => {
   const [p, setPrefix] = useState("videoPage")
@@ -25,14 +30,14 @@ const UpNextVideos = () => {
         }
         else if (lastVideo.isIntersecting && window.innerWidth > 1000) {
           document.querySelector('.videoPage-show-more-button').classList.remove('show')
-          fetchUpNextVideos(20)
+          fetchUpNextVideos(20, getRandom(videoQuery))
       }
     })
     if (lastVideoNode) observer.current.observe(lastVideoNode)
   })
 
-  const fetchUpNextVideos = async (amount, category, order) => {
-    let response = await fetchVideos(amount, category, order)
+  const fetchUpNextVideos = async (amount, query) => {
+    let response = await fetchVideos(amount, ...Array(2), query)
     response = response.data.hits
 
     const responseAsHtml = response.map((vid, index) => {

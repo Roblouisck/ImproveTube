@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { fetchAvatars } from '../../containers/api'
 import { uuid, randomNumber, getRandom } from '../../containers/helperFunctions'
 import quote from 'inspirational-quotes'
-import { avatars } from '../../words'
+import { avatarQuery } from '../../words'
 
 import { 
   thumbsUp, 
@@ -17,7 +17,7 @@ const CommentSection = () => {
 
   useEffect(() => {
     userClicksAddCommentField()
-    fetchComments(getRandom(avatars))
+    fetchComments(getRandom(avatarQuery))
   }, [])
 
   // INFINITE SCROLL
@@ -29,7 +29,7 @@ const CommentSection = () => {
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const lastComment = entries[0]
-      if (lastComment.isIntersecting) fetchComments(getRandom(avatars))
+      if (lastComment.isIntersecting) fetchComments(getRandom(avatarQuery))
     })
     if (lastCommentNode) observer.current.observe(lastCommentNode)
   })

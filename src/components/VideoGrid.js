@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import axios from 'axios'
 import history from '../history'
-import { nouns as noun, avatars } from '../words'
+import { videoQuery, avatarQuery } from '../words'
 import ActivityFeed from './ActivityFeed'
 
 import { 
@@ -23,7 +23,7 @@ const VideoGrid = (props) => {
   useEffect(() => {
     p === 'home' 
       ? fetchVideos(16, ...Array(2), 'buildings') 
-      : fetchVideos(16, ...Array(2), getRandom(noun))
+      : fetchVideos(16, ...Array(2), getRandom(videoQuery))
   }, [])
 
   // INFINITE SCROLL
@@ -35,7 +35,7 @@ const VideoGrid = (props) => {
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const endVideo = entries[0]
-      if (endVideo.isIntersecting) fetchVideos(16, ...Array(2), getRandom(noun))
+      if (endVideo.isIntersecting) fetchVideos(16, ...Array(2), getRandom(videoQuery))
     })
     if (lastVideoNode) observer.current.observe(lastVideoNode)
   })
@@ -55,7 +55,7 @@ const VideoGrid = (props) => {
       return pictures
     }
     else {
-      let pictures = await fetchAvatars(getRandom(avatars), 16)
+      let pictures = await fetchAvatars(getRandom(avatarQuery), 16)
       return pictures
     }
   }
