@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { fetchAvatars } from '../../containers/api'
-import { uuid, randomNumber } from '../../containers/helperFunctions'
+import { uuid, randomNumber, getRandom } from '../../containers/helperFunctions'
 import quote from 'inspirational-quotes'
+import { avatars } from '../../words'
 
 import { 
   thumbsUp, 
@@ -16,7 +17,7 @@ const CommentSection = () => {
 
   useEffect(() => {
     userClicksAddCommentField()
-    fetchComments()
+    fetchComments(getRandom(avatars))
   }, [])
 
   // INFINITE SCROLL
@@ -28,13 +29,13 @@ const CommentSection = () => {
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const lastComment = entries[0]
-      if (lastComment.isIntersecting) fetchComments(20)
+      if (lastComment.isIntersecting) fetchComments(getRandom(avatars))
     })
     if (lastCommentNode) observer.current.observe(lastCommentNode)
   })
 
-  const fetchComments = async () => {
-    let response = await fetchAvatars('person')
+  const fetchComments = async (query) => {
+    let response = await fetchAvatars(query, 16)
     response = response.data.hits
     mapCommentsToHTML(response)
   }
@@ -71,7 +72,7 @@ const CommentSection = () => {
         </div>
       )
     })
-    setGeneratedComments(prevState => ([...prevState, commentsAsHTML]))
+    setGeneratedComments(prevState => ([...prevState, ...commentsAsHTML]))
   }
 
   const userClicksAddCommentField = () => {

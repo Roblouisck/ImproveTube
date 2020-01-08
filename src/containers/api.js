@@ -7,7 +7,8 @@ export const fetchAvatars = (query, amount) => {
       key: process.env.PIXABAY_API,
       q: query,
       orientation: 'vertical',
-      per_page: amount
+      per_page: amount,
+      image_type: 'photo'
     }
   })
 }

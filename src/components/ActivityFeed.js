@@ -15,10 +15,6 @@ const ActivityFeed = (props) => {
   const [comments, setComments] = useState([])
 
   useEffect(() => {
-    console.log(props)
-  })
-
-  useEffect(() => {
     fetchAvatars('woman')
     if (history.location.pathname.includes('/video/')) {
       document.querySelector('.activityFeedContainer').classList.toggle('hide')

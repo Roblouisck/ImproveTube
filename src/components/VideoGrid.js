@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import axios from 'axios'
 import history from '../history'
-import { nouns as noun } from '../words'
+import { nouns as noun, avatars } from '../words'
 import ActivityFeed from './ActivityFeed'
 
 import { 
@@ -9,10 +9,11 @@ import {
   abbreviateNumber, 
   capitalizeFirstLetter,
   uuid,
-  getRandom
+  getRandom,
+  fabricateTimeStamp
 } from '../containers/helperFunctions'
 
-import { fetchAvatars as callAvatarsAPI, fetchVideos as callVideosAPI } from '../containers/api'
+import { fetchAvatars, fetchVideos as callVideosAPI } from '../containers/api'
 
 const VideoGrid = (props) => {
   const [videosAsHTML, setVideosAsHTML] = useState([])
@@ -39,12 +40,32 @@ const VideoGrid = (props) => {
     if (lastVideoNode) observer.current.observe(lastVideoNode)
   })
 
+  const determineAvatars = async (category, query) => {
+    // Categories correspond to Following, Recommended, Subscription Buttons
+    if (category === 'buildings' || query === 'buildings') {
+      let pictures = await fetchAvatars('man', 16)
+      return pictures
+    }
+    if (category === 'nature') {
+      let pictures = await fetchAvatars('outdoors', 16)
+      return pictures
+    }
+    if (category === 'people') {
+      let pictures = await fetchAvatars('model', 16)
+      return pictures
+    }
+    else {
+      let pictures = await fetchAvatars(getRandom(avatars), 16)
+      return pictures
+    }
+  }
   const fetchVideos = async (amount, category, editorsChoice, query, pressedNavButton) => {
     let videos = await callVideosAPI(amount, category, editorsChoice, query)
-    videos = videos.data.hits
+    let pictures = await determineAvatars(category, query)
 
-    let pictures = await callAvatarsAPI('man', 16)
+    videos = videos.data.hits
     pictures = pictures.data.hits
+
     mapVideosToHTML(videos, pictures, pressedNavButton)
   }
 
@@ -92,7 +113,7 @@ const VideoGrid = (props) => {
           }
 
           <div className={`${p}--grid-views`}>{abbreviateNumber(vid.views)} views 
-            <span className={`${p}--grid-date`}> • 6 days ago</span>
+            <span className={`${p}--grid-date`}> • {fabricateTimeStamp(index)}</span>
           </div>
         </div>
       )
