@@ -34,6 +34,7 @@ const CommentSection = (props) => {
   // Callback is triggered when ref is set in mapCommentsToHTML
   const observer = useRef()
   const lastUserComment = useCallback(lastCommentNode => {
+    
     // Re-hookup observer to last post, to include fetchComments callback
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {

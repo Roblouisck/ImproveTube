@@ -48,7 +48,13 @@ const ActivityFeed = (props) => {
         <div className="commentWrapper" key={uuid()} ref={response.length === index + 1 ? lastActivityPost : null}>
           <div className="avatarPlaceholder--comments">
           {props.page === 'channel' 
-            ? <img className="avatarPlaceholder--img" src={props.userAvatar.previewURL ? props.userAvatar.previewURL : props.userAvatar}/>
+            ? <img 
+                className="avatarPlaceholder--img" 
+                src={
+                  props.userAvatar.previewURL ? props.userAvatar.previewURL 
+                  : props.userAvatar === "" ? 'https://i.imgur.com/ZwDgXSF.jpg' 
+                  : props.userAvatar}/>
+
             : <a href={ `/channel/${pic.id}`}> 
                 <img className="avatarPlaceholder--img" src={pic.previewURL}/>
               </a>

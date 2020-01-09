@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { abbreviateNumber} from '../../containers/helperFunctions'
 
 const DescriptionBox = ({ props }) => {
   const [p, setPrefix] = useState("videoPage")
+
+  useEffect(() => {
+    if (props.authorAvatar === "") console.log('sdf')
+  })
 
   return (
     <div className={`${p}-description-box`}>  
       <div className={`${p}-description-column-1-avatar-wrapper`}>
         <div className={`${p}-avatar-title-followers-wrapper`}>
           <a href={ props.picAuthorID ? `/channel/${props.picAuthorID}` : `/channel/000${props.vidAuthorID}`}>
-            <img className={`${p}-description-column-1-avatar`} src={props.authorAvatar} />
+            <img className={`${p}-description-column-1-avatar`} src={props.authorAvatar === "" ? 'https://i.imgur.com/PDj9hW9.jpg' : props.authorAvatar} />
           </a>
           <div className={`${p}-description-avatar-text-wrapper`}>
             <a href={ props.picAuthorID ? `/channel/${props.picAuthorID}` : `/channel/000${props.vidAuthorID}`}>

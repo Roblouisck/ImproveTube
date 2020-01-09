@@ -13,11 +13,10 @@ const AboveFold = ({ userName, userAvatar }) => {
   const [p, setPrefix] = useState('channel--aboveFold')
   const [subcriberAvatars, setSubscriberAvatars] = useState([])
   const [bio, setBio] = useState([])
-  
+
   useEffect(() => {
     console.log(userAvatar)
   })
-
   useEffect(() => { 
     handleBio()
     fetchSubscriberAvatars()
@@ -97,7 +96,12 @@ const AboveFold = ({ userName, userAvatar }) => {
         </div>
         <div className={`${p}-user-avatar-wrapper posRelative`}>
           <a className={`${p}-pixabay-src`} href={userAvatar.pageURL}>?</a>
-          <img className={`${p}-avatar`} src={userAvatar.webformatURL ? userAvatar.webformatURL : userAvatar} />
+          <img className={`${p}-avatar`} 
+            src={
+              userAvatar === "" ? 'https://i.imgur.com/4KiKrkv.jpg' 
+              : userAvatar.webformatURL ? userAvatar.webformatURL 
+              : userAvatar } 
+            />
         </div>
       </div>
       <div className={`${p}-description-box`}>
