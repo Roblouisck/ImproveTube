@@ -5,7 +5,8 @@ import { fetchVideos } from '../../containers/api'
 import { 
   capitalizeFirstLetter, 
   uuid,
-  getRandom
+  getRandom,
+  abbreviateNumber
 } from '../../containers/helperFunctions'
 
 const UpNextVideos = () => {
@@ -60,7 +61,7 @@ const UpNextVideos = () => {
           <a href={`/channel/000${vid.id}`}>
             <p className={`${p}-sidebar-grid-video-author`}>{vid.user}</p>
           </a>
-          <p className={`${p}-sidebar-grid-video-recommended-text`}>Recommended for you</p>
+          <p className={`${p}-sidebar-grid-video-views-text`}>{abbreviateNumber(vid.downloads)} views</p>
         </div>
       )
     })

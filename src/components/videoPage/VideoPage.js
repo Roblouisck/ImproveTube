@@ -51,7 +51,7 @@ const VideoPage = () => {
           <div className={`${p}-video-info-wrapper`}>  
             <div className={`${p}-video-title-box`}>
               <h1 className={`${p}-video-title`}>{capitalizeFirstLetter(vid.tags)}</h1>
-              <span className={`${p}-video-views`}>{abbreviateNumber(vid.downloads)} views</span>
+              <span className={`${p}-video-views`}>{abbreviateNumber(Number(vid.downloads).toLocaleString())} views</span>
               <span className={`${p}-video-date`}>{randomDate()}</span>
             </div>
             <div className={`${p}-video-options`}>
