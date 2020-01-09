@@ -9,7 +9,7 @@
 .hamburgerIcon {
   margin: 0.6rem 0 0;
   cursor: pointer;
-  z-index: 2
+  z-index: 4;
 }
 
 .hamburgerLine1,
@@ -30,7 +30,7 @@
   height: 42rem;
   color: black;
   background-color: white;
-  z-index: 1;
+  z-index: 3;
   letter-spacing: 0.02rem;
   font-weight: 400;
   font-size: 1.8rem;
@@ -44,7 +44,7 @@
   left: 0;
   bottom: 0;
   width: 100vw;
-  z-index: 1;
+  z-index: 2;
   display: none;
 }
 
@@ -140,7 +140,7 @@ li:hover {
 
 // USER MENU
 .header > .avatarPlaceholder {
-  z-index: 0
+  z-index: 1
 }
 .userMenu {
   margin-top: 0;
@@ -153,7 +153,7 @@ li:hover {
   padding-bottom: 2rem;
   color: black;
   background-color: white;
-  z-index: 1;
+  z-index: 0;
   letter-spacing: 0.02rem;
   font-weight: 400;
   font-size: 1.8rem;
