@@ -22,8 +22,8 @@ const VideoGrid = (props) => {
   
   useEffect(() => {
     p === 'home' 
-      ? fetchVideos(16, ...Array(2), 'buildings') 
-      : fetchVideos(16, ...Array(2), getRandom(videoQuery))
+      ? fetchVideos(24, ...Array(2), 'buildings') 
+      : fetchVideos(24, ...Array(2), getRandom(videoQuery))
   }, [])
 
   // INFINITE SCROLL
@@ -35,30 +35,12 @@ const VideoGrid = (props) => {
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const endVideo = entries[0]
-      if (endVideo.isIntersecting) fetchVideos(16, ...Array(2), getRandom(videoQuery))
+      if (endVideo.isIntersecting) fetchVideos(24, ...Array(2), getRandom(videoQuery))
     })
     if (lastVideoNode) observer.current.observe(lastVideoNode)
   })
 
-  const determineAvatars = async (category, query) => {
-    // Categories correspond to Following, Recommended, Subscription Buttons
-    if (category === 'buildings' || query === 'buildings') {
-      let pictures = await fetchAvatars('man', 16)
-      return pictures
-    }
-    if (category === 'nature') {
-      let pictures = await fetchAvatars('outdoors', 16)
-      return pictures
-    }
-    if (category === 'people') {
-      let pictures = await fetchAvatars('model', 16)
-      return pictures
-    }
-    else {
-      let pictures = await fetchAvatars(getRandom(avatarQuery), 16)
-      return pictures
-    }
-  }
+
   const fetchVideos = async (amount, category, editorsChoice, query, pressedNavButton) => {
     let videos = await callVideosAPI(amount, category, editorsChoice, query)
     let pictures = await determineAvatars(category, query)
@@ -69,6 +51,26 @@ const VideoGrid = (props) => {
     mapVideosToHTML(videos, pictures, pressedNavButton)
   }
 
+  const determineAvatars = async (category, query) => {
+    // Categories correspond to Following, Recommended, Subscription Buttons
+    if (category === 'buildings' || query === 'buildings') {
+      let pictures = await fetchAvatars('man', 24)
+      return pictures
+    }
+    if (category === 'nature') {
+      let pictures = await fetchAvatars('outdoors', 24)
+      return pictures
+    }
+    if (category === 'people') {
+      let pictures = await fetchAvatars('model', 24)
+      return pictures
+    }
+    else {
+      let pictures = await fetchAvatars(getRandom(avatarQuery), 24)
+      return pictures
+    }
+  }
+  
   const mapVideosToHTML = (videos, pictures, pressedNavButton) => {
     const vidsAsHtml = videos.map((vid, index) => {
       const currentPic = index
@@ -112,7 +114,7 @@ const VideoGrid = (props) => {
             : null
           }
 
-          <div className={`${p}--grid-views`}>{abbreviateNumber(vid.views)} views 
+          <div className={`${p}--grid-views`}>{abbreviateNumber(vid.downloads)} views 
             <span className={`${p}--grid-date`}> • {fabricateTimeStamp(index)}</span>
           </div>
         </div>
@@ -144,19 +146,19 @@ const VideoGrid = (props) => {
     switch (buttonID) {
       case 'followButton':
         highlighted(yes, no, no)
-        fetchVideos(16, 'buildings', true, undefined, true)
+        fetchVideos(24, 'buildings', true, undefined, true)
         setButton('follow')
       break
 
       case 'recommendedButton':
         highlighted(no, yes, no)
-        fetchVideos(16, 'nature', true, undefined, true)
+        fetchVideos(24, 'nature', true, undefined, true)
         setButton('recommended')
       break
 
       case 'subscriptionsButton':
         highlighted(no, no, yes)
-        fetchVideos(16, 'people', true, undefined, true)
+        fetchVideos(24, 'people', true, undefined, true)
         setButton('subscriptions')
       break
 

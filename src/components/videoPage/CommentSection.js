@@ -10,9 +10,10 @@ import {
   arrowDrop,
   ellipsesVertical } from '../svgs'
 
-const CommentSection = () => {
+const CommentSection = (props) => {
   const [p, setPrefix] = useState("videoPage")
   const [generatedComments, setGeneratedComments] = useState([])
+  const [generatedCommentsFinal, setGeneratedCommentsFinal] = useState([])
   const [userComments, setUserComments] = useState([])
 
   useEffect(() => {
@@ -20,12 +21,20 @@ const CommentSection = () => {
     fetchComments(getRandom(avatarQuery))
   }, [])
 
+  // Cap the amount of randomly generated comments
+  useEffect(() => {
+    const commentNumber = calculateComments()
+    if (generatedComments.length > commentNumber) {
+      let prevComments = generatedComments
+      setGeneratedCommentsFinal(prevComments.slice(0, commentNumber))
+    }
+  }, [generatedComments])
+
   // INFINITE SCROLL
   // Callback is triggered when ref is set in mapCommentsToHTML
   const observer = useRef()
   const lastUserComment = useCallback(lastCommentNode => {
-
-    // Re-hookup observer to last post, to include fetch data callback
+    // Re-hookup observer to last post, to include fetchComments callback
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const lastComment = entries[0]
@@ -43,7 +52,7 @@ const CommentSection = () => {
   const mapCommentsToHTML = (response) => {
     const commentsAsHTML = response.map((comment, index) => {
       return (
-        <div key={uuid()} ref={response.length === index + 1 ? lastUserComment : null}>
+        <div className='test' key={uuid()} ref={response.length === index + 1 ? lastUserComment : null }>
           <a href={`/channel/${comment.id}`}>
             <img className={`${p}-comment-avatar`} src={comment.previewURL}/>
           </a>
@@ -154,9 +163,14 @@ const CommentSection = () => {
     }
   }
 
+  const calculateComments = () => {
+    const commentNumber = Math.ceil(props.views/100)
+    return commentNumber
+  }
+
   return (
     <div>
-      <span className={`${p}-number-of-comments`}>1,392 comments</span>
+      <span className={`${p}-number-of-comments`}>{Number(calculateComments()).toLocaleString()} comments</span>
       <span className={`${p}-sort-comments`}>Sort by</span>
 
       <div className={`${p}-add-comment-wrapper flex`}>
@@ -214,7 +228,7 @@ const CommentSection = () => {
             ))
             : null
           }
-        {generatedComments}
+        {generatedCommentsFinal.length === calculateComments() ? generatedCommentsFinal : generatedComments}
     </div>
   )
 }

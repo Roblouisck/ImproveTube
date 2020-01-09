@@ -51,7 +51,7 @@ const VideoPage = () => {
           <div className={`${p}-video-info-wrapper`}>  
             <div className={`${p}-video-title-box`}>
               <h1 className={`${p}-video-title`}>{capitalizeFirstLetter(vid.tags)}</h1>
-              <span className={`${p}-video-views`}>{abbreviateNumber(vid.views)} views</span>
+              <span className={`${p}-video-views`}>{abbreviateNumber(vid.downloads)} views</span>
               <span className={`${p}-video-date`}>{randomDate()}</span>
             </div>
             <div className={`${p}-video-options`}>
@@ -70,10 +70,11 @@ const VideoPage = () => {
             </div>
           </div>
         </div>,
-        authorFollowers: vid.id,
+        authorFollowers: vid.views,
         vidAuthorID: vid.id,
         author: picAuthorID ? 'Loading' : vid.user,
-        authorAvatar: picAuthorID ? null : vid.userImageURL
+        authorAvatar: picAuthorID ? null : vid.userImageURL,
+        views: vid.downloads
       }
     })
     responseAsHtml = responseAsHtml[0]
@@ -126,7 +127,7 @@ const VideoPage = () => {
               <NewSubscribers />
             </div>
             <div className={`${p}-comment-section`}>
-              <CommentSection />
+              <CommentSection views={state.views}/>
             </div>
           </main>
           <aside className={`${p}-sidebar`}>
