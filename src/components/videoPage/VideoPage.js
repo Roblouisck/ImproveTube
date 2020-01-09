@@ -24,7 +24,7 @@ const VideoPage = () => {
     loading: true,
     error: false
   })
-
+  
   useEffect(() => {
     if (state.loading) extractDataFromUrl()
     else handleMediaQueries()

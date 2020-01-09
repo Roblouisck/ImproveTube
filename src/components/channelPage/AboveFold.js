@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { fetchAvatars, getRandomName } from '../../containers/api'
-import { capitalizeFirstLetter, getRandom } from '../../containers/helperFunctions'
+import { 
+  capitalizeFirstLetter, 
+  getRandom, 
+  abbreviateNumber,
+  randomNumberBetweenTwo } from '../../containers/helperFunctions'
 import { 
   year,
   greeting,
@@ -9,17 +13,16 @@ import {
   secondSentence
 } from './bioTextSnippets.js'
 
-const AboveFold = ({ userName, userAvatar }) => {
+const AboveFold = ({ userName, userAvatar, authorFollowers }) => {
   const [p, setPrefix] = useState('channel--aboveFold')
   const [subcriberAvatars, setSubscriberAvatars] = useState([])
   const [bio, setBio] = useState([])
+  const [subscriberAmount, setSubscriberAmount] = useState([])
 
-  useEffect(() => {
-    console.log(userAvatar)
-  })
   useEffect(() => { 
     handleBio()
     fetchSubscriberAvatars()
+    setSubscriberAmount(randomNumberBetweenTwo(5000, 30000))
 
     const windowSize940 = (mediaQuery940) => {
       const followButton = document.querySelector('.channel--grid-nav-follow')
@@ -92,7 +95,11 @@ const AboveFold = ({ userName, userAvatar }) => {
       <div className={`${ p}-avatar-content-wrapper`}>
         <div className={`${p}-avatar-text-wrapper`}>
           <span className={`${p}-name-text`}>{userName}</span>
-          <span className={`${p}-follower-text`}>149K Followers</span>
+          <span className={`${p}-follower-text`}>
+            {authorFollowers 
+              ? abbreviateNumber(authorFollowers) + ' Followers'
+              : abbreviateNumber(subscriberAmount) + ' Followers'} 
+          </span>
         </div>
         <div className={`${p}-user-avatar-wrapper posRelative`}>
           <a className={`${p}-pixabay-src`} href={userAvatar.pageURL}>?</a>
@@ -120,7 +127,12 @@ const AboveFold = ({ userName, userAvatar }) => {
         <div className={`${p}-subscribers-box`}>
           {subcriberAvatars}
         </div>
-        <span className={`${p}-subscribers-box-bottom-text`}>...and 8,912 more</span>
+        <span className={`${p}-subscribers-box-bottom-text`}>{
+          authorFollowers 
+            ? `...and ${Number(Math.round(authorFollowers/40)).toLocaleString()} more`
+            : `...and ${Number(Math.round(subscriberAmount/40)).toLocaleString()} more`
+          }
+        </span>
       </div>
     </div>
   )

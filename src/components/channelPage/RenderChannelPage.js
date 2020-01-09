@@ -9,7 +9,7 @@ import { fetchPictureFromID, fetchVideoFromID } from '../../containers/api'
 import { capitalizeFirstLetter } from '../../containers/helperFunctions'
 import PageNotFound from '../PageNotFound'
 
-const RenderChannelPage = () => {
+const RenderChannelPage = (props) => {
   const [state, setState] = useState({})
 
   useEffect(() => {
@@ -35,14 +35,39 @@ const RenderChannelPage = () => {
     if (dataFromURL.includes('000')) {
       const response = await fetchVideoFromID(dataFromURL)
       if (!response) setState({error: true})
-      else setState({userAvatar: response.data.hits[0].userImageURL, userName: response.data.hits[0].user, ready: true})
-    } 
+      else setState({
+        userAvatar: response.data.hits[0].userImageURL, 
+        userName: response.data.hits[0].user, 
+        ready: true, 
+        authorFollowers: response.data.hits[0].views
+      })
+    }
+
+    else if (dataFromURL.includes('-')) {
+      const newData = dataFromURL.split('-')
+      const pictureID = newData[0]
+      const videoID = newData[1]
+
+      let picResponse = await fetchPictureFromID(pictureID)
+      let vidResponse = await fetchVideoFromID(videoID)
+      if (!vidResponse || !picResponse) setState({error: true})
+
+      setState({
+        userAvatar: picResponse.data.hits[0], 
+        userName: capitalizeFirstLetter(picResponse.data.hits[0].user), 
+        ready: true,
+        authorFollowers: vidResponse.data.hits[0].views
+      })
+    }
 
     else {
       const response = await fetchPictureFromID(dataFromURL)
-      console.log(response)
       if (!response) setState({error: true})
-      else setState({userAvatar: response.data.hits[0], userName: capitalizeFirstLetter(response.data.hits[0].user), ready: true})
+      else setState({
+        userAvatar: response.data.hits[0], 
+        userName: capitalizeFirstLetter(response.data.hits[0].user), 
+        ready: true
+      })
     }
   }
 
@@ -54,8 +79,11 @@ const RenderChannelPage = () => {
           <Header />
           <HeaderMobile />
           <AboveFold 
-          userAvatar={state.userAvatar}
-          userName={state.userName} />
+            userAvatar={state.userAvatar}
+            userName={state.userName}
+            authorFollowers={state.authorFollowers}
+           />
+          }
           <div className="channel--wrapper">
             <ActivityFeed 
               page={'channel'} 

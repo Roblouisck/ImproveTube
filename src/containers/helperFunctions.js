@@ -2,7 +2,7 @@ export const uuid = (a) => {return a?(a^Math.random()*16>>a/4).toString(16):([1e
 
 export const abbreviateNumber = (num) => {
   if (num > 999) {
-    return Math.ceil(Math.sign(num)*((Math.abs(num)/1000).toFixed(1))) + 'k'
+    return Math.round(num/1000) + 'k'
   } 
     return num
 }
@@ -51,5 +51,8 @@ export const randomNumber = (num) => {
   return Math.floor(Math.random() * num + 1)
 }
 
+export const randomNumberBetweenTwo = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 

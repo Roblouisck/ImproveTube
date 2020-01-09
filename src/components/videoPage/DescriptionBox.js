@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { abbreviateNumber} from '../../containers/helperFunctions'
 
 const DescriptionBox = ({ props }) => {
   const [p, setPrefix] = useState("videoPage")
-
-  useEffect(() => {
-    if (props.authorAvatar === "") console.log('sdf')
-  })
+  const { 
+    picAuthorID, 
+    vidAuthorID,
+    loading,
+    author,
+    authorFollowers,
+    authorAvatar
+  } = props
 
   return (
     <div className={`${p}-description-box`}>  
       <div className={`${p}-description-column-1-avatar-wrapper`}>
         <div className={`${p}-avatar-title-followers-wrapper`}>
-          <a href={ props.picAuthorID ? `/channel/${props.picAuthorID}` : `/channel/000${props.vidAuthorID}`}>
-            <img className={`${p}-description-column-1-avatar`} src={props.authorAvatar === "" ? 'https://i.imgur.com/PDj9hW9.jpg' : props.authorAvatar} />
-          </a>
+          <Link to={{ pathname: picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`}}>
+            <img className={`${p}-description-column-1-avatar`} src={authorAvatar === "" ? 'https://i.imgur.com/PDj9hW9.jpg' : authorAvatar} />
+          </Link>
           <div className={`${p}-description-avatar-text-wrapper`}>
-            <a href={ props.picAuthorID ? `/channel/${props.picAuthorID}` : `/channel/000${props.vidAuthorID}`}>
+            <Link to={{ pathname: picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`}}>
               <div className={`${p}-description-column-1-author`}>
-                { props.loading === "yes" ? "loading" : props.author }
+                { loading === "yes" ? "loading" : author }
               </div>
-            </a>
+            </Link>
             <div className={`${p}-description-column-1-followers`}>
-            { props.loading === "yes" ? "loading" : `${abbreviateNumber(props.authorFollowers)} Followers` }
+            { loading === "yes" ? "loading" : `${abbreviateNumber(authorFollowers)} Followers` }
             </div>
           </div>
         </div>

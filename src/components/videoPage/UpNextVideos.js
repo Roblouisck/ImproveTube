@@ -14,7 +14,7 @@ const UpNextVideos = () => {
   const [nextVideos, setNextVideos] = useState([])
 
   useEffect(() => {
-    fetchUpNextVideos(15, 'buildings')
+    fetchUpNextVideos(15, getRandom(videoQuery))
   }, [])
 
   // INFINITE SCROLL
