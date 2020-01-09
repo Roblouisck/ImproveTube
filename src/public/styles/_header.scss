@@ -174,12 +174,14 @@ li:hover {
 .userMenu > ul > li {
   cursor: pointer;
   line-height: 4rem;
-  font-size: 1.7rem
+  font-size: 1.7rem;
+  padding: 0;
 }
 
 .userMenu > ul > li > a {
-  margin-left: 5rem;
   color: #5b5b5b;
+  display: block;
+  padding-left: 5rem;
 }
 
 .header {
