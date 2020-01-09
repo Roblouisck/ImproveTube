@@ -23,7 +23,12 @@ const RenderChannelPage = () => {
 
     // 000 indicates user came from video page, so fetch their avatar from the video api. 
     if (dataFromURL.includes('robertlouis')) {
-      setState({userAvatar: {webformatURL: 'https://i.imgur.com/PAkBGtO.jpg'}, userName: 'Robert Louis', ready: true})
+      setState({
+        userAvatar: {
+          webformatURL: 'https://i.imgur.com/PAkBGtO.jpg', 
+          previewURL: 'https://i.imgur.com/spvqsOj.jpg'}, 
+          userName: 'Robert Louis', ready: true
+      })
       return null
     }
 
