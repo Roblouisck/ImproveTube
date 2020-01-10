@@ -96,7 +96,9 @@ const RenderChannelPage = (props) => {
               titleFour={'about'} 
               titleFive={'subscriptions'} 
               page={'channel'} />
-            <FooterMobile />
+            <FooterMobile 
+              page={'channel'}
+            />
           </div>
         </div>
       : null

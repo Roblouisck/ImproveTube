@@ -6,7 +6,9 @@ import {
   following, 
   subscriptions } from './svgs'
 
-const FooterMobile = () => {
+const FooterMobile = (props) => {
+  const [p, setResource] = useState('channel--mobile')
+
   const handleActivityFeedButton = () => {
     if (history.location.pathname === '/') {
       document.querySelector('.home--grid-background').classList.toggle('hide')
@@ -29,33 +31,45 @@ const FooterMobile = () => {
     }
   }
 
-  const [p, setResource] = useState('channel--mobile')
-
-    return (
-      <footer className={`${p}-footer`}>
-        <div className={`${p}-footer-button-home`}>
-          <a href="/">{home()}
-            <p className={`${p}-footer-text no-select`}>Home</p>
-          </a>
-        </div>
-
-        <div className={`${p}-footer-button-activityFeed`} onClick={() => handleActivityFeedButton()}>
-          {activityFeed()}
-          <p className={`${p}-footer-text no-select`}>Activity Feed</p>
-        </div>
-
-        <div className={`${p}-footer-button-following`}>
-          {following()}
-          <p className={`${p}-footer-text no-select`}>Following</p>
-        </div>
-
-        <div className={`${p}-footer-button-subscriptions`}>
-          {subscriptions()}
-          <p className={`${p}-footer-text no-select`}>Subscriptions</p>
-        </div>
-
-      </footer>
-    )
+  const figureOutOperation = (type) => {
+    if (props.page === 'home') {
+      if (type === 'recommended') window.location.hash = 'rec'
+      else if (type === 'subscriptions') window.location.hash = 'sub'
+      else if (type === 'following') window.location.hash = 'fol'
+    }
+    else if (props.page === 'channel' || props.page === 'video') {
+      if (type === 'recommended') history.push('/#rec')
+      else if (type === 'subscriptions') history.push('/#sub')
+      else if (type === 'following') history.push('/#fol')
+    }
   }
+
+  return (
+    <footer className={`${p}-footer`}>
+      <div className={`${p}-footer-button-home`}>
+        <div onMouseDown={() => figureOutOperation('recommended')}>
+        {home()}
+          <p className={`${p}-footer-text no-select`}>Home</p>
+        </div>
+      </div>
+
+      <div className={`${p}-footer-button-activityFeed`} onMouseDown={() => handleActivityFeedButton()}>
+        {activityFeed()}
+        <p className={`${p}-footer-text no-select`}> Activity Feed</p>
+      </div>
+
+      <div className={`${p}-footer-button-following`} onMouseDown={() => figureOutOperation('following')}>
+        {following()}
+        <p className={`${p}-footer-text no-select`}>Following</p>
+      </div>
+
+      <div className={`${p}-footer-button-subscriptions`} onMouseDown={() => figureOutOperation('subscriptions')}>
+        {subscriptions()}
+        <p className={`${p}-footer-text no-select`} >Subscriptions</p>
+      </div>
+
+    </footer>
+  )
+}
 
 export default FooterMobile

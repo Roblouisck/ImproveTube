@@ -12,11 +12,11 @@ class RenderHomepage extends React.Component {
         <Header />
         <HeaderMobile />
         <VideoGrid
-          titleOne={'following'} 
-          titleTwo={'recommended'} 
+          titleOne={'recommended'} 
+          titleTwo={'following'} 
           titleThree={'subscriptions'} 
           page={'home'} />
-        <FooterMobile />
+        <FooterMobile page={'home'} />
       </div>
     )
   }

@@ -12,8 +12,7 @@ module.exports = {
         publicPath: '/'
     },
     devServer: {
-        contentBase: 'dist',
-        historyApiFallback: true
+        contentBase: 'dist'
     },
     plugins: [
         new HtmlWebpackPlugin({

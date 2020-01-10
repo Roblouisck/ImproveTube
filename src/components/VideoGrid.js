@@ -3,7 +3,8 @@ import axios from 'axios'
 import history from '../history'
 import { videoQuery } from '../words'
 import ActivityFeed from './ActivityFeed'
-
+import { handleButtons } from './homePage/handleButtons'
+import { determineAvatars } from './homePage/determineAvatars'
 import { 
   toggleClass, 
   abbreviateNumber, 
@@ -19,12 +20,35 @@ const VideoGrid = (props) => {
   const [videosAsHTML, setVideosAsHTML] = useState([])
   const [p, setPrefix] = useState(props.page)
   const [button, setButton] = useState()
-  
+
   useEffect(() => {
-    p === 'home' 
-      ? fetchVideos(24, ...Array(2), 'buildings') 
-      : fetchVideos(24, ...Array(2), getRandom(videoQuery))
-  }, [])
+    if (p === 'home') { 
+      fetchVideos(24, ...Array(2), 'buildings') 
+      navButtonHashChange()
+    } 
+    else fetchVideos(24, ...Array(2), getRandom(videoQuery))
+  }, [window.location.hash])
+
+  const navButtonHashChange = () => {
+    switch (window.location.hash) {
+      case '#rec':
+        fetchVideos(24, 'buildings', true, undefined, true)
+        setButton('recommended')
+      break
+
+      case '#fol':
+        fetchVideos(24, 'nature', true, undefined, true)
+        setButton('follow')
+      break
+
+      case '#sub':
+        fetchVideos(24, 'people', true, undefined, true)
+        setButton('subscriptions')
+      break
+
+      default: null
+    }
+  }
 
   // INFINITE SCROLL
   // Callback is triggered when ref is set in mapVideosToHTML
@@ -40,7 +64,6 @@ const VideoGrid = (props) => {
     if (lastVideoNode) observer.current.observe(lastVideoNode)
   })
 
-
   const fetchVideos = async (amount, category, editorsChoice, query, pressedNavButton) => {
     let videos = await callVideosAPI(amount, category, editorsChoice, query)
     let pictures = await determineAvatars(category, query)
@@ -49,26 +72,6 @@ const VideoGrid = (props) => {
     pictures = pictures.data.hits
 
     mapVideosToHTML(videos, pictures, pressedNavButton)
-  }
-
-  const determineAvatars = async (category, query) => {
-    // Categories correspond to Following, Recommended, Subscription Buttons
-    if (category === 'buildings' || query === 'buildings') {
-      let pictures = await fetchAvatars('man', 24)
-      return pictures
-    }
-    else if (category === 'nature') {
-      let pictures = await fetchAvatars('outdoors', 24)
-      return pictures
-    }
-    else if (category === 'people') {
-      let pictures = await fetchAvatars('model', 24)
-      return pictures
-    }
-    else {
-      let pictures = await fetchAvatars('dog', 24)
-      return pictures
-    }
   }
   
   const mapVideosToHTML = (videos, pictures, pressedNavButton) => {
@@ -123,85 +126,44 @@ const VideoGrid = (props) => {
   if (pressedNavButton) setVideosAsHTML(vidsAsHtml)
   else setVideosAsHTML(prevState => ([...prevState, ...vidsAsHtml]))
   }
-  
-  const handleButtons = event => {
-    const buttonID = event.target.id
-    const unhighlightedText = document.querySelector('.unhighlitedText')
-    const followingButton = document.querySelector('.home--grid-nav-following')
-    const recommendedButton = document.querySelector('.home--grid-nav-recommended')
-    const subscriptionsButton = document.querySelector('.home--grid-nav-subscriptions')
 
-    const highlighted = (booleanOne, booleanTwo, booleanThree) => {
-      followingButton.classList.remove('unhighlightedText')
-      recommendedButton.classList.remove('unhighlightedText')
-      subscriptionsButton.classList.remove('unhighlightedText')
+  return (
+    <div className={props.page === 'home' ? "homepage-wrapper" : null}>
+      { props.page==='home' ? <ActivityFeed page={'home'} button={button} /> : null}
+      <main className={`${p}--grid-background`}>
+        <nav className={`${p}--grid-nav`}>
+          <button 
+            id='recommendedButton' 
+            className={`${p}--grid-nav-${props.titleOne}`} 
+            onMouseDown={handleButtons}>{props.titleOne}
+          </button>
 
-      followingButton.classList.add(booleanOne)
-      recommendedButton.classList.add(booleanTwo)
-      subscriptionsButton.classList.add(booleanThree)
-    }
-    const yes = 'highlightedText'
-    const no = 'unhighlightedText'
+          <button 
+            id='followButton' 
+            className={`${p}--grid-nav-${props.titleTwo}`} 
+            onMouseDown={handleButtons}
+            >{props.titleTwo}
+          </button>
 
-    switch (buttonID) {
-      case 'followButton':
-        highlighted(yes, no, no)
-        fetchVideos(24, 'buildings', true, undefined, true)
-        setButton('follow')
-      break
+          <button 
+            id='subscriptionsButton' 
+            className={`${p}--grid-nav-${props.titleThree}`} 
+            onMouseDown={handleButtons}>{props.titleThree}
+          </button>
 
-      case 'recommendedButton':
-        highlighted(no, yes, no)
-        fetchVideos(24, 'nature', true, undefined, true)
-        setButton('recommended')
-      break
+          <button className={`${p}--grid-nav-${props.titleFour}`}>{props.titleFour}</button>
+          <button className={`${p}--grid-nav-${props.titleFive}`}>{props.titleFive}</button>
+          <button className={`${p}--grid-nav-follow`}>FOLLOW</button>
+        </nav>
+        <hr className={`${p}--grid-hr-nav-grey`} />
+        <hr className={`${p}--grid-hr-nav-black`} />        
 
-      case 'subscriptionsButton':
-        highlighted(no, no, yes)
-        fetchVideos(24, 'people', true, undefined, true)
-        setButton('subscriptions')
-      break
-
-      default:
-        console.log('no cases')
-    }
-  }
-    return (
-      <div className={props.page === 'home' ? "homepage-wrapper" : null}>
-        { props.page==='home' ? <ActivityFeed page={'home'} button={button} /> : null}
-        <main className={`${p}--grid-background`}>
-          <nav className={`${p}--grid-nav`}>
-            <button 
-              id='followButton' 
-              className={`${p}--grid-nav-${props.titleOne}`} 
-              onClick={handleButtons}>{props.titleOne}
-            </button>
-
-            <button 
-              id='recommendedButton' 
-              className={`${p}--grid-nav-${props.titleTwo}`} 
-              onClick={handleButtons}>{props.titleTwo}
-            </button>
-
-            <button 
-              id='subscriptionsButton' 
-              className={`${p}--grid-nav-${props.titleThree}`} 
-              onClick={handleButtons}>{props.titleThree}
-            </button>
-
-            <button className={`${p}--grid-nav-${props.titleFour}`}>{props.titleFour}</button>
-            <button className={`${p}--grid-nav-${props.titleFive}`}>{props.titleFive}</button>
-            <button className={`${p}--grid-nav-follow`}>FOLLOW</button>
-          </nav>
-          <hr className={`${p}--grid-hr-nav-grey`} />
-          <hr className={`${p}--grid-hr-nav-black`} />        
-
-          <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
-            {videosAsHTML}
-          </div>
-        </main>
-      </div>
-    )
-  }
+        <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
+          {videosAsHTML}
+        </div>
+      </main>
+    </div>
+  )
+}
 
 export default VideoGrid

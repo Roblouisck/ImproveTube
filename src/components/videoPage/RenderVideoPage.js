@@ -14,7 +14,7 @@ const RenderVideoPage = () => {
       <Header />
       <ActivityFeed page={'home'} />
       <VideoPage />
-      <FooterMobile />
+      <FooterMobile page={'video'} />
     </div>
   )
 }
