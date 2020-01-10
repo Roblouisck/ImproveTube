@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import axios from 'axios'
 import history from '../history'
-import { videoQuery, avatarQuery } from '../words'
+import { videoQuery } from '../words'
 import ActivityFeed from './ActivityFeed'
 
 import { 
@@ -57,16 +57,16 @@ const VideoGrid = (props) => {
       let pictures = await fetchAvatars('man', 24)
       return pictures
     }
-    if (category === 'nature') {
+    else if (category === 'nature') {
       let pictures = await fetchAvatars('outdoors', 24)
       return pictures
     }
-    if (category === 'people') {
+    else if (category === 'people') {
       let pictures = await fetchAvatars('model', 24)
       return pictures
     }
     else {
-      let pictures = await fetchAvatars(getRandom(avatarQuery), 24)
+      let pictures = await fetchAvatars('dog', 24)
       return pictures
     }
   }
