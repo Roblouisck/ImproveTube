@@ -53,9 +53,9 @@ const CommentSection = (props) => {
   const mapCommentsToHTML = (response) => {
     const commentsAsHTML = response.map((comment, index) => {
       return (
-        <div className='test' key={uuid()} ref={response.length === index + 1 ? lastUserComment : null }>
+        <div key={uuid()} ref={response.length === index + 1 ? lastUserComment : null }>
           <a href={`/channel/${comment.id}`}>
-            <img className={`${p}-comment-avatar`} src={comment.previewURL}/>
+            <img className={`${p}-comment-avatar`} src={comment.previewURL} alt="A Commentor Avatar" />
           </a>
           <div className={`${p}-comment-container`}>
             <a href={`/channel/${comment.id}`}>
@@ -175,7 +175,7 @@ const CommentSection = (props) => {
       <span className={`${p}-sort-comments`}>Sort by</span>
 
       <div className={`${p}-add-comment-wrapper flex`}>
-          <img className={`${p}-add-comment-avatar`} src="https://i.imgur.com/F4odDIJ.jpg"/>
+          <img className={`${p}-add-comment-avatar`} src="https://i.imgur.com/F4odDIJ.jpg" alt="Your Avatar" />
         <input 
           id="addComment"
           className={`${p}-add-comment`} 
@@ -202,7 +202,7 @@ const CommentSection = (props) => {
           ? userComments.map((item, i) => (
             <div className="videoPage-user-comment-box" key={i}>
               <div id="mostRecentComment"></div>
-                <img className="videoPage-comment-avatar" src="https://i.imgur.com/F4odDIJ.jpg"/>
+                <img className="videoPage-comment-avatar" src="https://i.imgur.com/F4odDIJ.jpg" alt="A Commentor Avatar" />
               <div className="videoPage-edit-comment">
                 <span className="videoPage-edit-comment-ellipses" onClick={event => toggleDeleteButton(event)}>
                   {ellipsesVertical(14)}

@@ -18,7 +18,10 @@ const DescriptionBox = ({ props }) => {
       <div className={`${p}-description-column-1-avatar-wrapper`}>
         <div className={`${p}-avatar-title-followers-wrapper`}>
           <Link to={{ pathname: picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`}}>
-            <img className={`${p}-description-column-1-avatar`} src={authorAvatar === "" ? 'https://i.imgur.com/PDj9hW9.jpg' : authorAvatar} />
+            <img 
+              className={`${p}-description-column-1-avatar`} 
+              src={authorAvatar === "" ? 'https://i.imgur.com/PDj9hW9.jpg' : authorAvatar} 
+              alt="Video Author Avatar" />
           </Link>
           <div className={`${p}-description-avatar-text-wrapper`}>
             <Link to={{ pathname: picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`}}>

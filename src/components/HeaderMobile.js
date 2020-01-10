@@ -79,7 +79,7 @@ const HeaderMobile = () => {
 
       </div>
         <a href="/channel/robertlouis">
-          <img className={`${p}-avatar`} src="https://i.imgur.com/F4odDIJ.jpg"></img>
+          <img className={`${p}-avatar`} src="https://i.imgur.com/F4odDIJ.jpg" alt="Your Avatar" ></img>
         </a>
     </div>
   )

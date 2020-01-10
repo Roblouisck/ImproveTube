@@ -53,10 +53,14 @@ const ActivityFeed = (props) => {
                 src={
                   props.userAvatar.previewURL ? props.userAvatar.previewURL 
                   : props.userAvatar === "" ? 'https://i.imgur.com/ZwDgXSF.jpg' 
-                  : props.userAvatar}/>
+                  : props.userAvatar}
+                alt="An Activity Feed User Avatar" />
 
             : <a href={ `/channel/${pic.id}`}> 
-                <img className="avatarPlaceholder--img" src={pic.previewURL}/>
+                <img 
+                  className="avatarPlaceholder--img" 
+                  src={pic.previewURL}
+                  alt="An Activity Feed User Avatar" />
               </a>
           }
           </div>

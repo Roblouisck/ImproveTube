@@ -5,6 +5,7 @@ import { videoQuery } from '../words'
 import ActivityFeed from './ActivityFeed'
 import { handleButtons } from './homePage/handleButtons'
 import { determineAvatars } from './homePage/determineAvatars'
+import { Link } from 'react-router-dom'
 import { 
   toggleClass, 
   abbreviateNumber, 
@@ -80,7 +81,7 @@ const VideoGrid = (props) => {
       return (
         <div className={`${p}--grid-content-wrapper`} key={uuid()} ref={videos.length === index + 1 ? lastVideo : null}>
           <div className={`${p}--grid-video clickable`}>
-            <a href={`/video/id/${vid.id}-${pictures[currentPic].id}`}>
+            <Link to={{ pathname: `/video/id/${vid.id}-${pictures[currentPic].id}` }}>
               <video
                 className={`${p}--video`}
                 onMouseOver={event => event.target.play()}
@@ -89,7 +90,7 @@ const VideoGrid = (props) => {
                 muted
                 >
               </video>
-            </a>
+            </Link>
           </div>
             { /* if home page, send user to channel page when clicking author avatar */}
             { /* else (channel page) don't render author avatar */}
@@ -97,7 +98,7 @@ const VideoGrid = (props) => {
               p === 'home' 
                 ? <div className={`${p}--grid-avatar-wrapper`}>
                     <a href={`/channel/${pictures[currentPic].id}`}> 
-                      <img className={`${p}--grid-avatar`} src={pictures[currentPic].previewURL}/> 
+                      <img className={`${p}--grid-avatar`} src={pictures[currentPic].previewURL} alt="Video Author Avatar" /> 
                     </a> 
                   </div>
                 : null

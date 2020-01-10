@@ -70,7 +70,10 @@ const AboveFold = ({ userName, userAvatar, authorFollowers }) => {
     const subAvatars = subscriberAvatars.map(avatar => {
       return (
         <a href={`/channel/${avatar.id}`} key={avatar.id}> 
-          <img className={`${p}-subscriber-avatar`} src={avatar.webformatURL} />
+          <img 
+            className={`${p}-subscriber-avatar`} 
+            src={avatar.webformatURL}
+            alt="A Subscriber To This Channel" />
         </a>
       )
     })
@@ -103,12 +106,13 @@ const AboveFold = ({ userName, userAvatar, authorFollowers }) => {
         </div>
         <div className={`${p}-user-avatar-wrapper posRelative`}>
           <a className={`${p}-pixabay-src`} href={userAvatar.pageURL}>?</a>
-          <img className={`${p}-avatar`} 
+          <img 
+            className={`${p}-avatar`} 
             src={
               userAvatar === "" ? 'https://i.imgur.com/4KiKrkv.jpg' 
               : userAvatar.webformatURL ? userAvatar.webformatURL 
               : userAvatar } 
-            />
+            alt="No Avatar, Question Mark Placeholder" />
         </div>
       </div>
       <div className={`${p}-description-box`}>

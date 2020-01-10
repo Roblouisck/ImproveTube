@@ -97,7 +97,10 @@ const Header = () => {
       </div>
 
       <div className="avatarPlaceholder">
-        <img className="headerAvatar" src="https://i.imgur.com/F4odDIJ.jpg"/>
+        <img 
+          className="headerAvatar" 
+          src="https://i.imgur.com/F4odDIJ.jpg" 
+          alt="Your Avatar" />
       </div>
       <menu className="userMenu">
         <ul>

@@ -65,7 +65,7 @@ const SearchPage = () => {
                 <a className={`${p}-pixabay-src`} href={vid.pageURL}>?</a>
                   <div className={`${p}-avatar-wrapper`}>
                     <a href={`/channel/${avatars[index].id}`}> 
-                      <img className={`${p}-grid-avatar`} src={avatars[index].webformatURL}/> 
+                      <img className={`${p}-grid-avatar`} src={avatars[index].webformatURL} alt="Video Author Avatar" /> 
                     </a> 
                   </div>
 
