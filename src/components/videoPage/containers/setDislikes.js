@@ -6,7 +6,7 @@ const setDislikes = (likes) => {
     if (likes < 500) {
       return dislikes*randomlyZeroOrOne
     }
-  return likes
+  return dislikes
 }
 
 export default setDislikes
