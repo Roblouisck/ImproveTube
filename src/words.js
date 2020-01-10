@@ -77,7 +77,7 @@ export const avatarQuery = [
   'dancing',
   'skii',
   'snowboard',
-  'rockclimb',
+  'rock climb',
   'climb',
   'running',
   'jogging'
