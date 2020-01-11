@@ -83,7 +83,6 @@ const RenderChannelPage = (props) => {
             userName={state.userName}
             authorFollowers={state.authorFollowers}
            />
-          }
           <div className="channel--wrapper">
             <ActivityFeed 
               page={'channel'} 

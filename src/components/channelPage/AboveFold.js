@@ -72,7 +72,7 @@ const AboveFold = ({ userName, userAvatar, authorFollowers }) => {
         <a href={`/channel/${avatar.id}`} key={avatar.id}> 
           <img 
             className={`${p}-subscriber-avatar`} 
-            src={avatar.webformatURL}
+            src={avatar.previewURL}
             alt="A Subscriber To This Channel" />
         </a>
       )
@@ -107,7 +107,7 @@ const AboveFold = ({ userName, userAvatar, authorFollowers }) => {
         <div className={`${p}-user-avatar-wrapper posRelative`}>
           <a className={`${p}-pixabay-src`} href={userAvatar.pageURL}>?</a>
           <img 
-            className={`${p}-avatar`} 
+            className={`${p}-channel-avatar`} 
             src={
               userAvatar === "" ? 'https://i.imgur.com/4KiKrkv.jpg' 
               : userAvatar.webformatURL ? userAvatar.webformatURL 
