@@ -16,7 +16,6 @@ export const videoQuery = [
   'people',
   'place',
   'point',
-  'problem',
   'program',
   'room',
   'story',
