@@ -47,7 +47,7 @@ const UpNextVideos = () => {
           <div className={`${p}-sidebar-grid-video`}>
             <a href={`/video/id/${vid.id}-000`}>
               <video 
-                className={`${p}-video`} 
+                className={`${p}-upnext-video`} 
                 onMouseOver={event => event.target.play()}
                 onMouseOut={event => event.target.pause()}
                 src={`${vid.videos.tiny.url}#t=1`}
