@@ -66,7 +66,7 @@ const CommentSection = (props) => {
               <h5 className="commentorName">{comment.user}</h5>
             </a>
             <div className="dateOfComment">6 months ago</div>
-            <p className="comment">{quote.getQuote().text}</p>
+            <p className={`${p}-comment`}>{quote.getQuote().text}</p>
             <div className="thumbs">
               <span className="thumbsUpIcon">
                 {thumbsUp(16)}
@@ -218,7 +218,7 @@ const CommentSection = (props) => {
                 <div className="videoPage-comment-container">
                   <h5 className="commentorName">Robert Louis</h5>
                   <div className="dateOfComment">Just Now</div>
-                  <p className="comment">{item}</p>
+                  <p className={`${p}-comment`}>{item}</p>
                   <div className="thumbs">
                     <span className="thumbsUpIcon">
                       {thumbsUp(16)}

@@ -225,6 +225,12 @@
   letter-spacing: 0.02rem;
 }
 
+.channel-comment {
+  color: $comment-black;
+  margin: 0.3rem 3vw 0.9rem 0rem;
+  max-width: 55rem;
+}
+
 .channel--grid-nav {
   &-videos,
   &-playlists,
@@ -423,9 +429,13 @@
 
 @media screen and (max-width: 940px) {
   .channel--grid-nav {
+    justify-content: center;
+    margin: 3.3rem 0 0 0;
+
     &-subscriptions:hover {
       color: #5E5E5E;
     }
+
     &-follow {
       font-size: 1.6rem;
       margin: 1.5rem 0rem 0 2rem;
@@ -433,17 +443,12 @@
       position: unset;
     }
   }
-}
-
-@media screen and (max-width: 900px) {
-  .channel--video {
-    height: 29vw;
+  .channel--grid-nav {
+    display: flex;
+    position: relative;
+    margin: 3.3rem 0rem 0rem 7.1vw;
   }
-}
-
-@media screen and (max-width: 865px) {
   .channel--grid-video {
-    height: 30vw;
     max-width: unset;
   }
 
@@ -453,6 +458,12 @@
 
   .activityFeedContainer {
     min-width: 23rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .channel--video {
+    height: 29vw;
   }
 }
 

@@ -377,13 +377,19 @@
     cursor: pointer;
   }
 
-  &-comment-avatar {
+  &-comment-avatar, &-add-comment-avatar-post {
     background-color: #a2a7dc;
     width: 5rem;
     height: 5rem;
     object-fit: cover;
     clip-path: circle();
     min-width: 4rem;
+  }
+
+  &-add-comment-avatar-post {
+    position: relative;
+    left: 5.3rem;
+    top: 2rem;
   }
 
   &-comment-avatar-link-tag {
@@ -399,6 +405,12 @@
 
   &-comment-container {
     margin: -3rem 6rem 0.9rem 13.4rem;
+  }
+
+  &-comment {
+    color: $comment-black;
+    margin: 0.3rem 3vw 0.9rem 0rem;
+    max-width: 55rem;
   }
 }
 

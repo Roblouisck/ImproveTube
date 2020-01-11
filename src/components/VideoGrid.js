@@ -129,9 +129,9 @@ const VideoGrid = (props) => {
   }
 
   return (
-    <div className={props.page === 'home' ? "homepage-wrapper" : null}>
+    <div className={props.page === 'home' ? "homepage-wrapper" : `${p}--grid-background`}>
       { props.page==='home' ? <ActivityFeed page={'home'} button={button} /> : null}
-      <main className={`${p}--grid-background`}>
+      <main className={ props.page==='channel' ? null : `${p}--grid-background`}>
         <nav className={`${p}--grid-nav`}>
           <button 
             id='recommendedButton' 

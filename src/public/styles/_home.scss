@@ -257,7 +257,7 @@
   letter-spacing: -0.04rem;
 }
 
-.comment {
+.home-comment {
   color: $comment-black;
   margin: 0.3rem 3vw 0.9rem 0rem;
   max-width: 55rem;
@@ -524,6 +524,44 @@ hr {
 
   .home--activityfeed-hr {
     margin-left: 8%;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .home--grid-nav {
+    justify-content: center;
+    margin: 3.3rem 0 0 0;
+
+    &-subscriptions:hover {
+      color: #5E5E5E;
+    }
+
+    &-follow {
+      font-size: 1.6rem;
+      margin: 1.5rem 0rem 0 2rem;
+      padding: 0.9rem 7rem;
+      position: unset;
+    }
+  }
+  .home--grid-nav {
+    display: flex;
+    position: relative;
+    margin: 3.3rem 0rem 0rem 7.1vw;
+  }
+  .home--grid-video {
+    max-width: unset;
+  }
+
+  .commentContainer {
+    width: 80%;
+  }
+
+  .home-comment {
+    max-width: 22rem;
+  }
+
+  .activityFeedContainer {
+    min-width: 23rem;
   }
 }
 
