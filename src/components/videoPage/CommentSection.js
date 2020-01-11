@@ -185,19 +185,19 @@ const CommentSection = (props) => {
           className={`${p}-add-comment`} 
           placeholder="Add a public comment" 
           onKeyUp={event => commentFieldHasText(event, event.currentTarget.value)}
-          onClick={event => showCommentButtons()}
+          onMouseDown={event => showCommentButtons()}
           />
         <hr className={`${p}-add-comment-underline`}/>
         <hr className={`${p}-add-comment-underline-animated`}/>
         <button 
           className={`${p}-comment-button hide`}
-          onClick={() => postComment(document.getElementById('addComment').value)}>
+          onMouseDown={() => postComment(document.getElementById('addComment').value)}>
           Comment
         </button>
 
         <button 
           className={`${p}-cancel-button hide`}
-          onClick={() => resetAddComment()}>
+          onMouseDown={() => resetAddComment()}>
           Cancel
         </button>
        </div>
@@ -208,7 +208,7 @@ const CommentSection = (props) => {
               <div id="mostRecentComment"></div>
                 <img className="videoPage-comment-avatar" src="https://i.imgur.com/F4odDIJ.jpg" alt="A Commentor Avatar" />
               <div className="videoPage-edit-comment">
-                <span className="videoPage-edit-comment-ellipses" onClick={event => toggleDeleteButton(event)}>
+                <span className="videoPage-edit-comment-ellipses" onMouseDown={event => toggleDeleteButton(event)}>
                   {ellipsesVertical(14)}
                 </span>
                 <div className="videoPage-delete-comment-button" onMouseDown={event => deleteComment(event, i)}>
