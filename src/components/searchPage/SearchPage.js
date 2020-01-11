@@ -49,20 +49,17 @@ const SearchPage = () => {
         {
           videos.map((vid, index) => {
             return (
-              <div className={`${p}--grid-content-wrapper`} key={uuid()}>
-                <div className={`${p}--grid-video clickable`}>
-                  <a href={`/video/id/${vid.id}`}>
-                    <video
-                      onMouseOver={event => event.target.play()}
-                      onMouseOut={event => event.target.pause()}
-                      src={`${vid.videos.tiny.url}#t=1`}
-                      muted
-                      >
-                    </video>
-                  </a>
-                </div>
-                <div className={`${p}-under-video-content`}>
+              <div className={`${p}-grid-content-wrapper`} key={uuid()}>
                 <a className={`${p}-pixabay-src`} href={vid.pageURL}>?</a>
+                <video 
+                  className={`${p}-video clickable`}
+                  onMouseOver={event => event.target.play()}
+                  onMouseOut={event => event.target.pause()}
+                  src={`${vid.videos.tiny.url}#t=1`}
+                  controls
+                  >
+                </video>
+                <div className={`${p}-under-video-content`}>
                   <div className={`${p}-avatar-wrapper`}>
                     <a href={`/channel/${avatars[index].id}`}> 
                       <img className={`${p}-grid-avatar`} src={avatars[index].webformatURL} alt="Video Author Avatar" /> 
