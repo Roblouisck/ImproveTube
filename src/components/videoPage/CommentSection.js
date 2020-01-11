@@ -3,6 +3,7 @@ import { fetchAvatars } from '../../containers/api'
 import { uuid, randomNumber, getRandom } from '../../containers/helperFunctions'
 import quote from 'inspirational-quotes'
 import { avatarQuery } from '../../words'
+import { Link } from 'react-router-dom'
 
 import { 
   thumbsUp, 
@@ -54,9 +55,12 @@ const CommentSection = (props) => {
     const commentsAsHTML = response.map((comment, index) => {
       return (
         <div key={uuid()} ref={response.length === index + 1 ? lastUserComment : null }>
-          <a href={`/channel/${comment.id}`}>
-            <img className={`${p}-comment-avatar`} src={comment.previewURL} alt="A Commentor Avatar" />
-          </a>
+          <Link className={`${p}-comment-avatar-link-tag`} to={{ pathname: `/channel/${comment.id}`}} >
+            <img 
+              className={`${p}-comment-avatar`} 
+              src={comment.previewURL} 
+              alt="A Commentor Avatar" />
+          </Link>
           <div className={`${p}-comment-container`}>
             <a href={`/channel/${comment.id}`}>
               <h5 className="commentorName">{comment.user}</h5>

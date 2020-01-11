@@ -379,14 +379,18 @@
 
   &-comment-avatar {
     background-color: #a2a7dc;
-    position: relative;
     width: 5rem;
     height: 5rem;
-    left: 5.2rem;
     object-fit: cover;
     clip-path: circle();
     min-width: 4rem;
+  }
+
+  &-comment-avatar-link-tag {
+    left: 5.2rem;
+    position: relative;
     top: 2.7rem;
+    
   }
 
   &-user-comment-box {
