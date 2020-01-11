@@ -79,7 +79,7 @@ const UpNextVideos = () => {
       </div> 
       <button 
         className={`${p}-show-more-button`} 
-        onMouseDown={() => fetchUpNextVideos(20)}>
+        onMouseDown={() => fetchUpNextVideos(15, getRandom(videoQuery))}>
         Show More
       </button>
     </div>
