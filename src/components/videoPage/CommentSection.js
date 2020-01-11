@@ -206,7 +206,7 @@ const CommentSection = (props) => {
           ? userComments.map((item, i) => (
             <div className="videoPage-user-comment-box" key={i}>
               <div id="mostRecentComment"></div>
-                <img className="videoPage-comment-avatar" src="https://i.imgur.com/F4odDIJ.jpg" alt="A Commentor Avatar" />
+                <img className="videoPage-add-comment-avatar-post" src="https://i.imgur.com/F4odDIJ.jpg" alt="Your Avatar" />
               <div className="videoPage-edit-comment">
                 <span className="videoPage-edit-comment-ellipses" onMouseDown={event => toggleDeleteButton(event)}>
                   {ellipsesVertical(14)}
