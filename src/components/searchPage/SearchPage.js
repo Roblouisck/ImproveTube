@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { fetchAvatars, fetchVideos } from '../../containers/api'
 import { pixabayLogo } from '../svgs'
+import { avatarQuery } from '../../words'
 import { 
   abbreviateNumber, 
   capitalizeFirstLetter,
-  uuid
+  uuid,
+  getRandom
 } from '../../containers/helperFunctions'
 
 const SearchPage = () => {
@@ -27,16 +29,14 @@ const SearchPage = () => {
   }
 
   const getVideos = async (query) => {
-    let response = await fetchVideos(...Array(3), query)
+    let response = await fetchVideos(50, ...Array(2), query)
     response = response.data.hits
-    console.log(response)
     setVideos(response)
   }
 
   const getAvatars = async (query) => {
-    let pictures = await fetchAvatars('man', 50)
+    let pictures = await fetchAvatars(getRandom(avatarQuery), 50)
     pictures = pictures.data.hits
-    console.log(pictures)
     setAvatars(pictures)
     getVideos(query)
   }
