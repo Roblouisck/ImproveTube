@@ -183,7 +183,9 @@ const CommentSection = (props) => {
       <span className={`${p}-sort-comments`}>Sort by</span>
 
       <div className={`${p}-add-comment-wrapper flex`}>
+        <Link to={`/channel/robertlouis`}>
           <img className={`${p}-add-comment-avatar`} src="https://i.imgur.com/F4odDIJ.jpg" alt="Your Avatar" />
+        </Link>
         <input 
           id="addComment"
           className={`${p}-add-comment`} 
