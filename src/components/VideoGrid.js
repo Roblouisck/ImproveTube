@@ -136,20 +136,22 @@ const VideoGrid = (props) => {
           <button 
             id='recommendedButton' 
             className={`${p}--grid-nav-${props.titleOne}`} 
-            onMouseDown={handleButtons}>{props.titleOne}
+            onMouseDown={p === 'home' ? handleButtons : null}
+            >{props.titleOne}
           </button>
 
           <button 
             id='followButton' 
             className={`${p}--grid-nav-${props.titleTwo}`} 
-            onMouseDown={handleButtons}
+            onMouseDown={p === 'home' ? handleButtons : null}
             >{props.titleTwo}
           </button>
 
           <button 
             id='subscriptionsButton' 
             className={`${p}--grid-nav-${props.titleThree}`} 
-            onMouseDown={handleButtons}>{props.titleThree}
+            onMouseDown={p === 'home' ? handleButtons : null}
+            >{props.titleThree}
           </button>
 
           <button className={`${p}--grid-nav-${props.titleFour}`}>{props.titleFour}</button>
