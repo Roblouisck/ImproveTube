@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { toggleClass } from '../containers/helperFunctions'
 import SearchPage from './searchPage/SearchPage'
 import history from '../history'
@@ -67,14 +68,14 @@ const Header = () => {
       <nav className="hamburgerNav">
         <ul>
           <hr/>
-          <li><a href="/">Home</a></li>
-          <li><a href="/channel/robertlouis">Channel</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/channel/robertlouis">Channel</Link></li>
           <li><a href="#">History</a></li>
           <li><a href="#">Liked videos</a></li>
           <li><a href="#">Favorites</a></li>
           <hr/>
           <li><a href="#">Settings</a></li>
-          <li><a href="/channel/robertlouis">About Author</a></li>
+          <li><Link to="/channel/robertlouis">About Author</Link></li>
         </ul>
       </nav>
 
@@ -104,7 +105,7 @@ const Header = () => {
       </div>
       <menu className="userMenu">
         <ul>
-          <li><a href="/channel/robertlouis">Your Channel</a></li>
+          <li><Link to="/channel/robertlouis">Your Channel</Link></li>
           <li><a href="#">Sign Out</a></li>
         </ul>
       </menu>

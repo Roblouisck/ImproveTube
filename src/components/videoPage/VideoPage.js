@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import history from '../../history'
 import handleMediaQueries from './containers/handleMediaQueries'
@@ -18,17 +19,19 @@ import {
   capitalizeFirstLetter, 
   randomDate } from '../../containers/helperFunctions'
 
-const VideoPage = () => {
+const VideoPage = ({ match }) => {
+  const { params } = match
   const [p, setPrefix] = useState("videoPage")
   const [state, setState] = useState({
     loading: true,
     error: false
   })
-  
+
   useEffect(() => {
+    if (!state.loading) handleMediaQueries()
     if (state.loading) extractDataFromUrl()
-    else handleMediaQueries()
-  }, [state.loading])
+    else if (params.videoId) extractDataFromUrl(params.videoId)
+  }, [params.videoId])
 
   const fetchVideo = async (id, picAuthorID) => {
     let response = await fetchVideoFromID(id)
@@ -82,10 +85,10 @@ const VideoPage = () => {
     if (picAuthorID) fetchAuthorAvatar(picAuthorID)
   }
 
-  const extractDataFromUrl = () => {
+  const extractDataFromUrl = (id) => {
     const currentURL = window.location.href
     const urlAsArray = currentURL.split('/')
-    const urlID = urlAsArray[5].split('-')
+    const urlID = id ? id.split('-') : urlAsArray[5].split('-')
     const videoID = urlID[0]
     const picAuthorID = urlID[1]
 
@@ -139,4 +142,4 @@ const VideoPage = () => {
   )
 }
 
-export default VideoPage
+export default withRouter(VideoPage)

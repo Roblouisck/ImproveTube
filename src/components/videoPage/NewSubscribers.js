@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import { fetchAvatars } from '../../containers/api'
 
  const NewSubscribers = () => {
@@ -18,9 +19,9 @@ import { fetchAvatars } from '../../containers/api'
     const mapSubscriberAvatarsToHtml = (subscriberAvatars) => {
       const newSubscribers = subscriberAvatars.map(avatar => {
         return (
-          <a className={`${p}-new-subscribers-subscriber-img-anchor`} href={`/channel/${avatar.id}`} key={avatar.id}> 
+          <Link className={`${p}-new-subscribers-subscriber-img-anchor`} to={`/channel/${avatar.id}`} key={avatar.id}> 
             <img className={`${p}-new-subscribers-subscriber-img`} src={avatar.previewURL} alt="A New Subscriber" />
-          </a>
+          </Link>
         )
       })
       setState(prevState => ({...prevState, newSubscribers: newSubscribers}))

@@ -13,8 +13,8 @@ const App = () => {
       <Router history={history}>
         <Switch>
           <Route path="/" exact component={RenderHomepage} /> 
-          <Route path="/channel" component={RenderChannelPage} /> 
-          <Route path="/video/id" component={RenderVideoPage} /> 
+          <Route path="/channel/:channelId" component={RenderChannelPage} /> 
+          <Route path="/video/id/:videoId" component={RenderVideoPage} /> 
           <Route path="/search" component={RenderSearchPage} /> 
           <Route path="/404" exact component={PageNotFound} />
           <Route component={PageNotFound} />

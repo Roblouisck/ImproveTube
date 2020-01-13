@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import history from '../history'
 import { toggleClass } from '../containers/helperFunctions'
 import { 
@@ -78,9 +79,9 @@ const HeaderMobile = () => {
       </div>
 
       </div>
-        <a href="/channel/robertlouis">
+        <Link to="/channel/robertlouis">
           <img className={`${p}-avatar`} src="https://i.imgur.com/F4odDIJ.jpg" alt="Your Avatar" ></img>
-        </a>
+        </Link>
     </div>
   )
 }

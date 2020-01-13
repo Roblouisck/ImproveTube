@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import history from '../history'
 import { videoQuery } from '../words'
 import ActivityFeed from './ActivityFeed'
 import { handleButtons } from './homePage/handleButtons'
 import { determineAvatars } from './homePage/determineAvatars'
-import { Link } from 'react-router-dom'
 import { 
   toggleClass, 
   abbreviateNumber, 
@@ -97,24 +97,24 @@ const VideoGrid = (props) => {
             {  
               p === 'home' 
                 ? <div className={`${p}--grid-avatar-wrapper`}>
-                    <a href={`/channel/${pictures[currentPic].id}`}> 
+                    <Link to={`/channel/${pictures[currentPic].id}`}> 
                       <img className={`${p}--grid-avatar`} src={pictures[currentPic].previewURL} alt="Video Author Avatar" /> 
-                    </a> 
+                    </Link> 
                   </div>
                 : null
             }
 
-          <a href={`/video/id/${vid.id}-${pictures[currentPic].id}`}>
+          <Link to={`/video/id/${vid.id}-${pictures[currentPic].id}`}>
             <div className={`${p}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
-          </a>
+          </Link>
 
           { /* if home page, send user to channel page when clicking author avatar */}
           { /* else (channel page) don't render author name */}
           {
             p === 'home'
-            ? <a href={`/channel/${pictures[currentPic].id}`}>
+            ? <Link to={`/channel/${pictures[currentPic].id}`}>
                 <div className={`${p}--grid-author`}>{pictures[currentPic].user}</div>
-              </a>
+              </Link>
             : null
           }
 

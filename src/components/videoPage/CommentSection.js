@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { withRouter } from 'react-router-dom'
 import { fetchAvatars } from '../../containers/api'
 import { uuid, randomNumber, getRandom } from '../../containers/helperFunctions'
 import quote from 'inspirational-quotes'
@@ -12,15 +13,18 @@ import {
   ellipsesVertical } from '../svgs'
 
 const CommentSection = (props) => {
+  const { match } = props
+  const { params } = match
   const [p, setPrefix] = useState("videoPage")
   const [generatedComments, setGeneratedComments] = useState([])
   const [generatedCommentsFinal, setGeneratedCommentsFinal] = useState([])
   const [userComments, setUserComments] = useState([])
 
   useEffect(() => {
+    if (params.videoId) setGeneratedComments([])
     userClicksAddCommentField()
     fetchComments(getRandom(avatarQuery))
-  }, [])
+  }, [params.videoId])
 
   // Cap the amount of randomly generated comments
   useEffect(() => {
@@ -62,9 +66,9 @@ const CommentSection = (props) => {
               alt="A Commentor Avatar" />
           </Link>
           <div className={`${p}-comment-container`}>
-            <a href={`/channel/${comment.id}`}>
+            <Link to={`/channel/${comment.id}`}>
               <h5 className="commentorName">{comment.user}</h5>
-            </a>
+            </Link>
             <div className="dateOfComment">6 months ago</div>
             <p className={`${p}-comment`}>{quote.getQuote().text}</p>
             <div className="thumbs">
@@ -238,4 +242,4 @@ const CommentSection = (props) => {
   )
 }
 
-export default CommentSection
+export default withRouter(CommentSection)

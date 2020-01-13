@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import { uuid, fabricateTimeStamp, getRandom } from '../containers/helperFunctions'
 import { avatarQuery } from '../words'
 import quote from 'inspirational-quotes'
@@ -56,12 +57,12 @@ const ActivityFeed = (props) => {
                   : props.userAvatar}
                 alt="An Activity Feed User Avatar" />
 
-            : <a href={ `/channel/${pic.id}`}> 
+            : <Link to={`/channel/${pic.id}`}> 
                 <img 
                   className="avatarPlaceholder--img" 
                   src={pic.previewURL}
                   alt="An Activity Feed User Avatar" />
-              </a>
+              </Link>
           }
           </div>
           <div className="commentContainer" >

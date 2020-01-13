@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { videoQuery } from '../../words'
 import { fetchVideos } from '../../containers/api'
@@ -45,7 +46,7 @@ const UpNextVideos = () => {
       return (
         <div className={`${p}-sidebar-grid-video-wrapper`} key={uuid()} ref={response.length === index + 1 ? lastUpNextVideo : null}>
           <div className={`${p}-sidebar-grid-video`}>
-            <a href={`/video/id/${vid.id}-000`}>
+            <Link to={`/video/id/${vid.id}`}>
               <video 
                 className={`${p}-upnext-video`} 
                 onMouseOver={event => event.target.play()}
@@ -53,14 +54,14 @@ const UpNextVideos = () => {
                 src={`${vid.videos.tiny.url}#t=1`}
                 muted >
               </video>
-            </a>
+            </Link>
           </div>
-          <a href={`/video/id/${vid.id}`}>
+          <Link to={`/video/id/${vid.id}`}>
             <h3 className={`${p}-sidebar-grid-video-title`}>{capitalizeFirstLetter(vid.tags)}</h3>
-          </a>
-          <a href={`/channel/000${vid.id}`}>
+          </Link>
+          <Link to={`/channel/000${vid.id}`}>
             <p className={`${p}-sidebar-grid-video-author`}>{vid.user}</p>
-          </a>
+          </Link>
           <p className={`${p}-sidebar-grid-video-views-text`}>{abbreviateNumber(vid.downloads)} views</p>
         </div>
       )

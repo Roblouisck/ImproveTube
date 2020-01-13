@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+// import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { fetchAvatars, getRandomName } from '../../containers/api'
 import { 
@@ -105,7 +106,7 @@ const AboveFold = ({ userName, userAvatar, authorFollowers }) => {
           </span>
         </div>
         <div className={`${p}-user-avatar-wrapper posRelative`}>
-          <a className={`${p}-pixabay-src`} href={userAvatar.pageURL}>?</a>
+          <a className={`${p}-pixabay-src`} to={userAvatar.pageURL}>?</a>
           <img 
             className={`${p}-channel-avatar`} 
             src={

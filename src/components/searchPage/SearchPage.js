@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { fetchAvatars, fetchVideos } from '../../containers/api'
 import { pixabayLogo } from '../svgs'
@@ -61,18 +62,18 @@ const SearchPage = () => {
                 </video>
                 <div className={`${p}-under-video-content`}>
                   <div className={`${p}-avatar-wrapper`}>
-                    <a href={`/channel/${avatars[index].id}`}> 
+                    <Link to={`/channel/${avatars[index].id}`}> 
                       <img className={`${p}-grid-avatar`} src={avatars[index].webformatURL} alt="Video Author Avatar" /> 
-                    </a> 
+                    </Link> 
                   </div>
 
-                  <a href={`/video/id/${vid.id}-${avatars[index].id}`}>
+                  <Link to={`/video/id/${vid.id}-${avatars[index].id}`}>
                     <div className={`home--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
-                  </a>
+                  </Link>
 
-                  <a href={`/channel/${avatars[index].id}`}>
+                  <Link to={`/channel/${avatars[index].id}`}>
                     <div className={`home--grid-author`}>{avatars[index].user}</div>
-                  </a>
+                  </Link>
 
                   <div className={`home--grid-views`}>{abbreviateNumber(vid.views)} views 
                     <span className={`home--grid-date`}> • 6 days ago</span>
