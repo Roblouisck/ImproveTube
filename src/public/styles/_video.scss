@@ -269,6 +269,11 @@
     margin: 0 3rem 0rem 4rem;
   }
 
+  &-add-comment-wrapper > a {
+    margin-bottom: 1.5rem;
+    z-index: 4;
+  }
+
   &-add-comment-avatar {
     position: absolute;
     background-color: #a2a7dc;
@@ -277,11 +282,6 @@
     border-radius: 99rem;
     cursor: pointer;
     margin: 4rem 0rem 0.4rem 5.2rem;
-    z-index: 4;;
-  }
-
-  &-add-comment-wrapper {
-    margin-bottom: 1.5rem
   }
   
   &-add-comment {
