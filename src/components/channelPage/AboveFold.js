@@ -106,7 +106,7 @@ const AboveFold = ({ userName, userAvatar, authorFollowers }) => {
           </span>
         </div>
         <div className={`${p}-user-avatar-wrapper posRelative`}>
-          <a className={`${p}-pixabay-src`} to={userAvatar.pageURL}>?</a>
+          <a className={`${p}-pixabay-src`} href={userAvatar.pageURL}>?</a>
           <img 
             className={`${p}-channel-avatar`} 
             src={
