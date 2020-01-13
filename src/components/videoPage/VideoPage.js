@@ -31,7 +31,7 @@ const VideoPage = ({ match }) => {
     if (!state.loading) handleMediaQueries()
     if (state.loading) extractDataFromUrl()
     else if (params.videoId) extractDataFromUrl(params.videoId)
-  }, [params.videoId])
+  }, [params.videoId, state.loading])
 
   const fetchVideo = async (id, picAuthorID) => {
     let response = await fetchVideoFromID(id)
