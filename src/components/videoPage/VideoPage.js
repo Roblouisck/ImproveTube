@@ -28,6 +28,7 @@ const VideoPage = ({ match }) => {
   })
 
   useEffect(() => {
+    scroll(0, 0)
     if (!state.loading) handleMediaQueries()
     if (state.loading) extractDataFromUrl()
     else if (params.videoId) extractDataFromUrl(params.videoId)

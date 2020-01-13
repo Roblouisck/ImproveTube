@@ -1,17 +1,20 @@
 import React, { useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { fetchAvatars } from '../../containers/api'
+import { getRandom } from '../../containers/helperFunctions'
+import { avatarQuery } from '../../words'
 
- const NewSubscribers = () => {
+ const NewSubscribers = ({ match }) => {
+  const { params } = match
   const [p, setPrefix] = useState("videoPage")
   const [state, setState] = useState([])
 
   useEffect(() => {
     fetchSubscriberAvatars()
-  }, [])
+  }, [params.videoId])
 
    const fetchSubscriberAvatars = async () => {
-      let subscriberAvatars = await fetchAvatars('woman', 21)
+      let subscriberAvatars = await fetchAvatars(getRandom(avatarQuery), 21)
       subscriberAvatars = subscriberAvatars.data.hits
       mapSubscriberAvatarsToHtml(subscriberAvatars)
     }
@@ -35,4 +38,4 @@ import { fetchAvatars } from '../../containers/api'
 }
 
 
-export default NewSubscribers
+export default withRouter(NewSubscribers)
