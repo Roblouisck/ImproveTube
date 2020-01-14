@@ -21,6 +21,11 @@ const SearchPage = () => {
     extractDataFromUrl()
   }, [])
 
+  useEffect(() => {
+    console.log(avatars)
+    console.log(videos)
+  })
+
   const extractDataFromUrl = () => {
     const currentURL = window.location.href
     const urlAsArray = currentURL.split('/')
@@ -38,8 +43,16 @@ const SearchPage = () => {
   const getAvatars = async (query) => {
     let pictures = await fetchAvatars(getRandom(avatarQuery), 50)
     pictures = pictures.data.hits
-    setAvatars(pictures)
-    getVideos(query)
+
+    if (pictures.length < 50) {
+      let additionalPictures = await fetchAvatars(getRandom(avatarQuery), 50)
+      additionalPictures = additionalPictures.data.hits
+      setAvatars([...pictures, ...additionalPictures])
+    }
+    else {
+      setAvatars(pictures)
+      getVideos(query)
+    }
   }
 
   return (
