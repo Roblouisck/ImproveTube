@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import history from '../history'
-import { toggleClass } from '../containers/helperFunctions'
+import { toggleClass} from '../containers/helperFunctions'
 import { 
   arrowLeftSVG, 
   videoCameraSVG, 
-  magnifyingGlassSVG } from './svgs'
+  magnifyingGlassSVG,
+  siteLogo } from './svgs'
 
 const HeaderMobile = () => {
   const [p, setPrefix] = useState("header--mobile")
@@ -66,7 +67,8 @@ const HeaderMobile = () => {
       </div>
 
       <div className={`${p}-logo`}>
-        logo
+        
+        <Link to='/'>{siteLogo()}</Link>
       </div>
 
       <div className={`${p}-video-camera-icon`}>

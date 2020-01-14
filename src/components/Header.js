@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { toggleClass } from '../containers/helperFunctions'
 import SearchPage from './searchPage/SearchPage'
 import history from '../history'
-import { magnifyingGlassSVG } from './svgs'
+import { magnifyingGlassSVG, siteLogo } from './svgs'
 
 const Header = () => {
 
@@ -63,7 +63,10 @@ const Header = () => {
         <div className="hamburgerLine2"></div>
         <div className="hamburgerLine3"></div>
       </div>
-      <div className="headerSiteLogo">LOGO</div>
+
+      <div className="headerSiteLogo">
+        <Link to='/'>{siteLogo()}</Link>
+      </div>
       <div className="fadeBackground"></div>
       <nav className="hamburgerNav">
         <ul>
