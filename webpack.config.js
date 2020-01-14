@@ -2,9 +2,9 @@ const path = require('path')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-    devtool: 'inline-source-map',
     entry: ['@babel/polyfill', './src/index.js'],
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -16,6 +16,7 @@ module.exports = {
         historyApiFallback: true
     },
     plugins: [
+        new BundleAnalyzerPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/public/index.html'
