@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development",
-    "build": "webpack --mode production",
+    "build": "node ./create-env.js && webpack --mode production",
     "start": "webpack-dev-server --mode development --open"
   },
   "author": "",
