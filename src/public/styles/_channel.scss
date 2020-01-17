@@ -497,7 +497,7 @@
   .channel--aboveFold {
     &-name-text {
       margin-bottom: unset;
-      font-size: 2.4rem;
+      font-size: 2rem;
     }
 
     &-wrapper {
@@ -526,6 +526,14 @@
       min-height: 12rem;
       min-width: 12rem;
       box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+    }
+
+    &-channel-avatar {
+      width: 30.5vw;
+      height: 30.5vw;
+      min-width: unset;
+      min-height: unset;
+      background: #a2a7dc;
     }
 
     &-subscribers-box-title {
@@ -681,7 +689,7 @@
       right: 1rem;
     }
   }
-    .avatarPlaceholder--comments {
+  .avatarPlaceholder--comments {
     display: unset;
   }
 
@@ -699,6 +707,12 @@
   }
 }
 
+@media screen and (max-width: 400px) {
+  .channel--aboveFold-name-text {
+    font-size: 1.6rem;
+  }
+}
+
 @media screen and (min-width: 581px) {
   .channel--mobile {
     &-header,
@@ -707,3 +721,5 @@
     }
   }
 }
+
+
