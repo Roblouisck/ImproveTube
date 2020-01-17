@@ -55,6 +55,7 @@ const RenderChannelPage = (props) => {
 
       setState({
         userAvatar: picResponse.data.hits[0], 
+        pixabaySource: picResponse.data.hits[0].pageURL,
         userName: capitalizeFirstLetter(picResponse.data.hits[0].user), 
         ready: true,
         authorFollowers: vidResponse.data.hits[0].views
@@ -65,7 +66,8 @@ const RenderChannelPage = (props) => {
       const response = await fetchPictureFromID(dataFromURL)
       if (!response) setState({error: true})
       else setState({
-        userAvatar: response.data.hits[0], 
+        userAvatar: response.data.hits[0],
+        pixabaySource: response.data.hits[0].pageURL,
         userName: capitalizeFirstLetter(response.data.hits[0].user), 
         ready: true
       })
