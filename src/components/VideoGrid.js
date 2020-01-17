@@ -24,26 +24,26 @@ const VideoGrid = (props) => {
 
   useEffect(() => {
     if (p === 'home') { 
-      fetchVideos(24, ...Array(2), 'buildings') 
+      fetchVideos(13, ...Array(2), 'buildings') 
       navButtonHashChange()
     } 
-    else fetchVideos(24, ...Array(2), getRandom(videoQuery))
+    else fetchVideos(13, ...Array(2), getRandom(videoQuery))
   }, [window.location.hash])
 
   const navButtonHashChange = () => {
     switch (window.location.hash) {
       case '#rec':
-        fetchVideos(24, 'buildings', true, undefined, true)
+        fetchVideos(13, 'buildings', true, undefined, true)
         setButton('recommended')
       break
 
       case '#fol':
-        fetchVideos(24, 'nature', true, undefined, true)
+        fetchVideos(13, 'nature', true, undefined, true)
         setButton('follow')
       break
 
       case '#sub':
-        fetchVideos(24, 'people', true, undefined, true)
+        fetchVideos(13, 'people', true, undefined, true)
         setButton('subscriptions')
       break
 
@@ -60,13 +60,17 @@ const VideoGrid = (props) => {
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const endVideo = entries[0]
-      if (endVideo.isIntersecting) fetchVideos(24, ...Array(2), getRandom(videoQuery))
+      if (endVideo.isIntersecting) fetchVideos(13, ...Array(2), getRandom(videoQuery))
     })
     if (lastVideoNode) observer.current.observe(lastVideoNode)
   })
 
   const fetchVideos = async (amount, category, editorsChoice, query, pressedNavButton) => {
-    let videos = await callVideosAPI(amount, category, editorsChoice, query)
+    let videos = null
+    const mobile = window.innerWidth <= 600
+
+    if (mobile) videos = await callVideosAPI(3, category, editorsChoice, query)
+    else if (!mobile) videos = await callVideosAPI(amount, category, editorsChoice, query)
     let pictures = await determineAvatars(category, query)
 
     videos = videos.data.hits

@@ -15,7 +15,9 @@ const ActivityFeed = (props) => {
   const [comments, setComments] = useState([])
 
   useEffect(() => {
-    fetchAvatars('woman')
+    const mobile = window.innerWidth <= 600
+    if (mobile) fetchAvatars('woman', 3)
+    if (!mobile) fetchAvatars('woman', 6)
     if (history.location.pathname.includes('/video/')) {
       document.querySelector('.activityFeedContainer').classList.toggle('hide')
     }
@@ -32,13 +34,13 @@ const ActivityFeed = (props) => {
   const lastActivityPost = useCallback(lastPostNode => {
     observer.current = new IntersectionObserver(entries => {
       const lastPost = entries[0]
-      if (lastPost.isIntersecting) fetchAvatars(getRandom(avatarQuery))
+      if (lastPost.isIntersecting) fetchAvatars(getRandom(avatarQuery), 6)
     })
     if (lastPostNode) observer.current.observe(lastPostNode)
   })
 
-  const fetchAvatars = async (query) => {
-    let response = await callAvatarsAPI(query, 6)
+  const fetchAvatars = async (query, amount) => {
+    let response = await callAvatarsAPI(query, amount)
     response = response.data.hits
     mapCommentsToHTML(response)
   }

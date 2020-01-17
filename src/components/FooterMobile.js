@@ -10,6 +10,8 @@ const FooterMobile = (props) => {
   const [p, setResource] = useState('channel--mobile')
 
   const handleActivityFeedButton = () => {
+    scroll(0, 0)
+    
     if (history.location.pathname === '/') {
       document.querySelector('.home--grid-background').classList.toggle('hide')
       document.querySelector('.activityFeedContainer').classList.toggle('show')
@@ -32,6 +34,8 @@ const FooterMobile = (props) => {
   }
 
   const figureOutOperation = (type) => {
+    scroll(0, 0)
+
     if (props.page === 'home') {
       if (type === 'recommended') window.location.hash = 'rec'
       else if (type === 'subscriptions') window.location.hash = 'sub'
