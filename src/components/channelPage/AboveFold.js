@@ -14,12 +14,12 @@ import {
   secondSentence
 } from './bioTextSnippets.js'
 
-const AboveFold = ({ userName, userAvatar, authorFollowers }) => {
+const AboveFold = ({ userName, userAvatar, authorFollowers, pixabaySource }) => {
   const [p, setPrefix] = useState('channel--aboveFold')
   const [subcriberAvatars, setSubscriberAvatars] = useState([])
   const [bio, setBio] = useState([])
   const [subscriberAmount, setSubscriberAmount] = useState([])
-
+  
   useEffect(() => { 
     handleBio()
     fetchSubscriberAvatars()
@@ -106,7 +106,7 @@ const AboveFold = ({ userName, userAvatar, authorFollowers }) => {
           </span>
         </div>
         <div className={`${p}-user-avatar-wrapper posRelative`}>
-          <a className={`${p}-pixabay-src`} href={userAvatar.pageURL}>?</a>
+          <a className={`${p}-pixabay-src`} href={pixabaySource}>?</a>
           <img 
             className={`${p}-channel-avatar`} 
             src={

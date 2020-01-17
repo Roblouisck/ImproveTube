@@ -37,6 +37,7 @@ const RenderChannelPage = (props) => {
       if (!response) setState({error: true})
       else setState({
         userAvatar: response.data.hits[0].userImageURL, 
+        pixabaySource: response.data.hits[0].pageURL,
         userName: response.data.hits[0].user, 
         ready: true, 
         authorFollowers: response.data.hits[0].views
@@ -80,6 +81,7 @@ const RenderChannelPage = (props) => {
           <HeaderMobile />
           <AboveFold 
             userAvatar={state.userAvatar}
+            pixabaySource={state.pixabaySource}
             userName={state.userName}
             authorFollowers={state.authorFollowers}
            />
