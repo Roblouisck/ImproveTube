@@ -48,8 +48,8 @@ const VideoPage = ({ match }) => {
           <a className={`${p}-pixabay-src`} href={vid.pageURL}>?</a>
           <video 
             poster="https://i.imgur.com/Us5ckqm.jpg" 
-            className={`${p}-video clickable`} 
-            src={vid.videos.large.url} 
+            className={`${p}-video clickable`}
+            src={vid.videos.large.url ? vid.videos.large.url : vid.videos.medium.url} 
             controls autoPlay>
           </video>
           <div className={`${p}-video-info-wrapper`}>  
