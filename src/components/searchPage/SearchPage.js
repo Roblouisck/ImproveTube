@@ -69,7 +69,7 @@ const SearchPage = () => {
                   className={`${p}-video clickable`}
                   onMouseOver={event => event.target.play()}
                   onMouseOut={event => event.target.pause()}
-                  src={`${vid.videos.tiny.url}#t=1`}
+                  src={vid.videos.tiny.url}
                   controls
                   >
                 </video>

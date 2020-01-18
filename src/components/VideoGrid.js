@@ -14,13 +14,14 @@ import {
   getRandom,
   fabricateTimeStamp
 } from '../containers/helperFunctions'
-
 import { fetchAvatars, fetchVideos as callVideosAPI } from '../containers/api'
+import { userClicksFollow } from './channelPage/userClicksFollow'
 
 const VideoGrid = (props) => {
   const [videosAsHTML, setVideosAsHTML] = useState([])
   const [p, setPrefix] = useState(props.page)
   const [button, setButton] = useState()
+  const [following, setFollowing] = useState()
 
   useEffect(() => {
     if (p === 'home') { 
@@ -160,7 +161,11 @@ const VideoGrid = (props) => {
 
           <button className={`${p}--grid-nav-${props.titleFour}`}>{props.titleFour}</button>
           <button className={`${p}--grid-nav-${props.titleFive}`}>{props.titleFive}</button>
-          <button className={`${p}--grid-nav-follow`}>FOLLOW</button>
+          <button 
+            className={`${p}--grid-nav-follow`}
+            onMouseDown={() => setFollowing(userClicksFollow(following))}
+            >FOLLOW
+          </button>
         </nav>
         <hr className={`${p}--grid-hr-nav-grey`} />
         <hr className={`${p}--grid-hr-nav-black`} />        
