@@ -34,8 +34,6 @@ const FooterMobile = (props) => {
   }
 
   const figureOutOperation = (type) => {
-    scroll(0, 0)
-
     if (props.page === 'home') {
       if (type === 'recommended') window.location.hash = 'rec'
       else if (type === 'subscriptions') window.location.hash = 'sub'
@@ -46,6 +44,13 @@ const FooterMobile = (props) => {
       else if (type === 'subscriptions') history.push('/#sub')
       else if (type === 'following') history.push('/#fol')
     }
+  
+    scroll(0, 0)
+    document.querySelector('.channel--mobile-footer-button-activityFeed').classList.remove('button-background-red')
+    document.querySelector('.activityFeedContainer').classList.add('hide')
+    document.querySelector('.activityFeedContainer').classList.remove('show')
+    document.querySelector('.home--grid-background').classList.remove('hide')
+    document.querySelector('.channel--grid-background').classList.remove('hide')
   }
 
   return (

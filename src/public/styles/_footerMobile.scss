@@ -3,10 +3,6 @@
     &-footer > div,
     &-footer > div > a {
       cursor: pointer;
-      &:hover {
-        color: $button-background-red;
-        fill: $button-background-red;
-      }
     }
 
     &-footer {
