@@ -14,7 +14,6 @@ const App = () => {
         <Suspense fallback={<div></div>}>
             <Switch>
               <Route path="/" exact component={RenderHomepage} /> 
-              <Route path="/channel/robertlouis" component={RenderChannelPage} />
               <Route path="/channel/:channelId" component={RenderChannelPage} /> 
               <Route path="/video/id/:videoId" component={RenderVideoPage} /> 
               <Route path="/search" component={RenderSearchPage} /> 

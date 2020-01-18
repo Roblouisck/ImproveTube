@@ -72,13 +72,13 @@ const Header = () => {
         <ul>
           <hr/>
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/channel/robertlouis">Channel</Link></li>
+          <li><a href="/channel/robertlouis">Channel</a></li>
           <li><a href="#">History</a></li>
           <li><a href="#">Liked videos</a></li>
           <li><a href="#">Favorites</a></li>
           <hr/>
           <li><a href="#">Settings</a></li>
-          <li><Link to="/channel/robertlouis">About Author</Link></li>
+          <li><a href="robertlouis">About Author</a></li>
         </ul>
       </nav>
 
@@ -108,7 +108,7 @@ const Header = () => {
       </div>
       <menu className="userMenu">
         <ul>
-          <li><Link to="/channel/robertlouis">Your Channel</Link></li>
+          <li><a href="/channel/robertlouis">Your Channel</a></li>
           <li><a href="#">Sign Out</a></li>
         </ul>
       </menu>
