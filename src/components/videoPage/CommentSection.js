@@ -24,6 +24,7 @@ const CommentSection = (props) => {
     if (params.videoId) setGeneratedComments([])
     userClicksAddCommentField()
     fetchComments(getRandom(avatarQuery))
+    setUserComments([])
   }, [params.videoId])
 
   // Cap the amount of randomly generated comments
