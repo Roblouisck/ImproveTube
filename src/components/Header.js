@@ -78,7 +78,7 @@ const Header = () => {
           <li><a href="#">Favorites</a></li>
           <hr/>
           <li><a href="#">Settings</a></li>
-          <li><a href="robertlouis">About Author</a></li>
+          <li><a href="https://github.com/Roblouisck" target="_blank">About Author</a></li>
         </ul>
       </nav>
 
