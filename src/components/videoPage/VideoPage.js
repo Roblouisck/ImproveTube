@@ -13,6 +13,7 @@ import VideoNotFound from './VideoNotFound'
 
 import { fetchVideoFromID, fetchPictureFromID } from '../../containers/api'
 import { thumbsUp, thumbsDown } from '../svgs'
+import { thumbsUpClicked, thumbsDownClicked } from './containers/handleClickingThumbs'
 
 import { 
   abbreviateNumber, 
@@ -24,65 +25,41 @@ const VideoPage = ({ match }) => {
   const [p, setPrefix] = useState("videoPage")
   const [state, setState] = useState({
     loading: true,
-    error: false
+    error: false,
+    thumbsUp: false,
+    thumbsDown: false
   })
-
+  
   useEffect(() => {
     scroll(0, 0)
     if (!state.loading) handleMediaQueries()
-    if (state.loading) extractDataFromUrl()
-    else if (params.videoId) extractDataFromUrl(params.videoId)
-  }, [params.videoId, state.loading])
+    if (state.loading) {
+      extractDataFromUrl()
+    }
+  }, [state.loading])
+
+  useEffect(() => {
+    scroll(0, 0)
+    if (state.loading === false) extractDataFromUrl(params.videoId, true)
+  }, [params.videoId])
 
   const fetchVideo = async (id, picAuthorID) => {
-    let response = await fetchVideoFromID(id)
+    let response = await fetchVideoFromID(id)    
     if (!response) setState(prevState => ({...prevState, error: true}))
-    else mapVideoResponseToHTML(response.data.hits, picAuthorID)
+    else propogateState(response.data.hits[0], picAuthorID)
   }
 
-  const mapVideoResponseToHTML = (response, picAuthorID) => {
-    let responseAsHtml = response.map(vid => {
-      return {
-        video: 
-        <div className={`${p}-video-wrapper posRelative`} key={vid.id}>
-          <a className={`${p}-pixabay-src`} href={vid.pageURL}>?</a>
-          <video 
-            poster="https://i.imgur.com/Us5ckqm.jpg" 
-            className={`${p}-video clickable`}
-            src={vid.videos.large.url ? vid.videos.large.url : vid.videos.medium.url} 
-            controls autoPlay>
-          </video>
-          <div className={`${p}-video-info-wrapper`}>  
-            <div className={`${p}-video-title-box`}>
-              <h1 className={`${p}-video-title`}>{capitalizeFirstLetter(vid.tags)}</h1>
-              <span className={`${p}-video-views`}>{abbreviateNumber(Number(vid.downloads).toLocaleString())} views</span>
-              <span className={`${p}-video-date`}>{randomDate()}</span>
-            </div>
-            <div className={`${p}-video-options`}>
-              <div className="thumbs">
-                <div className={`${p}-video-options-thumbsUp`}>{thumbsUp(20)} &nbsp; 
-                  <span className={`${p}-video-options-thumbsUp-text`}>{abbreviateNumber(vid.likes)}</span>
-                </div>
-                <div className={`${p}-video-options-thumbsDown`}>{thumbsDown(20)} &nbsp; 
-                  <span className={`${p}-video-options-thumbsDown-text`}>{setDislikes(vid.likes)}</span>
-                </div>
-                <div className={`${p}-video-options-likebar`}></div>
-              </div>
-              <span className={`${p}-video-options-share`}>Share</span>
-              <span className={`${p}-video-options-save`}>Save</span>
-              <span className={`${p}-video-options-ellipses`}>...</span>
-            </div>
-          </div>
-        </div>,
-        authorFollowers: vid.views,
-        vidAuthorID: vid.id,
-        author: picAuthorID ? 'Loading' : vid.user,
-        authorAvatar: picAuthorID ? null : vid.userImageURL,
-        views: vid.downloads
-      }
-    })
-    responseAsHtml = responseAsHtml[0]
-    setState(prevState => ({...prevState, ...responseAsHtml, loading: false}))
+  const propogateState = (response, picAuthorID) => {
+    setState(prevState => ({
+      ...prevState, 
+      ...response, 
+      loading: false, 
+      author: picAuthorID ? 'Loading' : response.user,
+      authorAvatar: picAuthorID ? null : response.userImageURL,
+      vidAuthorID: response.id,
+      date: randomDate(),
+      dislikes: setDislikes(response.likes)
+    }))
     if (picAuthorID) fetchAuthorAvatar(picAuthorID)
   }
 
@@ -122,20 +99,54 @@ const VideoPage = ({ match }) => {
         : 
         <div className={`${p}-page-wrapper`}>
           <main className={`${p}-main`}>
-            {state.video}
+            <div className={`${p}-video-wrapper posRelative`} key={state.id}>
+              <a className={`${p}-pixabay-src`} href={state.pageURL}>?</a>
+              <video 
+                poster="https://i.imgur.com/Us5ckqm.jpg" 
+                className={`${p}-video clickable`}
+                src={state.videos.large.url ? state.videos.large.url : state.videos.medium.url} 
+                controls autoPlay>
+              </video>
+              <div className={`${p}-video-info-wrapper`}>  
+                <div className={`${p}-video-title-box`}>
+                  <h1 className={`${p}-video-title`}>{capitalizeFirstLetter(state.tags)}</h1>
+                  <span className={`${p}-video-views`}>{abbreviateNumber(Number(state.downloads).toLocaleString())} views</span>
+                  <span className={`${p}-video-date`}>{state.date}</span>
+                </div>
+                <div className={`${p}-video-options`}>
+                  <div className="thumbs no-select">
+                    <div 
+                      className={`${p}-video-options-thumbsUp`}
+                      onMouseDown={() => thumbsUpClicked(state.likes)}
+                      >{thumbsUp(20)} &nbsp; 
+                      <span className={`${p}-video-options-thumbsUp-text`}>{abbreviateNumber(state.likes)}</span>
+                    </div>
+                    <div 
+                      className={`${p}-video-options-thumbsDown`}
+                      onMouseDown={() => thumbsDownClicked(state.dislikes)}
+                      >{thumbsDown(20)} &nbsp; 
+                      <span className={`${p}-video-options-thumbsDown-text`}>{state.dislikes}</span>
+                    </div>
+                    <div className={`${p}-video-options-likebar`}></div>
+                  </div>
+                  <span className={`${p}-video-options-share`}>Share</span>
+                  <span className={`${p}-video-options-save`}>Save</span>
+                  <span className={`${p}-video-options-ellipses`}>...</span>
+                </div>
+              </div>
+            </div>
             <DescriptionBox props={state} />
             <div className={`${p}-suggested-videos-mobile`}></div>
-
             <div className={`${p}-new-subscribers-wrapper`}>
               <h2 className={`${p}-new-subscribers-text`}>{`New Subscribers to ${state.author}`}</h2>
               <NewSubscribers />
             </div>
             <div className={`${p}-comment-section`}>
-              <CommentSection views={state.views}/>
+              <CommentSection views={state.downloads}/>
             </div>
           </main>
           <aside className={`${p}-sidebar`}>
-           <UpNextVideos />
+          <UpNextVideos />
           </aside>
         </div>
       }

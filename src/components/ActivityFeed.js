@@ -68,7 +68,9 @@ const ActivityFeed = (props) => {
           }
           </div>
           <div className="commentContainer" >
-            <h5 className="commentorName">{props.page === 'channel' ? props.userName : pic.user}</h5>
+            <Link to={`/channel/${pic.id}`}> 
+              <h5 className="commentorName">{props.page === 'channel' ? props.userName : pic.user}</h5>
+            </Link>
             <span className="dateOfComment">{fabricateTimeStamp(index)}</span> 
             <p className={`${props.page}-comment`}>{quote.getQuote().text}</p>
             <div className="thumbs">

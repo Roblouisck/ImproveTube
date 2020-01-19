@@ -21,11 +21,6 @@ const SearchPage = () => {
     extractDataFromUrl()
   }, [])
 
-  useEffect(() => {
-    console.log(avatars)
-    console.log(videos)
-  })
-
   const extractDataFromUrl = () => {
     const currentURL = window.location.href
     const urlAsArray = currentURL.split('/')

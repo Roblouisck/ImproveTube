@@ -213,7 +213,9 @@ const CommentSection = (props) => {
           ? userComments.map((item, i) => (
             <div className="videoPage-user-comment-box" key={i}>
               <div id="mostRecentComment"></div>
+              <Link to={'/channel/robertlouis'}>
                 <img className="videoPage-add-comment-avatar-post" src="https://i.imgur.com/F4odDIJ.jpg" alt="Your Avatar" />
+              </Link>
               <div className="videoPage-edit-comment">
                 <span className="videoPage-edit-comment-ellipses" onMouseDown={event => toggleDeleteButton(event)}>
                   {ellipsesVertical(14)}
@@ -223,7 +225,9 @@ const CommentSection = (props) => {
                 </div>
               </div>
                 <div className="videoPage-comment-container">
-                  <h5 className="commentorName">Robert Louis</h5>
+                  <Link to={'/channel/robertlouis'}>
+                    <h5 className="commentorName">Robert Louis</h5>
+                  </Link>
                   <div className="dateOfComment">Just Now</div>
                   <p className={`${p}-comment`}>{item}</p>
                   <div className="thumbs">

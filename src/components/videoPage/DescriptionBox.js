@@ -11,7 +11,7 @@ const DescriptionBox = ({ props }) => {
     vidAuthorID,
     loading,
     author,
-    authorFollowers,
+    views,
     authorAvatar
   } = props
 
@@ -56,7 +56,7 @@ const DescriptionBox = ({ props }) => {
               </div>
             </Link>
             <div className={`${p}-description-column-1-followers`}>
-            { loading === "yes" ? "loading" : `${abbreviateNumber(authorFollowers)} Followers` }
+            { loading === "yes" ? "loading" : `${abbreviateNumber(views)} Followers` }
             </div>
           </div>
         </div>
