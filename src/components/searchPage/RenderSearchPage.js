@@ -3,6 +3,7 @@ import Header from '../Header'
 import HeaderMobile from '../HeaderMobile'
 import SearchPage from './SearchPage'
 import FooterMobile from '../FooterMobile'
+import ActivityFeed from '../ActivityFeed'
 
 
 const RenderSearchPage = () => {
@@ -11,6 +12,7 @@ const RenderSearchPage = () => {
       <Header />
       <HeaderMobile />
       <SearchPage />
+      <ActivityFeed page={'search'} />
       <FooterMobile />
     </div>
   )

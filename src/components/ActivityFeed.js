@@ -18,7 +18,7 @@ const ActivityFeed = (props) => {
     const mobile = window.innerWidth <= 600
     if (mobile) fetchAvatars('woman', 3)
     if (!mobile) fetchAvatars('woman', 6)
-    if (history.location.pathname.includes('/video/')) {
+    if (history.location.pathname.includes('/video/') || history.location.pathname.includes('/search/')) {
       document.querySelector('.activityFeedContainer').classList.toggle('hide')
     }
   }, [])

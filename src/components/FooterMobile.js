@@ -31,6 +31,13 @@ const FooterMobile = (props) => {
       document.querySelector('.home--activity-feed-title').classList.toggle('margin-top')
       document.querySelector('.channel--mobile-footer-button-activityFeed').classList.toggle('button-background-red')
     }
+
+    if (history.location.pathname.includes('/search/')) {
+      document.querySelector('main').classList.toggle('hide')
+      document.querySelector('.activityFeedContainer').classList.toggle('show')
+      // document.querySelector('.home--activity-feed-title').classList.toggle('margin-top')
+      document.querySelector('.channel--mobile-footer-button-activityFeed').classList.toggle('button-background-red')
+    }
   }
 
   const figureOutOperation = (type) => {
@@ -39,18 +46,18 @@ const FooterMobile = (props) => {
       else if (type === 'subscriptions') window.location.hash = 'sub'
       else if (type === 'following') window.location.hash = 'fol'
     }
-    else if (props.page === 'channel' || props.page === 'video') {
-      if (type === 'recommended') history.push('/#rec')
-      else if (type === 'subscriptions') history.push('/#sub')
-      else if (type === 'following') history.push('/#fol')
-    }
+    else if (type === 'recommended') history.push('/#rec')
+    else if (type === 'subscriptions') history.push('/#sub')
+    else if (type === 'following') history.push('/#fol')
   
     scroll(0, 0)
-    document.querySelector('.channel--mobile-footer-button-activityFeed').classList.remove('button-background-red')
-    document.querySelector('.activityFeedContainer').classList.add('hide')
-    document.querySelector('.activityFeedContainer').classList.remove('show')
-    document.querySelector('.home--grid-background').classList.remove('hide')
-    document.querySelector('.channel--grid-background').classList.remove('hide')
+    if (document.querySelector('.activityFeedContainer').classList.contains('show')) {
+      document.querySelector('.channel--mobile-footer-button-activityFeed').classList.remove('button-background-red')
+      document.querySelector('.activityFeedContainer').classList.add('hide')
+      document.querySelector('.activityFeedContainer').classList.remove('show')
+      document.querySelector('.home--grid-background').classList.remove('hide')
+      document.querySelector('.channel--grid-background').classList.remove('hide')
+    }
   }
 
   return (
