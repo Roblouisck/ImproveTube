@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { videoQuery } from '../../words'
 import { fetchVideos } from '../../containers/api'
@@ -10,15 +10,29 @@ import {
   abbreviateNumber
 } from '../../containers/helperFunctions'
 
-const UpNextVideos = () => {
+const UpNextVideos = ({ match }) => {
   const [p, setPrefix] = useState("videoPage")
   const [nextVideos, setNextVideos] = useState([])
+  const { params } = match
+  const mobile = window.innerWidth <= 600
 
   useEffect(() => {
-  const mobile = window.innerWidth <= 600
     if (mobile) fetchUpNextVideos(3, getRandom(videoQuery))
-    else fetchUpNextVideos(10, getRandom(videoQuery))
+    else fetchUpNextVideos(8, getRandom(videoQuery))
   }, [])
+
+  useEffect(() => {
+    const firstLoadWasSkipped = nextVideos.length > 0
+    if (firstLoadWasSkipped && mobile) window.addEventListener("scroll", lazyLoadMobileVideos)
+  }, [params.videoId])
+
+  const lazyLoadMobileVideos = () => {
+    if (window.pageYOffset > 500) {
+      setNextVideos([])
+      fetchUpNextVideos(3, getRandom(videoQuery))
+      window.removeEventListener('scroll', lazyLoadMobileVideos)
+    } 
+  }
 
   // INFINITE SCROLL
   // Callback is triggered when ref is set in fetchUpNextVideos
@@ -82,11 +96,11 @@ const UpNextVideos = () => {
       </div> 
       <button 
         className={`${p}-show-more-button`} 
-        onMouseDown={() => fetchUpNextVideos(15, getRandom(videoQuery))}>
+        onMouseDown={() => fetchUpNextVideos(8, getRandom(videoQuery))}>
         Show More
       </button>
     </div>
   )
 }
 
-export default UpNextVideos
+export default withRouter(UpNextVideos)
