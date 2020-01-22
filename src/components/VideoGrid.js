@@ -16,7 +16,6 @@ import {
 } from '../containers/helperFunctions'
 import { fetchAvatars, fetchVideos as callVideosAPI } from '../containers/api'
 import { userClicksFollow } from './channelPage/userClicksFollow'
-// import {source} from '../containers/AxiosCancellation'
 
 const VideoGrid = (props) => {
   const [videosAsHTML, setVideosAsHTML] = useState([])
@@ -69,11 +68,13 @@ const VideoGrid = (props) => {
 
   const fetchVideos = async (amount, category, editorsChoice, query, pressedNavButton) => {
     let videos = null
+    let pictures = null
     const mobile = window.innerWidth <= 600
 
     if (mobile) videos = await callVideosAPI(3, category, editorsChoice, query)
     else if (!mobile) videos = await callVideosAPI(amount, category, editorsChoice, query)
-    let pictures = await determineAvatars(category, query)
+    if (mobile) pictures = await determineAvatars(category, query, 3)
+    else if (!mobile) pictures = await determineAvatars(category, query, amount)
 
     videos = videos.data.hits
     pictures = pictures.data.hits
