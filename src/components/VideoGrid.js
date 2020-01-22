@@ -23,28 +23,30 @@ const VideoGrid = (props) => {
   const [button, setButton] = useState()
   const [following, setFollowing] = useState()
 
+  const mobile = window.innerWidth <= 600
+
   useEffect(() => {
     if (p === 'home') { 
-      fetchVideos(13, ...Array(2), 'buildings') 
+      fetchVideos(mobile ? 4 : 13, ...Array(2), 'buildings') 
       navButtonHashChange()
     } 
-    else fetchVideos(13, ...Array(2), getRandom(videoQuery))
+    else fetchVideos(mobile ? 3 : 13, ...Array(2), getRandom(videoQuery))
   }, [window.location.hash])
 
   const navButtonHashChange = () => {
     switch (window.location.hash) {
       case '#rec':
-        fetchVideos(13, 'buildings', true, undefined, true)
+        fetchVideos(mobile ? 4 : 13, 'buildings', true, undefined, true)
         setButton('recommended')
       break
 
       case '#fol':
-        fetchVideos(13, 'nature', true, undefined, true)
+        fetchVideos(mobile ? 4 : 13, 'nature', true, undefined, true)
         setButton('follow')
       break
 
       case '#sub':
-        fetchVideos(13, 'people', true, undefined, true)
+        fetchVideos(mobile ? 4 : 13, 'people', true, undefined, true)
         setButton('subscriptions')
       break
 
@@ -61,20 +63,20 @@ const VideoGrid = (props) => {
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const endVideo = entries[0]
-      if (endVideo.isIntersecting) fetchVideos(13, ...Array(2), getRandom(videoQuery))
+      if (endVideo.isIntersecting && mobile) fetchVideos(6, ...Array(2), getRandom(videoQuery))
+      else if (endVideo.isIntersecting && !mobile) fetchVideos(13, ...Array(2), getRandom(videoQuery))
     })
     if (lastVideoNode) observer.current.observe(lastVideoNode)
   })
 
   const fetchVideos = async (amount, category, editorsChoice, query, pressedNavButton) => {
-    let videos = null
-    let pictures = null
-    const mobile = window.innerWidth <= 600
+    let videos
+    let pictures
 
-    if (mobile) videos = await callVideosAPI(3, category, editorsChoice, query)
+    if (mobile) videos = await callVideosAPI(amount, category, editorsChoice, query)
     else if (!mobile) videos = await callVideosAPI(amount, category, editorsChoice, query)
-    if (mobile) pictures = await determineAvatars(category, query, 3)
-    else if (!mobile) pictures = await determineAvatars(category, query, amount)
+    if (mobile) pictures = await determineAvatars(amount, category, query)
+    else if (!mobile) pictures = await determineAvatars(amount, category, query)
 
     videos = videos.data.hits
     pictures = pictures.data.hits

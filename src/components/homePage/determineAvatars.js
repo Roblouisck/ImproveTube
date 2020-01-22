@@ -2,7 +2,7 @@ import { fetchAvatars } from '../../containers/api'
 import { avatarQuery } from '../../words'
 import { getRandom } from '../../containers/helperFunctions'
 
-  export const determineAvatars = async (category, query, amount) => {
+  export const determineAvatars = async (amount, category, query) => {
     // Categories correspond to Following, Recommended, Subscription Buttons
     if (category === 'buildings' || query === 'buildings') {
       let pictures = await fetchAvatars('man', amount)

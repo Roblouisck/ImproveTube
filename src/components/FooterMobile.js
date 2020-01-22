@@ -11,6 +11,7 @@ const FooterMobile = (props) => {
 
   const handleActivityFeedButton = () => {
     scroll(0, 0)
+    window.stop()
     
     if (history.location.pathname === '/') {
       document.querySelector('.home--grid-background').classList.toggle('hide')
