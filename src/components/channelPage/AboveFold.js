@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { fetchAvatars, getRandomName } from '../../containers/api'
 import { 
@@ -19,12 +18,15 @@ const AboveFold = ({ userName, userAvatar, authorFollowers, pixabaySource }) => 
   const [subcriberAvatars, setSubscriberAvatars] = useState([])
   const [bio, setBio] = useState([])
   const [subscriberAmount, setSubscriberAmount] = useState([])
+  const mobile = window.innerWidth <= 600
   
-  useEffect(() => { 
-    handleBio()
-    fetchSubscriberAvatars()
-    setSubscriberAmount(randomNumberBetweenTwo(5000, 30000))
-
+  useEffect(() => {
+    if (!mobile) {
+      fetchSubscriberAvatars()
+      handleBio()
+      setSubscriberAmount(randomNumberBetweenTwo(5000, 30000))
+    }
+    
     const windowSize940 = (mediaQuery940) => {
       const followButton = document.querySelector('.channel--grid-nav-follow')
       const channelAvatar = document.querySelector('.channel--aboveFold-user-avatar-wrapper')
@@ -94,6 +96,12 @@ const AboveFold = ({ userName, userAvatar, authorFollowers, pixabaySource }) => 
     })
   }
 
+  const determineAvatarFormat = () => {
+    if (userAvatar === "") return 'https://i.imgur.com/4KiKrkv.jpg'
+    else if (userAvatar.webformatURL) return userAvatar.webformatURL
+    else return userAvatar
+  }
+
   return (
     <div className={`${p}-wrapper`}>
       <div className={`${ p}-avatar-content-wrapper`}>
@@ -109,24 +117,28 @@ const AboveFold = ({ userName, userAvatar, authorFollowers, pixabaySource }) => 
           <a className={`${p}-pixabay-src`} href={pixabaySource}>?</a>
           <img 
             className={`${p}-channel-avatar`} 
-            src={
-              userAvatar === "" ? 'https://i.imgur.com/4KiKrkv.jpg' 
-              : userAvatar.webformatURL ? userAvatar.webformatURL 
-              : userAvatar } 
+            src={determineAvatarFormat()}
             alt="No Avatar, Question Mark Placeholder" />
         </div>
       </div>
-      <div className={`${p}-description-box`}>
-        <h2>{bio.fullBio ? 'Description' : null}</h2>
-        <br/>
-        <p>{bio.fullBio ? bio.greeting : null}</p>
-        <br/>
-        <p>{bio.fullBio}</p>
-        <br/>
-        <p>{bio.fullBio ? 'love,' : null}</p>
-        <br/>
-        <p>{bio.fullBio ? userName : null}</p>
-      </div>
+      {
+        mobile
+        ?
+        null
+        :
+        <div className={`${p}-description-box`}>
+          <h2>{bio.fullBio ? 'Description' : null}</h2>
+          <br/>
+          <p>{bio.fullBio ? bio.greeting : null}</p>
+          <br/>
+          <p>{bio.fullBio}</p>
+          <br/>
+          <p>{bio.fullBio ? 'love,' : null}</p>
+          <br/>
+          <p>{bio.fullBio ? userName : null}</p>
+        </div>
+      }
+
       <div className={`${p}-subscribers-box-wrapper`}>
         <span className={`${p}-subscribers-box-title`}> Subscribers </span>
         <div className={`${p}-subscribers-box`}>

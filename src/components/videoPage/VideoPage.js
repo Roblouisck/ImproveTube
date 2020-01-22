@@ -4,13 +4,11 @@ import axios from 'axios'
 import history from '../../history'
 import handleMediaQueries from './containers/handleMediaQueries'
 import setDislikes from './containers/setDislikes'
-
 import NewSubscribers from './NewSubscribers'
 import CommentSection from './CommentSection'
 import UpNextVideos from './UpNextVideos'
 import DescriptionBox from './DescriptionBox'
 import VideoNotFound from './VideoNotFound'
-
 import { fetchVideoFromID, fetchPictureFromID } from '../../containers/api'
 import { thumbsUp, thumbsDown } from '../svgs'
 import { thumbsUpClicked, thumbsDownClicked } from './containers/handleClickingThumbs'
@@ -29,6 +27,7 @@ const VideoPage = ({ match }) => {
     thumbsUp: false,
     thumbsDown: false
   })
+  const mobile = window.innerWidth <= 600
   
   useEffect(() => {
     scroll(0, 0)
@@ -92,6 +91,12 @@ const VideoPage = ({ match }) => {
     }))
   }
 
+  const determineVideoSize = () => {
+    if (mobile) return state.videos.tiny.url
+    else if (state.videos.large.url) return state.videos.large.url
+    else if (state.videos.medium.url) return state.videos.medium.url
+  }
+
   return (
     <div>
       { state.error ? <VideoNotFound /> : null}
@@ -104,8 +109,10 @@ const VideoPage = ({ match }) => {
               <video 
                 poster="https://i.imgur.com/Us5ckqm.jpg" 
                 className={`${p}-video clickable`}
-                src={state.videos.large.url ? state.videos.large.url : state.videos.medium.url} 
-                controls autoPlay>
+                src={determineVideoSize()} 
+                controls
+                autoPlay
+                >
               </video>
               <div className={`${p}-video-info-wrapper`}>  
                 <div className={`${p}-video-title-box`}>
@@ -146,7 +153,7 @@ const VideoPage = ({ match }) => {
             </div>
           </main>
           <aside className={`${p}-sidebar`}>
-          <UpNextVideos />
+            <UpNextVideos />
           </aside>
         </div>
       }

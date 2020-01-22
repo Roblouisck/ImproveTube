@@ -14,6 +14,7 @@ const DescriptionBox = ({ props }) => {
     views,
     authorAvatar
   } = props
+  const mobile = window.innerWidth <= 600
 
   const userClicksSubscribe = () => {
     if (subscribed) {
@@ -43,7 +44,7 @@ const DescriptionBox = ({ props }) => {
     <div className={`${p}-description-box`}>  
       <div className={`${p}-description-column-1-avatar-wrapper`}>
         <div className={`${p}-avatar-title-followers-wrapper`}>
-          <Link to={{ pathname: picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`}}>
+          <Link onTouchStart={() => window.stop()} to={{ pathname: picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`}}>
             <img 
               className={`${p}-description-column-1-avatar`} 
               src={authorAvatar === "" ? 'https://i.imgur.com/PDj9hW9.jpg' : authorAvatar} 

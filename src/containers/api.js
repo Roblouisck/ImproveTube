@@ -13,7 +13,11 @@ export const fetchAvatars = (query, amount) => {
   })
 }
 
+let call
 export const fetchVideos = (amount, category, editorsChoice, query) => {
+  if (call) call.cancel('cancelled because you switched to new tab')
+  call = axios.CancelToken.source()
+
   return axios.get('https://pixabay.com/api/videos/', {
     params: {
       key: process.env.PIXABAY_API,
@@ -23,6 +27,11 @@ export const fetchVideos = (amount, category, editorsChoice, query) => {
       editors_choice: editorsChoice,
       min_height: 1080,
       orientation: 'horizontal'
+    },
+    cancelToken: call.token
+  }).catch(err => {
+    if (axios.isCancel(err)) {
+      console.log('Request:', err.message)
     }
   })
 }

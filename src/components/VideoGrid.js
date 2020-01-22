@@ -16,6 +16,7 @@ import {
 } from '../containers/helperFunctions'
 import { fetchAvatars, fetchVideos as callVideosAPI } from '../containers/api'
 import { userClicksFollow } from './channelPage/userClicksFollow'
+// import {source} from '../containers/AxiosCancellation'
 
 const VideoGrid = (props) => {
   const [videosAsHTML, setVideosAsHTML] = useState([])
@@ -79,14 +80,14 @@ const VideoGrid = (props) => {
 
     mapVideosToHTML(videos, pictures, pressedNavButton)
   }
-  
+
   const mapVideosToHTML = (videos, pictures, pressedNavButton) => {
     const vidsAsHtml = videos.map((vid, index) => {
       const currentPic = index
       return (
         <div className={`${p}--grid-content-wrapper`} key={uuid()} ref={videos.length === index + 1 ? lastVideo : null}>
           <div className={`${p}--grid-video clickable`}>
-            <Link to={{ pathname: `/video/id/${vid.id}-${pictures[currentPic].id}` }}>
+            <Link onMouseDown={() => window.stop()} to={{ pathname: `/video/id/${vid.id}-${pictures[currentPic].id}` }}>
               <video
                 className={`${p}--video`}
                 onMouseOver={event => event.target.play()}

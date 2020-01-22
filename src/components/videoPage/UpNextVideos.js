@@ -15,7 +15,9 @@ const UpNextVideos = () => {
   const [nextVideos, setNextVideos] = useState([])
 
   useEffect(() => {
-    fetchUpNextVideos(15, getRandom(videoQuery))
+  const mobile = window.innerWidth <= 600
+    if (mobile) fetchUpNextVideos(3, getRandom(videoQuery))
+    else fetchUpNextVideos(10, getRandom(videoQuery))
   }, [])
 
   // INFINITE SCROLL
@@ -32,7 +34,7 @@ const UpNextVideos = () => {
         }
         else if (lastVideo.isIntersecting && window.innerWidth > 1000) {
           document.querySelector('.videoPage-show-more-button').classList.remove('show')
-          fetchUpNextVideos(20, getRandom(videoQuery))
+          fetchUpNextVideos(10, getRandom(videoQuery))
       }
     })
     if (lastVideoNode) observer.current.observe(lastVideoNode)
