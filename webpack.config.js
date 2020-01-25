@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
 module.exports = {
+    devtool: 'inline-source-map',
     entry: ['@babel/polyfill', './src/index.js'],
     output: {
         path: path.resolve(__dirname, './dist'),

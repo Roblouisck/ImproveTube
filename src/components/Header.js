@@ -6,43 +6,30 @@ import history from '../history'
 import { magnifyingGlassSVG, siteLogo } from './svgs'
 
 const Header = () => {
-
-  const burgerReverse = (class1, class2) => {
-    class1.addEventListener('click', () => {
-      if (class2.classList.contains('slideIn')) {
-        class2.classList.remove('slideOut')
-      } else {
-        class2.classList.add('slideOut')
-      }
-    })
-  }
-
-  const noAnimationDuringWindowResize = (burgerMenu) => {
-    window.addEventListener("resize", () => {
-      burgerMenu.classList.remove('slideOut')
-    })
-  }
-
-  useEffect(() => {
-    const burgerIcon = document.querySelector('.hamburgerIcon')
+  const handleSlide = () => {
     const burgerMenu = document.querySelector('.hamburgerNav')
     const burgerFadedBackground = document.querySelector('.fadeBackground')
-    const signInAvatar = document.querySelector('.header > .avatarPlaceholder')
-    const userMenu = document.querySelector('.userMenu')
 
-    // An eventlistener gets set in toggleClass when component mounts
-    toggleClass('show', burgerIcon, burgerMenu, burgerFadedBackground)
-    toggleClass('show', burgerFadedBackground, burgerFadedBackground)
-    toggleClass('show', signInAvatar, userMenu)
-    toggleClass('slideIn', burgerIcon, burgerMenu)
+    if (burgerMenu.classList.contains('slideIn') && burgerMenu.classList.contains('slideOut')) {
+      burgerMenu.classList.remove('slideOut')
+      burgerFadedBackground.classList.remove('hide')
+      burgerFadedBackground.classList.add('show')
+    }
+    else if (burgerMenu.classList.contains('slideIn')) {
+      burgerMenu.classList.add('slideOut')
+      burgerFadedBackground.classList.remove('show')
+      burgerFadedBackground.classList.add('hide')
+    }
+    else {
+      burgerMenu.classList.toggle('slideIn')
+      burgerFadedBackground.classList.toggle('show')
+    }
+  }
 
-    // slideIn is already set when faded background is visible to user
-    // therefore we need to toggle both classes, to remove slideIn and set slideOut
-    toggleClass('slideOut', burgerFadedBackground, burgerMenu)
-    toggleClass('slideIn', burgerFadedBackground, burgerMenu)
-    burgerReverse(burgerIcon, burgerMenu)
-    noAnimationDuringWindowResize(burgerMenu)
-  }, [])
+  const userClicksAvatar = () => {
+    document.querySelector('.avatarPlaceholder').classList.toggle('show')
+    document.querySelector('.userMenu').classList.toggle('show')
+  }
 
   const onFormSubmit = (event) => {
     event.preventDefault()
@@ -58,7 +45,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="hamburgerIcon">
+      <div className="hamburgerIcon" onMouseDown={() => handleSlide()}>
         <div className="hamburgerLine1"></div>
         <div className="hamburgerLine2"></div>
         <div className="hamburgerLine3"></div>
@@ -100,7 +87,7 @@ const Header = () => {
         </form>
       </div>
 
-      <div className="avatarPlaceholder">
+      <div className="avatarPlaceholder" onMouseDown={() => userClicksAvatar()}>
         <img 
           className="headerAvatar" 
           src="https://i.imgur.com/F4odDIJ.jpg" 
