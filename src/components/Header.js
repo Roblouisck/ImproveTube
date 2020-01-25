@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { toggleClass } from '../containers/helperFunctions'
 import SearchPage from './searchPage/SearchPage'
 import history from '../history'
 import { magnifyingGlassSVG, siteLogo } from './svgs'

@@ -22,14 +22,6 @@ export const randomDate = () => {
   return formattedWithComma
 }
 
-export const toggleClass = (toggledClass, clickedElement, ...additionalElementsForToggling) => {
-  clickedElement.addEventListener('click', () => {
-    additionalElementsForToggling.forEach(additionalClass => {
-      additionalClass.classList.toggle(toggledClass)
-    })
-  })
-}
-
 export const fabricateTimeStamp = (index) => {
   const random60 = Math.floor(Math.random() * 60)
   const random2 = Math.floor(Math.random() * 2)

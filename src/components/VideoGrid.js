@@ -7,7 +7,6 @@ import ActivityFeed from './ActivityFeed'
 import { handleButtons } from './homePage/handleButtons'
 import { determineAvatars } from './homePage/determineAvatars'
 import { 
-  toggleClass, 
   abbreviateNumber, 
   capitalizeFirstLetter,
   uuid,
