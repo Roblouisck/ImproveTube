@@ -17,7 +17,7 @@ import { getRandom } from '../../containers/helperFunctions'
       return pictures
     }
     else {
-      let pictures = await fetchAvatars(getRandom(avatarQuery), amount)
+      let pictures = await fetchAvatars(query, amount)
       return pictures
     }
   }

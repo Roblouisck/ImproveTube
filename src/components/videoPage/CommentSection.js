@@ -21,8 +21,11 @@ const CommentSection = (props) => {
   const [userComments, setUserComments] = useState([])
 
   useEffect(() => {
+    addListenersToMakeCommentField()
+  }, [])
+
+  useEffect(() => {
     if (params.videoId) setGeneratedComments([])
-    userClicksAddCommentField()
     fetchComments(getRandom(avatarQuery))
     setUserComments([])
   }, [params.videoId])
@@ -94,7 +97,7 @@ const CommentSection = (props) => {
     setGeneratedComments(prevState => ([...prevState, ...commentsAsHTML]))
   }
 
-  const userClicksAddCommentField = () => {
+  const addListenersToMakeCommentField = () => {
     const addCommentField = document.querySelector('.videoPage-add-comment')
 
     addCommentField.addEventListener('focus', () => {

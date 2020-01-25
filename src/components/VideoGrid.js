@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import history from '../history'
-import { videoQuery } from '../words'
+import { videoQuery, avatarQuery } from '../words'
 import ActivityFeed from './ActivityFeed'
 import { handleButtons } from './homePage/handleButtons'
 import { determineAvatars } from './homePage/determineAvatars'
@@ -21,7 +21,6 @@ const VideoGrid = (props) => {
   const [p, setPrefix] = useState(props.page)
   const [button, setButton] = useState()
   const [following, setFollowing] = useState()
-
   const mobile = window.innerWidth <= 600
 
   useEffect(() => {
@@ -75,10 +74,10 @@ const VideoGrid = (props) => {
     if (mobile) videos = await callVideosAPI(amount, category, editorsChoice, query)
     else if (!mobile) videos = await callVideosAPI(amount, category, editorsChoice, query)
     if (mobile) pictures = await determineAvatars(amount, category, query)
-    else if (!mobile) pictures = await determineAvatars(amount, category, query)
-
+    else if (!mobile && p === 'home') pictures = await determineAvatars(amount, category, getRandom(avatarQuery))
+    
     videos = videos.data.hits
-    pictures = pictures.data.hits
+    if (p === 'home') pictures = pictures.data.hits
 
     mapVideosToHTML(videos, pictures, pressedNavButton)
   }
@@ -89,7 +88,9 @@ const VideoGrid = (props) => {
       return (
         <div className={`${p}--grid-content-wrapper`} key={uuid()} ref={videos.length === index + 1 ? lastVideo : null}>
           <div className={`${p}--grid-video clickable`}>
-            <Link onMouseDown={() => window.stop()} to={{ pathname: `/video/id/${vid.id}-${pictures[currentPic].id}` }}>
+            <Link 
+              onMouseDown={() => window.stop()} 
+              to={ p==='home' ? `/video/id/${vid.id}-${pictures[currentPic].id}` : `/video/id/${vid.id}-${props.userAvatar.id}`}>
               <video
                 className={`${p}--video`}
                 onMouseOver={event => event.target.play()}
@@ -105,14 +106,14 @@ const VideoGrid = (props) => {
             {  
               p === 'home' 
                 ? <div className={`${p}--grid-avatar-wrapper`}>
-                    <Link to={`/channel/${pictures[currentPic].id}`}> 
-                      <img className={`${p}--grid-avatar`} src={pictures[currentPic].previewURL} alt="Video Author Avatar" /> 
+                    <Link to={p==='home' ? `/channel/${pictures[currentPic].id}` : null}> 
+                      <img className={`${p}--grid-avatar`} src={p === 'home' ? pictures[currentPic].previewURL : null} alt="Video Author Avatar" /> 
                     </Link> 
                   </div>
                 : null
             }
 
-          <Link to={`/video/id/${vid.id}-${pictures[currentPic].id}`}>
+          <Link to={p === 'home' ? `/video/id/${vid.id}-${pictures[currentPic].id}` : `/video/id/${vid.id}-${props.userAvatar.id}`}>
             <div className={`${p}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
           </Link>
 
@@ -120,8 +121,8 @@ const VideoGrid = (props) => {
           { /* else (channel page) don't render author name */}
           {
             p === 'home'
-            ? <Link to={`/channel/${pictures[currentPic].id}`}>
-                <div className={`${p}--grid-author`}>{pictures[currentPic].user}</div>
+            ? <Link to={p === 'home' ? `/channel/${pictures[currentPic].id}` : null}>
+                <div className={`${p}--grid-author`}>{p === 'home' ? pictures[currentPic].user : null}</div>
               </Link>
             : null
           }

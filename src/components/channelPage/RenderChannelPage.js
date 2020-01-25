@@ -98,7 +98,8 @@ const RenderChannelPage = (props) => {
               titleThree={'playlists'} 
               titleFour={'about'} 
               titleFive={'subscriptions'} 
-              page={'channel'} />
+              page={'channel'} 
+              userAvatar={state.userAvatar} />
             <FooterMobile 
               page={'channel'}
             />
