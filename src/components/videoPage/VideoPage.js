@@ -28,7 +28,7 @@ const VideoPage = ({ match }) => {
     thumbsDown: false
   })
   const mobile = window.innerWidth <= 600
-  
+
   useEffect(() => {
     scroll(0, 0)
     if (!state.loading) handleMediaQueries()
@@ -82,6 +82,8 @@ const VideoPage = ({ match }) => {
 
   const fetchAuthorAvatar = async (id) => {
     const response = await fetchPictureFromID(id)
+    if (!response) console.log('no res')
+
     const authorName = response.data.hits[0].user
     const authorAvatar = response.data.hits[0].previewURL
     setState(prevState => ({

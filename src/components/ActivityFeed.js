@@ -55,8 +55,8 @@ const ActivityFeed = (props) => {
                 className="avatarPlaceholder--img" 
                 src={
                   props.userAvatar.previewURL ? props.userAvatar.previewURL 
-                  : props.userAvatar === "" ? 'https://i.imgur.com/ZwDgXSF.jpg' 
-                  : props.userAvatar}
+                  : props.userAvatar.userImageURL === "" ? 'https://i.imgur.com/ZwDgXSF.jpg' 
+                  : props.userAvatar.userImageURL}
                 alt="An Activity Feed User Avatar" />
 
             : <Link to={`/channel/${pic.id}`}> 

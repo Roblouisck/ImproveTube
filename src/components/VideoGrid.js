@@ -90,7 +90,7 @@ const VideoGrid = (props) => {
           <div className={`${p}--grid-video clickable`}>
             <Link 
               onMouseDown={() => window.stop()} 
-              to={ p==='home' ? `/video/id/${vid.id}-${pictures[currentPic].id}` : `/video/id/${vid.id}-${props.userAvatar.id}`}>
+              to={ p==='home' ? `/video/id/${vid.id}-${pictures[currentPic].id}` : `/video/id/${vid.id}`}>
               <video
                 className={`${p}--video`}
                 onMouseOver={event => event.target.play()}
@@ -112,8 +112,7 @@ const VideoGrid = (props) => {
                   </div>
                 : null
             }
-
-          <Link to={p === 'home' ? `/video/id/${vid.id}-${pictures[currentPic].id}` : `/video/id/${vid.id}-${props.userAvatar.id}`}>
+          <Link to={p === 'home' ? `/video/id/${vid.id}-${pictures[currentPic].id}` : `/video/id/${vid.id}`}>
             <div className={`${p}--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
           </Link>
 

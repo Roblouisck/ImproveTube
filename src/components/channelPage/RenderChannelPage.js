@@ -11,7 +11,7 @@ import PageNotFound from '../PageNotFound'
 
 const RenderChannelPage = (props) => {
   const [state, setState] = useState({})
-
+  
   useEffect(() => {
     extractDataFromUrl()
   }, [])
@@ -21,7 +21,6 @@ const RenderChannelPage = (props) => {
     const urlAsArray = currentURL.split('/')
     const dataFromURL = urlAsArray[4]
 
-    // 000 indicates user came from video page, so fetch their avatar from the video api. 
     if (dataFromURL.includes('robertlouis')) {
       setState({
         userAvatar: {
@@ -32,11 +31,12 @@ const RenderChannelPage = (props) => {
       return null
     }
 
+    // 000 indicates user came from video page, so fetch their avatar from the video api. 
     if (dataFromURL.includes('000')) {
       const response = await fetchVideoFromID(dataFromURL)
       if (!response) setState({error: true})
       else setState({
-        userAvatar: response.data.hits[0].userImageURL, 
+        userAvatar: response.data.hits[0], 
         pixabaySource: response.data.hits[0].pageURL,
         userName: response.data.hits[0].user, 
         ready: true, 
