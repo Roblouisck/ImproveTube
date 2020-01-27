@@ -46,7 +46,7 @@ export const avatarQuery = [
   'human',
   'baby',
   'art',
-  'avatar',
+  // 'avatar',
   'person',
   'fashion',
   'model',

@@ -97,9 +97,9 @@ const AboveFold = ({ userName, userAvatar, authorFollowers, pixabaySource }) => 
   }
 
   const determineAvatarFormat = () => {
-    if (userAvatar.userImageURL === "") return 'https://i.imgur.com/4KiKrkv.jpg'
-    else if (userAvatar.webformatURL) return userAvatar.webformatURL
-    else return userAvatar.userImageURL
+    if (userAvatar.webformatURL) return userAvatar.webformatURL
+    else if (userAvatar.userImageURL) return userAvatar.userImageURL
+    else return 'https://i.imgur.com/4KiKrkv.jpg'
   }
 
   return (

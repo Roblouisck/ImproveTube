@@ -39,6 +39,15 @@ const CommentSection = (props) => {
     }
   }, [generatedComments])
 
+  // Clean up event handlers
+  useEffect(() => {
+    return () => {
+      const addCommentField = document.querySelector('.videoPage-add-comment')
+      addCommentField.removeEventListener('focus', userClicksAddCommentField)
+      addCommentField.removeEventListener('focus', userClicksOutOfAddCommentField)
+    }
+  }, [])
+
   // INFINITE SCROLL
   // Callback is triggered when ref is set in mapCommentsToHTML
   const observer = useRef()
@@ -99,16 +108,19 @@ const CommentSection = (props) => {
 
   const addListenersToMakeCommentField = () => {
     const addCommentField = document.querySelector('.videoPage-add-comment')
+    addCommentField.addEventListener('focus', userClicksAddCommentField)
+    addCommentField.addEventListener('blur', userClicksOutOfAddCommentField)
+  }
 
-    addCommentField.addEventListener('focus', () => {
-      document.querySelector('.videoPage-add-comment-underline-animated').classList.add('show')
-      document.querySelector('.videoPage-comment-button').classList.add('show')
-      document.querySelector('.videoPage-cancel-button').classList.add('show')
-      document.querySelector('.videoPage-button-space').classList.remove('hide')
-    })
-    addCommentField.addEventListener('blur', () => {
-      document.querySelector('.videoPage-add-comment-underline-animated').classList.remove('show')
-    })
+  const userClicksAddCommentField = () => {
+    document.querySelector('.videoPage-add-comment-underline-animated').classList.add('show')
+    document.querySelector('.videoPage-comment-button').classList.add('show')
+    document.querySelector('.videoPage-cancel-button').classList.add('show')
+    document.querySelector('.videoPage-button-space').classList.remove('hide')
+  }
+
+  const userClicksOutOfAddCommentField = () => {
+   document.querySelector('.videoPage-add-comment-underline-animated').classList.remove('show')
   }
 
   const showCommentButtons = () => {
