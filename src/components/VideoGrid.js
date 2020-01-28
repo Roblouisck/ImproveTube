@@ -82,6 +82,16 @@ const VideoGrid = (props) => {
     mapVideosToHTML(videos, pictures, pressedNavButton)
   }
 
+  // useEffect(() => {
+  //   return () => {
+  //     observer.current.unobserve()
+  //   }
+  // }, [])
+
+  // useEffect(() => {
+  //   console.log(observer.current)
+  // }) 
+
   const mapVideosToHTML = (videos, pictures, pressedNavButton) => {
     const vidsAsHtml = videos.map((vid, index) => {
       const currentPic = index

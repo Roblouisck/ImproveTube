@@ -29,7 +29,7 @@ const ActivityFeed = (props) => {
   }, [props.button])
   
   // INFINITE SCROLL
-  // Callback is triggered when ref is set in mapVideosToHTML
+  // Callback is triggered when ref is set in mapCommentsToHTML
   const observer = useRef()
   const lastActivityPost = useCallback(lastPostNode => {
     observer.current = new IntersectionObserver(entries => {

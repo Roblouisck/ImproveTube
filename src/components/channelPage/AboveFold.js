@@ -61,6 +61,12 @@ const AboveFold = ({ userName, userAvatar, authorFollowers, pixabaySource }) => 
     mediaQuery580.addListener(windowSize580, mediaQueryBetween)
     windowSize940(mediaQuery940)
     windowSize580(mediaQuery580)
+
+    // Clean up
+    return () => {
+      mediaQuery940.removeListener(windowSize940)
+      mediaQuery580.removeListener(windowSize580, mediaQueryBetween)
+    }
   }, [])
 
   const fetchSubscriberAvatars = async () => {
