@@ -65,7 +65,7 @@ const HeaderMobile = () => {
       </div>
 
       <div className={`${p}-logo`}>
-        <Link to='/'>{siteLogo()}</Link>
+        <a href='/'>{siteLogo()}</a>
       </div>
 
       <div className={`${p}-video-camera-icon`}>

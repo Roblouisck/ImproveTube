@@ -59,18 +59,18 @@ const ActivityFeed = (props) => {
                   : props.userAvatar.userImageURL}
                 alt="An Activity Feed User Avatar" />
 
-            : <Link to={`/channel/${pic.id}`}> 
+            : <a href={`/channel/${pic.id}`}> 
                 <img 
                   className="avatarPlaceholder--img" 
                   src={pic.previewURL}
                   alt="An Activity Feed User Avatar" />
-              </Link>
+              </a>
           }
           </div>
           <div className="commentContainer" >
-            <Link to={`/channel/${pic.id}`}> 
+            <a href={`/channel/${pic.id}`}> 
               <h5 className="commentorName">{props.page === 'channel' ? props.userName : pic.user}</h5>
-            </Link>
+            </a>
             <span className="dateOfComment">{fabricateTimeStamp(index)}</span> 
             <p className={`${props.page}-comment`}>{quote.getQuote().text}</p>
             <div className="thumbs">

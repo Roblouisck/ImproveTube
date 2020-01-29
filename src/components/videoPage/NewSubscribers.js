@@ -22,9 +22,9 @@ import { avatarQuery } from '../../words'
     const mapSubscriberAvatarsToHtml = (subscriberAvatars) => {
       const newSubscribers = subscriberAvatars.map(avatar => {
         return (
-          <Link className={`${p}-new-subscribers-subscriber-img-anchor`} to={`/channel/${avatar.id}`} key={avatar.id}> 
+          <a href={`/channel/${avatar.id}`} key={avatar.id} className={`${p}-new-subscribers-subscriber-img-anchor`} > 
             <img className={`${p}-new-subscribers-subscriber-img`} src={avatar.previewURL} alt="A New Subscriber" />
-          </Link>
+          </a>
         )
       })
       setState(prevState => ({...prevState, newSubscribers: newSubscribers}))

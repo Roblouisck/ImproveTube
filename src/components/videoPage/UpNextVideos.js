@@ -75,9 +75,9 @@ const UpNextVideos = ({ match }) => {
           <Link to={`/video/id/${vid.id}`}>
             <h3 className={`${p}-sidebar-grid-video-title`}>{capitalizeFirstLetter(vid.tags)}</h3>
           </Link>
-          <Link to={`/channel/000${vid.id}`}>
+          <a href={`/channel/000${vid.id}`}>
             <p className={`${p}-sidebar-grid-video-author`}>{vid.user}</p>
-          </Link>
+          </a>
           <p className={`${p}-sidebar-grid-video-views-text`}>{abbreviateNumber(vid.downloads)} views</p>
         </div>
       )

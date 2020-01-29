@@ -44,18 +44,18 @@ const DescriptionBox = ({ props }) => {
     <div className={`${p}-description-box`}>  
       <div className={`${p}-description-column-1-avatar-wrapper`}>
         <div className={`${p}-avatar-title-followers-wrapper`}>
-          <Link onTouchStart={() => window.stop()} to={{ pathname: picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`}}>
+          <a href={picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`} onTouchStart={() => window.stop()}>
             <img 
               className={`${p}-description-column-1-avatar`} 
               src={authorAvatar === "" ? 'https://i.imgur.com/PDj9hW9.jpg' : authorAvatar} 
               alt="Video Author Avatar" />
-          </Link>
+          </a>
           <div className={`${p}-description-avatar-text-wrapper`}>
-            <Link to={{ pathname: picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`}}>
+            <a to={ picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`}>
               <div className={`${p}-description-column-1-author`}>
                 { loading === "yes" ? "loading" : author }
               </div>
-            </Link>
+            </a>
             <div className={`${p}-description-column-1-followers`}>
             { loading === "yes" ? "loading" : `${abbreviateNumber(views)} Followers` }
             </div>

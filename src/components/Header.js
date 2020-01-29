@@ -51,13 +51,13 @@ const Header = () => {
       </div>
 
       <div className="headerSiteLogo">
-        <Link to='/'>{siteLogo()}</Link>
+        <a href='/'>{siteLogo()}</a>
       </div>
       <div className="fadeBackground"></div>
       <nav className="hamburgerNav">
         <ul>
           <hr/>
-          <li><Link to="/">Home</Link></li>
+          <li><a href="/">Home</a></li>
           <li><a href="/channel/robertlouis">Channel</a></li>
           <li><a href="#">History</a></li>
           <li><a href="#">Liked videos</a></li>

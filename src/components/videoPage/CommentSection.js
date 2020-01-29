@@ -72,16 +72,16 @@ const CommentSection = (props) => {
     const commentsAsHTML = response.map((comment, index) => {
       return (
         <div key={uuid()} ref={response.length === index + 1 ? lastUserComment : null }>
-          <Link className={`${p}-comment-avatar-link-tag`} to={{ pathname: `/channel/${comment.id}`}} >
+          <a href={`/channel/${comment.id}`} className={`${p}-comment-avatar-link-tag`}>
             <img 
               className={`${p}-comment-avatar`} 
               src={comment.previewURL} 
               alt="A Commentor Avatar" />
-          </Link>
+          </a>
           <div className={`${p}-comment-container`}>
-            <Link to={`/channel/${comment.id}`}>
+            <a href={`/channel/${comment.id}`}>
               <h5 className="commentorName">{comment.user}</h5>
-            </Link>
+            </a>
             <div className="dateOfComment">6 months ago</div>
             <p className={`${p}-comment`}>{quote.getQuote().text}</p>
             <div className="thumbs">
@@ -199,9 +199,9 @@ const CommentSection = (props) => {
       <span className={`${p}-sort-comments`}>Sort by</span>
 
       <div className={`${p}-add-comment-wrapper flex`}>
-        <Link to={`/channel/robertlouis`}>
+        <a href={`/channel/robertlouis`}>
           <img className={`${p}-add-comment-avatar`} src="https://i.imgur.com/F4odDIJ.jpg" alt="Your Avatar" />
-        </Link>
+        </a>
         <input 
           id="addComment"
           className={`${p}-add-comment`} 
@@ -228,9 +228,9 @@ const CommentSection = (props) => {
           ? userComments.map((item, i) => (
             <div className="videoPage-user-comment-box" key={i}>
               <div id="mostRecentComment"></div>
-              <Link to={'/channel/robertlouis'}>
+              <a href={'/channel/robertlouis'}>
                 <img className="videoPage-add-comment-avatar-post" src="https://i.imgur.com/F4odDIJ.jpg" alt="Your Avatar" />
-              </Link>
+              </a>
               <div className="videoPage-edit-comment">
                 <span className="videoPage-edit-comment-ellipses" onMouseDown={event => toggleDeleteButton(event)}>
                   {ellipsesVertical(14)}
@@ -240,9 +240,9 @@ const CommentSection = (props) => {
                 </div>
               </div>
                 <div className="videoPage-comment-container">
-                  <Link to={'/channel/robertlouis'}>
+                  <a href={'/channel/robertlouis'}>
                     <h5 className="commentorName">Robert Louis</h5>
-                  </Link>
+                  </a>
                   <div className="dateOfComment">Just Now</div>
                   <p className={`${p}-comment`}>{item}</p>
                   <div className="thumbs">

@@ -70,18 +70,18 @@ const SearchPage = () => {
                 </video>
                 <div className={`${p}-under-video-content`}>
                   <div className={`${p}-avatar-wrapper`}>
-                    <Link to={`/channel/${avatars[index].id}`}> 
+                    <a href={`/channel/${avatars[index].id}`}> 
                       <img className={`${p}-grid-avatar`} src={avatars[index].webformatURL} alt="Video Author Avatar" /> 
-                    </Link> 
+                    </a> 
                   </div>
 
-                  <Link to={`/video/id/${vid.id}-${avatars[index].id}`}>
+                  <a href={`/video/id/${vid.id}-${avatars[index].id}`}>
                     <div className={`home--grid-title`}>{capitalizeFirstLetter(vid.tags)}</div>
-                  </Link>
+                  </a>
 
-                  <Link to={`/channel/${avatars[index].id}`}>
+                  <a href={`/channel/${avatars[index].id}`}>
                     <div className={`home--grid-author`}>{avatars[index].user}</div>
-                  </Link>
+                  </a>
 
                   <div className={`home--grid-views`}>{abbreviateNumber(vid.views)} views 
                     <span className={`home--grid-date`}> • 6 days ago</span>

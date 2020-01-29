@@ -82,23 +82,13 @@ const VideoGrid = (props) => {
     mapVideosToHTML(videos, pictures, pressedNavButton)
   }
 
-  // useEffect(() => {
-  //   return () => {
-  //     observer.current.unobserve()
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   console.log(observer.current)
-  // }) 
-
   const mapVideosToHTML = (videos, pictures, pressedNavButton) => {
     const vidsAsHtml = videos.map((vid, index) => {
       const currentPic = index
       return (
         <div className={`${p}--grid-content-wrapper`} key={uuid()} ref={videos.length === index + 1 ? lastVideo : null}>
           <div className={`${p}--grid-video clickable`}>
-            <Link 
+            <Link
               onMouseDown={() => window.stop()} 
               to={ p==='home' ? `/video/id/${vid.id}-${pictures[currentPic].id}` : `/video/id/${vid.id}`}>
               <video
@@ -116,9 +106,9 @@ const VideoGrid = (props) => {
             {  
               p === 'home' 
                 ? <div className={`${p}--grid-avatar-wrapper`}>
-                    <Link to={p==='home' ? `/channel/${pictures[currentPic].id}` : null}> 
+                    <a href={p==='home' ? `/channel/${pictures[currentPic].id}` : null}> 
                       <img className={`${p}--grid-avatar`} src={p === 'home' ? pictures[currentPic].previewURL : null} alt="Video Author Avatar" /> 
-                    </Link> 
+                    </a> 
                   </div>
                 : null
             }
@@ -130,9 +120,9 @@ const VideoGrid = (props) => {
           { /* else (channel page) don't render author name */}
           {
             p === 'home'
-            ? <Link to={p === 'home' ? `/channel/${pictures[currentPic].id}` : null}>
+            ? <a href={p === 'home' ? `/channel/${pictures[currentPic].id}` : null}>
                 <div className={`${p}--grid-author`}>{p === 'home' ? pictures[currentPic].user : null}</div>
-              </Link>
+              </a>
             : null
           }
 
