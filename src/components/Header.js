@@ -41,6 +41,11 @@ const Header = () => {
     }
   }
 
+  const removeFadeAndMenu = () => {
+    document.querySelector('.hamburgerNav').classList.remove('slideIn')
+    document.querySelector('.fadeBackground').classList.remove('show')
+  }
+
   return (
     <header className="header">
       <div className="hamburgerIcon" onMouseDown={() => handleSlide()}>
@@ -52,7 +57,7 @@ const Header = () => {
       <div className="headerSiteLogo">
         <a href='/'>{siteLogo()}</a>
       </div>
-      <div className="fadeBackground"></div>
+      <div className="fadeBackground" onMouseDown={() => removeFadeAndMenu()}></div>
       <nav className="hamburgerNav">
         <ul>
           <hr/>
