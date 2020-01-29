@@ -530,8 +530,8 @@
 @media screen and (max-width: 600px) {
   .videoPage {
     &-page-wrapper {
-      width: 98%;
-      margin: 0 0 0 0.5rem;
+      width: 100%;
+      margin: 0 0 0 0;
     }
 
     &-main {
@@ -633,8 +633,13 @@
     }
 
     &-sidebar {
-      margin: 7rem 0 0 0.5rem;
+      margin: 7rem 1rem 0 1rem;
     }
+
+    &-sidebar-text-autoplay {
+      margin-right: 1rem;
+    }
+
     &-new-subscribers-wrapper {
       display: flex;
       flex-direction: column;
