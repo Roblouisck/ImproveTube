@@ -4,6 +4,7 @@ import { uuid, fabricateTimeStamp, getRandom } from '../containers/helperFunctio
 import { avatarQuery } from '../words'
 import quote from 'inspirational-quotes'
 import history from '../history'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { thumbsUp, thumbsDown, arrowDrop } from './svgs'
 import { 
@@ -13,6 +14,9 @@ import {
 const ActivityFeed = (props) => {
   const [firstRenderDone, setFirstRenderDone] = useState()
   const [comments, setComments] = useState([])
+  const [state, setState] = useState({
+    items: Array.from({ length: 20 })
+  })
 
   useEffect(() => {
     const mobile = window.innerWidth <= 600
@@ -27,17 +31,23 @@ const ActivityFeed = (props) => {
   useEffect(() => {
     setComments(prevState => (prevState.slice(0, 8)))
   }, [props.button])
-  
+
+  // useEffect(() => {
+  //   return () => {
+  //     observer.current.disconnect()
+  //   }
+  // }, [])
+
   // INFINITE SCROLL
   // Callback is triggered when ref is set in mapCommentsToHTML
-  const observer = useRef()
-  const lastActivityPost = useCallback(lastPostNode => {
-    observer.current = new IntersectionObserver(entries => {
-      const lastPost = entries[0]
-      if (lastPost.isIntersecting) fetchAvatars(getRandom(avatarQuery), 6)
-    })
-    if (lastPostNode) observer.current.observe(lastPostNode)
-  })
+  // const observer = useRef()
+  // const lastActivityPost = useCallback(lastPostNode => {
+  //   observer.current = new IntersectionObserver(entries => {
+  //     const lastPost = entries[0]
+  //     if (lastPost.isIntersecting) fetchAvatars(getRandom(avatarQuery), 6)
+  //   })
+  //   if (lastPostNode) observer.current.observe(lastPostNode)
+  // })
 
   const fetchAvatars = async (query, amount) => {
     let response = await callAvatarsAPI(query, amount)
@@ -48,7 +58,7 @@ const ActivityFeed = (props) => {
   const mapCommentsToHTML = (response) => {
     const picsMappedToHTML = response.map((pic, index) => {
       return ( 
-        <div className="commentWrapper" key={uuid()} ref={response.length === index + 1 ? lastActivityPost : null}>
+        <div className="commentWrapper" key={uuid()}>
           <div className="avatarPlaceholder--comments">
           {props.page === 'channel' 
             ? <img 
@@ -95,14 +105,44 @@ const ActivityFeed = (props) => {
     setComments(prevState => ([...prevState, ...picsMappedToHTML]))
   }
 
+  const createDivs = () => {
+    setTimeout(() => {
+        setState({
+          items: state.items.concat(Array.from({ length: 20 }))
+        })
+      }, 500)
+  }
+
   return (
     <aside className="activityFeedContainer">
       <h1 className={`${props.page}--activity-feed-title`}>Activity Feed</h1>
       <hr className="home--activityfeed-hr" />
       <div className="commentSection--activityfeed">
-        {comments}
+
+      <InfiniteScroll
+        dataLength={state.items.length}
+        next={createDivs}
+        hasMore={true}
+        loader={<h4>Loading...</h4>}>
+        {state.items.map((i, index) => (
+          <div style={{height: 30, border: "1px solid green", margin: 6, padding: 8}} key={index}>
+            div - #{index}
+          </div>
+        ))}
+      </InfiniteScroll>
       </div>
     </aside>
   )
 }
 export default ActivityFeed
+
+        // <InfiniteScroll
+        //   dataLength={videosAsHTML.length}
+        //   // next={fetchVideos(6, ...Array(2), getRandom(videoQuery))}
+        //   next={() => fetchVideos(6, ...Array(2), getRandom(videoQuery))}
+        //   hasMore={true}
+        //   loader={<h4>Loading...</h4>}>
+        //   <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
+        //     {videosAsHTML}
+        //   </div>
+        // </InfiniteScroll>

@@ -15,6 +15,7 @@ import {
 } from '../containers/helperFunctions'
 import { fetchAvatars, fetchVideos as callVideosAPI } from '../containers/api'
 import { userClicksFollow } from './channelPage/userClicksFollow'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 const VideoGrid = (props) => {
   const [videosAsHTML, setVideosAsHTML] = useState([])
@@ -23,6 +24,10 @@ const VideoGrid = (props) => {
   const [following, setFollowing] = useState()
   const mobile = window.innerWidth <= 600
 
+  const [state, setState] = useState({
+    items: Array.from({ length: 20 })
+  })
+
   useEffect(() => {
     if (p === 'home') { 
       fetchVideos(mobile ? 4 : 13, ...Array(2), 'buildings') 
@@ -30,6 +35,22 @@ const VideoGrid = (props) => {
     } 
     else fetchVideos(mobile ? 3 : 13, ...Array(2), getRandom(videoQuery))
   }, [window.location.hash])
+
+  // INFINITE SCROLL
+  // Callback is triggered when ref is set in mapVideosToHTML
+  // const observer = useRef(null)
+  // const lastVideo = useCallback(lastVideoNode => {
+
+  //   // Re-hookup observer to last video, to include fetchVideos callback
+  //   if (observer.current) observer.current.disconnect()
+  //   observer.current = new IntersectionObserver(entries => {
+  //     const endVideo = entries[0]
+  //     if (endVideo.isIntersecting && mobile) fetchVideos(6, ...Array(2), getRandom(videoQuery))
+  //     else if (endVideo.isIntersecting && !mobile) fetchVideos(13, ...Array(2), getRandom(videoQuery))
+  //   })
+  //   setCurrentObserver(observer.current)
+  //   if (lastVideoNode) observer.current.observe(lastVideoNode)
+  // })
 
   const navButtonHashChange = () => {
     switch (window.location.hash) {
@@ -52,21 +73,6 @@ const VideoGrid = (props) => {
     }
   }
 
-  // INFINITE SCROLL
-  // Callback is triggered when ref is set in mapVideosToHTML
-  const observer = useRef()
-  const lastVideo = useCallback(lastVideoNode => {
-
-    // Re-hookup observer to last video, to include fetchVideos callback
-    if (observer.current) observer.current.disconnect()
-    observer.current = new IntersectionObserver(entries => {
-      const endVideo = entries[0]
-      if (endVideo.isIntersecting && mobile) fetchVideos(6, ...Array(2), getRandom(videoQuery))
-      else if (endVideo.isIntersecting && !mobile) fetchVideos(13, ...Array(2), getRandom(videoQuery))
-    })
-    if (lastVideoNode) observer.current.observe(lastVideoNode)
-  })
-
   const fetchVideos = async (amount, category, editorsChoice, query, pressedNavButton) => {
     let videos
     let pictures
@@ -81,22 +87,12 @@ const VideoGrid = (props) => {
 
     mapVideosToHTML(videos, pictures, pressedNavButton)
   }
-
-  // useEffect(() => {
-  //   return () => {
-  //     observer.current.unobserve()
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   console.log(observer.current)
-  // }) 
-
+  
   const mapVideosToHTML = (videos, pictures, pressedNavButton) => {
     const vidsAsHtml = videos.map((vid, index) => {
       const currentPic = index
       return (
-        <div className={`${p}--grid-content-wrapper`} key={uuid()} ref={videos.length === index + 1 ? lastVideo : null}>
+        <div className={`${p}--grid-content-wrapper`} key={uuid()}>
           <div className={`${p}--grid-video clickable`}>
             <Link 
               onMouseDown={() => window.stop()} 
@@ -146,6 +142,14 @@ const VideoGrid = (props) => {
   else setVideosAsHTML(prevState => ([...prevState, ...vidsAsHtml]))
   }
 
+  const createDivs = () => {
+    setTimeout(() => {
+        setState({
+          items: state.items.concat(Array.from({ length: 20 }))
+        })
+      }, 500)
+  }
+
   return (
     <div className={props.page === 'home' ? "homepage-wrapper" : `${p}--grid-background`}>
       { props.page==='home' ? <ActivityFeed page={'home'} button={button} /> : null}
@@ -181,14 +185,23 @@ const VideoGrid = (props) => {
           </button>
         </nav>
         <hr className={`${p}--grid-hr-nav-grey`} />
-        <hr className={`${p}--grid-hr-nav-black`} />        
+        <hr className={`${p}--grid-hr-nav-black`} />
 
-        <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
-          {videosAsHTML}
-        </div>
+        <InfiniteScroll
+          dataLength={state.items.length}
+          next={createDivs}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}>
+          {state.items.map((i, index) => (
+            <div style={{height: 30, border: "1px solid green", margin: 6, padding: 8}} key={index}>
+              div - #{index}
+            </div>
+          ))}
+        </InfiniteScroll>
       </main>
     </div>
   )
 }
 
 export default VideoGrid
+

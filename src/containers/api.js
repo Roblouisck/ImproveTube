@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchAvatars = (query, amount) => {
   return axios.get('https://pixabay.com/api/', {
     params: {
-      key: process.env.PIXABAY_API,
+      key: '14489153-22b0de71d07557dfa934c10c4',
       q: query,
       orientation: 'vertical',
       per_page: amount,
@@ -20,7 +20,7 @@ export const fetchVideos = (amount, category, editorsChoice, query) => {
 
   return axios.get('https://pixabay.com/api/videos/', {
     params: {
-      key: process.env.PIXABAY_API,
+      key: '14489153-22b0de71d07557dfa934c10c4',
       q: query,
       per_page: amount,
       category: category,
@@ -39,7 +39,7 @@ export const fetchVideos = (amount, category, editorsChoice, query) => {
 export const fetchVideoFromID = (id) => {
   return axios.get('https://pixabay.com/api/videos/', {
     params: {
-      key: process.env.PIXABAY_API,
+      key: '14489153-22b0de71d07557dfa934c10c4',
       id: id
     }
   }).catch(err => {
@@ -53,7 +53,7 @@ export const fetchVideoFromID = (id) => {
 export const fetchPictureFromID = (id) => {
   return axios.get('https://pixabay.com/api/', {
     params: {
-      key: process.env.PIXABAY_API,
+      key: '14489153-22b0de71d07557dfa934c10c4',
       id: id
     }
   }).catch(err => {

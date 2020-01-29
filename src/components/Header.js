@@ -58,7 +58,7 @@ const Header = () => {
         <ul>
           <hr/>
           <li><Link to="/">Home</Link></li>
-          <li><a href="/channel/robertlouis">Channel</a></li>
+          <li><Link to="/channel/robertlouis">Channel</Link></li>
           <li><a href="#">History</a></li>
           <li><a href="#">Liked videos</a></li>
           <li><a href="#">Favorites</a></li>
