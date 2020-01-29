@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import history from '../history'
-import { videoQuery, avatarQuery } from '../words'
-import ActivityFeed from './ActivityFeed'
-import { handleButtons } from './homePage/handleButtons'
-import { determineAvatars } from './homePage/determineAvatars'
+import React, { 
+  useState, 
+  useEffect, 
+  useRef, 
+  useCallback } from 'react'
+  
 import { 
   abbreviateNumber, 
   capitalizeFirstLetter,
@@ -13,7 +11,13 @@ import {
   getRandom,
   fabricateTimeStamp
 } from '../containers/helperFunctions'
-import { fetchAvatars, fetchVideos as callVideosAPI } from '../containers/api'
+
+import ActivityFeed from './ActivityFeed'
+import { Link } from 'react-router-dom'
+import { videoQuery, avatarQuery } from '../words'
+import { handleButtons } from './homePage/handleButtons'
+import { determineAvatars } from './homePage/determineAvatars'
+import { fetchVideos as callVideosAPI } from '../containers/api'
 import { userClicksFollow } from './channelPage/userClicksFollow'
 
 const VideoGrid = (props) => {

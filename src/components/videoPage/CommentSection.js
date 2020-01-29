@@ -4,7 +4,6 @@ import { fetchAvatars } from '../../containers/api'
 import { uuid, randomNumber, getRandom } from '../../containers/helperFunctions'
 import quote from 'inspirational-quotes'
 import { avatarQuery } from '../../words'
-import { Link } from 'react-router-dom'
 
 import { 
   thumbsUp, 

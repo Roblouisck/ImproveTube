@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { fetchAvatars, getRandomName } from '../../containers/api'
 import { 
-  capitalizeFirstLetter, 
   getRandom, 
   abbreviateNumber,
   randomNumberBetweenTwo } from '../../containers/helperFunctions'

@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
 import { fetchAvatars, fetchVideos } from '../../containers/api'
-import { pixabayLogo } from '../svgs'
 import { avatarQuery } from '../../words'
 import { 
   abbreviateNumber, 

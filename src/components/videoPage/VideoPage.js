@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import axios from 'axios'
-import history from '../../history'
 import handleMediaQueries from './containers/handleMediaQueries'
 import setDislikes from './containers/setDislikes'
 import NewSubscribers from './NewSubscribers'
@@ -82,7 +80,7 @@ const VideoPage = ({ match }) => {
 
   const fetchAuthorAvatar = async (id) => {
     const response = await fetchPictureFromID(id)
-    if (!response) console.log('no res')
+    if (!response) setState(prevState => ({...prevState, error: true}))
 
     const authorName = response.data.hits[0].user
     const authorAvatar = response.data.hits[0].previewURL

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { fetchAvatars } from '../../containers/api'
 import { getRandom } from '../../containers/helperFunctions'
 import { avatarQuery } from '../../words'

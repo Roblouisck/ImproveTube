@@ -1,11 +1,9 @@
 import React from 'react'
-import VideoPage from './VideoPage'
-import axios from 'axios'
-
-import Header from '../Header'
 import HeaderMobile from '../HeaderMobile'
-import FooterMobile from '../FooterMobile'
+import Header from '../Header'
 import ActivityFeed from '../ActivityFeed'
+import VideoPage from './VideoPage'
+import FooterMobile from '../FooterMobile'
 
 const RenderVideoPage = () => {
   return (

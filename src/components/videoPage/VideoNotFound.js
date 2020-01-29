@@ -1,7 +1,4 @@
 import React, { useState } from 'react'
-import Header from '../Header'
-import HeaderMobile from '../HeaderMobile'
-import FooterMobile from '../FooterMobile'
 
 const VideoNotFound = () => {
   const [p, setResource] = useState("videoPage")

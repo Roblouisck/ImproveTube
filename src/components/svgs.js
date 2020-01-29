@@ -1,5 +1,4 @@
 // Storing SVGs here to stay neat with my JSX
-
 import React from 'react'
 
 export const thumbsUp = (width) => {
