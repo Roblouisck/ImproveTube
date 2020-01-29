@@ -188,15 +188,14 @@ const VideoGrid = (props) => {
         <hr className={`${p}--grid-hr-nav-black`} />
 
         <InfiniteScroll
-          dataLength={state.items.length}
-          next={createDivs}
+          dataLength={videosAsHTML.length}
+          // next={fetchVideos(6, ...Array(2), getRandom(videoQuery))}
+          next={() => fetchVideos(12, ...Array(2), getRandom(videoQuery))}
           hasMore={true}
           loader={<h4>Loading...</h4>}>
-          {state.items.map((i, index) => (
-            <div style={{height: 30, border: "1px solid green", margin: 6, padding: 8}} key={index}>
-              div - #{index}
-            </div>
-          ))}
+          <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
+            {videosAsHTML}
+          </div>
         </InfiniteScroll>
       </main>
     </div>

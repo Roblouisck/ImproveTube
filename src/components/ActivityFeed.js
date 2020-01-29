@@ -120,29 +120,14 @@ const ActivityFeed = (props) => {
       <div className="commentSection--activityfeed">
 
       <InfiniteScroll
-        dataLength={state.items.length}
-        next={createDivs}
+        dataLength={comments.length}
+        next={() => fetchAvatars(getRandom(avatarQuery), 6)}
         hasMore={true}
         loader={<h4>Loading...</h4>}>
-        {state.items.map((i, index) => (
-          <div style={{height: 30, border: "1px solid green", margin: 6, padding: 8}} key={index}>
-            div - #{index}
-          </div>
-        ))}
+        {comments}
       </InfiniteScroll>
       </div>
     </aside>
   )
 }
 export default ActivityFeed
-
-        // <InfiniteScroll
-        //   dataLength={videosAsHTML.length}
-        //   // next={fetchVideos(6, ...Array(2), getRandom(videoQuery))}
-        //   next={() => fetchVideos(6, ...Array(2), getRandom(videoQuery))}
-        //   hasMore={true}
-        //   loader={<h4>Loading...</h4>}>
-        //   <div className={`${p}--grid`} style={{marginTop: 'unset'}}>
-        //     {videosAsHTML}
-        //   </div>
-        // </InfiniteScroll>
