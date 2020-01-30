@@ -73,6 +73,30 @@
   display: block;
 }
 
+.hamburgerNav > ul > li:nth-child(n+4):nth-child(-n+8) > a {
+  cursor: not-allowed;
+}
+
+.hamburgerNav > ul > li:nth-child(n+4):nth-child(-n+8) > a, {
+  &:hover {
+    visibility: hidden;
+    &:after {
+      content: 'Coming soon';
+      visibility: visible;
+      position: absolute;
+      left: 0;
+      padding-left: 7.8rem;
+      padding-right: 8.9rem;
+    }
+  }
+}
+
+// .hamburgerNav > ul > a > li  {
+//   padding-left: 7.8rem;
+//   color: #5b5b5b;
+//   display: block;
+// }
+
 .hamburgerNav > ul > li {
   padding: 0;
 }

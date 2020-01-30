@@ -54,10 +54,10 @@
     padding-bottom: 2rem
   }
 
-  &-nav > button:not(:last-child) {
-    outline: none;
+  &-playlists {
     &:hover {
-      color: #5E5E5E;
+      cursor: not-allowed;
+      color: none;
     }
   }
 
@@ -67,8 +67,7 @@
     margin: 3.3rem 0rem 0rem 7.1rem;
 
     &-following,
-    &-recommended,
-    &-subscriptions {
+    &-recommended {
       font-family: Roboto;
       font-size: 1.8rem;
       color: $header-faded-black;
@@ -76,6 +75,9 @@
       margin-right: 5rem;
       cursor: pointer;
       text-transform: uppercase;
+      &:hover {
+        color: #5E5E5E;
+      }
     }
 
     &-following {
@@ -204,10 +206,6 @@
   &-avatar-placeholder,
   &-date-hr-container,
   &-divider-date-text,
-  // &-content-wrapper:nth-last-child(-n+3) {
-  //   display: none;
-  // }
-
   &-content-wrapper {
     margin: unset;
   }
@@ -244,6 +242,13 @@
     margin-right: 5rem;
     cursor: pointer;
     text-transform: uppercase;
+  }
+
+  &-playlists, &-subscriptions {
+    &:hover {
+      cursor: not-allowed;
+      color: none;
+    }
   }
 
   &-videos {

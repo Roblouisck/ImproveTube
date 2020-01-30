@@ -174,15 +174,24 @@
     &-options-share {
       margin-right: 3rem;
       font-size: 1.4rem;
+      &:hover {
+        cursor: not-allowed;
+      }
     }
 
     &-options-save {
       margin-right: 3rem;
       font-size: 1.4rem;
+      &:hover {
+        cursor: not-allowed;
+      }
     }
 
     &-options-ellipses {
       margin-right: 1rem;
+      &:hover {
+        cursor: not-allowed;
+      }
     }
   }
 
