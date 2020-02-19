@@ -16,7 +16,7 @@ const AboveFold = ({ userName, userAvatar, authorFollowers, pixabaySource }) => 
   const [subcriberAvatars, setSubscriberAvatars] = useState([])
   const [bio, setBio] = useState([])
   const [subscriberAmount, setSubscriberAmount] = useState([])
-  const mobile = window.innerWidth <= 600
+  const mobile = typeof window.orientation !== 'undefined'
   
   useEffect(() => {
     if (!mobile) {

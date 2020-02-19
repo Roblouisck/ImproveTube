@@ -25,7 +25,7 @@ const VideoPage = ({ match }) => {
     thumbsUp: false,
     thumbsDown: false
   })
-  const mobile = window.innerWidth <= 600
+  const mobile = typeof window.orientation !== 'undefined'
 
   useEffect(() => {
     scroll(0, 0)

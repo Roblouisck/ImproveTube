@@ -13,7 +13,7 @@ const DescriptionBox = ({ props }) => {
     views,
     authorAvatar
   } = props
-  const mobile = window.innerWidth <= 600
+  const mobile = typeof window.orientation !== 'undefined'
 
   const userClicksSubscribe = () => {
     if (subscribed) {

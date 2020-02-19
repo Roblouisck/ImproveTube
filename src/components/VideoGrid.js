@@ -25,7 +25,10 @@ const VideoGrid = (props) => {
   const [p, setPrefix] = useState(props.page)
   const [button, setButton] = useState()
   const [following, setFollowing] = useState()
-  const mobile = window.innerWidth <= 600
+  // const mobile = window.innerWidth <= 600
+  const mobile = typeof window.orientation !== 'undefined'
+  let preventInfiniteScroll = false
+  let alertTrigger = true
 
   useEffect(() => {
     if (p === 'home') { 
@@ -65,7 +68,16 @@ const VideoGrid = (props) => {
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries => {
       const endVideo = entries[0]
-      if (endVideo.isIntersecting && mobile) fetchVideos(6, ...Array(2), getRandom(videoQuery))
+      if (endVideo.isIntersecting && mobile) {
+        if (preventInfiniteScroll) {
+          if (!alertTrigger) return
+          setTimeout(() => {alert('Checkout the PC version for infinite scrolling videos, or checkout the activity feed!')}, 1000)
+          alertTrigger = false
+          return
+        }
+        fetchVideos(6, ...Array(2), getRandom(videoQuery))
+        preventInfiniteScroll = true
+      }
       else if (endVideo.isIntersecting && !mobile) fetchVideos(13, ...Array(2), getRandom(videoQuery))
     })
     if (lastVideoNode) observer.current.observe(lastVideoNode)

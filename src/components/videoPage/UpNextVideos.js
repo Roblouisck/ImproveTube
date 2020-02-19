@@ -13,7 +13,9 @@ const UpNextVideos = ({ match }) => {
   const [p, setPrefix] = useState("videoPage")
   const [nextVideos, setNextVideos] = useState([])
   const { params } = match
-  const mobile = window.innerWidth <= 600
+  const mobile = typeof window.orientation !== 'undefined'
+  // const mobile = typeof window.orientation !== 'undefined'
+  let timer
 
   useEffect(() => {
     if (mobile) fetchUpNextVideos(3, getRandom(videoQuery))
@@ -81,7 +83,8 @@ const UpNextVideos = ({ match }) => {
         </div>
       )
     })
-    setNextVideos(prevState => ([...prevState, ...responseAsHtml]))
+    if (mobile) setNextVideos([...responseAsHtml])
+    else setNextVideos(prevState => ([...prevState, ...responseAsHtml]))
   }
 
   return (
@@ -95,8 +98,11 @@ const UpNextVideos = ({ match }) => {
       </div> 
       <button 
         className={`${p}-show-more-button`} 
-        onMouseDown={() => fetchUpNextVideos(8, getRandom(videoQuery))}>
-        Show More
+        onMouseDown={() => {
+          clearTimeout(timer)
+          timer = setTimeout(() => {fetchUpNextVideos(5, getRandom(videoQuery))}, 300)
+        }}>
+        New Recommendations
       </button>
     </div>
   )

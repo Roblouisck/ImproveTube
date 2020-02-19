@@ -3,7 +3,6 @@ import { uuid, fabricateTimeStamp, getRandom } from '../containers/helperFunctio
 import { avatarQuery } from '../words'
 import quote from 'inspirational-quotes'
 import history from '../history'
-
 import { thumbsUp, thumbsDown, arrowDrop } from './svgs'
 import { 
   fetchAvatars as callAvatarsAPI, 
@@ -14,7 +13,7 @@ const ActivityFeed = (props) => {
   const [comments, setComments] = useState([])
 
   useEffect(() => {
-    const mobile = window.innerWidth <= 600
+    const mobile = typeof window.orientation !== 'undefined'
     if (mobile) fetchAvatars('woman', 3)
     if (!mobile) fetchAvatars('woman', 6)
     if (history.location.pathname.includes('/video/') || history.location.pathname.includes('/search/')) {
