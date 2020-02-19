@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { fetchAvatars, getRandomName } from '../../containers/api'
+import { avatarQuery } from '../../words'
 import { 
   getRandom, 
   abbreviateNumber,
@@ -13,7 +14,7 @@ import {
 
 const AboveFold = ({ userName, userAvatar, authorFollowers, pixabaySource }) => {
   const [p, setPrefix] = useState('channel--aboveFold')
-  const [subcriberAvatars, setSubscriberAvatars] = useState([])
+  const [subscriberAvatars, setSubscriberAvatars] = useState([])
   const [bio, setBio] = useState([])
   const [subscriberAmount, setSubscriberAmount] = useState([])
   const mobile = typeof window.orientation !== 'undefined'
@@ -68,13 +69,13 @@ const AboveFold = ({ userName, userAvatar, authorFollowers, pixabaySource }) => 
   }, [])
 
   const fetchSubscriberAvatars = async () => {
-    let subscriberAvatars = await fetchAvatars('woman', 84)
-    subscriberAvatars = subscriberAvatars.data.hits
-    mapSubscriberAvatarsToHtml(subscriberAvatars)
+    let subAvatars = await fetchAvatars(getRandom(avatarQuery), 84)
+    subAvatars = subAvatars.data.hits
+    mapSubscriberAvatarsToHtml(subAvatars)
   }
 
-  const mapSubscriberAvatarsToHtml = (subscriberAvatars) => {
-    const subAvatars = subscriberAvatars.map(avatar => {
+  const mapSubscriberAvatarsToHtml = (subAvatars) => {
+    const subAvatarsMapped = subAvatars.map(avatar => {
       return (
         <a href={`/channel/${avatar.id}`} key={avatar.id}> 
           <img 
@@ -84,7 +85,7 @@ const AboveFold = ({ userName, userAvatar, authorFollowers, pixabaySource }) => 
         </a>
       )
     })
-    setSubscriberAvatars(subAvatars)
+    setSubscriberAvatars([subAvatarsMapped])
   }
 
   const handleBio = async () => {
@@ -146,7 +147,7 @@ const AboveFold = ({ userName, userAvatar, authorFollowers, pixabaySource }) => 
       <div className={`${p}-subscribers-box-wrapper`}>
         <span className={`${p}-subscribers-box-title`}> Subscribers </span>
         <div className={`${p}-subscribers-box`}>
-          {subcriberAvatars}
+          {subscriberAvatars}
         </div>
         <span className={`${p}-subscribers-box-bottom-text`}>{
           authorFollowers 
