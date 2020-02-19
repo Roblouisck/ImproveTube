@@ -81,10 +81,8 @@ const ActivityFeed = (props) => {
             </div>
             <p className="replyText">REPLY</p>
             <div className="viewReplies">
-              <span className="arrowDrop">
-                {arrowDrop()}
-              </span>
-              View {Math.floor(Math.random() * 50) + 2} Replies
+              <span className="arrowDrop">{arrowDrop()}</span>
+              <span className="viewRepliesText">View {Math.floor(Math.random() * 50) + 2} Replies</span>
             </div>
           </div>
         </div>

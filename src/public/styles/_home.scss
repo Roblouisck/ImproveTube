@@ -278,7 +278,6 @@ hr {
 
 .viewReplies {
   font-size: 1.4rem;
-  cursor: pointer;
   font-weight: bold;
   line-height: 1.6rem;
   color: $comment-reply-blue;
@@ -289,7 +288,7 @@ hr {
   margin-left: 0.1rem;
   & > span > svg:hover {
     fill: #5E5E5E;
-    cursor: pointer;
+    cursor: not-allowed;
   }
 }
 
@@ -306,9 +305,12 @@ hr {
   display: inline-block;
   fill: #848484;
   &:hover {
-    cursor: pointer;
     color: #5E5E5E;
   }
+}
+
+.viewRepliesText {
+  cursor: not-allowed;
 }
 
 .replyText {
@@ -318,6 +320,7 @@ hr {
   font-size: 1.3rem;
   font-weight: 600;
   margin-left: 1.6rem;
+  cursor: not-allowed;
 }
 
 .arrowDrop {
