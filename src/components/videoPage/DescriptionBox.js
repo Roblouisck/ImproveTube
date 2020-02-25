@@ -50,7 +50,7 @@ const DescriptionBox = ({ props }) => {
               alt="Video Author Avatar" />
           </a>
           <div className={`${p}-description-avatar-text-wrapper`}>
-            <a to={ picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`}>
+            <a href={ picAuthorID ? `/channel/${picAuthorID}-${vidAuthorID}` : `/channel/000${vidAuthorID}`}>
               <div className={`${p}-description-column-1-author`}>
                 { loading === "yes" ? "loading" : author }
               </div>
